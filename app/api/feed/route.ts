@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getFeed, markRead } from '@/lib/db'
+import { listFeed as getFeed, markFeedAsRead as markRead } from '@/lib/db'
 
 export const dynamic = 'force-dynamic'
 
