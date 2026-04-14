@@ -6,8 +6,8 @@ export const dynamic = 'force-dynamic'
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const items = getFeed({
-    category: searchParams.get('category') ?? undefined,
-    priority: searchParams.get('priority') ?? undefined,
+    category: (searchParams.get('category') ?? undefined) as any,
+    priority: (searchParams.get('priority') ?? undefined) as any,
     limit: Number(searchParams.get('limit') ?? 40),
     offset: Number(searchParams.get('offset') ?? 0),
   })
