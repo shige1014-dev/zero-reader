@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at top, rgba(201, 168, 76, 0.12), transparent 24%),
+    linear-gradient(180deg, #0d0d0d 0%, #0d0d0d 100%);
+}
+
+::selection {
+  background: rgba(201, 168, 76, 0.24);
+  color: #f4efe0;
+}
+
+.gold-grid {
+  background-image:
+    linear-gradient(rgba(201, 168, 76, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201, 168, 76, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.markdown {
+  @apply font-body text-[1.02rem] leading-8 text-text;
+}
+
+.markdown > * + * {
+  @apply mt-6;
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4 {
+  @apply font-display font-semibold tracking-[-0.02em] text-text;
+}
+
+.markdown h2 {
+  @apply mt-14 scroll-mt-28 border-t border-border pt-8 text-2xl;
+}
+
+.markdown h3 {
+  @apply mt-10 scroll-mt-28 text-xl text-[#ddd6bf];
+}
+
+.markdown p {
+  @apply text-[1.02rem] leading-8 text-[#d9d8cf];
+}
+
+.markdown a {
+  @apply text-accent underline decoration-accent/40 underline-offset-4 transition hover:decoration-accent;
+}
+
+.markdown ul,
+.markdown ol {
+  @apply ml-5 space-y-3 text-[#d9d8cf];
+}
+
+.markdown blockquote {
+  @apply rounded-2xl border border-border bg-accentSoft px-5 py-4 italic text-[#f1ebd7];
+}
+
+.markdown pre {
+  @apply overflow-x-auto rounded-2xl border border-border bg-black/60 p-4 text-sm shadow-glow;
+}
+
+.markdown code {
+  @apply font-mono text-[0.92em] text-[#f5deb0];
+}
+
+.markdown :not(pre) > code {
+  @apply rounded-md bg-white/5 px-1.5 py-0.5;
+}
+
+.markdown table {
+  @apply w-full overflow-hidden rounded-2xl border border-border text-left text-sm;
+}
+
+.markdown thead {
+  @apply bg-white/5 text-[#f4e6bc];
+}
+
+.markdown th,
+.markdown td {
+  @apply border-b border-border px-4 py-3 align-top;
+}
+
+.markdown hr {
+  @apply border-border;
+}

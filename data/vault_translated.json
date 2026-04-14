@@ -1,0 +1,348 @@
+[
+  {
+    "id": "zero.confidence_calibration.single_track_question_stays_single_track",
+    "hall": "hall_judgment",
+    "topic": "single_track_boundary",
+    "weight": 0.93,
+    "confidence": 0.88,
+    "tags": [
+      "confidence",
+      "calibration",
+      "scope",
+      "single-track",
+      "sticky"
+    ],
+    "updated_at": "2026-04-04",
+    "title": "单轨问题应保持单轨",
+    "summary": "如果用户明确询问某一轨道的问题，ZeroZero不应该将答案膨胀成三轨讲座，除非另一轨道才是第一轨道读数失败的真正原因。",
+    "content": "校准读数：\n- 如果用户询问某一轨道的问题，首先回答该轨道。\n- 仅当另一轨道是第一轨道读数失败的真实原因时，才提及该轨道。\n\n修复步骤：\n- 将主要切口保持在用户实际询问的轨道内\n- 仅当跨轨干扰改变处理方法时，才指出该干扰"
+  },
+  {
+    "id": "zero.confidence_calibration.relationship_repair_needs_consistency",
+    "hall": "hall_judgment",
+    "topic": "relationship_consistency_boundary",
+    "weight": 0.94,
+    "confidence": 0.9,
+    "tags": [
+      "confidence",
+      "calibration",
+      "relationship",
+      "consistency"
+    ],
+    "updated_at": "2026-04-04",
+    "title": "关系修复需要一致性，而非仅有温暖",
+    "summary": "关系评估不应该大幅升级，除非温暖是通过稳定的行为重复出现，而不仅仅是新近一次性提供的。",
+    "content": "校准阅读：\n- 一个温暖的举动是信息\n- 重复可靠的举动才是承诺\n\n修复举措：\n- 保持评估暂定性，直到新的模式重复出现"
+  },
+  {
+    "id": "zero.confidence_calibration.reference_web_must_yield_to_new_counter_signal",
+    "hall": "hall_judgment",
+    "topic": "reference_web_refresh",
+    "weight": 0.95,
+    "confidence": 0.91,
+    "tags": [
+      "confidence",
+      "calibration",
+      "reference-web",
+      "sticky"
+    ],
+    "updated_at": "2026-04-04",
+    "title": "当新的反向信号到达时，已验证的网络必须让步",
+    "summary": "之前验证的路径仅在出现改变承载结构的新鲜反向信号之前保持优先权。",
+    "content": "校准读数：\n- 已验证的网络具有优先权\n- 新鲜的反向信号仍然优于旧的舒适感\n\n修复移动：\n- 将旧网络作为参考保留\n- 如果新结构破坏了其承载假设，迅速放弃其权限"
+  },
+  {
+    "id": "zero.confidence_calibration.product_attention_not_validation",
+    "hall": "hall_judgment",
+    "topic": "product_validation_boundary",
+    "weight": 0.92,
+    "confidence": 0.88,
+    "tags": [
+      "confidence",
+      "calibration",
+      "product",
+      "validation"
+    ],
+    "updated_at": "2026-04-04",
+    "title": "关注不等于验证",
+    "summary": "下载量、讨论和覆盖面的增长不应该提升节点信心，除非留存率或付款开始发挥作用。",
+    "content": "校准阅读：\n- 漏斗顶部的增长提高兴趣，而非节点信心\n- 留存率和付款是真正的承载信号\n\n修复举措：\n- 保持最弱的轨道不变，直到出现持久的承载"
+  },
+  {
+    "id": "zero.confidence_calibration.verifier_should_stay_silent_when_nothing_new",
+    "hall": "hall_judgment",
+    "topic": "verifier_silence",
+    "weight": 0.95,
+    "confidence": 0.91,
+    "tags": [
+      "confidence",
+      "calibration",
+      "verifier",
+      "sticky"
+    ],
+    "updated_at": "2026-04-04",
+    "title": "验证者在没有新的信号出现时应保持沉默",
+    "summary": "验证不应该仅仅因为存在就发言；当没有发现新的破裂信号时，沉默是最干净的收紧。",
+    "content": "校准阅读：\n- 验证者是有条件的\n- 没有新的风险意味着没有额外的语言\n\n修复步骤：\n- 让验证者在第一次切割已经包含实时风险时保持沉默\n- 不要强制一个后续检查句子来证明验证者的存在"
+  },
+  {
+    "id": "zero.confidence_calibration.organization_execution_needs_throughput",
+    "hall": "hall_judgment",
+    "topic": "organization_throughput",
+    "weight": 0.93,
+    "confidence": 0.88,
+    "tags": [
+      "confidence",
+      "calibration",
+      "organization",
+      "throughput"
+    ],
+    "updated_at": "2026-04-04",
+    "title": "组织执行需要吞吐量，而不仅仅是清晰度",
+    "summary": "清晰的方向和明确的所有权不应该大幅提升信心，除非吞吐量或摩擦力有明显变化。",
+    "content": "校准阅读：\n- 清晰度不等于吞吐量\n- 所有权直到工作方式改变才真正发挥作用\n\n修复措施：\n- 保持执行流程中的弱点在视线内，直到摩擦力可测量地下降"
+  },
+  {
+    "id": "zero.confidence_calibration.same_question_weakest_track_drift",
+    "hall": "hall_judgment",
+    "topic": "weakest_track_stability",
+    "weight": 0.95,
+    "confidence": 0.9,
+    "tags": [
+      "confidence",
+      "calibration",
+      "weakest-track",
+      "anchor",
+      "sticky"
+    ],
+    "updated_at": "2026-04-04",
+    "title": "相同问题不应该在不同读取中产生漂移的最弱轨道",
+    "summary": "当相同情况在读取之间不断在最弱轨道之间翻转时，系统仍在重新推导而不是从锚定张力中读取。",
+    "content": "校准读取：\n- 如果相同问题在地球和人类之间翻转最弱轨道，信心被高估了。\n- 这通常意味着系统在推理前没有充分强地读取当前线路张力。\n\n修复步骤：\n- 首先读取实时线路光标\n- 将新信号与当前锚点进行比较\n- 只有这样才能决定最弱轨道是否真的改变了"
+  },
+  {
+    "id": "zero.confidence_calibration.window_duration_must_be_spoken_naturally",
+    "hall": "hall_judgment",
+    "topic": "temporal_translation",
+    "weight": 0.93,
+    "confidence": 0.89,
+    "tags": [
+      "confidence",
+      "calibration",
+      "temporal",
+      "output"
+    ],
+    "updated_at": "2026-04-04",
+    "title": "应该自然地表述时间窗口",
+    "summary": "有效的时间阅读应该被翻译为周、月或阶段，而不是保留为内部计时机制。",
+    "content": "校准阅读：\n- 内部窗口逻辑只有在变成自然的时间语言时才有用\n- 说周、月或这个阶段，而不是内部计时模式\n\n修复移动：\n- 将计时转换为仍能指导行动的最短自然单位"
+  },
+  {
+    "id": "zero.confidence_calibration.counter_signal_has_priority_over_beauty",
+    "hall": "hall_judgment",
+    "topic": "counter_signal_priority",
+    "weight": 0.96,
+    "confidence": 0.92,
+    "tags": [
+      "confidence",
+      "calibration",
+      "counter-signal",
+      "sticky"
+    ],
+    "updated_at": "2026-04-04",
+    "title": "反向信号优于漂亮的一致性",
+    "summary": "当出现真实的反向信号时，一个完整的故事应该立即失去权威性。",
+    "content": "校准阅读：\n- 如果出现真实的反向信号，信心应该首先收紧\n- 不要用矛盾来保护一个完整的叙述\n\n修复举措：\n- 明确命名反向信号\n- 在添加解释之前降低信心"
+  },
+  {
+    "id": "zero.confidence_calibration.verifier_should_name_only_the_new_risk",
+    "hall": "hall_judgment",
+    "topic": "verifier_density",
+    "weight": 0.94,
+    "confidence": 0.9,
+    "tags": [
+      "confidence",
+      "calibration",
+      "verifier",
+      "sticky"
+    ],
+    "updated_at": "2026-04-04",
+    "title": "验证者应仅指出新风险",
+    "summary": "事后检查应仅添加主要切割遗漏的一个风险或张力，而不是重新审视整个判断。",
+    "content": "校准阅读：\n- 验证者添加一个遗漏的风险\n- 验证者不重新审视答案\n\n修复步骤：\n- 如果验证者发言，让它仅命名未提及的断裂点\n- 如果不存在新风险，让验证者保持沉默"
+  },
+  {
+    "id": "zero.confidence_calibration.reference_web_validated",
+    "hall": "hall_judgment",
+    "topic": "reference_web_validated",
+    "weight": 0.97,
+    "confidence": 0.92,
+    "tags": [
+      "confidence",
+      "calibration",
+      "reference-web",
+      "validated",
+      "sticky"
+    ],
+    "updated_at": "2026-04-04",
+    "title": "已验证的网络应在新推导之前被重用",
+    "summary": "当某条路径已经被现实验证过时，类似的未来信号应该从该网络开始，而不是建立一个新的网络。",
+    "content": "校准阅读：\n- 已验证的路径应该提高速度\n- 已验证的路径不应该消除实时地图检查\n\n修复动作：\n- 首先将新信号与已验证的网络进行比较\n- 如果拟合度高，重用该网络并适度提高信心"
+  },
+  {
+    "id": "zero.confidence_calibration.forming_is_not_formed",
+    "hall": "hall_judgment",
+    "topic": "forming_not_formed",
+    "weight": 0.95,
+    "confidence": 0.9,
+    "tags": [
+      "confidence",
+      "calibration",
+      "forming",
+      "sticky"
+    ],
+    "updated_at": "2026-04-04",
+    "title": "正在形成而非已形成",
+    "summary": "一个明显在改进的领域应该仍然被称为正在形成，直到缺失的进位真正到达。",
+    "content": "校准读数：\n- 方向可以是真实的，而节点语言仍然不成熟\n- 正在形成应该保持正在形成，直到缺失的层真正确认\n\n修复移动：\n- 如果承载层仍然是条件性的，保持状态在更低的步骤"
+  },
+  {
+    "id": "zero.confidence_calibration.breakthrough_is_not_carry",
+    "hall": "hall_judgment",
+    "topic": "technology_breakthrough_boundary",
+    "weight": 0.93,
+    "confidence": 0.89,
+    "tags": [
+      "confidence",
+      "calibration",
+      "technology",
+      "carry"
+    ],
+    "updated_at": "2026-04-04",
+    "title": "突破还未成为进展",
+    "summary": "实验室或头条突破不应被视为结构性进展，直到工程可重复性开始。",
+    "content": "校准读数：\n- 可能性的证明不是部署的证明\n- 工程可重复性比头条新颖性更重要\n\n修复举措：\n- 保持最弱的地球轨道，直到可重复的工程进展出现"
+  },
+  {
+    "id": "zero.confidence_calibration.consensus_tone_is_signal",
+    "hall": "hall_judgment",
+    "topic": "consensus_tone_signal",
+    "weight": 0.96,
+    "confidence": 0.92,
+    "tags": [
+      "confidence",
+      "calibration",
+      "consensus",
+      "human-track",
+      "sticky"
+    ],
+    "updated_at": "2026-04-04",
+    "title": "共识语调本身就是一个人类轨道信号",
+    "summary": "当语言变得过于统一和流畅时，这种流畅度应该降低信心而非提高信心。",
+    "content": "校准阅读：\n- 如果每个人开始听起来都一样，信心不应该自动上升。\n- 语调一致性通常意味着人类轨道压缩的速度比现实快。\n\n修复措施：\n- 略微降低信心\n- 重新检查最薄弱的承载层\n- 询问故事是否比结构变强得更快而变得更清洁"
+  },
+  {
+    "id": "zero.confidence_calibration.human_heat_can_hide_earth_weakness",
+    "hall": "hall_judgment",
+    "topic": "human_heat_hides_earth",
+    "weight": 0.95,
+    "confidence": 0.91,
+    "tags": [
+      "confidence",
+      "calibration",
+      "human",
+      "earth",
+      "sticky"
+    ],
+    "updated_at": "2026-04-04",
+    "title": "人类热能可能隐藏地层弱点",
+    "summary": "强大的群体能量常常使承载层感觉比实际强度更强。",
+    "content": "校准阅读：\n- 响亮的信念不是更强的承载力\n- 每当人类紧迫感快速上升时重新检查地层\n\n修复措施：\n- 当群体升温速度快于结构扩展速度时降低信心"
+  },
+  {
+    "id": "zero.confidence_calibration.product_window_can_open_before_node",
+    "hall": "hall_judgment",
+    "topic": "product_window_before_node",
+    "weight": 0.93,
+    "confidence": 0.88,
+    "tags": [
+      "confidence",
+      "calibration",
+      "product",
+      "window"
+    ],
+    "updated_at": "2026-04-04",
+    "title": "产品窗口可以在节点形成之前打开",
+    "summary": "一个产品在值得完整节点语言之前，可以值得关注。",
+    "content": "校准阅读：\n- 打开窗口并不意味着节点已形成\n- 产品问题通常在完全压缩之前的更早一层改进\n\n修复动作：\n- 当过程在改进但尚未硬化时，说打开但未形成"
+  },
+  {
+    "id": "zero.confidence_calibration.review_by_should_match_field_speed",
+    "hall": "hall_judgment",
+    "topic": "review_timing",
+    "weight": 0.94,
+    "confidence": 0.9,
+    "tags": [
+      "confidence",
+      "calibration",
+      "reference-web",
+      "sticky"
+    ],
+    "updated_at": "2026-04-04",
+    "title": "审查时间应与字段速度相匹配",
+    "summary": "审查点仅在与字段的自然速度相匹配时才有用；快速字段需要更近距离的检查，慢速字段可以保持更长的审查周期。",
+    "content": "校准读数:\n- 快速热度需要快速审查\n- 缓慢结构可以保持更长的审查周期\n\n修复移动:\n- 将review_by与字段节奏挂钩，而不是与通用日历习惯挂钩\n- 当人类热度超过容量时缩短审查时间"
+  },
+  {
+    "id": "zero.confidence_calibration.verifier_should_raise_cost_not_length",
+    "hall": "hall_judgment",
+    "topic": "verifier_role_density",
+    "weight": 0.94,
+    "confidence": 0.9,
+    "tags": [
+      "confidence",
+      "calibration",
+      "verifier",
+      "sticky"
+    ],
+    "updated_at": "2026-04-04",
+    "title": "验证者应该提高错误的代价，而不是答案的长度",
+    "summary": "一个好的验证者通过提高必须失败的内容来使判断更严格，而不是通过使答案更长或更分层。",
+    "content": "校准阅读：\n- 验证者应该使阅读更严格\n- 验证者不应该使答案更长\n\n修复步骤：\n- 让验证者增加错误的惩罚\n- 保持表述形式与之前一样紧凑"
+  },
+  {
+    "id": "zero.confidence_calibration.semiconductor_capacity_not_breadth",
+    "hall": "hall_judgment",
+    "topic": "semiconductor_capacity_boundary",
+    "weight": 0.94,
+    "confidence": 0.9,
+    "tags": [
+      "confidence",
+      "calibration",
+      "semiconductor",
+      "capacity"
+    ],
+    "updated_at": "2026-04-04",
+    "title": "半导体替代需要产能，而不仅仅是广度",
+    "summary": "更广泛的半导体故事不应该提高信心，除非真正的承载产能开始随之扩大。",
+    "content": "校准解读：\n- 更多名称不等于更多承载\n- 产能扩大比主题广度更重要\n\n修复措施：\n- 保持最薄弱的环节，直到替代产能真正扩大"
+  },
+  {
+    "id": "zero.confidence_calibration.consensus_before_structure_means_slow_down",
+    "hall": "hall_judgment",
+    "topic": "consensus_before_structure",
+    "weight": 0.95,
+    "confidence": 0.9,
+    "tags": [
+      "confidence",
+      "calibration",
+      "consensus",
+      "structure",
+      "sticky"
+    ],
+    "updated_at": "2026-04-04",
+    "title": "共识先于结构意味着放慢速度",
+    "summary": "当共识在结构扩展之前出现时，正确的校准动作是放慢阅读速度，而不是加快速度。",
+    "content": "校准阅读：\n- 如果共识首先到达，降低速度\n- 在升级节点之前要求更多的结构确认\n\n修复动作：\n- 降低急迫感\n- 提高证明阈值"
+  }
+]
