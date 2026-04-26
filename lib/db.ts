@@ -628,6 +628,14 @@ export function getLatestBriefing() {
   return row ? toBriefing(row) : null;
 }
 
+export function feedExistsByTitle(title: string, hoursAgo = 48): boolean {
+  const cutoff = new Date(Date.now() - hoursAgo * 3600000).toISOString();
+  const row = getDb()
+    .prepare(`SELECT id FROM feed WHERE title = ? AND created_at > ? LIMIT 1`)
+    .get(title, cutoff) as { id: string } | undefined;
+  return !!row;
+}
+
 export function createFeedEntry(input: FeedInsertInput) {
   const id = input.id ?? crypto.randomUUID();
 

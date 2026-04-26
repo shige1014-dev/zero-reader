@@ -40,7 +40,7 @@ export function LearningMode({ courses, briefing, economicsCards, figureCards }:
   return (
     <div className="space-y-4 sm:space-y-8">
       <section className="silk-frame relative overflow-hidden rounded-[1.25rem] bg-[rgba(8,13,18,0.86)] shadow-halo sm:rounded-[1.5rem]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_-20%,rgba(214,185,119,0.16),transparent_42%),radial-gradient(circle_at_-10%_120%,rgba(112,141,170,0.10),transparent_38%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_-20%,rgba(212,182,112,0.16),transparent_42%),radial-gradient(circle_at_-10%_120%,rgba(112,141,170,0.10),transparent_38%)]" />
         <div className="relative grid gap-0 lg:grid-cols-[minmax(0,1fr)_380px]">
           <div className="p-5 sm:p-9">
             <p className="font-display text-[10px] uppercase tracking-[0.24em] text-accent sm:text-[11px] sm:tracking-[0.32em]">ZERO2076 / LEARNING MODE</p>
@@ -51,7 +51,7 @@ export function LearningMode({ courses, briefing, economicsCards, figureCards }:
               情报中心负责接收和筛选外部变化，这里只做三件事：建立模型、训练判断、沉淀长期课程。
             </p>
           </div>
-          <div className="bg-[rgba(214,185,119,0.03)] p-4 sm:p-6">
+          <div className="bg-[rgba(212,182,112,0.03)] p-4 sm:p-6">
             <div className="grid grid-cols-3 gap-2 sm:gap-3">
               <div className="silk-soft rounded-xl bg-black/32 p-3 sm:p-3.5">
                 <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-textMuted">VIX</p>
@@ -66,8 +66,8 @@ export function LearningMode({ courses, briefing, economicsCards, figureCards }:
                 <p className="mt-1.5 font-display text-xl text-text sm:mt-2 sm:text-2xl">{metricValue(briefing?.tnx, 2)}</p>
               </div>
             </div>
-            <div className="silk-soft mt-3 rounded-xl bg-[rgba(214,185,119,0.06)] px-3.5 py-3 sm:mt-4 sm:px-4">
-              <p className="text-[11px] leading-5 text-[#e1cda1] sm:text-xs sm:leading-6">
+            <div className="silk-soft mt-3 rounded-xl bg-[rgba(212,182,112,0.06)] px-3.5 py-3 sm:mt-4 sm:px-4">
+              <p className="text-[11px] leading-5 text-[#F5E1B0] sm:text-xs sm:leading-6">
                 {briefing ? getRiskCopy(briefing.riskLevel) : "等待情报中心写入最新环境状态。"}
               </p>
             </div>
@@ -148,7 +148,7 @@ export function LearningMode({ courses, briefing, economicsCards, figureCards }:
                           <p className="mt-1 text-[13px] leading-6 text-[#d7d3c7] sm:text-sm">{unit.misconception}</p>
                         </div>
                       </div>
-                      <div className="rounded-lg bg-[rgba(214,185,119,0.08)] p-3">
+                      <div className="rounded-lg bg-[rgba(212,182,112,0.08)] p-3">
                         <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent">练习 / 复盘</p>
                         <p className="mt-1 text-[13px] leading-6 text-[#dfcfaa] sm:text-sm">{unit.practice}</p>
                         <p className="mt-2 text-[13px] leading-6 text-textMuted sm:text-sm">{unit.reviewPrompt}</p>
@@ -181,7 +181,7 @@ export function LearningMode({ courses, briefing, economicsCards, figureCards }:
                   <span className="text-[11px] text-textMuted">{paper.year}</span>
                   <span className="rounded-full bg-[rgba(120,199,255,0.08)] px-2 py-1 text-[10px] text-cyan-100">{paper.difficulty}</span>
                   {paper.tags.map((tag) => (
-                    <span className="rounded-full bg-[rgba(214,185,119,0.08)] px-2 py-1 text-[10px] text-[#e1cda1]" key={tag}>
+                    <span className="rounded-full bg-[rgba(212,182,112,0.08)] px-2 py-1 text-[10px] text-[#F5E1B0]" key={tag}>
                       {tag}
                     </span>
                   ))}
@@ -199,7 +199,7 @@ export function LearningMode({ courses, briefing, economicsCards, figureCards }:
                     href={paper.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full bg-[rgba(214,185,119,0.08)] px-3 py-2 text-[12px] font-medium text-[#f1ddb0] transition hover:bg-[rgba(214,185,119,0.14)] hover:text-[#fff1c8]"
+                    className="inline-flex items-center gap-2 rounded-full bg-[rgba(212,182,112,0.08)] px-3 py-2 text-[12px] font-medium text-[#f1ddb0] transition hover:bg-[rgba(212,182,112,0.14)] hover:text-[#fff1c8]"
                   >
                     查看原文
                     <span aria-hidden="true">↗</span>
@@ -226,7 +226,7 @@ export function LearningMode({ courses, briefing, economicsCards, figureCards }:
                     <div className="flex flex-wrap items-center gap-2">
                       <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent">{card.discipline}</span>
                       {card.tags.map((tag) => (
-                        <span className="rounded-full bg-[rgba(214,185,119,0.08)] px-2 py-1 text-[10px] text-[#e1cda1]" key={tag}>
+                        <span className="rounded-full bg-[rgba(212,182,112,0.08)] px-2 py-1 text-[10px] text-[#F5E1B0]" key={tag}>
                           {tag}
                         </span>
                       ))}

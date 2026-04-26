@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createFeedEntry as insertFeed } from '@/lib/db'
+import { createFeedEntry as insertFeed, feedExistsByTitle } from '@/lib/db'
 import { revalidatePath } from 'next/cache'
 import { randomUUID } from 'crypto'
 
@@ -19,6 +19,10 @@ export async function POST(req: NextRequest) {
 
     if (!body.title || !body.summary) {
       return NextResponse.json({ error: 'title and summary required' }, { status: 400 })
+    }
+
+    if (feedExistsByTitle(body.title, 48)) {
+      return NextResponse.json({ ok: true, deduped: true })
     }
 
     const item = {

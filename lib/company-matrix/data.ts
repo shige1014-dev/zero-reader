@@ -67,7 +67,41 @@ export const COMPANY_NODES: CompanyNode[] = [
   { ticker: "NOC", name: "Northrop Grumman", primaryLayer: 7, secondaryLayers: [], narratives: ["defense-autonomy", "space-infrastructure"], role: "core dependency", thesis: "Defense autonomy, aerospace, and strategic systems exposure." },
   { ticker: "BA", name: "Boeing", primaryLayer: 7, secondaryLayers: [], narratives: ["space-infrastructure", "defense-autonomy"], role: "constraint variable", thesis: "Aerospace industrial execution risk and defense backlog proxy." },
   { ticker: "CAT", name: "Caterpillar", primaryLayer: 7, secondaryLayers: [6], narratives: ["automated-production", "energy-reconstruction"], role: "constraint variable", thesis: "Heavy equipment cycle tied to infrastructure, mining, and capex." },
-  { ticker: "XOM", name: "Exxon Mobil", primaryLayer: 7, secondaryLayers: [6], narratives: ["energy-reconstruction"], role: "constraint variable", thesis: "Hydrocarbon cash flow hedge during energy transition volatility." }
+  { ticker: "XOM", name: "Exxon Mobil", primaryLayer: 7, secondaryLayers: [6], narratives: ["energy-reconstruction"], role: "constraint variable", thesis: "Hydrocarbon cash flow hedge during energy transition volatility." },
+  // === ZERO 2076 Watchlist 扩展 ===
+  // AI 算力 弹性
+  { ticker: "CBRS", name: "Cerebras (占位)", primaryLayer: 4, secondaryLayers: [], narratives: ["ai-agents"], role: "narrative spillover", thesis: "晶圆级 AI 推理 ASIC, 等 IPO 节点; 推理替代路线弹性筹码。" },
+  // AI 基础设施 / 电力
+  { ticker: "VRT", name: "Vertiv", primaryLayer: 6, secondaryLayers: [4], narratives: ["energy-reconstruction", "ai-agents"], role: "core dependency", thesis: "数据中心电力分配与液冷热管理龙头, AI 机柜核心瓶颈。" },
+  // 核能 (AI 能源约束)
+  { ticker: "SMR", name: "NuScale Power", primaryLayer: 6, secondaryLayers: [], narratives: ["energy-reconstruction"], role: "core dependency", thesis: "小型模块化核反应堆 (SMR) 龙头, 数据中心 24/7 电力新形态。" },
+  { ticker: "OKLO", name: "Oklo", primaryLayer: 6, secondaryLayers: [], narratives: ["energy-reconstruction"], role: "narrative spillover", thesis: "先进核裂变范式赌注, Sam Altman 背书; 高弹性叙事。" },
+  { ticker: "NNE", name: "Nano Nuclear Energy", primaryLayer: 6, secondaryLayers: [], narratives: ["energy-reconstruction"], role: "narrative spillover", thesis: "微堆移动核能弹性标的; 国防与边缘电力概念。" },
+  // 商业航天
+  { ticker: "RKLB", name: "Rocket Lab", primaryLayer: 2, secondaryLayers: [7], narratives: ["space-infrastructure", "defense-autonomy"], role: "core dependency", thesis: "中小型火箭 Electron + 卫星制造垂直整合, 商业航天龙头。" },
+  { ticker: "ASTS", name: "AST SpaceMobile", primaryLayer: 2, secondaryLayers: [], narratives: ["space-infrastructure"], role: "narrative spillover", thesis: "卫星直连普通手机的 5G 网络; 颠覆电信叙事弹性筹码。" },
+  { ticker: "RDW", name: "Redwire", primaryLayer: 2, secondaryLayers: [7], narratives: ["space-infrastructure", "defense-autonomy"], role: "second-order beneficiary", thesis: "在轨制造与航天基础设施供应商; 商业航天工具铲。" },
+  // 生物 AI
+  { ticker: "SDGR", name: "Schrödinger", primaryLayer: 3, secondaryLayers: [2], narratives: ["ai-agents", "financial-data-intelligence"], role: "narrative spillover", thesis: "物理基化学软件平台 + 自研管线, B1 验证仓; 生物 AI 龙头。" },
+  { ticker: "RXRX", name: "Recursion Pharma", primaryLayer: 2, secondaryLayers: [3], narratives: ["ai-agents"], role: "narrative spillover", thesis: "AI 驱动药物发现平台, 与 NVDA 合作图像基础模型。" },
+  { ticker: "TWST", name: "Twist Bioscience", primaryLayer: 5, secondaryLayers: [2], narratives: ["automated-production"], role: "second-order beneficiary", thesis: "合成 DNA / 抗体库, AI 设计后端制造铲。" },
+  { ticker: "SANA", name: "Sana Biotechnology", primaryLayer: 1, secondaryLayers: [2], narratives: ["ai-agents"], role: "narrative spillover", thesis: "细胞工程 / 通用 CAR-T 平台, 高弹性长周期赌注。" },
+  // 量子计算
+  { ticker: "IONQ", name: "IonQ", primaryLayer: 1, secondaryLayers: [4], narratives: ["ai-agents"], role: "narrative spillover", thesis: "离子阱量子计算龙头, 替代算力范式赌注。" },
+  { ticker: "RGTI", name: "Rigetti Computing", primaryLayer: 1, secondaryLayers: [4], narratives: ["ai-agents"], role: "narrative spillover", thesis: "超导量子比特路线弹性筹码, 高波动量子主题。" },
+  { ticker: "QUBT", name: "Quantum Computing", primaryLayer: 1, secondaryLayers: [], narratives: ["ai-agents"], role: "narrative spillover", thesis: "光子量子计算高波动叙事股, 量子主题贝塔。" },
+  // 量子安全
+  { ticker: "LAES", name: "SEALSQ", primaryLayer: 3, secondaryLayers: [7], narratives: ["financial-data-intelligence", "defense-autonomy"], role: "narrative spillover", thesis: "后量子加密芯片 / 安全 IC 弹性标的, 量子破解防御主题。" },
+  // 储能
+  { ticker: "FLNC", name: "Fluence Energy", primaryLayer: 6, secondaryLayers: [], narratives: ["energy-reconstruction"], role: "second-order beneficiary", thesis: "电网级储能系统集成龙头, 可再生 + AI 数据中心配套。" },
+  { ticker: "STEM", name: "Stem Inc", primaryLayer: 6, secondaryLayers: [3], narratives: ["energy-reconstruction"], role: "narrative spillover", thesis: "AI 驱动智能储能软件 + 服务弹性标的。" },
+  { ticker: "MVST", name: "Microvast", primaryLayer: 6, secondaryLayers: [], narratives: ["energy-reconstruction", "automated-production"], role: "narrative spillover", thesis: "商用车快充电池弹性筹码, 储能产业链下游铲。" },
+  // 光科技 (硅光 / CPO / 光模块)
+  { ticker: "COHR", name: "Coherent", primaryLayer: 4, secondaryLayers: [5], narratives: ["ai-agents"], role: "core dependency", thesis: "光模块 + 激光器龙头, 800G/1.6T 数据中心互联核心。" },
+  { ticker: "LITE", name: "Lumentum", primaryLayer: 4, secondaryLayers: [5], narratives: ["ai-agents"], role: "core dependency", thesis: "硅光器件 / 高速光模块龙头, AI 集群带宽刚需。" },
+  { ticker: "FN", name: "Fabrinet", primaryLayer: 4, secondaryLayers: [5], narratives: ["ai-agents"], role: "second-order beneficiary", thesis: "光模块代工厂, NVDA 互联生态间接受益。" },
+  { ticker: "AAOI", name: "Applied Optoelectronics", primaryLayer: 4, secondaryLayers: [], narratives: ["ai-agents"], role: "narrative spillover", thesis: "光模块上市观察弹性, 数据中心 + 电信 dual exposure。" },
+  { ticker: "POET", name: "POET Technologies", primaryLayer: 4, secondaryLayers: [5], narratives: ["ai-agents"], role: "narrative spillover", thesis: "硅光集成平台弹性赌注, CPO (co-packaged optics) 主题。" }
 ];
 
 export const COMPANY_LINKS: CompanyLink[] = [

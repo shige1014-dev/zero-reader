@@ -9,14 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        canvas: "#05080B",
-        surface: "#0B1117",
-        surfaceSoft: "#111922",
-        accent: "#D6B977",
-        accentSoft: "rgba(214, 185, 119, 0.10)",
-        text: "#E8E3D8",
-        textMuted: "#8D9399",
-        border: "rgba(156, 171, 185, 0.16)"
+        canvas: "#14110D",
+        surface: "#1A1612",
+        surfaceSoft: "#1C1813",
+        accent: "#D4B670",
+        accentSoft: "rgba(212, 182, 112, 0.10)",
+        text: "#F5EFE3",
+        textMuted: "#A89B82",
+        border: "rgba(255, 255, 255, 0.06)"
       },
       fontFamily: {
         display: [
