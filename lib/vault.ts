@@ -127,6 +127,6 @@ const TAG_MAP: Record<string, string> = {
   risk:"风险",position:"持仓",runtime:"运行时",seed:"种子",
   expression:"表达",knowledge:"知识","high-risk":"高风险",
   compulsion:"强迫",capital_allocation_essence:"资本配置本质",
-  market_framework:"市场框架",three_track_foundation:"三轨基础",
+  market_framework:"市场框架",
 }
 export function translateTag(t: string): string { return TAG_MAP[t] ?? t }

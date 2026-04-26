@@ -37,6 +37,7 @@ export async function POST(req: NextRequest) {
 
     insertFeed(item)
     revalidatePath('/')
+    revalidatePath('/intel')
 
     return NextResponse.json({ ok: true, id: item.id })
   } catch (err) {
