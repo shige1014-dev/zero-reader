@@ -135,7 +135,7 @@ function prophecyCard(prophecy) {
 function topLayout(data) {
   return `
     <style>
-      .museum-shell{display:grid;grid-template-columns:88px minmax(0,1fr);min-height:100vh}
+      .museum-shell{display:block;min-height:100vh}
       .museum-rail{position:sticky;top:0;height:100vh;border-right:1px solid var(--border);padding:20px 14px;display:flex;flex-direction:column;align-items:center;gap:18px;background:rgba(9,9,11,0.88);backdrop-filter:blur(20px)}
       .museum-rail-logo{width:42px;height:42px;border-radius:12px;border:1px solid var(--gold-line);display:grid;place-items:center;color:var(--gold);font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12px;letter-spacing:.08em}
       .museum-rail-pill{writing-mode:vertical-rl;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 0;border-radius:999px;border:1px solid var(--border);background:var(--card);font-size:11px;color:var(--t3);letter-spacing:.1em;min-height:132px}
@@ -191,14 +191,6 @@ function topLayout(data) {
       }
     </style>
     <div class="museum-shell">
-      <aside class="museum-rail">
-        <div class="museum-rail-logo">2076</div>
-        <div class="museum-rail-pill">🏛 文明博物馆</div>
-        <a class="museum-rail-pill" href="/matrix" style="text-decoration:none;color:var(--gold)">📐 三维股票模型</a>
-        <a class="museum-rail-pill" href="/civilization-leap/01-ai-rewrites-os" style="text-decoration:none;color:var(--gold)">📜 文明跃迁</a>
-        <a class="museum-rail-pill" href="/" style="text-decoration:none;color:var(--gold)">🏠 学习台</a>
-        <a class="museum-rail-link" href="/quiet.html">返回零零精选</a>
-      </aside>
       <div class="museum-main">
         <header class="museum-top">
           <div class="museum-head-copy">

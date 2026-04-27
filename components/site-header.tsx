@@ -11,6 +11,8 @@ const ITEMS = [
     icon: "M3 21h18M5 21V10l7-5 7 5v11M9 21V14h6v7M2 10h20" },
   { href: "/matrix",                                 label: "三维股票", match: (p: string) => p.startsWith("/matrix"),
     icon: "M4 4h16v16H4zM4 9h16M9 4v16" },
+  { href: "/prophecies",                             label: "预言堂",   match: (p: string) => p.startsWith("/prophecies"),
+    icon: "M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" },
   { href: "/civilization-leap/01-ai-rewrites-os",    label: "文明跃迁", match: (p: string) => p.startsWith("/civilization-leap"),
     icon: "M4 19V5a2 2 0 0 1 2-2h11l3 3v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zM8 8h8M8 12h8M8 16h5" },
 ];

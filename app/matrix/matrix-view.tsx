@@ -355,7 +355,6 @@ export function MatrixView(): JSX.Element {
 
   return (
     <main className="matrix-shell">
-      <a href="/museum.html" className="matrix-back" aria-label="返回博物馆">← 返回博物馆</a>
       <section className="matrix-stage" aria-label="文明产业金字塔三维视图">
         <div ref={mountRef} className="matrix-canvas" />
         <div className="matrix-head">

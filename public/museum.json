@@ -1,174 +1,609 @@
 {
   "eras": [
-    { "id": "industrial", "label": "工业时代", "period": "1870-1920", "core": "能源+制造控制权" },
-    { "id": "compute", "label": "计算时代", "period": "1970-1995", "core": "架构+操作系统控制权" },
-    { "id": "network", "label": "网络时代", "period": "1995-2010", "core": "信息+商业基础设施" },
-    { "id": "data", "label": "数据时代", "period": "2010-2020", "core": "注意力+算力控制权" },
-    { "id": "ai", "label": "AI 跃迁", "period": "2020-?", "core": "智能生产能力控制权" },
-    { "id": "posthuman", "label": "后人类", "period": "?-?", "core": "生命/能源/星际控制权" }
+    {
+      "id": "industrial",
+      "label": "工业时代",
+      "period": "1870-1920",
+      "core": "能源+制造控制权"
+    },
+    {
+      "id": "compute",
+      "label": "计算时代",
+      "period": "1970-1995",
+      "core": "架构+操作系统控制权"
+    },
+    {
+      "id": "network",
+      "label": "网络时代",
+      "period": "1995-2010",
+      "core": "信息+商业基础设施"
+    },
+    {
+      "id": "data",
+      "label": "数据时代",
+      "period": "2010-2020",
+      "core": "注意力+算力控制权"
+    },
+    {
+      "id": "ai",
+      "label": "AI 跃迁",
+      "period": "2020-?",
+      "core": "智能生产能力控制权"
+    },
+    {
+      "id": "posthuman",
+      "label": "后人类",
+      "period": "?-?",
+      "core": "生命/能源/星际控制权"
+    }
   ],
   "companies": [
     {
       "id": "apple",
       "name": "Apple",
       "rank": "SS+",
-      "eraIds": ["network", "data", "ai"],
+      "eraIds": [
+        "network",
+        "data",
+        "ai"
+      ],
       "bottleneck": "生态税入口与终端闭环",
-      "forces": { "physical": 9, "regMismatch": 7, "demand": 10, "capital": 10, "closure": 10 },
+      "forces": {
+        "physical": 9,
+        "regMismatch": 7,
+        "demand": 10,
+        "capital": 10,
+        "closure": 10
+      },
       "oneLine": "把控制权从 OS 层抽象到生态税层"
     },
     {
       "id": "nvidia",
       "name": "NVIDIA",
       "rank": "SS+",
-      "eraIds": ["data", "ai"],
+      "eraIds": [
+        "data",
+        "ai"
+      ],
       "bottleneck": "CUDA标准与供给锁喉",
-      "forces": { "physical": 10, "regMismatch": 6, "demand": 10, "capital": 10, "closure": 9 },
+      "forces": {
+        "physical": 10,
+        "regMismatch": 6,
+        "demand": 10,
+        "capital": 10,
+        "closure": 9
+      },
       "oneLine": "用算力标准把 AI 红利先行征税"
     },
     {
       "id": "google",
       "name": "Google",
       "rank": "SS",
-      "eraIds": ["network", "data", "ai"],
+      "eraIds": [
+        "network",
+        "data",
+        "ai"
+      ],
       "bottleneck": "搜索分发与模型推理入口",
-      "forces": { "physical": 7, "regMismatch": 8, "demand": 10, "capital": 10, "closure": 8 },
+      "forces": {
+        "physical": 7,
+        "regMismatch": 8,
+        "demand": 10,
+        "capital": 10,
+        "closure": 8
+      },
       "oneLine": "从链接秩序升级到推理分发秩序"
     },
     {
       "id": "amazon",
       "name": "Amazon",
       "rank": "SS",
-      "eraIds": ["network", "data", "ai"],
+      "eraIds": [
+        "network",
+        "data",
+        "ai"
+      ],
       "bottleneck": "云基建与物流双重税门",
-      "forces": { "physical": 9, "regMismatch": 6, "demand": 10, "capital": 10, "closure": 8 },
+      "forces": {
+        "physical": 9,
+        "regMismatch": 6,
+        "demand": 10,
+        "capital": 10,
+        "closure": 8
+      },
       "oneLine": "把商业基础设施变成持续抽税系统"
     },
     {
       "id": "microsoft",
       "name": "Microsoft",
       "rank": "SS",
-      "eraIds": ["compute", "network", "ai"],
+      "eraIds": [
+        "compute",
+        "network",
+        "ai"
+      ],
       "bottleneck": "企业工作流与平台绑定",
-      "forces": { "physical": 7, "regMismatch": 7, "demand": 10, "capital": 10, "closure": 9 },
+      "forces": {
+        "physical": 7,
+        "regMismatch": 7,
+        "demand": 10,
+        "capital": 10,
+        "closure": 9
+      },
       "oneLine": "把办公协议升级为企业智能入口"
     },
     {
       "id": "tsmc",
       "name": "TSMC",
       "rank": "SS",
-      "eraIds": ["compute", "data", "ai"],
+      "eraIds": [
+        "compute",
+        "data",
+        "ai"
+      ],
       "bottleneck": "先进制程良率与代工稀缺",
-      "forces": { "physical": 10, "regMismatch": 5, "demand": 10, "capital": 10, "closure": 8 },
+      "forces": {
+        "physical": 10,
+        "regMismatch": 5,
+        "demand": 10,
+        "capital": 10,
+        "closure": 8
+      },
       "oneLine": "用最难复制的晶圆工艺守住命脉"
     },
     {
       "id": "spacex",
       "name": "SpaceX",
       "rank": "SS",
-      "eraIds": ["network", "ai", "posthuman"],
+      "eraIds": [
+        "network",
+        "ai",
+        "posthuman"
+      ],
       "bottleneck": "发射频次与轨道基础设施",
-      "forces": { "physical": 10, "regMismatch": 8, "demand": 9, "capital": 9, "closure": 8 },
+      "forces": {
+        "physical": 10,
+        "regMismatch": 8,
+        "demand": 9,
+        "capital": 9,
+        "closure": 8
+      },
       "oneLine": "把星际运力先做成地球时代收费站"
     },
     {
       "id": "asml",
       "name": "ASML",
       "rank": "SS",
-      "eraIds": ["compute", "data", "ai"],
+      "eraIds": [
+        "compute",
+        "data",
+        "ai"
+      ],
       "bottleneck": "EUV整机与光源供应链",
-      "forces": { "physical": 10, "regMismatch": 6, "demand": 9, "capital": 9, "closure": 9 },
+      "forces": {
+        "physical": 10,
+        "regMismatch": 6,
+        "demand": 9,
+        "capital": 9,
+        "closure": 9
+      },
       "oneLine": "在最上游设备层卡住整个芯片时代"
     },
     {
       "id": "meta",
       "name": "Meta",
       "rank": "SS",
-      "eraIds": ["network", "data", "ai"],
+      "eraIds": [
+        "network",
+        "data",
+        "ai"
+      ],
       "bottleneck": "社交流量与推荐模型闭环",
-      "forces": { "physical": 6, "regMismatch": 8, "demand": 10, "capital": 9, "closure": 8 },
+      "forces": {
+        "physical": 6,
+        "regMismatch": 8,
+        "demand": 10,
+        "capital": 9,
+        "closure": 8
+      },
       "oneLine": "把注意力机器改造成生成时代广告税"
     },
     {
       "id": "intel",
       "name": "Intel",
       "rank": "S",
-      "eraIds": ["compute", "data"],
+      "eraIds": [
+        "compute",
+        "data"
+      ],
       "bottleneck": "x86遗产与制造修复窗口",
-      "forces": { "physical": 8, "regMismatch": 5, "demand": 8, "capital": 8, "closure": 6 },
+      "forces": {
+        "physical": 8,
+        "regMismatch": 5,
+        "demand": 8,
+        "capital": 8,
+        "closure": 6
+      },
       "oneLine": "旧王座仍握着计算时代标准残影"
     },
     {
       "id": "openai",
       "name": "OpenAI",
       "rank": "S",
-      "eraIds": ["ai"],
+      "eraIds": [
+        "ai"
+      ],
       "bottleneck": "模型能力与分发伙伴依赖",
-      "forces": { "physical": 6, "regMismatch": 9, "demand": 10, "capital": 9, "closure": 6 },
+      "forces": {
+        "physical": 6,
+        "regMismatch": 9,
+        "demand": 10,
+        "capital": 9,
+        "closure": 6
+      },
       "oneLine": "先占据智能心智，再争夺结算入口"
     },
     {
       "id": "samsung",
       "name": "Samsung",
       "rank": "S",
-      "eraIds": ["compute", "data", "ai"],
+      "eraIds": [
+        "compute",
+        "data",
+        "ai"
+      ],
       "bottleneck": "存储规模与终端制造协同",
-      "forces": { "physical": 9, "regMismatch": 5, "demand": 8, "capital": 9, "closure": 6 },
+      "forces": {
+        "physical": 9,
+        "regMismatch": 5,
+        "demand": 8,
+        "capital": 9,
+        "closure": 6
+      },
       "oneLine": "在终端和存储之间守住韩国工业脊梁"
     },
     {
       "id": "tesla",
       "name": "Tesla",
       "rank": "S",
-      "eraIds": ["data", "ai", "posthuman"],
+      "eraIds": [
+        "data",
+        "ai",
+        "posthuman"
+      ],
       "bottleneck": "车端数据与制造自动化",
-      "forces": { "physical": 9, "regMismatch": 6, "demand": 9, "capital": 9, "closure": 7 },
+      "forces": {
+        "physical": 9,
+        "regMismatch": 6,
+        "demand": 9,
+        "capital": 9,
+        "closure": 7
+      },
       "oneLine": "把汽车工厂改写成机器学习采集器"
     },
     {
       "id": "palantir",
       "name": "Palantir",
       "rank": "S",
-      "eraIds": ["data", "ai"],
+      "eraIds": [
+        "data",
+        "ai"
+      ],
       "bottleneck": "政企数据接入与决策胶水",
-      "forces": { "physical": 4, "regMismatch": 8, "demand": 8, "capital": 8, "closure": 7 },
+      "forces": {
+        "physical": 4,
+        "regMismatch": 8,
+        "demand": 8,
+        "capital": 8,
+        "closure": 7
+      },
       "oneLine": "用战情室软件把组织行为锁进平台"
     },
     {
       "id": "bytedance",
       "name": "ByteDance",
       "rank": "S",
-      "eraIds": ["data", "ai"],
+      "eraIds": [
+        "data",
+        "ai"
+      ],
       "bottleneck": "推荐流量与内容生产引擎",
-      "forces": { "physical": 5, "regMismatch": 9, "demand": 10, "capital": 8, "closure": 7 },
+      "forces": {
+        "physical": 5,
+        "regMismatch": 9,
+        "demand": 10,
+        "capital": 8,
+        "closure": 7
+      },
       "oneLine": "把内容分发训练成跨语境注意力机器"
     },
     {
       "id": "ionq",
       "name": "IonQ",
       "rank": "paradigm-bet",
-      "eraIds": ["ai", "posthuman"],
+      "eraIds": [
+        "ai",
+        "posthuman"
+      ],
       "bottleneck": "量子比特保真与工程放大",
-      "forces": { "physical": 9, "regMismatch": 5, "demand": 6, "capital": 7, "closure": 3 },
+      "forces": {
+        "physical": 9,
+        "regMismatch": 5,
+        "demand": 6,
+        "capital": 7,
+        "closure": 3
+      },
       "oneLine": "还在证明量子优势能否变成商业闭环"
     },
     {
       "id": "commonwealth-fusion",
       "name": "Commonwealth Fusion",
       "rank": "paradigm-bet",
-      "eraIds": ["ai", "posthuman"],
+      "eraIds": [
+        "ai",
+        "posthuman"
+      ],
       "bottleneck": "高温超导磁体与并网验证",
-      "forces": { "physical": 10, "regMismatch": 7, "demand": 9, "capital": 8, "closure": 2 },
+      "forces": {
+        "physical": 10,
+        "regMismatch": 7,
+        "demand": 9,
+        "capital": 8,
+        "closure": 2
+      },
       "oneLine": "若聚变落地，能源秩序会被重新结算"
     },
     {
       "id": "isomorphic-labs",
       "name": "Isomorphic Labs",
       "rank": "paradigm-bet",
-      "eraIds": ["ai", "posthuman"],
+      "eraIds": [
+        "ai",
+        "posthuman"
+      ],
       "bottleneck": "分子搜索与药物验证周期",
-      "forces": { "physical": 7, "regMismatch": 8, "demand": 8, "capital": 8, "closure": 3 },
+      "forces": {
+        "physical": 7,
+        "regMismatch": 8,
+        "demand": 8,
+        "capital": 8,
+        "closure": 3
+      },
       "oneLine": "把生命科学变成可搜索的生成空间"
+    },
+    {
+      "id": "standard-oil",
+      "name": "Standard Oil",
+      "rank": "SS+",
+      "eraIds": [
+        "industrial"
+      ],
+      "bottleneck": "原油—炼化—管道一体化",
+      "forces": {
+        "physical": 10,
+        "regMismatch": 8,
+        "demand": 10,
+        "capital": 10,
+        "closure": 10
+      },
+      "oneLine": "用垂直整合把能源结算权全锁死"
+    },
+    {
+      "id": "ge",
+      "name": "General Electric",
+      "rank": "SS+",
+      "eraIds": [
+        "industrial",
+        "compute"
+      ],
+      "bottleneck": "电力 + 重工 + 资本三栖",
+      "forces": {
+        "physical": 10,
+        "regMismatch": 6,
+        "demand": 10,
+        "capital": 10,
+        "closure": 9
+      },
+      "oneLine": "把发电机变成全球电力时代标准件"
+    },
+    {
+      "id": "us-steel",
+      "name": "US Steel",
+      "rank": "SS",
+      "eraIds": [
+        "industrial"
+      ],
+      "bottleneck": "高炉 + 铁路供应链",
+      "forces": {
+        "physical": 10,
+        "regMismatch": 5,
+        "demand": 9,
+        "capital": 9,
+        "closure": 8
+      },
+      "oneLine": "用第一家十亿美元巨头定义重工尺度"
+    },
+    {
+      "id": "ford",
+      "name": "Ford",
+      "rank": "SS",
+      "eraIds": [
+        "industrial"
+      ],
+      "bottleneck": "流水线 + 装配工艺",
+      "forces": {
+        "physical": 9,
+        "regMismatch": 4,
+        "demand": 10,
+        "capital": 8,
+        "closure": 8
+      },
+      "oneLine": "把交通工具压成消费品和工资标准"
+    },
+    {
+      "id": "jpmorgan",
+      "name": "JP Morgan",
+      "rank": "SS",
+      "eraIds": [
+        "industrial",
+        "network"
+      ],
+      "bottleneck": "银团 + 国家级流动性",
+      "forces": {
+        "physical": 6,
+        "regMismatch": 7,
+        "demand": 9,
+        "capital": 10,
+        "closure": 9
+      },
+      "oneLine": "在金本位时代充当事实上的央行"
+    },
+    {
+      "id": "att-bell",
+      "name": "AT&T (Bell)",
+      "rank": "SS",
+      "eraIds": [
+        "industrial",
+        "compute",
+        "network"
+      ],
+      "bottleneck": "电话网 + 贝尔实验室",
+      "forces": {
+        "physical": 9,
+        "regMismatch": 8,
+        "demand": 10,
+        "capital": 9,
+        "closure": 9
+      },
+      "oneLine": "在通信层布下一个跨百年研究台"
+    },
+    {
+      "id": "byd",
+      "name": "比亚迪 BYD",
+      "rank": "S",
+      "eraIds": [
+        "data",
+        "ai",
+        "posthuman"
+      ],
+      "bottleneck": "垂直整合 + 电池 + 整车",
+      "forces": {
+        "physical": 9,
+        "regMismatch": 7,
+        "demand": 10,
+        "capital": 8,
+        "closure": 7
+      },
+      "oneLine": "用电池把整车成本结构改写"
+    },
+    {
+      "id": "catl",
+      "name": "宁德时代 CATL",
+      "rank": "S",
+      "eraIds": [
+        "ai",
+        "posthuman"
+      ],
+      "bottleneck": "动力电池产能 + 化学路线",
+      "forces": {
+        "physical": 10,
+        "regMismatch": 7,
+        "demand": 10,
+        "capital": 9,
+        "closure": 7
+      },
+      "oneLine": "在能源迁移底层做全球结算节点"
+    },
+    {
+      "id": "huawei",
+      "name": "华为 Huawei",
+      "rank": "S",
+      "eraIds": [
+        "network",
+        "data",
+        "ai"
+      ],
+      "bottleneck": "通信 + 自研芯片 + 操作系统",
+      "forces": {
+        "physical": 9,
+        "regMismatch": 9,
+        "demand": 9,
+        "capital": 8,
+        "closure": 7
+      },
+      "oneLine": "在制裁里搭一套替代基础设施"
+    },
+    {
+      "id": "sk-hynix",
+      "name": "SK Hynix",
+      "rank": "S",
+      "eraIds": [
+        "data",
+        "ai"
+      ],
+      "bottleneck": "HBM + DRAM 高端容量",
+      "forces": {
+        "physical": 9,
+        "regMismatch": 5,
+        "demand": 10,
+        "capital": 9,
+        "closure": 8
+      },
+      "oneLine": "AI 显存上行红利的最大受益方"
+    },
+    {
+      "id": "smic",
+      "name": "中芯 SMIC",
+      "rank": "paradigm-bet",
+      "eraIds": [
+        "compute",
+        "ai"
+      ],
+      "bottleneck": "先进制程 + 设备国产化",
+      "forces": {
+        "physical": 8,
+        "regMismatch": 9,
+        "demand": 9,
+        "capital": 8,
+        "closure": 4
+      },
+      "oneLine": "在断供环境里赌出本土工艺路径"
+    },
+    {
+      "id": "tencent",
+      "name": "腾讯 Tencent",
+      "rank": "S",
+      "eraIds": [
+        "network",
+        "data",
+        "ai"
+      ],
+      "bottleneck": "社交 + 支付 + 游戏",
+      "forces": {
+        "physical": 6,
+        "regMismatch": 8,
+        "demand": 10,
+        "capital": 9,
+        "closure": 9
+      },
+      "oneLine": "用社交身份层抽税中文互联网"
+    },
+    {
+      "id": "anthropic",
+      "name": "Anthropic",
+      "rank": "paradigm-bet",
+      "eraIds": [
+        "ai"
+      ],
+      "bottleneck": "模型安全 + 对齐范式",
+      "forces": {
+        "physical": 5,
+        "regMismatch": 6,
+        "demand": 10,
+        "capital": 9,
+        "closure": 5
+      },
+      "oneLine": "赌对齐路线能成为模型默认协议"
     }
   ],
   "prophecies": [
@@ -177,11 +612,26 @@
       "substrate": "人形机器人 BOM 崩塌",
       "trigger": "某量产型号 BOM <$30k + 单厂年产 >10 万",
       "closureMechanism": "foundation model + 数据飞轮",
-      "forces": { "physical": 8, "regMismatch": 5, "demand": 9, "capital": 9, "closure": 3 },
+      "forces": {
+        "physical": 8,
+        "regMismatch": 5,
+        "demand": 9,
+        "capital": 9,
+        "closure": 3
+      },
       "candidateTypes": [
-        { "type": "垂直数据公司", "note": "场景化操作数据采集与标注" },
-        { "type": "机身 OEM + OS 双栖", "note": "硬件软件一把抓，先建协议层" },
-        { "type": "机器人云 RobotOps", "note": "训练、推理、运维三件套" }
+        {
+          "type": "垂直数据公司",
+          "note": "场景化操作数据采集与标注"
+        },
+        {
+          "type": "机身 OEM + OS 双栖",
+          "note": "硬件软件一把抓，先建协议层"
+        },
+        {
+          "type": "机器人云 RobotOps",
+          "note": "训练、推理、运维三件套"
+        }
       ]
     },
     {
@@ -189,11 +639,26 @@
       "substrate": "小型模块化反应堆商业化",
       "trigger": "首批商用 SMR 并网 + 单站 LCOE 接近燃气",
       "closureMechanism": "许可标准 + 长周期运维网络",
-      "forces": { "physical": 10, "regMismatch": 8, "demand": 8, "capital": 10, "closure": 4 },
+      "forces": {
+        "physical": 10,
+        "regMismatch": 8,
+        "demand": 8,
+        "capital": 10,
+        "closure": 4
+      },
       "candidateTypes": [
-        { "type": "核岛总包商", "note": "设计、建造、许可一体推进" },
-        { "type": "燃料与运维平台", "note": "赚长期服务费而非一次性设备" },
-        { "type": "园区电热一体运营商", "note": "直接绑定 AI 园区与工业负荷" }
+        {
+          "type": "核岛总包商",
+          "note": "设计、建造、许可一体推进"
+        },
+        {
+          "type": "燃料与运维平台",
+          "note": "赚长期服务费而非一次性设备"
+        },
+        {
+          "type": "园区电热一体运营商",
+          "note": "直接绑定 AI 园区与工业负荷"
+        }
       ]
     },
     {
@@ -201,11 +666,26 @@
       "substrate": "脑机接口消费级突破",
       "trigger": "非侵入式精度可替代鼠标键盘 + 医疗报销试点",
       "closureMechanism": "神经数据协议 + 康复应用闭环",
-      "forces": { "physical": 7, "regMismatch": 10, "demand": 7, "capital": 8, "closure": 2 },
+      "forces": {
+        "physical": 7,
+        "regMismatch": 10,
+        "demand": 7,
+        "capital": 8,
+        "closure": 2
+      },
       "candidateTypes": [
-        { "type": "神经数据平台", "note": "采集、清洗、建模统一协议层" },
-        { "type": "医疗器械整机商", "note": "先走康复和临床支付通路" },
-        { "type": "认知操作系统", "note": "把输入法升级成神经接口栈" }
+        {
+          "type": "神经数据平台",
+          "note": "采集、清洗、建模统一协议层"
+        },
+        {
+          "type": "医疗器械整机商",
+          "note": "先走康复和临床支付通路"
+        },
+        {
+          "type": "认知操作系统",
+          "note": "把输入法升级成神经接口栈"
+        }
       ]
     },
     {
@@ -213,11 +693,161 @@
       "substrate": "量子纠错跨越工程门槛",
       "trigger": "逻辑比特稳定运行 + 实用纠错成本显著下降",
       "closureMechanism": "误差校正堆栈 + 专属开发工具链",
-      "forces": { "physical": 10, "regMismatch": 4, "demand": 6, "capital": 8, "closure": 2 },
+      "forces": {
+        "physical": 10,
+        "regMismatch": 4,
+        "demand": 6,
+        "capital": 8,
+        "closure": 2
+      },
       "candidateTypes": [
-        { "type": "纠错软件栈公司", "note": "卖的是工具链和编译层" },
-        { "type": "低温设备供应商", "note": "硬件放量后先受益于基础设施" },
-        { "type": "量子云平台", "note": "把昂贵算力抽象成 API 服务" }
+        {
+          "type": "纠错软件栈公司",
+          "note": "卖的是工具链和编译层"
+        },
+        {
+          "type": "低温设备供应商",
+          "note": "硬件放量后先受益于基础设施"
+        },
+        {
+          "type": "量子云平台",
+          "note": "把昂贵算力抽象成 API 服务"
+        }
+      ]
+    },
+    {
+      "id": "room-temp-superconductor",
+      "substrate": "室温常压超导工程化",
+      "trigger": "独立第三方在常压样品上稳定复现 + 工程量产路径",
+      "closureMechanism": "电网与磁约束设备改写电力结算",
+      "forces": {
+        "physical": 10,
+        "regMismatch": 6,
+        "demand": 10,
+        "capital": 9,
+        "closure": 2
+      },
+      "candidateTypes": [
+        {
+          "type": "材料合成公司",
+          "note": "晶体生长 + 缺陷工程"
+        },
+        {
+          "type": "超导磁体厂",
+          "note": "聚变 + MRI + 加速器需求池"
+        },
+        {
+          "type": "电网改造方案商",
+          "note": "长距离零损耗输电系统集成"
+        }
+      ]
+    },
+    {
+      "id": "satellite-broadband-mass",
+      "substrate": "卫星宽带下沉到 ARPU<$30",
+      "trigger": "全球用户突破 1 亿 + 终端 BOM<$200",
+      "closureMechanism": "地面运营商被迫降为接入零售层",
+      "forces": {
+        "physical": 9,
+        "regMismatch": 8,
+        "demand": 10,
+        "capital": 10,
+        "closure": 7
+      },
+      "candidateTypes": [
+        {
+          "type": "低轨星座运营商",
+          "note": "频谱 + 发射 + 终端铁三角"
+        },
+        {
+          "type": "地面终端 ODM",
+          "note": "相控阵天线规模化"
+        },
+        {
+          "type": "边缘节点 + IPv6 服务",
+          "note": "星地融合路由层"
+        }
+      ]
+    },
+    {
+      "id": "general-humanoid-mass",
+      "substrate": "通用人形机器人量产",
+      "trigger": "BOM<$25k + 单一厂年产>50 万 + foundation policy 通用",
+      "closureMechanism": "数据飞轮锁定行为模型供给侧",
+      "forces": {
+        "physical": 9,
+        "regMismatch": 6,
+        "demand": 10,
+        "capital": 9,
+        "closure": 4
+      },
+      "candidateTypes": [
+        {
+          "type": "机器人基础模型公司",
+          "note": "VLA 通用策略 + 数据集"
+        },
+        {
+          "type": "垂直场景集成商",
+          "note": "工厂 / 零售 / 物流先落地"
+        },
+        {
+          "type": "机器人云 RobotOps",
+          "note": "训练 + 推理 + 远程接管"
+        }
+      ]
+    },
+    {
+      "id": "dna-storage",
+      "substrate": "DNA 数据存储进入冷数据市场",
+      "trigger": "成本<$1/MB + 写入速度可商用 + 标准化解码",
+      "closureMechanism": "超大冷归档替换磁带与光盘",
+      "forces": {
+        "physical": 9,
+        "regMismatch": 5,
+        "demand": 8,
+        "capital": 7,
+        "closure": 3
+      },
+      "candidateTypes": [
+        {
+          "type": "合成 + 测序公司",
+          "note": "Twist / Illumina 系"
+        },
+        {
+          "type": "DNA 编解码标准",
+          "note": "纠错码 + 索引层"
+        },
+        {
+          "type": "政府 / 机构归档客户",
+          "note": "国家档案级先行者"
+        }
+      ]
+    },
+    {
+      "id": "bci-typing",
+      "substrate": "非侵入脑机打字突破医疗特例",
+      "trigger": "健康人 30 词/分以上 + 价格<$2k + FDA 通用许可",
+      "closureMechanism": "人机交互入口从眼手转移到神经层",
+      "forces": {
+        "physical": 8,
+        "regMismatch": 8,
+        "demand": 9,
+        "capital": 8,
+        "closure": 4
+      },
+      "candidateTypes": [
+        {
+          "type": "消费级 BCI 厂",
+          "note": "硬件 + 个性化训练 SDK"
+        },
+        {
+          "type": "神经数据云",
+          "note": "模型微调 + 隐私分级"
+        },
+        {
+          "type": "OS 厂神经协议层",
+          "note": "Apple / Microsoft 扩展输入"
+        }
       ]
     }
   ]

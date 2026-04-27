@@ -51,7 +51,6 @@ export default function ArticlePage({ params }: ArticlePageProps) {
   return (
     <div className="civ-page">
       <ReadingProgress />
-      <a href="/museum.html" className="civ-back" aria-label="返回博物馆">← 返回博物馆</a>
       <main className="relative mx-auto max-w-7xl pb-20 pt-8 lg:grid lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-10 lg:pt-12">
         <article className="min-w-0">
           <div className="civ-card">

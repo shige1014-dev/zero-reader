@@ -82,11 +82,11 @@ a{color:inherit;text-decoration:none}
 .sidebar{
   background:var(--bg-sidebar);
   border-right:0.5px solid var(--line);
-  position:sticky;top:0;
-  height:100vh;
+  position:sticky;top:58px;
+  height:calc(100vh - 58px);
   display:flex;flex-direction:column;
   align-items:center;
-  padding:36px 0 24px;
+  padding:96px 0 24px;
 }
 @media (max-width:879.98px){.sidebar{display:none}}
 .brand{
@@ -424,8 +424,18 @@ a{color:inherit;text-decoration:none}
 }
 .pager-btn:hover:not(:disabled){background:rgba(255,255,255,0.03);border-color:rgba(212,182,112,0.4);color:var(--gold-bright)}
 .pager-btn:disabled{opacity:0.35;cursor:not-allowed}
-.pager-state{font-family:var(--mono);color:var(--text-secondary)}
-.pager-state b{color:var(--gold-bright);font-weight:500}
+.pager-nums{display:inline-flex;align-items:center;gap:6px}
+.pager-num{
+  min-width:32px;height:32px;padding:0 8px;
+  display:inline-flex;align-items:center;justify-content:center;
+  border-radius:8px;border:0.5px solid var(--line);
+  font-family:var(--mono);font-size:12px;color:var(--text-secondary);
+  cursor:pointer;
+  transition:background .15s,color .15s,border-color .15s;
+}
+.pager-num:hover{color:var(--gold-bright);border-color:rgba(212,182,112,0.4)}
+.pager-num.active{color:var(--gold-bright);border-color:var(--gold);background:rgba(212,182,112,0.08);font-weight:500}
+.pager-ellipsis{color:var(--text-tertiary);padding:0 4px;font-family:var(--mono)}
 
 /* Watchlist hit marker */
 .star{
@@ -603,6 +613,9 @@ a{color:inherit;text-decoration:none}
     <a class="zh-tab" href="/matrix" title="三维股票" aria-label="三维股票">
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4zM4 9h16M9 4v16"/></svg>
     </a>
+    <a class="zh-tab" href="/prophecies" title="预言堂" aria-label="预言堂">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+    </a>
     <a class="zh-tab" href="/civilization-leap/01-ai-rewrites-os" title="文明跃迁" aria-label="文明跃迁">
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a2 2 0 0 1 2-2h11l3 3v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zM8 8h8M8 12h8M8 16h5"/></svg>
     </a>
@@ -610,8 +623,7 @@ a{color:inherit;text-decoration:none}
 
   <div class="layout">
     <aside class="sidebar">
-      <a class="brand" href="/" title="返回学习台" aria-label="学习台"><span class="dot"></span></a>
-      <nav class="nav" aria-label="主导航">
+      <nav class="nav" aria-label="视图切换">
         <button class="nav-item active" data-view="all" title="新闻流" aria-label="新闻流">
           <svg class="icon" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
@@ -624,22 +636,6 @@ a{color:inherit;text-decoration:none}
         <button class="nav-item" data-view="tracked" title="追踪 (持仓相关)" aria-label="追踪">
           <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
         </button>
-        <a class="nav-item" href="/museum.html" title="文明博物馆" aria-label="博物馆">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21V14h6v7M2 10h20"/></svg>
-        </a>
-        <a class="nav-item" href="/" title="返回学习台" aria-label="学习台">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>
-        </a>
-        <div class="nav-spacer"></div>
-        <button class="nav-item" title="设置" aria-label="设置">
-          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.01a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.01c.26.61.86 1 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-        </button>
-        <div class="nav-divider"></div>
-        <div class="user">
-          <div class="user-avatar">石</div>
-          <div>SHIGE</div>
-          <div style="color:#5b5347">在线</div>
-        </div>
       </nav>
     </aside>
 
@@ -852,16 +848,36 @@ function renderPageList(list){
   attachLinkHandlers();
 
   const pages = Math.max(1, Math.ceil(list.length / PER_PAGE));
+  const buildNums = () => {
+    if (pages <= 7) return Array.from({length:pages}, (_,i)=>i+1);
+    const out = [1];
+    const start = Math.max(2, page-1);
+    const end = Math.min(pages-1, page+1);
+    if (start > 2) out.push("…");
+    for (let i=start;i<=end;i++) out.push(i);
+    if (end < pages-1) out.push("…");
+    out.push(pages);
+    return out;
+  };
+  const numsHtml = pages > 1 ? buildNums().map(n =>
+    n === "…"
+      ? `<span class="pager-ellipsis">…</span>`
+      : `<button class="pager-num${n===page?" active":""}" data-page="${n}">${n}</button>`
+  ).join("") : "";
   const pagerHtml = pages > 1 ? `
     <button class="pager-btn" id="prev" ${page===1?"disabled":""}>← 上一页</button>
-    <span class="pager-state"><b>${page}</b> / ${pages}</span>
+    <span class="pager-nums">${numsHtml}</span>
     <button class="pager-btn" id="next" ${page===pages?"disabled":""}>下一页 →</button>` : "";
   document.getElementById("pager").innerHTML = pagerHtml;
   if (pages > 1) {
+    const goto = (n) => { page = n; renderPageList(list); window.scrollTo({top:0,behavior:"smooth"}); };
     const prev = document.getElementById("prev");
     const next = document.getElementById("next");
-    if (prev) prev.onclick = () => { page--; renderPageList(list); window.scrollTo({top:0,behavior:"smooth"}); };
-    if (next) next.onclick = () => { page++; renderPageList(list); window.scrollTo({top:0,behavior:"smooth"}); };
+    if (prev) prev.onclick = () => goto(page-1);
+    if (next) next.onclick = () => goto(page+1);
+    document.querySelectorAll(".pager-num").forEach(b => {
+      b.onclick = () => goto(parseInt(b.dataset.page,10));
+    });
   }
 }
 
