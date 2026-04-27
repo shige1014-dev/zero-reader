@@ -8,23 +8,23 @@ const siteUrl =
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "ZERO2076 情报阅读台 v2",
-    template: "%s | ZERO2076 情报阅读台 v2"
+    default: "ZERO2076 长期学习台",
+    template: "%s | ZERO2076 长期学习台"
   },
   description:
-    "ZERO2076 的私人情报终端，用来接收机器人推送、阅读深度文刊，并沉淀文明跃迁信号。",
-  keywords: ["ZERO2076", "情报阅读台", "私人情报终端", "Markdown 阅读器"],
+    "ZERO2076 的长期学习台，用经济学、投资学和 AI 长期课程沉淀判断框架。",
+  keywords: ["ZERO2076", "长期学习台", "经济学", "投资学", "AI 学习"],
   openGraph: {
-    title: "ZERO2076 情报阅读台 v2",
+    title: "ZERO2076 长期学习台",
     description:
-      "私人情报终端，不是博客。接收机器人推送、阅读长文、跟踪宏观与文明跃迁信号。",
+      "从情报消费转向长期学习：经济学、投资学、AI 课程和图文学习卡。",
     type: "website",
     url: siteUrl
   },
   twitter: {
     card: "summary_large_image",
-    title: "ZERO2076 情报阅读台 v2",
-    description: "私人情报终端，不是博客。"
+    title: "ZERO2076 长期学习台",
+    description: "经济学、投资学、AI 长期课程。"
   }
 };
 

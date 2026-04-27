@@ -1,5 +1,7 @@
 export const FEED_CATEGORIES = [
   "macro",
+  "market",
+  "civilization",
   "ai",
   "quantum",
   "space",
@@ -77,4 +79,5 @@ export type FeedFilters = {
   category?: FeedCategory;
   priority?: FeedPriority;
   limit?: number;
+  offset?: number;
 };

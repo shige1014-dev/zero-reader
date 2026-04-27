@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createFeedEntry as insertFeed } from '@/lib/db'
+import { createFeedEntry as insertFeed, feedExistsByTitle } from '@/lib/db'
 import { revalidatePath } from 'next/cache'
 import { randomUUID } from 'crypto'
 
@@ -21,6 +21,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'title and summary required' }, { status: 400 })
     }
 
+    if (feedExistsByTitle(body.title, 48)) {
+      return NextResponse.json({ ok: true, deduped: true })
+    }
+
     const item = {
       id: body.id ?? randomUUID(),
       source: body.source ?? 'manual',
@@ -37,6 +41,7 @@ export async function POST(req: NextRequest) {
 
     insertFeed(item)
     revalidatePath('/')
+    revalidatePath('/intel')
 
     return NextResponse.json({ ok: true, id: item.id })
   } catch (err) {

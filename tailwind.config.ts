@@ -9,14 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        canvas: "#0D0D0D",
-        surface: "#141414",
-        surfaceSoft: "#191919",
-        accent: "#C9A84C",
-        accentSoft: "rgba(201, 168, 76, 0.14)",
-        text: "#E8E8E0",
-        textMuted: "#888880",
-        border: "rgba(201, 168, 76, 0.15)"
+        canvas: "#14110D",
+        surface: "#1A1612",
+        surfaceSoft: "#1C1813",
+        accent: "#D4B670",
+        accentSoft: "rgba(212, 182, 112, 0.10)",
+        text: "#F5EFE3",
+        textMuted: "#A89B82",
+        border: "rgba(255, 255, 255, 0.06)"
       },
       fontFamily: {
         display: [
@@ -41,11 +41,11 @@ const config: Config = {
         ]
       },
       boxShadow: {
-        glow: "0 0 0 1px rgba(201, 168, 76, 0.12), 0 16px 48px rgba(0, 0, 0, 0.34)"
+        glow: "0 0 0 1px rgba(214, 185, 119, 0.08), 0 24px 80px rgba(0, 0, 0, 0.42)"
       },
       backgroundImage: {
         halo:
-          "radial-gradient(circle at top, rgba(201, 168, 76, 0.18), transparent 38%), linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0))"
+          "radial-gradient(circle at 50% -10%, rgba(122, 150, 178, 0.16), transparent 40%), linear-gradient(180deg, rgba(214, 185, 119, 0.04), rgba(255, 255, 255, 0))"
       }
     }
   },

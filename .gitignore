@@ -1,2 +1,30 @@
 node_modules/
 .next/
+.vercel/
+.playwright-cli/
+.autoresearch/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+
+# logs
+*.log
+.reader.log
+
+# env (NEVER commit secrets)
+.env
+.env.local
+.env.*.local
+.env.vercel.production
+.env.vercel.check
+
+# local data + backups
+data/*.db
+data/*.db.*
+data/*.db-journal
+
+# transient outputs
+output/
+tmp/
+.cache/
