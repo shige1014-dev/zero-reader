@@ -2,36 +2,41 @@
 
 import { usePathname } from "next/navigation";
 
-const HIDE_PREFIXES = ["/matrix", "/civilization-leap"];
+const ITEMS = [
+  { href: "/",                                       label: "学习台",   match: (p: string) => p === "/",
+    icon: "M3 12l9-9 9 9M5 10v10h14V10" },
+  { href: "/quiet.html",                             label: "精选",     match: (p: string) => p.startsWith("/quiet"),
+    icon: "M4 6h16M4 12h16M4 18h16" },
+  { href: "/museum.html",                            label: "博物馆",   match: (p: string) => p.startsWith("/museum"),
+    icon: "M3 21h18M5 21V10l7-5 7 5v11M9 21V14h6v7M2 10h20" },
+  { href: "/matrix",                                 label: "三维股票", match: (p: string) => p.startsWith("/matrix"),
+    icon: "M4 4h16v16H4zM4 9h16M9 4v16" },
+  { href: "/civilization-leap/01-ai-rewrites-os",    label: "文明跃迁", match: (p: string) => p.startsWith("/civilization-leap"),
+    icon: "M4 19V5a2 2 0 0 1 2-2h11l3 3v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zM8 8h8M8 12h8M8 16h5" },
+];
 
 export function SiteHeader() {
   const pathname = usePathname() || "";
-  if (HIDE_PREFIXES.some((p) => pathname === p || pathname.startsWith(p + "/"))) {
-    return null;
-  }
   return (
-    <header className="silk-divider-bottom sticky top-0 z-40 -mx-4 bg-[#05080b]/92 px-4 backdrop-blur-xl sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-      <div className="mx-auto flex max-w-7xl items-center justify-between py-4">
-        <a href="/quiet.html" className="flex items-center gap-3">
-          <span className="silk-soft inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.03] font-display text-sm font-semibold text-accent">
-            Z
-          </span>
-          <div>
-            <p className="font-display text-sm uppercase tracking-[0.3em] text-accent">
-              ZERO2076
-            </p>
-            <p className="text-sm text-textMuted">零零精选</p>
-          </div>
-        </a>
-        <nav className="flex items-center gap-4 text-sm text-textMuted">
-          <a href="/quiet.html" className="transition hover:text-text">
-            精选
+    <header className="zh-topbar" aria-label="主导航">
+      {ITEMS.map((it) => {
+        const active = it.match(pathname);
+        return (
+          <a
+            key={it.href}
+            href={it.href}
+            className={"zh-tab" + (active ? " active" : "")}
+            title={it.label}
+            aria-label={it.label}
+            target={(it as any).external ? "_blank" : undefined}
+            rel={(it as any).external ? "noopener" : undefined}
+          >
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+              <path d={it.icon} />
+            </svg>
           </a>
-          <a href="/museum.html" className="transition hover:text-text">
-            博物馆
-          </a>
-        </nav>
-      </div>
+        );
+      })}
     </header>
   );
 }

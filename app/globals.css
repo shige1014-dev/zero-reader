@@ -144,6 +144,36 @@ body {
     0 10px 32px rgba(0, 0, 0, 0.24);
 }
 
+/* === 全站统一顶部 icon 切换条 === */
+.zh-topbar{
+  position:fixed; top:0; left:0; right:0;
+  z-index:50;
+  display:flex; align-items:center; justify-content:center;
+  gap:0;
+  background:rgba(20,17,13,0.85);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:0.5px solid rgba(255,255,255,0.06);
+  padding:calc(env(safe-area-inset-top) + 8px) 0 8px;
+}
+.zh-topbar .zh-tab{
+  flex:0 0 auto;
+  width:54px; height:42px;
+  display:flex; align-items:center; justify-content:center;
+  color:#8E8470;
+  text-decoration:none;
+  transition:color .2s ease, background .2s ease;
+  border-radius:8px;
+  margin:0 4px;
+}
+.zh-topbar .zh-tab:hover{color:#F5EFE3; background:rgba(255,255,255,0.03)}
+.zh-topbar .zh-tab.active{color:#E8C880; background:rgba(212,182,112,0.10)}
+body{padding-top:58px}
+@media (max-width:639.98px){
+  .zh-topbar .zh-tab{width:48px; height:38px}
+  body{padding-top:54px}
+}
+
 /* === 3D Matrix (公司金字塔) === */
 .matrix-shell{
   position:relative;
