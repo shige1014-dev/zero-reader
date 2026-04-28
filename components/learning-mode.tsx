@@ -2,16 +2,29 @@
 
 import { useMemo } from "react";
 
-import { buildLearningTailSummary, type LearningCourse } from "@/lib/learning-curriculum";
+import {
+  buildLearningTailSummary,
+  type LearningCourse,
+  type LearningCourseId,
+  type LearningUnit
+} from "@/lib/learning-curriculum";
 import type { Briefing } from "@/lib/feed-types";
 import { getRiskCopy } from "@/lib/format";
 import type { LearningCard } from "@/lib/learning-library";
+
+export interface TodayUnit {
+  courseId: LearningCourseId;
+  courseTitle: string;
+  unit: LearningUnit;
+  total: number;
+}
 
 interface LearningModeProps {
   courses: LearningCourse[];
   briefing: Briefing | null;
   economicsCards: LearningCard[];
   figureCards: LearningCard[];
+  todayUnits: TodayUnit[];
 }
 
 function courseTone(index: number): string {
@@ -33,9 +46,18 @@ function metricValue(value: number | null | undefined, digits = 1): string {
   return value.toFixed(digits);
 }
 
-export function LearningMode({ courses, briefing, economicsCards, figureCards }: LearningModeProps) {
-  const dailyFocus = useMemo(() => courses.flatMap((course) => course.units.slice(0, 1)), [courses]);
+export function LearningMode({
+  courses,
+  briefing,
+  economicsCards,
+  figureCards,
+  todayUnits
+}: LearningModeProps) {
   const tailSummary = useMemo(() => buildLearningTailSummary(courses), [courses]);
+  const totalUnits = useMemo(
+    () => courses.reduce((sum, c) => sum + c.units.length, 0),
+    [courses]
+  );
 
   return (
     <div className="space-y-4 sm:space-y-8">
@@ -76,14 +98,23 @@ export function LearningMode({ courses, briefing, economicsCards, figureCards }:
       </section>
 
       <section className="grid gap-3 sm:grid-cols-3 sm:gap-4">
-        {dailyFocus.map((unit) => (
-          <div className="silk-soft relative overflow-hidden rounded-[1.15rem] bg-[rgba(9,14,20,0.78)] p-4 transition hover:bg-[rgba(11,16,22,0.92)] sm:rounded-2xl sm:p-5" key={unit.concept}>
+        {todayUnits.map(({ courseId, courseTitle, unit, total }) => (
+          <div className="silk-soft relative overflow-hidden rounded-[1.15rem] bg-[rgba(9,14,20,0.78)] p-4 transition hover:bg-[rgba(11,16,22,0.92)] sm:rounded-2xl sm:p-5" key={courseId}>
             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent">TODAY</p>
+            <div className="flex items-center justify-between">
+              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent">TODAY · {courseTitle}</p>
+              <span className="font-mono text-[10px] text-textMuted">pool {total}</span>
+            </div>
             <h2 className="mt-2.5 text-base font-semibold leading-6 text-text sm:mt-3 sm:text-lg">{unit.concept}</h2>
             <p className="mt-2 text-[13px] leading-6 text-textMuted sm:text-sm sm:leading-7">{unit.practice}</p>
           </div>
         ))}
+      </section>
+
+      <section className="flex items-center justify-end">
+        <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-textMuted">
+          UNIT POOL · {totalUnits} 个 · 按日轮换 · 编辑 content/learning-units/ 加新单元
+        </span>
       </section>
 
       <section className="space-y-5 sm:space-y-6">

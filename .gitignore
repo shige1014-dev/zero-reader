@@ -33,3 +33,9 @@ tmp/
 .dolt/
 *.db
 .beads-credential-key
+
+# Local agent tooling (not for cloud)
+.claude/
+.codesight/
+.wolf/
+skills-lock.json

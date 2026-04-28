@@ -15,6 +15,8 @@ const ITEMS = [
     icon: "M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" },
   { href: "/civilization-leap/01-ai-rewrites-os",    label: "文明跃迁", match: (p: string) => p.startsWith("/civilization-leap"),
     icon: "M4 19V5a2 2 0 0 1 2-2h11l3 3v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zM8 8h8M8 12h8M8 16h5" },
+  { href: "/learning-os",                            label: "认知舱",   match: (p: string) => p.startsWith("/learning-os"),
+    icon: "M12 2a5 5 0 0 0-5 5v3a5 5 0 1 0 10 0V7a5 5 0 0 0-5-5zM8 14h8M9 18h6M10 22h4" },
 ];
 
 export function SiteHeader() {
