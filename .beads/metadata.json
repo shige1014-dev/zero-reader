@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "embedded",
+  "dolt_database": "zerozero_reader",
+  "project_id": "af5e321e-dc8c-4f7f-933c-ac8434a855bc"
+}
