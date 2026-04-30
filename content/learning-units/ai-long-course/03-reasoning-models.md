@@ -1,6 +1,6 @@
 ---
 concept: Reasoning Models (o-series / R1)
-question: 为什么"会思考"的模型能在数学 / 代码上跳级提升？
+question: 为什么「会思考」的模型能在数学 / 代码上跳级提升？
 definition: Reasoning models = 在推理时分配额外算力做内部 chain-of-thought (CoT) + 自我验证，用 test-time compute 换准确率。
 mechanism: 训练阶段用 RL + 推理过程奖励 → 推理时模型自动展开长 CoT → token 量提升 10-100x → 困难任务正确率跃升。
 example: OpenAI o1/o3 在 AIME 数学从 13% → 83%；DeepSeek R1 用 GRPO 复现，模型权重开源公开机制。

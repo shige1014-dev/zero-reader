@@ -1,6 +1,6 @@
 ---
 concept: 凯利公式
-question: 你确信赔率，但仓位多大才"最优"？
+question: 你确信赔率，但仓位多大才「最优」？
 definition: Kelly f* = (bp - q) / b，其中 b=赔率、p=赢概率、q=1-p；最大化长期资本几何增长率。
 mechanism: Kelly 假设可重复独立下注 + 真实概率已知；超 Kelly 提高破产概率，半 Kelly 通常更稳。
 example: 赢率 60% / 赔率 1:1 → Kelly 满仓 20%；很多人凭感觉押 50%，长期实际几何回报反而下降。
