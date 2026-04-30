@@ -34,6 +34,9 @@ tmp/
 *.db
 .beads-credential-key
 
+# allow seed db to ship with deploy (Railway/Vercel build needs it)
+!data/zero.db
+
 # Local agent tooling (not for cloud)
 .claude/
 .codesight/
