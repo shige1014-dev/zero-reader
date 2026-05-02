@@ -383,7 +383,7 @@ export function MatrixView(): JSX.Element {
             </div>
             <span>{LAYER_LABEL_ZH[selectedCompany.primaryLayer]}</span>
           </div>
-          <h3>{selectedCompany.name}</h3>
+          <h3>{selectedCompany.name}{selectedCompany.nameZh ? ` · ${selectedCompany.nameZh}` : ''}</h3>
           <p>{selectedCompany.thesis}</p>
           <div className="matrix-tags">
             {selectedCompany.narratives.map((narrative) => (
@@ -402,7 +402,7 @@ export function MatrixView(): JSX.Element {
                 const peer = link.source.ticker === selectedCompany.ticker ? link.target : link.source;
                 return (
                   <button key={`${link.source.ticker}-${link.target.ticker}-${link.role}`} onClick={() => setSelectedTicker(peer.ticker)}>
-                    <span>{peer.ticker}</span>
+                    <span>{peer.ticker}{peer.nameZh ? ` · ${peer.nameZh}` : ''}</span>
                     <strong>{LINK_ROLE_LABELS[link.role]} / {STRENGTH_LABELS[link.strength]}</strong>
                     <em>{link.thesis}</em>
                   </button>

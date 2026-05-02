@@ -25,6 +25,7 @@ export interface MatrixLayer {
 export interface CompanyNode {
   ticker: string;
   name: string;
+  nameZh?: string;
   primaryLayer: number;
   secondaryLayers: number[];
   narratives: CompanyNarrative[];
