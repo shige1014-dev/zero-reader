@@ -234,6 +234,172 @@ body{padding-top:58px}
 }
 .proph-cat-chip .dot{ width:6px; height:6px; border-radius:50% }
 
+/* —— Memorial album —— */
+.memorial-section{
+  margin:0 0 72px;
+  padding:48px 0 56px;
+  border-top:0.5px solid rgba(212,182,112,0.10);
+  border-bottom:0.5px solid rgba(212,182,112,0.10);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.018), transparent 58%),
+    radial-gradient(ellipse at 50% 0%, rgba(212,182,112,0.055), transparent 62%);
+}
+.memorial-head{
+  text-align:center;
+  margin:0 auto 36px;
+}
+.memorial-workflow{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+  margin:0 0 28px;
+}
+.memorial-step{
+  position:relative;
+  min-height:178px;
+  border:0.5px solid rgba(255,255,255,0.06);
+  border-radius:12px;
+  padding:18px 18px 20px;
+  background:linear-gradient(180deg, rgba(28,24,19,0.82), rgba(20,17,13,0.56));
+  overflow:hidden;
+}
+.memorial-step::after{
+  content:"";
+  position:absolute;
+  left:18px; right:18px; bottom:0;
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(212,182,112,0.42), transparent);
+}
+.memorial-step-no{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  border:0.5px solid rgba(212,182,112,0.34);
+  color:#E8C880;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:11px;
+  letter-spacing:.08em;
+  margin:0 0 18px;
+}
+.memorial-step-title{
+  margin:0 0 8px;
+  color:#7A6F5C;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+}
+.memorial-step h3{
+  margin:0 0 10px;
+  color:#F5EFE3;
+  font-family:"Iowan Old Style",Georgia,serif;
+  font-size:20px;
+  font-weight:500;
+  letter-spacing:.02em;
+}
+.memorial-step p:last-child{
+  margin:0;
+  color:#A89B82;
+  font-size:13px;
+  line-height:1.75;
+}
+.memorial-ledger{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+.memorial-card{
+  border:0.5px solid rgba(212,182,112,0.13);
+  border-radius:16px;
+  padding:24px;
+  background:
+    linear-gradient(135deg, rgba(212,182,112,0.07), transparent 32%),
+    linear-gradient(180deg, rgba(28,24,19,0.82), rgba(22,19,15,0.62));
+}
+.memorial-card-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:18px;
+  margin:0 0 10px;
+}
+.memorial-date{
+  margin:0 0 8px;
+  color:#7A6F5C;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10.5px;
+  letter-spacing:.2em;
+}
+.memorial-title{
+  margin:0;
+  color:#F5EFE3;
+  font-family:"Iowan Old Style",Georgia,serif;
+  font-size:24px;
+  font-weight:500;
+  letter-spacing:.01em;
+  line-height:1.32;
+}
+.memorial-status{
+  flex:0 0 auto;
+  border:0.5px solid rgba(212,182,112,0.3);
+  border-radius:999px;
+  padding:6px 10px;
+  color:#E8C880;
+  background:rgba(212,182,112,0.08);
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.16em;
+}
+.memorial-status-draft{
+  color:#9DA8C4;
+  border-color:rgba(157,168,196,0.3);
+  background:rgba(157,168,196,0.08);
+}
+.memorial-status-archived{
+  color:#7AB58A;
+  border-color:rgba(122,181,138,0.3);
+  background:rgba(122,181,138,0.08);
+}
+.memorial-theme{
+  margin:0 0 18px;
+  color:#D4B670;
+  font-size:13.5px;
+  line-height:1.6;
+  font-style:italic;
+}
+.memorial-grid{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:18px;
+}
+.memorial-block{
+  min-width:0;
+}
+.memorial-block p,
+.memorial-block ul,
+.memorial-brief p{
+  margin:8px 0 0;
+  color:#C9BFA8;
+  font-size:13px;
+  line-height:1.75;
+}
+.memorial-block ul{
+  padding:0 0 0 18px;
+}
+.memorial-block li{
+  margin:4px 0;
+}
+.memorial-brief{
+  margin:18px 0 0;
+  padding:14px 16px;
+  border-left:2px solid rgba(212,182,112,0.32);
+  border-radius:0 8px 8px 0;
+  background:rgba(255,255,255,0.025);
+}
+
 /* —— Oracle (预言家档案) —— */
 .oracle-section{
   margin:0 0 72px;
@@ -621,6 +787,9 @@ body{padding-top:58px}
 }
 
 @media (max-width:880px){
+  .memorial-workflow,
+  .memorial-grid{ grid-template-columns:1fr }
+  .memorial-step{ min-height:0 }
   .proph-timeline::before{ display:none }
   .proph-horizon-head{ padding-left:0 }
   .proph-horizon-head::before{ display:none }
@@ -644,10 +813,1316 @@ body{padding-top:58px}
 @media (max-width:639.98px){
   .proph-shell{ padding:32px 16px 64px }
   .proph-h1{ font-size:32px }
+  .memorial-section{ padding:36px 0 44px }
+  .memorial-card{ padding:20px }
+  .memorial-card-head{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:12px;
+  }
+  .memorial-title{ font-size:20px }
+  .memorial-status{ white-space:normal }
   .proph-horizon-title{ font-size:22px }
   .proph-card-body{ padding:20px }
   .proph-title{ font-size:18px }
   .proph-meta-row{ gap:14px; font-size:10px }
+}
+
+/* === 纪念册 · 海报展览馆 === */
+.album-shell{
+  position:relative;
+  min-height:calc(100vh - 58px);
+  color:#F5EFE3;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255,255,255,0.035) 1px, transparent 1px),
+    radial-gradient(circle at 18% 12%, rgba(212,182,112,0.16), transparent 30%),
+    radial-gradient(circle at 84% 4%, rgba(91,160,196,0.13), transparent 32%),
+    linear-gradient(180deg, #15120E 0%, #211B15 48%, #100E0B 100%);
+  background-size:48px 48px, 48px 48px, auto, auto, auto;
+  overflow:hidden;
+}
+.album-shell::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg, transparent 0 9%, rgba(232,200,128,0.08) 9.08%, transparent 9.18% 90.8%, rgba(232,200,128,0.07) 90.9%, transparent 91%),
+    radial-gradient(ellipse at 50% 0%, rgba(245,239,227,0.08), transparent 42%);
+}
+.album-shell::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:260px;
+  pointer-events:none;
+  background:linear-gradient(180deg, transparent, rgba(4,3,2,0.62));
+}
+.album-hero{
+  position:relative;
+  z-index:1;
+  min-height:calc(100vh - 58px);
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(280px,420px);
+  gap:56px;
+  align-items:center;
+  max-width:1180px;
+  margin:0 auto;
+  padding:64px 24px 72px;
+}
+.album-kicker{
+  margin:0 0 18px;
+  color:#D4B670;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:11px;
+  letter-spacing:.36em;
+}
+.album-hero h1{
+  margin:0;
+  color:#F5EFE3;
+  font-family:"Iowan Old Style",Georgia,serif;
+  font-size:86px;
+  line-height:.95;
+  font-weight:500;
+  letter-spacing:.02em;
+}
+.album-hero-copy > p:last-child{
+  max-width:560px;
+  margin:26px 0 0;
+  color:#B9AD96;
+  font-size:16px;
+  line-height:1.9;
+}
+.album-hero-label{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:34px 0 0;
+}
+.album-hero-label span{
+  border:1px solid rgba(232,200,128,0.18);
+  padding:8px 10px;
+  color:#8E8470;
+  background:rgba(0,0,0,0.18);
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.2em;
+}
+.album-hero-poster{
+  position:relative;
+  aspect-ratio:3/4.25;
+  border:1px solid rgba(232,200,128,0.42);
+  background:
+    linear-gradient(150deg, rgba(232,200,128,0.2), transparent 32%),
+    radial-gradient(circle at 50% 38%, rgba(232,200,128,0.24), transparent 22%),
+    linear-gradient(180deg, #292018, #14110D 68%, #080706);
+  box-shadow:
+    0 34px 100px rgba(0,0,0,0.55),
+    0 0 0 1px rgba(245,239,227,0.07),
+    inset 0 0 0 14px rgba(0,0,0,0.22),
+    inset 0 0 0 15px rgba(232,200,128,0.14);
+  overflow:hidden;
+  transform:perspective(900px) rotateY(-5deg) rotateX(2deg);
+}
+.album-hero-poster:hover{
+  transform:perspective(900px) rotateY(-2deg) rotateX(1deg) translateY(-4px);
+  transition:transform .35s ease;
+}
+.album-hero-poster::before{
+  content:"";
+  position:absolute;
+  inset:34px;
+  border:1px solid rgba(232,200,128,0.22);
+}
+.album-hero-poster::after{
+  content:"";
+  position:absolute;
+  left:52px;
+  right:52px;
+  top:42%;
+  height:1px;
+  background:linear-gradient(90deg, transparent, #E8C880, transparent);
+  box-shadow:0 46px 0 rgba(232,200,128,0.24), 0 -46px 0 rgba(232,200,128,0.24);
+}
+.album-cover-date{
+  position:absolute;
+  top:54px;
+  left:54px;
+  color:#E8C880;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:12px;
+  letter-spacing:.28em;
+}
+.album-cover-title{
+  position:absolute;
+  left:54px;
+  bottom:96px;
+  color:#F5EFE3;
+  font-family:"Iowan Old Style",Georgia,serif;
+  font-size:52px;
+  line-height:.92;
+  letter-spacing:.04em;
+}
+.album-cover-note{
+  position:absolute;
+  left:54px;
+  right:54px;
+  bottom:52px;
+  color:#8E8470;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.24em;
+}
+.album-workflow{
+  position:relative;
+  z-index:1;
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 24px 68px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:1px;
+}
+.album-workflow-step{
+  position:relative;
+  min-height:206px;
+  padding:28px;
+  background:rgba(12,10,8,0.62);
+  border:1px solid rgba(255,255,255,0.06);
+  overflow:hidden;
+}
+.album-workflow-step::after{
+  content:"";
+  position:absolute;
+  left:28px;
+  right:28px;
+  bottom:18px;
+  height:1px;
+  background:linear-gradient(90deg, rgba(232,200,128,0.4), transparent);
+}
+.album-workflow-step span{
+  color:#E8C880;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:12px;
+}
+.album-workflow-step p{
+  margin:24px 0 8px;
+  color:#7A6F5C;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.24em;
+}
+.album-workflow-step h2{
+  margin:0 0 12px;
+  color:#F5EFE3;
+  font-family:"Iowan Old Style",Georgia,serif;
+  font-size:26px;
+  font-weight:500;
+}
+.album-workflow-step small{
+  color:#A89B82;
+  font-size:13px;
+  line-height:1.75;
+}
+.album-gallery{
+  position:relative;
+  z-index:1;
+  max-width:1180px;
+  margin:0 auto;
+  padding:12px 24px 112px;
+}
+.album-gallery::before{
+  content:"";
+  position:absolute;
+  left:24px;
+  right:24px;
+  top:108px;
+  height:2px;
+  background:linear-gradient(90deg, transparent, rgba(232,200,128,0.35), transparent);
+  box-shadow:0 34px 90px rgba(232,200,128,0.16);
+}
+.album-gallery-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:24px;
+  margin:0 0 28px;
+  border-bottom:1px solid rgba(232,200,128,0.18);
+  padding-bottom:18px;
+}
+.album-gallery-head p{
+  margin:0;
+  color:#7A6F5C;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.34em;
+}
+.album-gallery-head h2{
+  margin:0;
+  color:#E8C880;
+  font-family:"Iowan Old Style",Georgia,serif;
+  font-size:34px;
+  font-weight:500;
+}
+.album-gallery-head span{
+  color:#7A6F5C;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.24em;
+}
+.album-poster-grid{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:44px;
+  align-items:start;
+}
+.album-exhibit{
+  position:relative;
+}
+.album-frame{
+  position:relative;
+  padding:18px;
+  background:
+    linear-gradient(135deg, rgba(245,239,227,0.08), transparent 26%),
+    linear-gradient(180deg, rgba(8,7,6,0.86), rgba(20,16,12,0.9));
+  border:1px solid rgba(232,200,128,0.22);
+  box-shadow:
+    0 38px 110px rgba(0,0,0,0.58),
+    inset 0 0 0 1px rgba(245,239,227,0.04);
+}
+.album-frame::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:-64px;
+  width:220px;
+  height:120px;
+  transform:translateX(-50%);
+  pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0%, rgba(245,239,227,0.2), transparent 70%);
+  filter:blur(2px);
+}
+.album-poster{
+  position:relative;
+  min-height:720px;
+  display:flex;
+  flex-direction:column;
+  padding:34px;
+  border:1px solid rgba(232,200,128,0.24);
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255,255,255,0.04), transparent 18%),
+    linear-gradient(145deg, #2A2118, #15110D 58%, #0B0907);
+  background-size:28px 28px, 28px 28px, auto, auto;
+  box-shadow:0 26px 90px rgba(0,0,0,0.42);
+  overflow:hidden;
+}
+.album-poster::before{
+  content:"";
+  position:absolute;
+  inset:14px;
+  border:1px solid rgba(232,200,128,0.12);
+  pointer-events:none;
+}
+.album-crop{
+  position:absolute;
+  width:18px;
+  height:18px;
+  z-index:2;
+}
+.album-crop::before,
+.album-crop::after{
+  content:"";
+  position:absolute;
+  background:rgba(232,200,128,0.36);
+}
+.album-crop::before{ width:18px; height:1px }
+.album-crop::after{ width:1px; height:18px }
+.album-crop-tl{ left:18px; top:18px }
+.album-crop-tr{ right:18px; top:18px; transform:rotate(90deg) }
+.album-crop-bl{ left:18px; bottom:18px; transform:rotate(-90deg) }
+.album-crop-br{ right:18px; bottom:18px; transform:rotate(180deg) }
+.album-poster-art{
+  position:relative;
+  height:250px;
+  margin:0 0 24px;
+  border-bottom:1px solid rgba(232,200,128,0.16);
+}
+.album-orbit{
+  position:absolute;
+  border:1px solid rgba(232,200,128,0.26);
+  border-radius:50%;
+}
+.album-orbit-a{
+  width:164px;
+  height:164px;
+  left:50%;
+  top:28px;
+  transform:translateX(-50%);
+}
+.album-orbit-b{
+  width:228px;
+  height:92px;
+  left:50%;
+  top:66px;
+  transform:translateX(-50%) rotate(-14deg);
+}
+.album-orbit-c{
+  width:92px;
+  height:228px;
+  left:50%;
+  top:0;
+  transform:translateX(-50%) rotate(19deg);
+  border-color:rgba(91,160,196,0.26);
+}
+.album-art-line{
+  position:absolute;
+  left:10%;
+  right:10%;
+  top:50%;
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(232,200,128,0.72), transparent);
+}
+.album-art-mark{
+  position:absolute;
+  right:8px;
+  bottom:18px;
+  color:rgba(232,200,128,0.18);
+  font-family:"IBM Plex Mono",monospace;
+  font-size:56px;
+  letter-spacing:.06em;
+}
+.album-poster-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  margin:0 0 28px;
+}
+.album-issue{
+  margin:0;
+  color:#8E8470;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.24em;
+}
+.album-status{
+  flex:0 0 auto;
+  color:#E8C880;
+  border:1px solid rgba(232,200,128,0.28);
+  padding:5px 9px;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.14em;
+}
+.album-status-draft{ color:#9DA8C4; border-color:rgba(157,168,196,0.32) }
+.album-status-archived{ color:#7AB58A; border-color:rgba(122,181,138,0.32) }
+.album-poster-title{
+  margin:0 0 28px;
+}
+.album-poster-title p{
+  margin:0 0 10px;
+  color:#D4B670;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:11px;
+  letter-spacing:.22em;
+}
+.album-poster-title h2{
+  margin:0;
+  color:#F5EFE3;
+  font-family:"Iowan Old Style",Georgia,serif;
+  font-size:42px;
+  line-height:1.02;
+  font-weight:500;
+  text-wrap:balance;
+}
+.album-poster-title span{
+  display:block;
+  margin:16px 0 0;
+  color:#C9BFA8;
+  font-size:14px;
+  line-height:1.6;
+}
+.album-poster-body{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:20px;
+  margin:0 0 24px;
+}
+.album-poster-body h3,
+.album-poster-foot span{
+  display:block;
+  margin:0 0 8px;
+  color:#7A6F5C;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.28em;
+}
+.album-poster-body p,
+.album-poster-body ul,
+.album-poster-foot p{
+  margin:0;
+  color:#C9BFA8;
+  font-size:13px;
+  line-height:1.72;
+}
+.album-poster-body ul{
+  padding-left:18px;
+}
+.album-poster-body li{
+  margin:5px 0;
+}
+.album-poster-foot{
+  margin-top:auto;
+  padding-top:18px;
+  border-top:1px solid rgba(232,200,128,0.14);
+}
+.album-plaque{
+  width:min(280px, 76%);
+  margin:18px auto 0;
+  padding:13px 16px 14px;
+  text-align:center;
+  border:1px solid rgba(232,200,128,0.2);
+  background:rgba(10,8,6,0.72);
+  box-shadow:0 16px 44px rgba(0,0,0,0.28);
+}
+.album-plaque span{
+  color:#D4B670;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.22em;
+}
+.album-plaque p{
+  margin:7px 0 4px;
+  color:#F5EFE3;
+  font-family:"Iowan Old Style",Georgia,serif;
+  font-size:15px;
+}
+.album-plaque small{
+  color:#7A6F5C;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.1em;
+}
+
+@media (max-width:920px){
+  .album-hero{
+    grid-template-columns:1fr;
+    min-height:auto;
+  }
+  .album-hero h1{ font-size:64px }
+  .album-hero-poster{
+    max-width:420px;
+  }
+  .album-workflow,
+  .album-poster-grid{
+    grid-template-columns:1fr;
+  }
+  .album-poster{ min-height:0 }
+}
+@media (max-width:639.98px){
+  .album-hero{
+    padding:44px 16px 56px;
+    gap:34px;
+  }
+  .album-hero h1{ font-size:48px }
+  .album-hero-copy > p:last-child{ font-size:14px }
+  .album-cover-title{ font-size:38px }
+  .album-workflow,
+  .album-gallery{
+    padding-left:16px;
+    padding-right:16px;
+  }
+  .album-gallery-head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  .album-frame{
+    padding:12px;
+  }
+  .album-poster{
+    padding:22px;
+  }
+  .album-poster-art{
+    height:180px;
+  }
+  .album-poster-title h2{
+    font-size:30px;
+  }
+  .album-poster-head{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+}
+
+/* Memorial visual direction: glass poster interface */
+.album-shell{
+  background:
+    radial-gradient(circle at 22% 8%, rgba(193,221,238,0.32), transparent 26%),
+    radial-gradient(circle at 78% 12%, rgba(232,200,128,0.16), transparent 26%),
+    linear-gradient(135deg, #d9d6cd 0%, #a8a39a 26%, #201f25 27%, #111018 100%);
+}
+.album-shell::before{
+  background:
+    radial-gradient(ellipse at 50% -6%, rgba(255,255,255,0.32), transparent 42%),
+    linear-gradient(90deg, rgba(255,255,255,0.16) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255,255,255,0.12) 1px, transparent 1px);
+  background-size:auto, 74px 74px, 74px 74px;
+  opacity:.42;
+}
+.album-hero{
+  grid-template-columns:minmax(0,1fr) minmax(420px,640px);
+  max-width:1320px;
+  gap:34px;
+  padding-top:44px;
+}
+.album-kicker{
+  color:#eef6ff;
+  opacity:.82;
+}
+.album-hero h1{
+  max-width:620px;
+  font-family:"Noto Sans SC","Inter",system-ui,sans-serif;
+  font-size:104px;
+  font-weight:700;
+  line-height:.9;
+  color:rgba(255,255,255,0.86);
+  text-shadow:0 20px 80px rgba(0,0,0,0.24);
+}
+.album-hero-copy > p:last-child{
+  color:rgba(255,255,255,0.76);
+  max-width:470px;
+}
+.album-hero-label span{
+  border-color:rgba(255,255,255,0.22);
+  background:rgba(255,255,255,0.14);
+  color:rgba(255,255,255,0.78);
+  border-radius:999px;
+  backdrop-filter:blur(18px);
+}
+.album-hero-poster{
+  border:2px solid rgba(255,255,255,0.78);
+  border-radius:54px;
+  background:
+    linear-gradient(180deg, rgba(181,218,239,0.68), rgba(72,93,122,0.34) 36%, transparent 37%),
+    radial-gradient(circle at 74% 45%, rgba(255,215,172,0.95), transparent 18%),
+    linear-gradient(145deg, #d8e7ef 0%, #758da9 42%, #151622 100%);
+  box-shadow:
+    0 36px 120px rgba(0,0,0,0.45),
+    inset 0 0 0 1px rgba(255,255,255,0.32);
+  transform:perspective(1000px) rotateY(-3deg) rotateX(1deg);
+}
+.album-hero-poster::before{
+  inset:28px;
+  border-color:rgba(255,255,255,0.34);
+  border-radius:42px;
+  background:
+    radial-gradient(ellipse at 72% 48%, rgba(255,190,126,0.58), transparent 28%),
+    linear-gradient(110deg, transparent 0 18%, rgba(255,255,255,0.2) 18.2% 19%, transparent 19.2% 100%);
+}
+.album-hero-poster::after{
+  left:10%;
+  right:8%;
+  top:56%;
+  height:96px;
+  border-radius:999px;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.84), rgba(234,242,246,0.58)),
+    linear-gradient(90deg, transparent, #E8C880, transparent);
+  box-shadow:0 18px 60px rgba(16,21,32,0.22);
+}
+.album-glassbar{
+  position:absolute;
+  left:8%;
+  right:8%;
+  top:28px;
+  z-index:4;
+  height:54px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:42px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.38);
+  border:1px solid rgba(255,255,255,0.42);
+  color:rgba(20,22,30,0.74);
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.12em;
+  backdrop-filter:blur(20px);
+}
+.album-side-dock{
+  position:absolute;
+  left:24px;
+  top:128px;
+  z-index:4;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  padding:10px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.45);
+  border:1px solid rgba(255,255,255,0.36);
+  backdrop-filter:blur(20px);
+}
+.album-side-dock span{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:linear-gradient(135deg, rgba(255,255,255,0.96), rgba(214,224,235,0.62));
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,0.04);
+}
+.album-cover-date{
+  top:116px;
+  left:12%;
+  color:rgba(255,255,255,0.86);
+}
+.album-cover-title{
+  left:12%;
+  right:10%;
+  bottom:170px;
+  color:rgba(255,255,255,0.9);
+  font-family:"Noto Sans SC","Inter",system-ui,sans-serif;
+  font-size:72px;
+  font-weight:700;
+  line-height:.88;
+  letter-spacing:.01em;
+  text-shadow:0 18px 70px rgba(0,0,0,0.26);
+}
+.album-cover-note{
+  left:12%;
+  bottom:114px;
+  color:rgba(255,255,255,0.7);
+}
+.album-cover-card{
+  position:absolute;
+  z-index:5;
+  border-radius:30px;
+  background:rgba(255,255,255,0.74);
+  border:1px solid rgba(255,255,255,0.48);
+  color:#20222A;
+  backdrop-filter:blur(22px);
+  box-shadow:0 22px 70px rgba(13,16,26,0.22);
+}
+.album-cover-card strong{
+  display:block;
+  color:#11131A;
+  font-family:"Noto Sans SC","Inter",system-ui,sans-serif;
+  font-size:38px;
+  line-height:1;
+}
+.album-cover-card small{
+  display:block;
+  color:rgba(22,26,34,0.58);
+  font-size:11px;
+  line-height:1.45;
+  margin-top:8px;
+}
+.album-cover-card-a{
+  left:9%;
+  bottom:34px;
+  width:230px;
+  padding:26px;
+}
+.album-cover-card-b{
+  right:34px;
+  bottom:46px;
+  width:170px;
+  padding:22px;
+}
+.album-workflow{
+  max-width:1320px;
+  gap:16px;
+}
+.album-workflow-step{
+  border-radius:34px;
+  background:rgba(255,255,255,0.13);
+  border-color:rgba(255,255,255,0.18);
+  backdrop-filter:blur(20px);
+}
+.album-workflow-step span,
+.album-workflow-step h2{
+  color:rgba(255,255,255,0.9);
+}
+.album-workflow-step p,
+.album-workflow-step small{
+  color:rgba(255,255,255,0.64);
+}
+.album-gallery{
+  max-width:1320px;
+}
+.album-gallery-head{
+  border-bottom-color:rgba(255,255,255,0.18);
+}
+.album-gallery-head h2{
+  color:rgba(255,255,255,0.92);
+}
+.album-gallery-head p,
+.album-gallery-head span{
+  color:rgba(255,255,255,0.54);
+}
+.album-poster-grid{
+  gap:42px;
+}
+.album-frame{
+  border-radius:42px;
+  padding:14px;
+  border-color:rgba(255,255,255,0.18);
+  background:rgba(255,255,255,0.12);
+  backdrop-filter:blur(18px);
+}
+.album-frame::before{
+  background:radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.34), transparent 70%);
+}
+.album-poster{
+  border-radius:34px;
+  border-color:rgba(255,255,255,0.2);
+  background:
+    radial-gradient(circle at 74% 20%, rgba(126,158,188,0.42), transparent 34%),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(145deg, #1e2434 0%, #10121c 55%, #080910 100%);
+  background-size:auto, 28px 28px, 28px 28px, auto;
+}
+.album-poster::before{
+  border-radius:24px;
+  border-color:rgba(255,255,255,0.12);
+}
+.album-poster-art{
+  height:282px;
+}
+.album-art-screen{
+  position:absolute;
+  left:50%;
+  top:54px;
+  width:72%;
+  height:126px;
+  transform:translateX(-50%);
+  border-radius:28px;
+  background:
+    linear-gradient(110deg, rgba(255,255,255,0.24), transparent 38%),
+    linear-gradient(180deg, rgba(42,54,75,0.96), rgba(8,10,18,0.92));
+  border:1px solid rgba(255,255,255,0.18);
+  box-shadow:0 26px 80px rgba(0,0,0,0.38);
+}
+.album-art-chip{
+  position:absolute;
+  left:50%;
+  top:108px;
+  transform:translateX(-50%);
+  z-index:2;
+  border-radius:999px;
+  padding:8px 12px;
+  background:rgba(255,255,255,0.16);
+  color:rgba(255,255,255,0.76);
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.18em;
+  backdrop-filter:blur(12px);
+}
+.album-poster-title h2{
+  font-family:"Noto Sans SC","Inter",system-ui,sans-serif;
+  font-weight:700;
+  color:rgba(255,255,255,0.92);
+}
+.album-poster-title p,
+.album-issue,
+.album-status,
+.album-poster-body h3,
+.album-poster-foot span{
+  color:rgba(218,229,242,0.72);
+}
+.album-poster-title span,
+.album-poster-body p,
+.album-poster-body ul,
+.album-poster-foot p{
+  color:rgba(232,236,243,0.72);
+}
+.album-plaque{
+  border-radius:18px;
+  background:rgba(255,255,255,0.12);
+  border-color:rgba(255,255,255,0.2);
+  backdrop-filter:blur(18px);
+}
+.album-plaque p{
+  color:rgba(255,255,255,0.9);
+}
+.album-plaque small,
+.album-plaque span{
+  color:rgba(255,255,255,0.58);
+}
+
+@media (max-width:920px){
+  .album-hero{
+    grid-template-columns:1fr;
+  }
+  .album-hero-poster{
+    max-width:none;
+  }
+}
+@media (max-width:639.98px){
+  .album-hero h1{ font-size:58px }
+  .album-glassbar{
+    left:18px;
+    right:18px;
+    gap:14px;
+    font-size:9px;
+  }
+  .album-side-dock{
+    display:none;
+  }
+  .album-cover-title{
+    font-size:42px;
+    bottom:150px;
+  }
+  .album-cover-card-a{
+    width:180px;
+    padding:20px;
+  }
+  .album-cover-card-b{
+    display:none;
+  }
+}
+
+/* === 纪念册 · 轻量卡片版 === */
+.mem-shell{
+  min-height:calc(100vh - 58px);
+  padding:56px 24px 104px;
+  color:#F5EFE3;
+  background:
+    linear-gradient(180deg, rgba(245,239,227,0.055), transparent 280px),
+    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px),
+    radial-gradient(circle at 12% 0%, rgba(146,170,196,0.14), transparent 34%),
+    #101017;
+  background-size:auto, 44px 44px, auto, auto;
+}
+.mem-hero{
+  max-width:1040px;
+  margin:0 auto 38px;
+  padding-bottom:28px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.mem-kicker,
+.mem-section-head p,
+.mem-card-no,
+.mem-date,
+.mem-status,
+.mem-open,
+.mem-back{
+  font-family:"IBM Plex Mono",monospace;
+}
+.mem-kicker{
+  margin:0 0 14px;
+  color:#8EA6C4;
+  font-size:11px;
+  letter-spacing:.32em;
+}
+.mem-hero h1{
+  margin:0;
+  color:#F5EFE3;
+  font-family:"Iowan Old Style","Noto Sans SC",Georgia,serif;
+  font-size:64px;
+  line-height:1;
+  font-weight:700;
+  letter-spacing:.015em;
+}
+.mem-hero > p{
+  max-width:640px;
+  margin:20px 0 0;
+  color:#AEB5C0;
+  font-size:15px;
+  line-height:1.85;
+}
+.mem-workflow{
+  max-width:1040px;
+  margin:0 auto 52px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+}
+.mem-flow-card{
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:8px;
+  padding:18px 18px 20px;
+  background:rgba(255,255,255,0.035);
+}
+.mem-flow-card span{
+  color:#8EA6C4;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:11px;
+}
+.mem-flow-card h2{
+  margin:12px 0 8px;
+  color:#F5EFE3;
+  font-size:18px;
+  font-weight:650;
+}
+.mem-flow-card p{
+  margin:0;
+  color:#9BA3AF;
+  font-size:13px;
+  line-height:1.65;
+}
+.mem-grid-section{
+  max-width:1040px;
+  margin:0 auto 54px;
+  scroll-margin-top:84px;
+}
+.mem-section-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:20px;
+  margin:0 0 22px;
+  padding-bottom:16px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.mem-section-head > span{
+  max-width:520px;
+  color:#98A1AD;
+  font-size:13px;
+  line-height:1.65;
+  text-align:right;
+}
+.mem-section-head p{
+  margin:0;
+  color:#7F8A99;
+  font-size:10px;
+  letter-spacing:.32em;
+}
+.mem-section-head h2{
+  margin:0;
+  color:#F5EFE3;
+  font-family:"Iowan Old Style","Noto Sans SC",Georgia,serif;
+  font-size:28px;
+  font-weight:650;
+  letter-spacing:.02em;
+}
+.mem-card-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:18px;
+}
+.mem-empty{
+  border:1px dashed rgba(255,255,255,0.12);
+  border-radius:18px;
+  padding:22px;
+  background:rgba(255,255,255,0.025);
+}
+.mem-empty p{
+  margin:0 0 8px;
+  color:#C7CED8;
+  font-size:15px;
+  font-weight:650;
+}
+.mem-empty span{
+  color:#7E8794;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:12px;
+  line-height:1.7;
+}
+.mem-card{
+  min-height:360px;
+  padding:0;
+  border:1px solid rgba(255,255,255,0.09);
+  border-radius:10px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.058), rgba(255,255,255,0.032));
+  color:inherit;
+  transition:transform .16s ease, border-color .16s ease, background .16s ease;
+  overflow:hidden;
+}
+.mem-card-summary{
+  display:flex;
+  flex-direction:column;
+  min-height:360px;
+  padding:18px;
+  cursor:pointer;
+  list-style:none;
+}
+.mem-card-summary::-webkit-details-marker{
+  display:none;
+}
+.mem-card-image{
+  aspect-ratio:16/11;
+  margin:0 0 18px;
+  overflow:hidden;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:#090A0F;
+}
+.mem-card-image img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.mem-card:hover{
+  transform:translateY(-2px);
+  border-color:rgba(142,166,196,0.42);
+  background:linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.045));
+}
+.mem-card-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin:0 0 16px;
+}
+.mem-card-no{
+  color:#727C8B;
+  font-size:11px;
+  letter-spacing:.12em;
+}
+.mem-status{
+  flex:0 0 auto;
+  border:1px solid rgba(142,166,196,0.28);
+  border-radius:999px;
+  padding:5px 8px;
+  color:#AFC4DD;
+  font-size:10px;
+  letter-spacing:.08em;
+}
+.mem-status-draft{ color:#9DA8C4; border-color:rgba(157,168,196,0.28) }
+.mem-status-archived{ color:#8AC49C; border-color:rgba(138,196,156,0.28) }
+.mem-date{
+  margin:0 0 9px;
+  color:#727C8B;
+  font-size:11px;
+  letter-spacing:.12em;
+}
+.mem-card h3{
+  display:none;
+}
+.mem-card-title{
+  margin:0 0 10px;
+  color:#F5EFE3;
+  font-family:"Iowan Old Style","Noto Sans SC",Georgia,serif;
+  font-size:23px;
+  line-height:1.28;
+  font-weight:700;
+  letter-spacing:.01em;
+}
+.mem-theme{
+  margin:0 0 14px;
+  color:#C7CED8;
+  font-size:13px;
+  line-height:1.55;
+}
+.mem-summary{
+  display:-webkit-box;
+  -webkit-line-clamp:4;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  margin:0;
+  color:#98A1AD;
+  font-size:13px;
+  line-height:1.7;
+}
+.mem-open{
+  margin-top:auto;
+  padding-top:20px;
+  color:#AFC4DD;
+  font-size:11px;
+  letter-spacing:.16em;
+}
+.mem-open-less{
+  display:none;
+}
+.mem-card[open] .mem-open-more{
+  display:none;
+}
+.mem-card[open] .mem-open-less{
+  display:inline;
+}
+.mem-inline-detail{
+  padding:0 22px 24px;
+  border-top:1px solid rgba(255,255,255,0.08);
+  background:rgba(6,7,12,0.28);
+}
+.mem-inline-detail section{
+  padding:22px 0 0;
+}
+.mem-inline-detail h4{
+  margin:0 0 12px;
+  color:#AFC4DD;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:11px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+}
+.mem-inline-detail p,
+.mem-inline-detail ul{
+  margin:0;
+  color:#D4DAE3;
+  font-size:15px;
+  line-height:1.95;
+}
+.mem-inline-detail p + p{
+  margin-top:15px;
+}
+.mem-inline-detail ul{
+  padding-left:18px;
+}
+.mem-inline-detail li{
+  margin:5px 0;
+}
+.mem-detail-shell{
+  padding-top:38px;
+}
+.mem-back{
+  display:inline-flex;
+  margin:0 0 22px calc((100% - min(920px, calc(100% - 48px))) / 2);
+  color:#AFC4DD;
+  font-size:12px;
+  letter-spacing:.12em;
+  text-decoration:none;
+}
+.mem-detail{
+  max-width:920px;
+  margin:0 auto;
+  border:1px solid rgba(255,255,255,0.09);
+  border-radius:22px;
+  padding:30px;
+  background:rgba(255,255,255,0.045);
+}
+.mem-detail-head{
+  display:flex;
+  justify-content:space-between;
+  gap:24px;
+  margin:0 0 30px;
+  padding-bottom:24px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.mem-detail-image{
+  margin:0 0 28px;
+  overflow:hidden;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,0.09);
+  background:#090A0F;
+}
+.mem-detail-image img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+.mem-detail-head h1{
+  margin:8px 0 12px;
+  color:#F5EFE3;
+  font-size:40px;
+  line-height:1.18;
+}
+.mem-detail-head p:last-child{
+  margin:0;
+  color:#C7CED8;
+}
+.mem-detail-collection{
+  margin:12px 0 0 !important;
+  color:#8EA6C4 !important;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:11px;
+  letter-spacing:.14em;
+}
+.mem-detail-block{
+  margin:0 0 24px;
+}
+.mem-detail-block h2{
+  margin:0 0 12px;
+  color:#AFC4DD;
+  font-size:15px;
+  letter-spacing:.08em;
+}
+.mem-detail-block p,
+.mem-detail-block ul{
+  margin:0;
+  color:#C7CED8;
+  font-size:15px;
+  line-height:1.85;
+}
+.mem-detail-block p + p{
+  margin-top:14px;
+}
+.mem-detail-block ul{
+  padding-left:20px;
+}
+.mem-detail-block li{
+  margin:6px 0;
+}
+.mem-brief-block{
+  margin-bottom:0;
+  padding:18px;
+  border-radius:14px;
+  background:rgba(142,166,196,0.08);
+}
+.mem-essay-block{
+  padding:20px 0 24px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.mem-essay-block p{
+  color:#D8DDE5;
+  font-size:16px;
+  line-height:1.95;
+}
+
+@media (max-width:760px){
+  .mem-shell{
+    padding:34px 14px 72px;
+  }
+  .mem-hero h1{
+    font-size:44px;
+  }
+  .mem-hero > p{
+    font-size:14px;
+  }
+  .mem-workflow{
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+  .mem-section-head,
+  .mem-detail-head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  .mem-section-head > span{
+    text-align:left;
+  }
+  .mem-section-head h2{
+    font-size:25px;
+  }
+  .mem-card-grid{
+    grid-template-columns:1fr;
+  }
+  .mem-card-summary{
+    padding:16px;
+  }
+  .mem-card-image{
+    aspect-ratio:4/3;
+  }
+  .mem-card-title{
+    font-size:22px;
+  }
+  .mem-inline-detail{
+    padding:0 16px 20px;
+  }
+  .mem-inline-detail p,
+  .mem-inline-detail ul{
+    font-size:14.5px;
+    line-height:1.9;
+  }
+  .mem-detail{
+    padding:22px;
+  }
+  .mem-detail-head h1{
+    font-size:30px;
+  }
+  .mem-back{
+    margin-left:0;
+  }
 }
 
 /* === 3D Matrix (公司金字塔) === */
