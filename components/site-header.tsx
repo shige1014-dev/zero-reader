@@ -13,6 +13,8 @@ const ITEMS = [
     icon: "M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" },
   { href: "/memorials",                              label: "纪念册",   match: (p: string) => p.startsWith("/memorials"),
     icon: "M4 5h16v14H4zM8 9h8M8 13h5M6 3v4M18 3v4" },
+  { href: "/bedrock",                                label: "基岩层",   match: (p: string) => p.startsWith("/bedrock"),
+    icon: "M3 8h18M3 13h18M3 18h18M5 8V4h14v4M5 23h14" },
   { href: "/civilization-leap/01-ai-rewrites-os",    label: "文明跃迁", match: (p: string) => p.startsWith("/civilization-leap"),
     icon: "M4 19V5a2 2 0 0 1 2-2h11l3 3v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zM8 8h8M8 12h8M8 16h5" },
 ];
