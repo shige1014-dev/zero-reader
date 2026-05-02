@@ -3869,14 +3869,14 @@ body{padding-top:58px}
   color:#EDE8DA;
   font-family:'Iowan Old Style','Noto Serif SC',Georgia,serif;
   background:
-    linear-gradient(180deg,#0A0B0E 0%,#08090C 70%,#06070A 100%);
+    linear-gradient(180deg,#14110D 0%,#100E0A 60%,#0B0907 100%);
   position:relative;
 }
 .wif-shell::before{
   content:"";
   position:absolute;inset:0;
   background:
-    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(93,211,255,0.06), transparent 60%);
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(232,201,122,0.05), transparent 60%);
   pointer-events:none;
 }
 .wif-shell > *{position:relative;z-index:1}
@@ -3889,12 +3889,12 @@ body{padding-top:58px}
   align-items:end;
   gap:32px;
   padding-bottom:32px;
-  border-bottom:1px solid rgba(93,211,255,0.18);
+  border-bottom:1px solid rgba(232,201,122,0.18);
 }
 .wif-hero-frame{}
 .wif-kicker{
   margin:0 0 18px;
-  color:#5DD3FF;
+  color:#E8C97A;
   font-family:"IBM Plex Mono",ui-monospace,monospace;
   font-size:11px;
   letter-spacing:.42em;
@@ -3922,9 +3922,9 @@ body{padding-top:58px}
   flex-direction:column;
   align-items:flex-end;
   padding:18px 22px;
-  border:1px solid rgba(93,211,255,0.32);
+  border:1px solid rgba(232,201,122,0.32);
   border-radius:4px;
-  background:linear-gradient(180deg,rgba(93,211,255,0.08),rgba(93,211,255,0.02));
+  background:linear-gradient(180deg,rgba(232,201,122,0.08),rgba(232,201,122,0.02));
   min-width:180px;
 }
 .wif-counter-num{
@@ -3937,7 +3937,7 @@ body{padding-top:58px}
 }
 .wif-counter-label{
   margin-top:8px;
-  color:#5DD3FF;
+  color:#E8C97A;
   font-family:"IBM Plex Mono",monospace;
   font-size:11px;
   letter-spacing:.16em;
@@ -3968,15 +3968,15 @@ body{padding-top:58px}
   content:"";
   position:absolute;top:0;left:0;right:0;
   height:1px;
-  background:linear-gradient(90deg,transparent,rgba(93,211,255,0.6),transparent);
+  background:linear-gradient(90deg,transparent,rgba(232,201,122,0.6),transparent);
 }
 .wif-card::after{
   display:none;
 }
 .wif-card:hover{
   transform:translateY(-2px);
-  border-color:rgba(93,211,255,0.4);
-  background:linear-gradient(180deg,rgba(93,211,255,0.05),rgba(255,255,255,0.012));
+  border-color:rgba(232,201,122,0.4);
+  background:linear-gradient(180deg,rgba(232,201,122,0.05),rgba(255,255,255,0.012));
 }
 .wif-card-spine{
   display:flex;
@@ -3984,7 +3984,7 @@ body{padding-top:58px}
   align-items:center;
 }
 .wif-card-num{
-  color:#5DD3FF;
+  color:#E8C97A;
   font-family:"IBM Plex Mono",monospace;
   font-size:11px;
   letter-spacing:.32em;
@@ -4028,7 +4028,7 @@ body{padding-top:58px}
   letter-spacing:.04em;
 }
 .wif-card-cta{
-  color:#5DD3FF;
+  color:#E8C97A;
   font-family:"IBM Plex Mono",monospace;
   font-size:11px;
   letter-spacing:.16em;
@@ -4050,7 +4050,7 @@ body{padding-top:58px}
 .wif-back{
   display:inline-flex;
   margin:0 0 22px calc((100% - min(720px, calc(100% - 56px))) / 2);
-  color:#5DD3FF;
+  color:#E8C97A;
   font-family:"IBM Plex Mono",monospace;
   font-size:12px;
   letter-spacing:.12em;
@@ -4060,23 +4060,23 @@ body{padding-top:58px}
   max-width:720px;
   margin:0 auto;
   padding:42px 38px 48px;
-  border:1px solid rgba(93,211,255,0.16);
+  border:1px solid rgba(232,201,122,0.16);
   border-radius:4px;
   background:
     linear-gradient(180deg,rgba(255,255,255,0.022),rgba(255,255,255,0.008)),
-    radial-gradient(circle at 0% 0%, rgba(93,211,255,0.05), transparent 40%);
+    radial-gradient(circle at 0% 0%, rgba(232,201,122,0.05), transparent 40%);
   position:relative;
 }
 .wif-reader::before{
   content:"";
   position:absolute;top:0;left:0;right:0;
   height:1px;
-  background:linear-gradient(90deg,transparent,rgba(93,211,255,0.55),transparent);
+  background:linear-gradient(90deg,transparent,rgba(232,201,122,0.55),transparent);
 }
 .wif-reader-head{
   margin-bottom:36px;
   padding-bottom:26px;
-  border-bottom:1px solid rgba(93,211,255,0.18);
+  border-bottom:1px solid rgba(232,201,122,0.18);
 }
 .wif-reader-head h1{
   margin:8px 0 14px;
@@ -4103,12 +4103,12 @@ body{padding-top:58px}
 }
 .wif-reader-meta span{
   padding:5px 11px;
-  border:1px solid rgba(93,211,255,0.16);
+  border:1px solid rgba(232,201,122,0.16);
   border-radius:999px;
-  background:rgba(93,211,255,0.03);
+  background:rgba(232,201,122,0.03);
 }
 .wif-meta-label{
-  color:#5DD3FF;
+  color:#E8C97A;
   margin-right:6px;
   letter-spacing:.16em;
 }
@@ -4117,7 +4117,7 @@ body{padding-top:58px}
   display:flex;
   align-items:center;
   margin:42px 0 24px;
-  color:#5DD3FF;
+  color:#E8C97A;
   font-family:"IBM Plex Mono",monospace;
   font-size:11px;
   letter-spacing:.32em;
@@ -4129,7 +4129,7 @@ body{padding-top:58px}
   content:"";
   flex:1;
   height:1px;
-  background:linear-gradient(90deg,transparent,rgba(93,211,255,0.32),transparent);
+  background:linear-gradient(90deg,transparent,rgba(232,201,122,0.32),transparent);
 }
 .wif-divider span{
   padding:0 6px;
@@ -4151,7 +4151,7 @@ body{padding-top:58px}
 }
 .wif-reader-body p::first-letter{
   font-size:1.15em;
-  color:#5DD3FF;
+  color:#E8C97A;
   font-weight:500;
 }
 
@@ -4161,14 +4161,14 @@ body{padding-top:58px}
   grid-template-columns:36px 1fr;
   gap:14px;
   padding:14px 0;
-  border-bottom:1px dashed rgba(93,211,255,0.14);
+  border-bottom:1px dashed rgba(232,201,122,0.14);
   color:#D8DBE5;
   font-size:14.5px;
   line-height:1.85;
 }
 .wif-implications li:last-child{border-bottom:none}
 .wif-implication-num{
-  color:#5DD3FF;
+  color:#E8C97A;
   font-family:"IBM Plex Mono",monospace;
   font-size:11px;
   letter-spacing:.16em;
@@ -4192,27 +4192,27 @@ body{padding-top:58px}
   gap:14px;
   margin-top:54px;
   padding-top:28px;
-  border-top:1px solid rgba(93,211,255,0.18);
+  border-top:1px solid rgba(232,201,122,0.18);
 }
 .wif-pager-side{
   display:flex;
   flex-direction:column;
   gap:6px;
   padding:16px 18px;
-  border:1px solid rgba(93,211,255,0.14);
+  border:1px solid rgba(232,201,122,0.14);
   border-radius:4px;
-  background:rgba(93,211,255,0.04);
+  background:rgba(232,201,122,0.04);
   text-decoration:none;
   color:inherit;
   transition:border-color .14s,background .14s;
 }
 .wif-pager-side:hover{
-  border-color:rgba(93,211,255,0.5);
-  background:rgba(93,211,255,0.08);
+  border-color:rgba(232,201,122,0.5);
+  background:rgba(232,201,122,0.08);
 }
 .wif-pager-next{align-items:flex-end;text-align:right}
 .wif-pager-label{
-  color:#5DD3FF;
+  color:#E8C97A;
   font-family:"IBM Plex Mono",monospace;
   font-size:10px;
   letter-spacing:.18em;
