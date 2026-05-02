@@ -764,7 +764,9 @@ const SAFE_GEO_MID = ["🇯🇵", "🇰🇷", "🇹🇼"];
 
 export function computeForces(company: BedrockCompany, tier: BedrockTier): BedrockForces {
   const irreplaceable = company.bypassIndex;
-  const tightness = tier.gap === "critical" ? 9 : tier.gap === "severe" ? 7 : 5;
+  const tierBase = tier.gap === "critical" ? 6 : tier.gap === "severe" ? 4 : 3;
+  // company-level variation so scatter points don't pile up
+  const tightness = Math.min(10, Math.max(1, tierBase + company.bypassIndex * 0.4));
   const pricingPower = Math.max(1, company.bypassIndex - 1);
   const geoSafety = SAFE_GEO_HIGH.includes(company.country) ? 9
     : SAFE_GEO_MID.includes(company.country) ? 7 : 5;

@@ -3020,17 +3020,13 @@ body{padding-top:58px}
 }
 
 .bedrock-section-head{
-  display:flex;
-  align-items:flex-end;
-  justify-content:space-between;
+  display:block;
   margin:0 0 24px;
   padding-bottom:14px;
   border-bottom:1px solid rgba(255,255,255,0.06);
-  flex-wrap:wrap;
-  gap:8px;
 }
 .bedrock-section-head p{
-  margin:0;
+  margin:0 0 10px;
   color:#A65A3A;
   font-family:"IBM Plex Mono",monospace;
   font-size:10px;

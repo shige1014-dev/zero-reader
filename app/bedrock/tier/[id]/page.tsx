@@ -113,38 +113,65 @@ export default function BedrockTierPage({ params }: PageProps) {
   );
 }
 
+function tickerHash(ticker: string): number {
+  let h = 0;
+  for (let i = 0; i < ticker.length; i++) h = (h * 31 + ticker.charCodeAt(i)) & 0xffffffff;
+  return Math.abs(h);
+}
+
 function ScatterChart({ companies, tier }: { companies: BedrockCompany[]; tier: BedrockTier }) {
-  const w = 800, h = 360, pad = 50;
+  const w = 820, h = 420, pad = 60;
   return (
     <div className="bedrock-chart-wrap">
       <svg viewBox={`0 0 ${w} ${h}`} className="bedrock-chart" preserveAspectRatio="xMidYMid meet">
+        {/* quadrant fills */}
+        <rect x={pad + (w - 2 * pad) / 2} y={pad} width={(w - 2 * pad) / 2} height={(h - 2 * pad) / 2} fill="rgba(232,201,122,0.04)" />
+        <rect x={pad} y={pad} width={(w - 2 * pad) / 2} height={(h - 2 * pad) / 2} fill="rgba(122,168,138,0.025)" />
+        <rect x={pad + (w - 2 * pad) / 2} y={pad + (h - 2 * pad) / 2} width={(w - 2 * pad) / 2} height={(h - 2 * pad) / 2} fill="rgba(232,118,86,0.025)" />
+
         {/* axes */}
         <line x1={pad} y1={h - pad} x2={w - pad} y2={h - pad} stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
         <line x1={pad} y1={pad} x2={pad} y2={h - pad} stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
-        {/* grid */}
-        {[2, 4, 6, 8].map((g) => (
+        {/* mid lines */}
+        <line x1={pad + (w - 2 * pad) / 2} y1={pad} x2={pad + (w - 2 * pad) / 2} y2={h - pad} stroke="rgba(255,255,255,0.06)" strokeDasharray="3,4" />
+        <line x1={pad} y1={pad + (h - 2 * pad) / 2} x2={w - pad} y2={pad + (h - 2 * pad) / 2} stroke="rgba(255,255,255,0.06)" strokeDasharray="3,4" />
+
+        {/* grid ticks */}
+        {[2, 4, 6, 8, 10].map((g) => (
           <g key={g}>
-            <line x1={pad + (w - 2 * pad) * (g / 10)} y1={pad} x2={pad + (w - 2 * pad) * (g / 10)} y2={h - pad} stroke="rgba(255,255,255,0.04)" strokeWidth="1" />
-            <line x1={pad} y1={(h - pad) - (h - 2 * pad) * (g / 10)} x2={w - pad} y2={(h - pad) - (h - 2 * pad) * (g / 10)} stroke="rgba(255,255,255,0.04)" strokeWidth="1" />
+            <text x={pad + (w - 2 * pad) * (g / 10)} y={h - pad + 16} fontSize="9" fontFamily="IBM Plex Mono,monospace" fill="#5a6068" textAnchor="middle">{g}</text>
+            <text x={pad - 8} y={(h - pad) - (h - 2 * pad) * (g / 10) + 3} fontSize="9" fontFamily="IBM Plex Mono,monospace" fill="#5a6068" textAnchor="end">{g}</text>
           </g>
         ))}
+
         {/* axis labels */}
-        <text x={w / 2} y={h - 12} fontSize="11" fontFamily="IBM Plex Mono,monospace" fill="#9aa0a6" textAnchor="middle">
+        <text x={w / 2} y={h - 8} fontSize="11" fontFamily="IBM Plex Mono,monospace" fill="#9aa0a6" textAnchor="middle">
           节奏紧度 →
         </text>
-        <text x={pad - 14} y={h / 2} fontSize="11" fontFamily="IBM Plex Mono,monospace" fill="#9aa0a6" textAnchor="middle" transform={`rotate(-90 ${pad - 14} ${h / 2})`}>
-          不可替代性 ↑
+        <text x={16} y={h / 2} fontSize="11" fontFamily="IBM Plex Mono,monospace" fill="#9aa0a6" textAnchor="middle" transform={`rotate(-90 16 ${h / 2})`}>
+          ↑ 不可替代性
         </text>
-        {/* points */}
+
+        {/* quadrant labels */}
+        <text x={w - pad - 10} y={pad + 16} fontSize="9" fontFamily="IBM Plex Mono,monospace" fill="rgba(232,201,122,0.6)" textAnchor="end">最稀缺 (右上)</text>
+        <text x={pad + 10} y={pad + 16} fontSize="9" fontFamily="IBM Plex Mono,monospace" fill="rgba(122,168,138,0.5)" textAnchor="start">不替代但宽松</text>
+        <text x={w - pad - 10} y={h - pad - 8} fontSize="9" fontFamily="IBM Plex Mono,monospace" fill="rgba(232,118,86,0.5)" textAnchor="end">紧但易替代</text>
+        <text x={pad + 10} y={h - pad - 8} fontSize="9" fontFamily="IBM Plex Mono,monospace" fill="#5a6068" textAnchor="start">边缘玩家</text>
+
+        {/* points with anti-overlap jitter */}
         {companies.map((c, i) => {
           const f = computeForces(c, tier);
-          const x = pad + (w - 2 * pad) * (f.tightness / 10);
-          const y = (h - pad) - (h - 2 * pad) * (f.irreplaceable / 10);
-          const r = 5 + f.pricingPower * 0.4;
+          const hash = tickerHash(c.ticker);
+          // small deterministic jitter so overlapping companies separate visually
+          const jx = ((hash % 17) - 8) * 1.2;
+          const jy = (((hash >> 5) % 13) - 6) * 1.2;
+          const x = pad + (w - 2 * pad) * (f.tightness / 10) + jx;
+          const y = (h - pad) - (h - 2 * pad) * (f.irreplaceable / 10) + jy;
+          const r = 6 + f.pricingPower * 0.45;
           return (
             <g key={`${c.ticker}-${i}`}>
-              <circle cx={x} cy={y} r={r} fill="rgba(232,201,122,0.18)" stroke="rgba(232,201,122,0.7)" strokeWidth="1.2" />
-              <text x={x + r + 4} y={y + 4} fontSize="10" fontFamily="IBM Plex Mono,monospace" fill="#E8C97A">
+              <circle cx={x} cy={y} r={r} fill="rgba(232,201,122,0.22)" stroke="rgba(232,201,122,0.8)" strokeWidth="1.2" />
+              <text x={x} y={y + r + 12} fontSize="9.5" fontFamily="IBM Plex Mono,monospace" fill="#E8C97A" textAnchor="middle">
                 {c.ticker}
               </text>
             </g>
