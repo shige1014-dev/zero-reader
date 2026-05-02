@@ -1,0 +1,11 @@
+node_modules
+.next
+.git
+.env*
+!.env.production
+*.db.before_*
+*.db-journal
+*.db.before_*
+.wolf/designqc-captures
+.wolf/buglog.json
+.nezha
