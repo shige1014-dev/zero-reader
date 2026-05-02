@@ -589,7 +589,262 @@ export const CABINET_STORIES: CabinetStory[] = [
     credibilityHigh: 70,
     status: "active",
     links: { wiki: "https://en.wikipedia.org/wiki/Advanced_Aerospace_Threat_Identification_Program" }
+  },
+
+  // ===== 2026-05-03 新增 12 篇 =====
+  {
+    id: "viktor-schauberger",
+    category: "lost-genius",
+    era: "1920s–1958",
+    titleZh: "维克多·绍贝格：林业员的「水涡能」",
+    titleEn: "Viktor Schauberger & The Water Vortex Engine",
+    protagonist: "Viktor Schauberger",
+    hook: "奥地利林业员说「水有记忆」、「正确的螺旋运动可释放能量」，盖世太保抓他做实验，二战末逃出后郁郁而终。",
+    story: [
+      "Schauberger 是奥地利森林管理员，1920 年代研究山区溪流、鳟鱼上溯、漂木自然分类。他认为「水的螺旋形流动」能释放未被认识的能量，称之为「内爆」(implosion) 而非主流的「外爆」(explosion)。",
+      "二战中盖世太保把他抓进毛特豪森集中营，命令他用犹太囚犯做「飞碟动力装置」实验。1945 年他被美军「曲别针行动」带去美国，但合同纠纷后回奥地利，1958 年贫困死亡。",
+      "今天「Schauberger 涡轮」「内爆引擎」仍是替代能源圈话题；新西兰、奥地利等地有少数研究小组复现他的水净化与曲管设计，部分成果发表于环境科学期刊。"
+    ],
+    mainstreamView: "Schauberger 的「内爆能量」概念无清晰物理定义；任何宣称「自由能源」的实验都未被独立复现。",
+    hereticalView: "他对水力工程、螺旋几何、生物友好曲管的观察具洞察价值，被低估；现代水处理、节能管路设计部分继承其思路。",
+    weirdRating: 4,
+    credibilityLow: 15,
+    credibilityHigh: 45,
+    status: "暧昧",
+    links: {"wiki":"https://en.wikipedia.org/wiki/Viktor_Schauberger"}
+  },
+  {
+    id: "townsend-brown",
+    category: "lost-genius",
+    era: "1923–1985",
+    titleZh: "汤森·布朗与 Biefeld-Brown 效应",
+    titleEn: "Thomas Townsend Brown & The Biefeld-Brown Effect",
+    protagonist: "Thomas Townsend Brown",
+    hook: "高压电极对会产生神秘推力, 美军 1950 年代秘密研究反重力, 后被官方否认。",
+    story: [
+      "1923 年美国少年 Brown 在物理课上发现：高压电容器在充电时似乎会产生推力。他与导师 Biefeld 教授深入研究, 命名这一现象为 Biefeld-Brown 效应。",
+      "1950 年代他与美国海军、Glenn L. Martin 公司合作的「Project Winterhaven」研究将该效应用于飞行器推进。项目机密度极高, 1957 年后官方淡出。多年来 B-2 隐身轰炸机的部分电荷设计被疑借鉴。",
+      "今天主流将该效应解释为「离子风」(ion wind), 即被电离的空气分子推动。但部分实验在真空中仍报告异常推力, 这一线已成 fringe 物理研究的常见话题。"
+    ],
+    mainstreamView: "Biefeld-Brown 效应是经典「离子风」, 在真空中应消失。所谓反重力只是误测。",
+    hereticalView: "已有真空实验仍报告推力, 主流解释不完整; 美军可能仍在黑预算中研究该效应。",
+    weirdRating: 5,
+    credibilityLow: 15,
+    credibilityHigh: 40,
+    status: "暧昧",
+    links: {"wiki":"https://en.wikipedia.org/wiki/Thomas_Townsend_Brown"}
+  },
+  {
+    id: "phoebus-cartel",
+    category: "suppressed",
+    era: "1924–1939",
+    titleZh: "Phoebus 灯泡卡特尔：寿命被合谋砍掉一半",
+    titleEn: "The Phoebus Cartel",
+    protagonist: "Osram, Philips, GE et al.",
+    hook: "1924 年, 全球大灯泡公司密谋把灯泡寿命从 2500 小时砍到 1000 小时, 处罚成员超出寿命的产品。",
+    story: [
+      "1924 年 12 月 23 日, 欧司朗 (Osram)、飞利浦 (Philips)、通用电气 (GE)、东京电气 (Toshiba) 等全球主要灯泡厂商在日内瓦签署 Phoebus 协议, 成立卡特尔, 主要目标是「设定灯泡寿命标准」。",
+      "新「标准」: 灯泡寿命从此前业界已实现的 2500 小时降至 1000 小时。任何成员公司生产寿命超标的产品要罚款。这是现代「计划性报废」(planned obsolescence) 的开山之作。",
+      "卡特尔运行至 1939 年二战爆发解散。但其设定的「1000 小时」标准延续到 1990 年代节能灯出现才被打破。1901 年加州 Livermore 消防局点的爱迪生灯泡至今仍亮着 (≥120 年), 证明长寿命技术早已存在。"
+    ],
+    mainstreamView: "Phoebus 卡特尔被欧美法庭长期判定为非法垄断行为, 是商业史经典案例。",
+    hereticalView: "100 年前的「计划性报废」基因已渗透到所有耐用消费品 (手机/家电/汽车), 比卡特尔本身更系统化。",
+    weirdRating: 4,
+    credibilityLow: 80,
+    credibilityHigh: 100,
+    status: "active",
+    links: {"wiki":"https://en.wikipedia.org/wiki/Phoebus_cartel"}
+  },
+  {
+    id: "edwin-armstrong",
+    category: "suppressed",
+    era: "1933–1954",
+    titleZh: "Edwin Armstrong：FM 广播之父跳楼自杀",
+    titleEn: "Edwin Armstrong & The FM Radio Suppression",
+    protagonist: "Edwin Howard Armstrong",
+    hook: "他发明 FM 广播, RCA 创始人萨诺夫剽窃他的专利, 22 年诉讼把他打到 1954 年从公寓 13 楼跳下。",
+    story: [
+      "Armstrong 是哥伦比亚大学电气工程教授, 1933 年发明频率调制 (FM) 广播, 比当时主流的 AM 信噪比高数十倍。RCA 创始人 David Sarnoff 是他的好友, 看到 demo 后「热情」许诺合作。",
+      "结果 RCA 转头自己注册了一批关键专利, 起诉 Armstrong 反过来侵权, 还游说 FCC 把 FM 频段从 42-50 MHz 移到 88-108 MHz, 让 Armstrong 已铺设的发射台一夜作废。22 年缠讼把 Armstrong 的财产、健康、婚姻全榨干。",
+      "1954 年 1 月 31 日, Armstrong 写完辞世信, 从纽约河滨大道公寓 13 楼跳下。妻子 Marion 之后用 1.5 亿美元诉讼额最终从 RCA 拿到赔偿, 但 Armstrong 已死。FM 广播今天通用, 但他的名字几乎被抹去。"
+    ],
+    mainstreamView: "Armstrong 的悲剧主要是商业 + 个人因素, RCA 行为虽不光彩但在当时商业环境内常见。",
+    hereticalView: "这是 20 世纪科技史上最赤裸的「专利霸权扼杀发明者」案例, 与 Tesla 事件性质类似。",
+    weirdRating: 4,
+    credibilityLow: 80,
+    credibilityHigh: 100,
+    status: "active",
+    links: {"wiki":"https://en.wikipedia.org/wiki/Edwin_Howard_Armstrong"}
+  },
+  {
+    id: "pioneer-anomaly",
+    category: "unsolved-physics",
+    era: "1980s–2012",
+    titleZh: "Pioneer 异常: 探测器为啥减速?",
+    titleEn: "The Pioneer Anomaly",
+    protagonist: "Pioneer 10/11 探测器",
+    hook: "1972/73 年发射的两台 NASA 探测器飞过冥王星轨道后, 神秘地以 8.74×10⁻¹⁰ m/s² 的微弱加速度向太阳减速, 30 年后才被解释。",
+    story: [
+      "Pioneer 10 (1972) 和 Pioneer 11 (1973) 是人类首批飞越太阳系外缘的探测器。1980 年代起, JPL 跟踪团队发现两台探测器都以 8.74×10⁻¹⁰ m/s² 的微弱加速度向太阳「减速」, 偏离纯引力轨道。",
+      "效应非常微弱 (相当于每 10 年偏离 13,000 公里), 但极其稳定。20 年间提出过修改广义相对论、暗物质引力、第五种基本力等异端假说。一些理论物理学家把它当作通向新物理的潜在窗口。",
+      "2012 年葡萄牙物理学家 Slava Turyshev 团队最终确认: 异常来自探测器自身钚-238 RTG 电源的热辐射各向异性 (热反作用力)。新物理梦想破灭, 但此前 20 年的假说尝试本身仍是有趣思想史。"
+    ],
+    mainstreamView: "Pioneer 异常已被 2012 年精确热建模解释, 是 RTG 热辐射各向异性。无新物理。",
+    hereticalView: "热建模能解释观察的 100%? 部分残差仍存在, 类似的飞掠 (Flyby) 异常至今未被完全解释。",
+    weirdRating: 3,
+    credibilityLow: 75,
+    credibilityHigh: 95,
+    status: "cold",
+    links: {"wiki":"https://en.wikipedia.org/wiki/Pioneer_anomaly"}
+  },
+  {
+    id: "mpemba-effect",
+    category: "unsolved-physics",
+    era: "1963–",
+    titleZh: "Mpemba 效应: 热水比冷水更快结冰",
+    titleEn: "The Mpemba Effect",
+    protagonist: "Erasto Mpemba",
+    hook: "1963 年坦桑尼亚一位中学生在做冰激凌时发现的反常现象, 60 年了至今没完全解释清楚。",
+    story: [
+      "1963 年坦桑尼亚 13 岁中学生 Erasto Mpemba 做冰激凌时发现: 把热牛奶混合物放进冰箱, 比冷牛奶混合物先结冰。他向访校的物理学家 Denis Osborne 报告, Osborne 验证后, 1969 年两人合作发表论文。",
+      "效应在某些条件下确实可重复, 但不是所有条件下成立。提出过的解释: 蒸发减少水量、对流流场不同、溶解气体差异、过冷点不同、氢键结构。每种假说都只能解释部分实验。",
+      "2016 年皇家化学学会发起官方挑战赛, 多个团队参赛尝试一锤定音, 至今未达成统一解释。这一现象成为「常识中藏着深奥物理」的教科书例子, 至今仍是物理化学研究的热点。"
+    ],
+    mainstreamView: "Mpemba 效应是真实但条件依赖的现象, 多种机制叠加 (蒸发+对流+过冷), 无统一理论。",
+    hereticalView: "效应可能涉及水分子氢键网络的「记忆」现象, 与生命科学中的水模型相通, 仍是未发掘的物理。",
+    weirdRating: 3,
+    credibilityLow: 60,
+    credibilityHigh: 90,
+    status: "active",
+    links: {"wiki":"https://en.wikipedia.org/wiki/Mpemba_effect"}
+  },
+  {
+    id: "coral-castle",
+    category: "ancient-tech",
+    era: "1923–1951",
+    titleZh: "珊瑚城堡: 一个 1.5 米的人怎么搬动 30 吨石头?",
+    titleEn: "Coral Castle by Edward Leedskalnin",
+    protagonist: "Edward Leedskalnin",
+    hook: "拉脱维亚移民 Leedskalnin 一人无机械搬运、雕刻、立起 1100 多吨珊瑚石, 28 年没人见过他怎么做的。",
+    story: [
+      "1923-1951 年间, 身高 152 cm、体重 45 kg 的拉脱维亚移民 Edward Leedskalnin 独自一人在佛罗里达州 Homestead 建造「珊瑚城堡」, 包括重达 30 吨的单块石头门 (旋转完美, 一指可推开)、9 吨的月相石、独立摇篮椅等。",
+      "他从不让任何人在场看他工作, 只在夜里搬运。当地居民只见到他用三脚架、木杠、链条等原始工具。他写了几本小书谈「磁电学」(Magnetic Current), 据称掌握了「古埃及人造金字塔的方法」。",
+      "1951 年他突发胃癌死亡, 没留下任何工艺笔记。1986 年那扇 30 吨旋转门修复时, 即使用现代起重机和 6 个工人也极其困难。他到底如何独自做到, 至今没有令人信服的解释。"
+    ],
+    mainstreamView: "他用了滑轮、杠杆、千斤顶等原始工具配合不懈耐心, 没有任何超自然或失传科技。",
+    hereticalView: "他声称掌握了「磁电学」+ 古代抗重力工艺; 30 吨完美旋转门的工程精度难以用单人原始工具实现。",
+    weirdRating: 5,
+    credibilityLow: 30,
+    credibilityHigh: 60,
+    status: "暧昧",
+    links: {"wiki":"https://en.wikipedia.org/wiki/Coral_Castle"}
+  },
+  {
+    id: "voynich-manuscript",
+    category: "ancient-tech",
+    era: "约 1404–1438",
+    titleZh: "Voynich 手稿: 600 年没人读懂的书",
+    titleEn: "The Voynich Manuscript",
+    protagonist: "未知作者",
+    hook: "240 页彩绘手稿, 全文用一种从未被识别的文字写成。植物图、星象图、裸女图都不属于已知任何文化。",
+    story: [
+      "Voynich 手稿现存耶鲁大学 Beinecke 图书馆 MS 408。羊皮纸碳-14 测定为 1404-1438 年欧洲所制。240 页彩绘内容: 不存在的植物、奇怪天文图、裸女在管道与星象间的浴池场景, 以及 35,000 个不属于任何已知字母的「字符」。",
+      "100 年来, 顶级密码学家 (含二战 Enigma 破译者) 都失败了。统计学分析显示文本符合自然语言的熵特征 (不是随机), 但内容至今无人破译。2017-2024 多次「我们破译了」论文都被推翻或不被接受。",
+      "AI 时代到来后, 多个团队用大模型尝试破译。2024 年某些组件 (黄道带、植物分类) 被认为可能是中世纪某种教学/医学手册, 但全文意义仍为谜。可能是密语、创伤后患者的私人语言、未被识别的真实自然语言, 或精心设计的骗局。"
+    ],
+    mainstreamView: "可能是中世纪某种实用手册 (草药、医学、占星), 用密语或某种地方方言写成, 等待破译。",
+    hereticalView: "Voynich 文字的统计性质太接近真实自然语言, 不像伪造; 可能是某种已消失的学派/流派的私语手册。",
+    weirdRating: 5,
+    credibilityLow: 65,
+    credibilityHigh: 95,
+    status: "active",
+    links: {"wiki":"https://en.wikipedia.org/wiki/Voynich_manuscript"}
+  },
+  {
+    id: "sheldrake-morphic",
+    category: "fringe-science",
+    era: "1981–",
+    titleZh: "Sheldrake 形态共振: 物种集体记忆假说",
+    titleEn: "Rupert Sheldrake & Morphic Resonance",
+    protagonist: "Rupert Sheldrake",
+    hook: "剑桥生物学家提出「场记忆」, 称物种学习行为会通过非局域共振传递, 被《自然》杂志主编称「应该被烧的书」。",
+    story: [
+      "Rupert Sheldrake 是剑桥生化学博士, 皇家学会研究员资历。1981 年出版《新生命科学》提出「形态共振」(morphic resonance): 物种习得的行为会通过非局域「形态场」传递给同物种其他个体, 跨越时空。",
+      "《自然》(Nature) 当时主编 John Maddox 1981 年公开撰文称「这本书该被烧掉」(a book for burning), 是该刊有史以来最强烈的反应。但 Sheldrake 设计了一系列实验: 老鼠迷宫学习速度的全球加速、英国 vs 澳洲新发明字谜的解题速度差异等, 部分报告了正向效应。",
+      "他至今仍在剑桥独立运营研究, 出版多本书 (《被狗预知的现象》《被注视感》等)。学界主流仍视为伪科学, 但他在英国知识分子圈仍有可观读者。形态共振假说从未被严格证伪也未被严格证实。"
+    ],
+    mainstreamView: "形态共振违反已知物理定律, 实验结果都可用统计偏差或心理预期解释。属于伪科学。",
+    hereticalView: "Sheldrake 多个实验设计严格 (双盲对照), 结果若是真信号, 意味着生物信息有非局域传递机制。",
+    weirdRating: 4,
+    credibilityLow: 10,
+    credibilityHigh: 35,
+    status: "active",
+    links: {"wiki":"https://en.wikipedia.org/wiki/Morphic_resonance"}
+  },
+  {
+    id: "nde-aware",
+    category: "fringe-science",
+    era: "2001–",
+    titleZh: "AWARE 研究: 心脏停跳后的意识",
+    titleEn: "AWARE Study & Near-Death Experience",
+    protagonist: "Sam Parnia",
+    hook: "纽约 Stony Brook 医生 Parnia 让濒死病人猜测心脏停跳期间天花板上贴的图案, 真有人答对。",
+    story: [
+      "Sam Parnia 是 Stony Brook 大学心肺复苏专家。2008 年启动 AWARE (AWAreness during REsuscitation) 研究, 在英美 15 家医院 ICU 天花板上隐藏目标图案, 让经历心跳骤停后存活的患者复述濒死期间「看到」的内容。",
+      "首期研究 (2014 年发表 Resuscitation 期刊) 在 2060 例心脏骤停中, 101 例报告濒死体验。其中 2 例在心脏停跳后报告了准确的语音和视觉细节 (虽未直接对应天花板图案)。AWARE-II (2023 年) 继续扩大研究。",
+      "Parnia 的态度极审慎: 不主张「灵魂出窍」, 但坚持「意识与大脑活动的关系尚未被理解」。这与 1980 年 Pim van Lommel 在荷兰心脏科 1990 年代的 NDE 研究 (《柳叶刀》2001 年发表) 形成系列学术证据链。"
+    ],
+    mainstreamView: "心脏停跳后的「意识」可能是濒死前几秒大脑供血变化引发的幻觉, 不必假设「意识独立存在」。",
+    hereticalView: "Parnia 与 van Lommel 的研究在严格临床条件下进行, 报告了不能用脑活动直接解释的细节。意识与脑的关系仍是开放问题。",
+    weirdRating: 5,
+    credibilityLow: 25,
+    credibilityHigh: 55,
+    status: "active",
+    links: {"wiki":"https://en.wikipedia.org/wiki/AWARE_study"}
+  },
+  {
+    id: "mk-ultra",
+    category: "corporate-shadow",
+    era: "1953–1973",
+    titleZh: "MK-Ultra: CIA 用 LSD 洗脑普通人",
+    titleEn: "Project MK-Ultra",
+    protagonist: "Sidney Gottlieb (CIA)",
+    hook: "1953-1973 CIA 用 LSD 给毫不知情的美国/加拿大公民下药, 测试洗脑可能。死了几个人, 文件 1973 年被销毁。",
+    story: [
+      "MK-Ultra 是 CIA 1953 年由 Allen Dulles 批准的秘密项目, 由化学家 Sidney Gottlieb 主持。目标: 探索心理控制、洗脑、审讯增强药物。范围 80+ 子项目, 涉及 44 所大学、12 家医院、20 多家研究所。",
+      "其中包括: 给毫不知情的美国公民下 LSD (Subproject 6: 妓院交易客)、加拿大蒙特利尔 Cameron 实验 (用电击 + 长睡 + 录音洗脑)、Frank Olson 1953 年在 LSD 影响下「跳出」纽约 13 楼酒店 (家属至今认为是被推下)。",
+      "1973 年 CIA 局长 Richard Helms 命令销毁所有 MK-Ultra 文件。1975 年参议员 Frank Church 委员会调查, 因仅剩约 20,000 页财务文件得以拼出大致框架。1995 年克林顿政府正式向受害者道歉。这是 20 世纪美国政府对本国公民最赤裸的非自愿人体实验。"
+    ],
+    mainstreamView: "MK-Ultra 是美国冷战时期黑暗一页, 已被国会调查公开, 财务和受害人记录基本清楚。",
+    hereticalView: "1973 年销毁的核心文件至今未公开; 部分子项目 (如 Cameron 实验) 后被认为延续到 1980 年代, 真相可能更深。",
+    weirdRating: 5,
+    credibilityLow: 80,
+    credibilityHigh: 100,
+    status: "active",
+    links: {"wiki":"https://en.wikipedia.org/wiki/MKUltra"}
+  },
+  {
+    id: "operation-northwoods",
+    category: "corporate-shadow",
+    era: "1962",
+    titleZh: "Northwoods 行动: 美军提议假旗炸自己人发动战争",
+    titleEn: "Operation Northwoods",
+    protagonist: "美国参谋长联席会议",
+    hook: "1962 年美国参谋长联席会议向肯尼迪提交提案: 假装古巴袭击, 炸沉美国军舰, 杀死美国公民, 借此发动战争。肯尼迪拒绝。",
+    story: [
+      "1962 年 3 月 13 日, 美国参谋长联席会议主席 Lyman Lemnitzer 上将向国防部长 McNamara 提交「Northwoods 行动」绝密文件, 列出多种假旗方案: 炸沉关塔那摩附近美国军舰、击落民航客机、伪装恐袭、刺杀古巴流亡者, 然后栽赃古巴, 制造发动战争的舆论基础。",
+      "肯尼迪总统亲自拒绝该提案, 几个月后将 Lemnitzer 调离参联会主席职位 (派去欧洲做盟军司令)。文件被深度机密保管, 无任何高级官员公开提及, 直到 1997 年 ABC 记者 James Bamford 在国家档案馆解密文件中发现并出版。",
+      "Northwoods 是已被官方解密的、写得最赤裸的美国政府对本国公民提议假旗的文件。这一历史先例, 让 911、波士顿马拉松、各类大型恐袭的「内部假旗」假说在阴谋论圈拥有了一个永远的引用基底。"
+    ],
+    mainstreamView: "Northwoods 是 1962 年极少数过激官员的提案, 被肯尼迪拒绝, 从未实施。属于历史警示, 不是阴谋论证据。",
+    hereticalView: "如果 1962 年高层敢于把这种提案写下来, 之后 60 年里类似提议在更秘密的渠道里流传/部分实施的可能性不为零。",
+    weirdRating: 5,
+    credibilityLow: 95,
+    credibilityHigh: 100,
+    status: "active",
+    links: {"wiki":"https://en.wikipedia.org/wiki/Operation_Northwoods"}
   }
+
 ];
 
 export function getStoriesByCategory(id: CabinetCategoryId): CabinetStory[] {
