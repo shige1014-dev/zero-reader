@@ -15,6 +15,8 @@ const ITEMS = [
     icon: "M4 5h16v14H4zM8 9h8M8 13h5M6 3v4M18 3v4" },
   { href: "/bedrock",                                label: "基岩层",   match: (p: string) => p.startsWith("/bedrock"),
     icon: "M3 8h18M3 13h18M3 18h18M5 8V4h14v4M5 23h14" },
+  { href: "/cabinet",                                label: "怪谈奇闻", match: (p: string) => p.startsWith("/cabinet"),
+    icon: "M5 4h14v16H5zM9 4v16M5 8h4M5 12h4M5 16h4M14 9h2M14 13h2" },
   { href: "/civilization-leap/01-ai-rewrites-os",    label: "文明跃迁", match: (p: string) => p.startsWith("/civilization-leap"),
     icon: "M4 19V5a2 2 0 0 1 2-2h11l3 3v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zM8 8h8M8 12h8M8 16h5" },
 ];
