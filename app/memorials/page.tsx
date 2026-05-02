@@ -4,7 +4,6 @@ import Link from "next/link";
 import {
   MEMORIAL_COLLECTIONS,
   MEMORIAL_ENTRIES,
-  MEMORIAL_WORKFLOW,
   type MemorialCollection
 } from "@/lib/memorials";
 
@@ -26,15 +25,21 @@ export default function MemorialsPage() {
         </p>
       </header>
 
-      <section className="mem-workflow" aria-label="工作流">
-        {MEMORIAL_WORKFLOW.map((item) => (
-          <article key={item.step} className="mem-flow-card">
-            <span>{item.step}</span>
-            <h2>{item.label}</h2>
-            <p>{item.body}</p>
-          </article>
-        ))}
-      </section>
+      <nav className="mem-board-tabs" aria-label="四大板块入口">
+        {collectionKeys.map((key) => {
+          const collection = MEMORIAL_COLLECTIONS[key];
+          return (
+            <Link
+              key={key}
+              href={`/memorials/board/${key}` as Parameters<typeof Link>[0]["href"]}
+              className="mem-board-tab"
+            >
+              <span className="mem-board-tab-en">{collection.en}</span>
+              <span className="mem-board-tab-zh">{collection.label}</span>
+            </Link>
+          );
+        })}
+      </nav>
 
       <section className="mem-board-overview" aria-label="四大板块">
         {collectionKeys.map((key) => {

@@ -2762,3 +2762,206 @@ body{padding-top:58px}
   .civ-content blockquote{font-size:14px;padding:14px 14px 12px 14px}
   .civ-content li{font-size:14px}
 }
+
+/* ============ Memorials · Board pagination ============ */
+
+/* Overview: 4 board tile grid */
+.mem-board-overview{
+  max-width:1040px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+}
+.mem-board-tile{
+  display:flex;
+  flex-direction:column;
+  border:1px solid rgba(255,255,255,0.09);
+  border-radius:14px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.058), rgba(255,255,255,0.032));
+  text-decoration:none;
+  color:inherit;
+  overflow:hidden;
+  transition:transform .18s ease, border-color .18s ease, background .18s ease;
+}
+.mem-board-tile:hover{
+  transform:translateY(-3px);
+  border-color:rgba(142,166,196,0.42);
+  background:linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.045));
+}
+.mem-board-tile-cover{
+  display:block;
+  aspect-ratio:16/9;
+  background:#090A0F;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  overflow:hidden;
+}
+.mem-board-tile-cover img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.mem-board-tile-meta{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  padding:22px 22px 24px;
+  flex:1;
+}
+.mem-board-tile-en{
+  color:#8EA6C4;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:11px;
+  letter-spacing:.32em;
+}
+.mem-board-tile-zh{
+  color:#F5EFE3;
+  font-family:"Iowan Old Style","Noto Sans SC",Georgia,serif;
+  font-size:24px;
+  font-weight:700;
+  line-height:1.2;
+}
+.mem-board-tile-purpose{
+  color:#98A1AD;
+  font-size:13px;
+  line-height:1.7;
+  margin:4px 0 8px;
+}
+.mem-board-tile-count{
+  color:#AFC4DD;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:11px;
+  letter-spacing:.16em;
+  margin-top:auto;
+}
+
+/* Board page wrapper */
+.mem-board-shell{
+  padding-top:38px;
+}
+
+/* Board tab nav */
+.mem-board-tabs{
+  max-width:1040px;
+  margin:0 auto 32px;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+}
+.mem-board-tab{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  padding:14px 16px;
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:8px;
+  background:rgba(255,255,255,0.025);
+  text-decoration:none;
+  color:#98A1AD;
+  transition:border-color .16s ease, background .16s ease, color .16s ease;
+}
+.mem-board-tab:hover{
+  border-color:rgba(142,166,196,0.4);
+  color:#D4DAE3;
+}
+.mem-board-tab.is-active{
+  border-color:rgba(142,166,196,0.55);
+  background:linear-gradient(180deg, rgba(142,166,196,0.18), rgba(142,166,196,0.06));
+  color:#F5EFE3;
+}
+.mem-board-tab-en{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.28em;
+  color:#8EA6C4;
+}
+.mem-board-tab-zh{
+  font-size:14px;
+  font-weight:650;
+}
+
+/* Board cards grid */
+.mem-board-grid{
+  max-width:1040px;
+  margin:0 auto;
+}
+.mem-board-card{
+  display:flex;
+  flex-direction:column;
+  padding:0;
+}
+.mem-card-image-link{
+  display:block;
+  position:relative;
+  margin:0;
+  border-radius:0;
+  border:none;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  overflow:hidden;
+  background:#090A0F;
+  text-decoration:none;
+}
+.mem-card-image-link img{
+  display:block;
+  width:100%;
+  height:auto;
+  transition:transform .3s ease;
+}
+.mem-card-image-link:hover img{
+  transform:scale(1.04);
+}
+.mem-card-image-hint{
+  position:absolute;
+  inset:auto 12px 12px auto;
+  padding:6px 10px;
+  background:rgba(6,7,12,0.78);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:999px;
+  color:#F5EFE3;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.16em;
+  opacity:0;
+  transition:opacity .16s ease;
+}
+.mem-card-image-link:hover .mem-card-image-hint{
+  opacity:1;
+}
+.mem-card-body{
+  display:flex;
+  flex-direction:column;
+  padding:18px 18px 20px;
+  flex:1;
+}
+.mem-card-body .mem-card-title{
+  margin:0 0 10px;
+}
+.mem-card-body .mem-card-title a{
+  color:inherit;
+  text-decoration:none;
+}
+.mem-card-body .mem-card-title a:hover{
+  color:#AFC4DD;
+}
+.mem-card-cta{
+  margin-top:auto;
+  padding-top:18px;
+  color:#AFC4DD;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:11px;
+  letter-spacing:.16em;
+  text-decoration:none;
+}
+.mem-card-cta:hover{
+  color:#F5EFE3;
+}
+
+@media (max-width: 720px){
+  .mem-board-overview{
+    grid-template-columns:1fr;
+  }
+  .mem-board-tabs{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
