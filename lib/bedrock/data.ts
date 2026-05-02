@@ -743,6 +743,38 @@ export const BEDROCK_COMPANIES: BedrockCompany[] = [
   }
 ];
 
+export interface BedrockForces {
+  irreplaceable: number; // 不可替代性 0-10
+  tightness: number;     // 节奏紧度 0-10
+  pricingPower: number;  // 议价权 0-10
+  geoSafety: number;     // 地缘安全 0-10
+  longevity: number;     // 长期持久 0-10
+}
+
+export const FORCE_LABELS: Record<keyof BedrockForces, string> = {
+  irreplaceable: "不可替代",
+  tightness: "节奏紧度",
+  pricingPower: "议价权",
+  geoSafety: "地缘安全",
+  longevity: "长期持久"
+};
+
+const SAFE_GEO_HIGH = ["🇺🇸", "🇩🇪", "🇨🇭", "🇫🇷", "🇮🇹", "🇧🇪", "🇬🇧", "🇳🇱"];
+const SAFE_GEO_MID = ["🇯🇵", "🇰🇷", "🇹🇼"];
+
+export function computeForces(company: BedrockCompany, tier: BedrockTier): BedrockForces {
+  const irreplaceable = company.bypassIndex;
+  const tightness = tier.gap === "critical" ? 9 : tier.gap === "severe" ? 7 : 5;
+  const pricingPower = Math.max(1, company.bypassIndex - 1);
+  const geoSafety = SAFE_GEO_HIGH.includes(company.country) ? 9
+    : SAFE_GEO_MID.includes(company.country) ? 7 : 5;
+  const longevityMap: Record<BedrockCompany["replacementYears"], number> = {
+    "永不": 10, "20+ 年": 8, "10-15 年": 6, "5-10 年": 4, "5 年内": 2
+  };
+  const longevity = longevityMap[company.replacementYears];
+  return { irreplaceable, tightness, pricingPower, geoSafety, longevity };
+}
+
 export function getCompaniesByTier(tierId: BedrockTierId): BedrockCompany[] {
   return BEDROCK_COMPANIES.filter((c) => c.tier === tierId);
 }

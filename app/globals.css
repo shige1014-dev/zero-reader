@@ -3423,9 +3423,60 @@ body{padding-top:58px}
 }
 .bedrock-card-matrix-link:hover{color:#E8C97A}
 
+.bedrock-scatter-block{
+  max-width:1080px;
+  margin:0 auto 44px;
+}
+
+.bedrock-radar-wrap{
+  display:grid;
+  grid-template-columns:200px 1fr;
+  gap:14px;
+  align-items:center;
+  padding:14px;
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:10px;
+  background:rgba(255,255,255,0.018);
+}
+.bedrock-radar{width:200px;height:200px;display:block}
+.bedrock-force-list{display:flex;flex-direction:column;gap:6px}
+.bedrock-force-row{
+  display:grid;
+  grid-template-columns:64px 1fr 24px;
+  align-items:center;
+  gap:8px;
+}
+.bedrock-force-label{
+  color:#9aa0a6;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.04em;
+}
+.bedrock-force-bar{
+  position:relative;
+  display:block;
+  height:6px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.05);
+  overflow:hidden;
+}
+.bedrock-force-fill{
+  display:block;
+  height:100%;
+  background:linear-gradient(90deg,#A65A3A,#E8C97A);
+}
+.bedrock-force-num{
+  color:#E8C97A;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:11px;
+  text-align:right;
+}
+
 @media (max-width: 880px){
   .bedrock-hero h1{font-size:38px}
   .bedrock-tile-list,
   .bedrock-card-grid{grid-template-columns:1fr}
   .bedrock-tier-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .bedrock-radar-wrap{grid-template-columns:1fr}
+  .bedrock-radar{margin:0 auto}
 }
