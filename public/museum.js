@@ -90,6 +90,13 @@ function radarSvg(forces, size = 80) {
   `;
 }
 
+const STATUS_STYLE = {
+  '已发生':   { color: '#7DD3A7', border: 'rgba(125,211,167,0.32)' },
+  '部分验证': { color: '#C9A84C', border: 'rgba(201,168,76,0.32)' },
+  '待验证':   { color: '#8AA0BD', border: 'rgba(138,160,189,0.32)' },
+  '失败':     { color: '#BF4A7A', border: 'rgba(191,74,122,0.32)' }
+};
+
 function companyCard(company, erasById) {
   const rank = RANK_STYLE[company.rank] || RANK_STYLE.S;
   return `
@@ -105,18 +112,25 @@ function companyCard(company, erasById) {
       </div>
       <p class="card-one-line">“${esc(company.oneLine)}”</p>
       <div class="card-bottleneck"><span class="label">瓶颈</span><span>${esc(company.bottleneck)}</span></div>
+      ${company.review ? `<div class="card-review"><span class="label">简评</span><span>${esc(company.review)}</span></div>` : ''}
       <div class="card-radar">${radarSvg(company.forces, 88)}</div>
     </article>
   `;
 }
 
 function prophecyCard(prophecy) {
+  const st = STATUS_STYLE[prophecy.status] || STATUS_STYLE['待验证'];
   return `
     <article class="museum-card prophecy-card">
       <div class="card-head">
         <span class="prophecy-badge">🔮 预言</span>
         <h3 class="card-title">${esc(prophecy.substrate)}</h3>
       </div>
+      <div class="prophecy-status-row">
+        ${prophecy.year ? `<span class="prophecy-year">${esc(prophecy.year)}</span>` : ''}
+        ${prophecy.status ? `<span class="prophecy-status" style="color:${st.color};border-color:${st.border}">${esc(prophecy.status)}</span>` : ''}
+      </div>
+      ${prophecy.review ? `<p class="prophecy-review">${esc(prophecy.review)}</p>` : ''}
       <div class="prophecy-meta">
         <div><span class="label">触发指标</span><span>${esc(prophecy.trigger)}</span></div>
         <div><span class="label">瓶颈机制</span><span>${esc(prophecy.closureMechanism)}</span></div>
@@ -176,6 +190,13 @@ function topLayout(data) {
       .candidate-block ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}
       .candidate-block li{display:grid;gap:4px;color:var(--t2);font-size:13px;line-height:1.6}
       .candidate-block strong{color:var(--t1);font-size:13px}
+      .era-review{margin-top:10px;color:var(--t3);font-size:13px;line-height:1.7;max-width:560px}
+      .card-review{display:grid;gap:6px;margin-bottom:14px;padding-top:12px;border-top:1px dashed var(--border)}
+      .card-review span:last-child{color:var(--t2);font-size:13px;line-height:1.65}
+      .prophecy-status-row{display:flex;gap:8px;flex-wrap:wrap;margin:-4px 0 12px}
+      .prophecy-year{padding:4px 10px;border-radius:999px;border:1px solid var(--border-strong);background:rgba(255,255,255,0.03);color:var(--t2);font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.08em}
+      .prophecy-status{padding:4px 10px;border-radius:999px;border:1px solid;background:rgba(255,255,255,0.02);font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.08em}
+      .prophecy-review{margin:0 0 14px;padding:12px 14px;border-radius:10px;background:rgba(201,168,76,0.05);border:1px solid var(--gold-line);color:var(--t2);font-size:13px;line-height:1.75}
       .museum-empty{padding:22px;border-radius:16px;border:1px dashed var(--border-strong);color:var(--t3)}
       @media (max-width: 1100px){
         .museum-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -248,6 +269,7 @@ function renderSections() {
           <div class="era-head">
             <div>
               <h2 class="era-title">${esc(era.label)}<span class="era-period">${esc(era.period)}</span></h2>
+              ${era.review ? `<div class="era-review">${esc(era.review)}</div>` : ''}
             </div>
             <div class="era-core">${esc(era.core)}</div>
           </div>

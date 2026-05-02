@@ -4,37 +4,43 @@
       "id": "industrial",
       "label": "工业时代",
       "period": "1870-1920",
-      "core": "能源+制造控制权"
+      "core": "能源+制造控制权",
+      "review": "煤铁石油定义权力中心，至今未褪色。"
     },
     {
       "id": "compute",
       "label": "计算时代",
       "period": "1970-1995",
-      "core": "架构+操作系统控制权"
+      "core": "架构+操作系统控制权",
+      "review": "x86 + Windows 锁喉，直到 ARM/Linux 与移动浪潮才松动。"
     },
     {
       "id": "network",
       "label": "网络时代",
       "period": "1995-2010",
-      "core": "信息+商业基础设施"
+      "core": "信息+商业基础设施",
+      "review": "Google/Amazon 把流量化为税基，互联网原生秩序成型。"
     },
     {
       "id": "data",
       "label": "数据时代",
       "period": "2010-2020",
-      "core": "注意力+算力控制权"
+      "core": "注意力+算力控制权",
+      "review": "FAANG 巩固，中国互联网平行崛起，算力向云端集中。"
     },
     {
       "id": "ai",
       "label": "AI 跃迁",
-      "period": "2020-?",
-      "core": "智能生产能力控制权"
+      "period": "2020-2035",
+      "core": "智能生产能力控制权",
+      "review": "OpenAI/Anthropic/Google 三足，NVIDIA 算力收税；2030 前后决出主导秩序。"
     },
     {
       "id": "posthuman",
       "label": "后人类",
-      "period": "?-?",
-      "core": "生命/能源/星际控制权"
+      "period": "2035-2076+",
+      "core": "生命/能源/星际控制权",
+      "review": "AGI/聚变/长寿/星际四线交汇，决定下半个世纪的文明边界。"
     }
   ],
   "companies": [
@@ -604,6 +610,137 @@
         "closure": 5
       },
       "oneLine": "赌对齐路线能成为模型默认协议"
+    },
+    {
+      "id": "deepseek",
+      "name": "DeepSeek",
+      "rank": "paradigm-bet",
+      "eraIds": [
+        "ai"
+      ],
+      "bottleneck": "中文圈高效推理 + 开源标准",
+      "forces": {
+        "physical": 5,
+        "regMismatch": 9,
+        "demand": 8,
+        "capital": 6,
+        "closure": 6
+      },
+      "oneLine": "用工程优化突破算力封锁",
+      "review": "把模型成本拉到行业 1/10，倒逼全球开源生态重排；地缘是双刃。"
+    },
+    {
+      "id": "xai",
+      "name": "xAI",
+      "rank": "paradigm-bet",
+      "eraIds": [
+        "ai"
+      ],
+      "bottleneck": "Musk 平台分发 + Colossus 算力",
+      "forces": {
+        "physical": 8,
+        "regMismatch": 7,
+        "demand": 7,
+        "capital": 9,
+        "closure": 5
+      },
+      "oneLine": "把 X 平台与算力堆叠成另一极",
+      "review": "10 万 H100 集群速建，模型迭代速度极快；产品锚点仍依赖 X 流量。"
+    },
+    {
+      "id": "mistral",
+      "name": "Mistral",
+      "rank": "paradigm-bet",
+      "eraIds": [
+        "ai"
+      ],
+      "bottleneck": "欧洲合规 + 开源模型生态",
+      "forces": {
+        "physical": 4,
+        "regMismatch": 9,
+        "demand": 6,
+        "capital": 6,
+        "closure": 4
+      },
+      "oneLine": "把欧洲监管空间变成主权 AI 入口",
+      "review": "GDPR/AI Act 红利明确，但商业模型与美中比仍偏小，难逃二线宿命。"
+    },
+    {
+      "id": "figure",
+      "name": "Figure",
+      "rank": "paradigm-bet",
+      "eraIds": [
+        "ai",
+        "posthuman"
+      ],
+      "bottleneck": "Helix VLA + 量产工厂数据",
+      "forces": {
+        "physical": 8,
+        "regMismatch": 5,
+        "demand": 8,
+        "capital": 8,
+        "closure": 4
+      },
+      "oneLine": "把人形机器人从 demo 推进量产线",
+      "review": "BMW 工厂试点在跑，量产单价仍 >$5 万；2027 前能否破 BOM 决胜负。"
+    },
+    {
+      "id": "helion",
+      "name": "Helion",
+      "rank": "paradigm-bet",
+      "eraIds": [
+        "ai",
+        "posthuman"
+      ],
+      "bottleneck": "脉冲聚变 + OpenAI 长期采购合约",
+      "forces": {
+        "physical": 10,
+        "regMismatch": 6,
+        "demand": 9,
+        "capital": 8,
+        "closure": 3
+      },
+      "oneLine": "把聚变捆绑到 AI 算力刚需上",
+      "review": "2028 净能量目标极激进，技术路线仍非主流；若成功直接重写能源版图。"
+    },
+    {
+      "id": "stripe",
+      "name": "Stripe",
+      "rank": "S",
+      "eraIds": [
+        "network",
+        "data",
+        "ai"
+      ],
+      "bottleneck": "互联网经济结算入口",
+      "forces": {
+        "physical": 5,
+        "regMismatch": 8,
+        "demand": 10,
+        "capital": 9,
+        "closure": 8
+      },
+      "oneLine": "把支付变成开发者默认基础设施",
+      "review": "AI agent 经济兴起后，机器对机器结算的天然候选；估值已被市场完全定价。"
+    },
+    {
+      "id": "anduril",
+      "name": "Anduril",
+      "rank": "S",
+      "eraIds": [
+        "data",
+        "ai"
+      ],
+      "bottleneck": "Lattice OS + 自主武器系统采购",
+      "forces": {
+        "physical": 8,
+        "regMismatch": 7,
+        "demand": 8,
+        "capital": 7,
+        "closure": 6
+      },
+      "oneLine": "把硅谷范式装进国防 stack",
+      "review": "Palmer Luckey 推动 DoD 采购变速器；在 2026 美国军工 AI 化中明显领先。"
     }
   ],
   "prophecies": [
@@ -632,7 +769,10 @@
           "type": "机器人云 RobotOps",
           "note": "训练、推理、运维三件套"
         }
-      ]
+      ],
+      "year": "2027-2032",
+      "status": "部分验证",
+      "review": "Tesla Optimus / Figure 02 已工厂试点；BOM <$30k 与年产 10 万仍是双重门槛。"
     },
     {
       "id": "smr",
@@ -659,7 +799,10 @@
           "type": "园区电热一体运营商",
           "note": "直接绑定 AI 园区与工业负荷"
         }
-      ]
+      ],
+      "year": "2030-2035",
+      "status": "待验证",
+      "review": "美国 NRC 已批准 4 个设计；NuScale 退出后赛道萎缩，资本驱动远不及 AI。"
     },
     {
       "id": "bci",
@@ -686,7 +829,10 @@
           "type": "认知操作系统",
           "note": "把输入法升级成神经接口栈"
         }
-      ]
+      ],
+      "year": "2027-2032",
+      "status": "部分验证",
+      "review": "Neuralink 已植入 5+ 例，Synchron 商业化先发；从医疗到消费仍隔一道监管墙。"
     },
     {
       "id": "quantum-ec",
@@ -713,7 +859,10 @@
           "type": "量子云平台",
           "note": "把昂贵算力抽象成 API 服务"
         }
-      ]
+      ],
+      "year": "2028-2033",
+      "status": "部分验证",
+      "review": "Google Willow 2024 突破 surface code，逻辑量子比特数量级跃升进入倒计时。"
     },
     {
       "id": "room-temp-superconductor",
@@ -740,7 +889,10 @@
           "type": "电网改造方案商",
           "note": "长距离零损耗输电系统集成"
         }
-      ]
+      ],
+      "year": "2035+",
+      "status": "待验证",
+      "review": "LK-99 闹剧后真品仍未现，短期不乐观；如成立，能源/算力/医疗一并改写。"
     },
     {
       "id": "satellite-broadband-mass",
@@ -767,7 +919,10 @@
           "type": "边缘节点 + IPv6 服务",
           "note": "星地融合路由层"
         }
-      ]
+      ],
+      "year": "2024-2026",
+      "status": "已发生",
+      "review": "Starlink 已 600 万订户，全球商用化完成；中国千帆/星网正在追赶。"
     },
     {
       "id": "general-humanoid-mass",
@@ -794,7 +949,10 @@
           "type": "机器人云 RobotOps",
           "note": "训练 + 推理 + 远程接管"
         }
-      ]
+      ],
+      "year": "2032-2040",
+      "status": "待验证",
+      "review": "工业场景 5 年内可能落地，家用通用版至少要等到下一代 foundation model。"
     },
     {
       "id": "dna-storage",
@@ -821,7 +979,10 @@
           "type": "政府 / 机构归档客户",
           "note": "国家档案级先行者"
         }
-      ]
+      ],
+      "year": "2032-2040",
+      "status": "待验证",
+      "review": "Microsoft + Twist Bioscience 已有原型；写入 $200K/MB，距 PB 级商用还差 4-5 个数量级。"
     },
     {
       "id": "bci-typing",
@@ -848,7 +1009,10 @@
           "type": "OS 厂神经协议层",
           "note": "Apple / Microsoft 扩展输入"
         }
-      ]
+      ],
+      "year": "2026-2030",
+      "status": "部分验证",
+      "review": "Neuralink 患者已实现思维控光标；打字 <50 字/分，离生产工具仍有距离。"
     }
   ]
 }
