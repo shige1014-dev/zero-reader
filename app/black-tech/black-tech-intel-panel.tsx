@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import type { CivilianField, ExposureLevel } from "@/lib/black-tech/data";
+import type { ExposureLevel } from "@/lib/black-tech/data";
 
 type Stat = {
   label: ExposureLevel;
@@ -10,16 +10,13 @@ type Stat = {
 
 type Props = {
   stats: Stat[];
-  fields: CivilianField[];
   children: ReactNode;
 };
 
 const ALL = "全部";
 
-export function BlackTechIntelPanel({ stats, fields, children }: Props) {
+export function BlackTechIntelPanel({ stats, children }: Props) {
   const [levelFilter, setLevelFilter] = useState<ExposureLevel | typeof ALL>(ALL);
-  const [fieldFilter, setFieldFilter] = useState<CivilianField | typeof ALL>(ALL);
-  const [highlightField, setHighlightField] = useState<CivilianField | "">("");
   const [visibleCount, setVisibleCount] = useState(0);
   const statsRef = useRef<HTMLDivElement | null>(null);
 
@@ -33,15 +30,13 @@ export function BlackTechIntelPanel({ stats, fields, children }: Props) {
     let nextVisible = 0;
 
     cards.forEach((card) => {
-      const levelOk = levelFilter === ALL || card.dataset.level === levelFilter;
-      const fieldOk = fieldFilter === ALL || (card.dataset.fields ?? "").split(" ").includes(fieldFilter);
-      const visible = levelOk && fieldOk;
+      const visible = levelFilter === ALL || card.dataset.level === levelFilter;
       card.classList.toggle("is-filter-hidden", !visible);
       if (visible) nextVisible += 1;
     });
 
     setVisibleCount(nextVisible);
-  }, [levelFilter, fieldFilter]);
+  }, [levelFilter]);
 
   useEffect(() => {
     const root = statsRef.current;
@@ -71,13 +66,8 @@ export function BlackTechIntelPanel({ stats, fields, children }: Props) {
     return () => observer.disconnect();
   }, []);
 
-  const resetFilters = () => {
-    setLevelFilter(ALL);
-    setFieldFilter(ALL);
-  };
-
   return (
-    <div className="blacktech-intel" data-highlight-field={highlightField}>
+    <div className="blacktech-intel">
       <section ref={statsRef} className="blacktech-stats" aria-label="黑科技统计">
         <article>
           <span>全部信号</span>
@@ -98,7 +88,7 @@ export function BlackTechIntelPanel({ stats, fields, children }: Props) {
       <section className="blacktech-filter-shell" aria-label="黑科技筛选">
         <div className="blacktech-filter-body is-open">
           <div className="blacktech-filter-group mem-board-tabs" aria-label="按证据层筛选">
-            <FilterButton active={levelFilter === ALL} onClick={resetFilters} label="全部" meta="ALL" />
+            <FilterButton active={levelFilter === ALL} onClick={() => setLevelFilter(ALL)} label="全部" meta="ALL" />
             {stats.map((stat) => (
               <FilterButton
                 key={stat.label}
@@ -106,20 +96,6 @@ export function BlackTechIntelPanel({ stats, fields, children }: Props) {
                 onClick={() => setLevelFilter(stat.label)}
                 label={stat.label}
                 meta={`${stat.count} 条`}
-              />
-            ))}
-          </div>
-
-          <div className="blacktech-filter-group mem-board-tabs" aria-label="按转化方向筛选">
-            {fields.map((field) => (
-              <FilterButton
-                key={field}
-                active={fieldFilter === field}
-                onClick={() => setFieldFilter(field)}
-                onMouseEnter={() => setHighlightField(field)}
-                onMouseLeave={() => setHighlightField("")}
-                label={field}
-                meta="TRANSFER"
               />
             ))}
           </div>
@@ -135,24 +111,18 @@ function FilterButton({
   active,
   label,
   meta,
-  onClick,
-  onMouseEnter,
-  onMouseLeave
+  onClick
 }: {
   active: boolean;
   label: string;
   meta: string;
   onClick: () => void;
-  onMouseEnter?: () => void;
-  onMouseLeave?: () => void;
 }) {
   return (
     <button
       type="button"
       className={"mem-board-tab blacktech-filter-button" + (active ? " is-active" : "")}
       onClick={onClick}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
     >
       <span className="mem-board-tab-en">{meta}</span>
       <span className="mem-board-tab-zh">{label}</span>

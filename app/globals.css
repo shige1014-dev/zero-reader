@@ -762,30 +762,62 @@ body{padding-top:58px}
   position:sticky;
   top:64px;
   z-index:20;
-  margin:0 0 26px;
-  padding:10px 0;
+  margin:0 0 18px;
+  padding:6px 0;
   background:linear-gradient(180deg, rgba(20,17,13,0.94), rgba(20,17,13,0.76));
   backdrop-filter:blur(14px);
   -webkit-backdrop-filter:blur(14px);
   border-bottom:0.5px solid rgba(212,182,112,0.12);
 }
 .blacktech-filter-body{
-  display:grid;
-  gap:10px;
-}
-.blacktech-drawer-trigger{
-  display:none;
-  width:100%;
-  margin:0 0 10px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px 10px;
+  align-items:center;
 }
 .blacktech-filter-group.mem-board-tabs{
+  display:inline-flex;
+  flex-wrap:wrap;
+  gap:6px;
   max-width:none;
   margin:0;
-  grid-template-columns:repeat(4,minmax(0,1fr));
+  padding:0;
+  grid-template-columns:none;
+}
+.blacktech-filter-group + .blacktech-filter-group{
+  padding-left:10px;
+  border-left:0.5px solid rgba(212,182,112,0.18);
 }
 .blacktech-filter-button{
   cursor:pointer;
+  display:inline-flex;
+  align-items:baseline;
+  gap:6px;
+  padding:4px 10px;
+  min-height:0;
+  min-width:0;
   text-align:left;
+  border-radius:999px;
+  background:rgba(28,24,18,0.6);
+  border:0.5px solid rgba(212,182,112,0.18);
+  white-space:nowrap;
+}
+.blacktech-filter-button .mem-board-tab-en{
+  font-size:9.5px;
+  letter-spacing:.16em;
+  color:#7a7464;
+  text-transform:uppercase;
+}
+.blacktech-filter-button .mem-board-tab-zh{
+  font-size:12.5px;
+  color:#D8CEB7;
+}
+.blacktech-filter-button.is-active{
+  background:rgba(212,182,112,0.16);
+  border-color:rgba(212,182,112,0.55);
+}
+.blacktech-filter-button.is-active .mem-board-tab-zh{
+  color:#fff;
 }
 .blacktech-intel[data-highlight-field="医疗"] .blacktech-card:not([data-fields~="医疗"]),
 .blacktech-intel[data-highlight-field="城市"] .blacktech-card:not([data-fields~="城市"]),

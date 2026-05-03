@@ -61,7 +61,7 @@ export default function BlackTechPage() {
         </div>
       </section>
 
-      <BlackTechIntelPanel stats={stats} fields={PRIMARY_FIELDS}>
+      <BlackTechIntelPanel stats={stats}>
         <section className="blacktech-maturity-board" aria-label="按成熟度分层的黑科技档案">
           {BLACK_TECH_MATURITY_ORDER.map((maturity) => {
             const techs = BLACK_TECHS.filter((tech) => tech.maturity === maturity);
