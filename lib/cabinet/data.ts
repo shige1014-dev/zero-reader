@@ -843,6 +843,270 @@ export const CABINET_STORIES: CabinetStory[] = [
     credibilityHigh: 100,
     status: "active",
     links: {"wiki":"https://en.wikipedia.org/wiki/Operation_Northwoods"}
+  },
+
+  // ===== 7. 失落的天才 — 续 =====
+  {
+    id: "thomas-moray",
+    category: "lost-genius",
+    era: "1909–1939",
+    titleZh: "Thomas Moray 与「辐射能」装置",
+    titleEn: "T. H. Moray & The Radiant Energy Device",
+    protagonist: "Thomas Henry Moray",
+    hook: "他声称能从「宇宙辐射」里取电,实验室被砸,助手叛投苏联。",
+    story: [
+      "1909 年起 Moray 在犹他州研发一种据称能从大气电离层和宇宙辐射中提取电力的「辐射能装置」。1925–1939 多次公开演示让 50W 灯泡及电热棒在没有外接电源的情况下亮起来,工程师与州议员当场签证。",
+      "Rural Electrification Administration (REA) 派工程师 Felix Frazer 渗透研究,后者带走部分核心电路图叛逃苏联。1939 年某夜实验室被人持锤砸碎,Moray 自此装持枪,装置图纸再没复现成功。",
+      "1985 年家族成立 Moray Research,声称仍在试图复现。专利局至今未授其核心专利,理由是无法独立复现。"
+    ],
+    mainstreamView: "无第三方独立复现,Moray 演示中可能存在隐藏电池或外接线。",
+    hereticalView: "Moray 描述的「不对称电容+晶体管前体」如属实,等于 1930 年代就有人独立做出半导体雏形。",
+    weirdRating: 5,
+    credibilityLow: 10,
+    credibilityHigh: 30,
+    status: "cold",
+    links: {"wiki":"https://en.wikipedia.org/wiki/Thomas_Henry_Moray"}
+  },
+  {
+    id: "john-keely",
+    category: "lost-genius",
+    era: "1872–1898",
+    titleZh: "John Keely 与「以太涡流引擎」",
+    titleEn: "John Worrell Keely & The Etheric Engine",
+    protagonist: "John Worrell Keely",
+    hook: "他说音叉能驱动机器,投资人相信了 26 年,死后地下室找到压缩空气管。",
+    story: [
+      "1872 年费城机械工 Keely 宣称发明「以太涡流发动机」,通过特定频率的音波激发空气中的「以太流」转化为机械动力。Keely 公司股票上市,26 年里筹得相当于今天约 1 亿美元。",
+      "演示中机械装置随其调音叉而启动停止,科学界称为骗局,但他从未被起诉。1898 年他突然去世,继任投资人立即拆除地下室,发现一根 8 英寸压缩空气管隐藏在地板夹层中,通过墙壁连接展示间。",
+      "争议至今:压缩空气解释了部分演示,但若全部依靠它,Keely 持续维护这套设备 26 年的工程能力本身亦是异常。部分研究者认为他可能在压缩空气基础上叠加了某种声学共振效果。"
+    ],
+    mainstreamView: "完美的诈骗案。压缩空气管的发现是直接物证。",
+    hereticalView: "Keely 的部分笔记记录了与今天「声辐射力 acoustic radiation force」一致的现象描述,在 1872 年这是先于物理学的观察。",
+    weirdRating: 4,
+    credibilityLow: 5,
+    credibilityHigh: 20,
+    status: "cold",
+    links: {"wiki":"https://en.wikipedia.org/wiki/John_Ernst_Worrell_Keely"}
+  },
+
+  // ===== 8. 被压抑的发明 — 续 =====
+  {
+    id: "pogue-carburetor",
+    category: "suppressed",
+    era: "1936",
+    titleZh: "Pogue 化油器:200 mpg 的灰盒子",
+    titleEn: "Pogue 200 mpg Carburetor",
+    protagonist: "Charles Nelson Pogue",
+    hook: "1936 年加拿大人造出据称能让普通车跑 200 mpg 的化油器,然后被买走。",
+    story: [
+      "1933–1936 年加拿大温尼伯发明家 Pogue 申请并获得 3 项美国专利,描述一种通过预热汽油至蒸气状态再注入燃烧室的化油器。1936 年《Winnipeg Free Press》报道一辆 Ford V8 装上后跑了 200 mpg(常规为 14 mpg)。",
+      "随后 Breen Motor 等公司参与测试,Pogue 拒绝出售技术。1936 年下半年起新闻彻底消失,Pogue 转向给军方做火焰喷射器,公开技术轨迹中断。专利公开文本至今可读,但缺少关键参数。",
+      "类似燃料蒸气化路线在今天被部分柴油机厂商作为「均质压燃 HCCI」研究方向。理论上汽油蒸气均匀燃烧效率确高于雾化液滴,但工程窗口极窄,易爆震。"
+    ],
+    mainstreamView: "200 mpg 在物理上几乎不可能(汽油热值上限决定);该报道为媒体夸大。",
+    hereticalView: "100 mpg 在窄工程窗口内并非完全不可能;若专利全本含完整参数,被收购方已锁柜 90 年。",
+    weirdRating: 4,
+    credibilityLow: 15,
+    credibilityHigh: 40,
+    status: "cold",
+    links: {"wiki":"https://en.wikipedia.org/wiki/Charles_Nelson_Pogue"}
+  },
+  {
+    id: "joe-newman-machine",
+    category: "suppressed",
+    era: "1979–2015",
+    titleZh: "Joe Newman 能量机:专利局拒绝受理 30 年",
+    titleEn: "Joe Newman's Energy Machine",
+    protagonist: "Joseph Newman",
+    hook: "他说他造的电机输出大于输入,专利局拒绝授权,他在国会作证。",
+    story: [
+      "1979 年密西西比州 Newman 提交「能量机」专利,声称大型线圈+永磁体组合能产生比电池输入更大的电能输出。1986 年美国专利局以「违反热力学」为由驳回,Newman 起诉至联邦法院。",
+      "国家标准局 (NBS) 在法院命令下做了独立测试,1986 年报告:输出/输入比 < 1,未发现超额能量。但 Newman 反驳测试用了不正确的负载方式。Newman 在国会众议院能源小组听证作证,要求政府重新评估。",
+      "Newman 2015 年去世前一直在 YouTube/路演中演示。粉丝群体延续至今。专利局保留拒绝立场。无任何独立实验室在受控条件下复现 COP > 1。"
+    ],
+    mainstreamView: "测量误差+磁滞回收的二次电流被误读为「额外输出」。30 年无独立复现。",
+    hereticalView: "Newman 的大型低频铜线圈结构未被主流认真检查过;若超额能量不存在,粉丝群至少证明了一件事:专利局不愿讨论物理边界。",
+    weirdRating: 4,
+    credibilityLow: 5,
+    credibilityHigh: 15,
+    status: "cold",
+    links: {"wiki":"https://en.wikipedia.org/wiki/Joseph_Newman_(inventor)"}
+  },
+
+  // ===== 9. 未解物理学 — 续 =====
+  {
+    id: "dama-libra",
+    category: "unsolved-physics",
+    era: "1995–至今",
+    titleZh: "DAMA/LIBRA:30 年没人重现的暗物质年信号",
+    titleEn: "DAMA/LIBRA Annual Modulation",
+    protagonist: "Rita Bernabei 团队 / Gran Sasso",
+    hook: "意大利地下实验室连续 25 年看到一个跟着地球公转走的信号,别人怎么都看不到。",
+    story: [
+      "1995 年起 DAMA 在意大利 Gran Sasso 山下实验室用 NaI 闪烁体阵列搜寻暗物质,声称看到了一个 1 年周期的信号——地球绕日公转穿过暗物质风时强弱变化的预期模式。统计显著性已超过 9.5 sigma。",
+      "问题是:LUX, XENON1T, CDMS, COSINE-100 等用更灵敏探测器,在同样模型下没看到任何东西。年信号要么是真暗物质且其它实验有未知盲点,要么是 DAMA 自己的系统效应。",
+      "COSINE-100 (韩国/美国合作)用 NaI 完全复制 DAMA 配置在韩国地下,2024 年初步结果给出与 DAMA 相反的零信号,但还需更长曝光时间确认。30 年的争议仍未结束。"
+    ],
+    mainstreamView: "DAMA 大概率是温度/钾-40 杂质等系统效应被错误解释为暗物质年信号。",
+    hereticalView: "如果 COSINE 在 5 年后仍看不到信号但 DAMA 还在,问题就回到环境参数上:是否 NaI 在意大利某处接触到了别处没有的东西?",
+    weirdRating: 4,
+    credibilityLow: 20,
+    credibilityHigh: 50,
+    status: "active",
+    links: {"wiki":"https://en.wikipedia.org/wiki/DAMA/LIBRA"}
+  },
+  {
+    id: "opera-faster-than-light",
+    category: "unsolved-physics",
+    era: "2011–2012",
+    titleZh: "OPERA 中微子超光速:被一根松线缆击败的革命",
+    titleEn: "OPERA Faster-Than-Light Neutrinos",
+    protagonist: "OPERA 实验组 / CERN-LNGS",
+    hook: "2011 年中微子比光快 60 纳秒,全世界震动 6 个月,然后发现是光纤接头松了。",
+    story: [
+      "2011 年 9 月 OPERA 实验组宣布 CERN→Gran Sasso 730 km 飞行的中微子比光速早到 60.7 ns,统计显著 6 sigma。如果属实,狭义相对论从根上要修。论文上传 arXiv 当天全球物理界沸腾。",
+      "2012 年 2 月 OPERA 自己发现两个误差源:GPS 接收机光纤接头未拧紧导致系统延迟,加上时钟振荡器漂移。修正后中微子飞行时间符合光速。3 月发言人和负责人辞职。",
+      "故事从科学角度看是「严谨主义胜利」:实验组主动公开异常→社区压力测试→源头被找出。但从社会学角度看,它揭示了高能物理学家面对挑战相对论的结果时多么如临大敌——即便后来证明是接头松了,反应速度本身值得记下。"
+    ],
+    mainstreamView: "标准的实验事故。光纤接头松动是已确认源头,无任何超光速现象。",
+    hereticalView: "故事不应被简单读为「狼来了」:它是少数物理实验中,异常假设被认真追溯到根的范例。下次该认真而非该耻笑。",
+    weirdRating: 3,
+    credibilityLow: 95,
+    credibilityHigh: 100,
+    status: "cold",
+    links: {"wiki":"https://en.wikipedia.org/wiki/Faster-than-light_neutrino_anomaly"}
+  },
+
+  // ===== 10. 古代科技 — 续 =====
+  {
+    id: "gobekli-tepe",
+    category: "ancient-tech",
+    era: "公元前 9500–8000",
+    titleZh: "哥贝克力石阵:农业之前的神庙",
+    titleEn: "Göbekli Tepe",
+    protagonist: "土耳其东南安纳托利亚",
+    hook: "12000 年前狩猎采集者建成的巨石神庙,比农业、陶器、文字都早 5000 年。",
+    story: [
+      "1994 年德国考古学家 Klaus Schmidt 在土耳其东南确认了一组直径 300 m 的圆形石阵复合体。放射性碳测年最早一层 11500 年前(公元前 9500),比苏美尔早 6000 年,比金字塔早 7000 年。",
+      "石柱重 10–20 吨,T 字形,顶部刻有动物浮雕。当时人类被认为还停留在狩猎采集阶段——常规叙事认为「定居→农业→剩余食物→宗教/纪念建筑」。哥贝克力石阵颠倒了顺序:可能是「宗教/聚集→需要食物→农业」。",
+      "更诡异的是约公元前 8000 年,这片遗址被人为埋葬在土堆之下,工艺整齐有序。为什么建,为什么停,为什么埋,没有写下来。整个 Anatolian 农业转化的「驯化中心」假说现在围绕这处遗址重组。"
+    ],
+    mainstreamView: "这是已确认的真遗址,真年代,但建造者社会形态学界仍激烈争论。",
+    hereticalView: "如果 12000 年前狩猎采集者就有此组织能力,那么「文明先于农业」可能不是 Göbekli 一处例外。再老的层位还在挖。",
+    weirdRating: 4,
+    credibilityLow: 95,
+    credibilityHigh: 100,
+    status: "active",
+    links: {"wiki":"https://en.wikipedia.org/wiki/G%C3%B6bekli_Tepe"}
+  },
+  {
+    id: "damascus-steel",
+    category: "ancient-tech",
+    era: "公元 300–1750",
+    titleZh: "大马士革钢:消失 300 年的纳米管刀",
+    titleEn: "Damascus Steel & Lost Nanotubes",
+    protagonist: "中东 / 印度南部 wootz 锭",
+    hook: "中世纪刀刃在电子显微镜下出现碳纳米管,工艺到 18 世纪失传至今没人复刻。",
+    story: [
+      "中世纪十字军记载大马士革钢刀「能砍断丢下的丝巾」「弯曲 90 度仍弹回」。现代检验确认其表面有独特的水波纹路。原料 wootz 钢锭来自印度南部 Telangana 地区。",
+      "约 1750 年起 wootz 矿源品质下降,锻造工艺迅速失传。19 世纪欧洲人多次试图复制,均无法重现刀刃硬度+韧性的组合。",
+      "2006 年德累斯顿工业大学用电子显微镜在 17 世纪大马士革钢刀样本上发现了碳纳米管和渗碳体纳米线,认为正是这些结构提供了非凡的力学性能。问题是:1700 年代锻铁匠如何在 1100°C 反复锻打+局部冷却中无意中合成出纳米管?"
+    ],
+    mainstreamView: "原料矿微量元素 + 长期经验试错的工艺包,失传是因供应链断+学徒断。无神秘成分。",
+    hereticalView: "纳米管在锻造温度下生成机制至今没被完整复现;某些迭代的工艺可能掌握了被现代材料学称为「热机械加工 + 微观结构控制」的早期版本。",
+    weirdRating: 3,
+    credibilityLow: 90,
+    credibilityHigh: 100,
+    status: "active",
+    links: {"wiki":"https://en.wikipedia.org/wiki/Damascus_steel"}
+  },
+
+  // ===== 11. 边缘科学 — 续 =====
+  {
+    id: "skinwalker-aawsap",
+    category: "fringe-science",
+    era: "1996–至今",
+    titleZh: "Skinwalker Ranch:DARPA 投钱的农场",
+    titleEn: "Skinwalker Ranch & AAWSAP",
+    protagonist: "Robert Bigelow / DIA",
+    hook: "犹他州一座 480 英亩农场,UFO+异常生物报告聚集,五角大楼花了 2200 万查它。",
+    story: [
+      "1996 年航天大亨 Robert Bigelow 买下犹他州 Uintah 县一处农场,前主因「光球」「不明生物」「家畜被精确切割」放弃。Bigelow 设立 NIDS (National Institute for Discovery Science) 配监控,记录数百起异常事件。",
+      "2008 年 Bigelow 拿下美国国防情报局 (DIA) 的「先进航空航天威胁与情报项目 AATIP/AAWSAP」合同,2200 万美元,部分研究就在这处农场进行。结果文件大部分至今保密,2017 年纽约时报报道项目存在后才解密小部分。",
+      "2021 年起 History Channel 推出真人秀《Skinwalker Ranch 之谜》,新业主仍在持续记录现象。2023 年美国国会公开听证 UAP 时,议员多次问及该农场资料。"
+    ],
+    mainstreamView: "心理传染+期望偏差+部分恶作剧。AAWSAP 资金最终未带来可发表科学结果。",
+    hereticalView: "DIA 主动出资 2200 万,且 AAWSAP 报告至今部分仍保密,本身就是一条独立信号——即使现象不存在,某层级官员相信它存在。",
+    weirdRating: 5,
+    credibilityLow: 25,
+    credibilityHigh: 60,
+    status: "active",
+    links: {"wiki":"https://en.wikipedia.org/wiki/Skinwalker_Ranch"}
+  },
+  {
+    id: "hessdalen-lights",
+    category: "fringe-science",
+    era: "1981–至今",
+    titleZh: "Hessdalen 光团:挪威山谷里 40 年的光",
+    titleEn: "Hessdalen Lights",
+    protagonist: "挪威 Sør-Trøndelag 山谷",
+    hook: "挪威某山谷 1981 年起每周出现不明光团,大学装了自动监测站持续 30 年。",
+    story: [
+      "1981 年起挪威 Hessdalen 山谷居民频繁报告白色/黄色发光球体悬停或低速移动,持续数秒到一小时。1983 年起 UFO-Norge 派人值守,记录到数百次目击。",
+      "1998 年 Østfold College 设立全自动监测站 EMBLA-1,装备磁力计+光谱仪+视频。30 年数据集显示光团出现频率每年约 20 次,光谱中检测到等离子体特征,磁力扰动与光团出现部分相关。",
+      "假说包括:岩石压电效应释放带电气溶胶在山谷下风积聚→等离子体自激发光;或 Coulomb 库仑爆炸释放含金属粉尘的电荷云。两者都未完整解释光团的精确轨迹和持续时间。"
+    ],
+    mainstreamView: "罕见但真实的大气等离子体现象;岩石压电+稀有地质组合在山谷里堆出长寿命光团。",
+    hereticalView: "持续 30 年的可重复数据集是其它「UFO 热点」从来没拿出过的;它把奇观变成了可研究对象,但科学家不爱碰。",
+    weirdRating: 3,
+    credibilityLow: 70,
+    credibilityHigh: 90,
+    status: "active",
+    links: {"wiki":"https://en.wikipedia.org/wiki/Hessdalen_lights"}
+  },
+
+  // ===== 12. 企业 · 政府阴影 — 续 =====
+  {
+    id: "sugar-research-1967",
+    category: "corporate-shadow",
+    era: "1965–1967",
+    titleZh: "Sugar Research 1967:糖业花钱重写心脏病论文",
+    titleEn: "Sugar Industry's 1967 Harvard Pivot",
+    protagonist: "Sugar Research Foundation / Harvard",
+    hook: "糖业行业 1967 年付钱让哈佛 3 名学者发文章把心脏病甩锅给脂肪,糖被洗白 50 年。",
+    story: [
+      "1965–1967 年美国 Sugar Research Foundation 付给 3 名哈佛公共健康学者 6500 美元(约今天 5 万美金)撰写一篇综述,选择性引用研究,把糖与心脏病关联弱化,把饱和脂肪写成主要凶手。论文发表于 1967 年新英格兰医学杂志 NEJM。",
+      "这篇综述影响了之后 50 年的美国饮食指南——低脂高糖成为主流推荐,1970–2000 年代肥胖率与糖尿病率同步飙升。哈佛学者 Mark Hegsted 后来出任美国农业部营养政策主任。",
+      "2016 年 UCSF 历史学家 Cristin Kearns 在 SRF 内部档案中找到付款单据和编辑往来邮件,发表于 JAMA Internal Medicine。这是公认实例:行业资金可以在科学权威机构内部直接改写公共健康主流叙事。"
+    ],
+    mainstreamView: "已被 2016 JAMA 论文证实,有完整付款单据,这不是阴谋是历史。",
+    hereticalView: "如果糖业 1967 年能这么干,烟草、石油、Pharma、AI 训练数据等行业现在很可能正在做同样的事——只是档案还没解密。",
+    weirdRating: 4,
+    credibilityLow: 95,
+    credibilityHigh: 100,
+    status: "active",
+    links: {"wiki":"https://en.wikipedia.org/wiki/Sugar_Research_Foundation"}
+  },
+  {
+    id: "operation-paperclip",
+    category: "corporate-shadow",
+    era: "1945–1959",
+    titleZh: "Operation Paperclip:把纳粹科学家洗白带回美国",
+    titleEn: "Operation Paperclip",
+    protagonist: "美国 OSS / Joint Intelligence Objectives Agency",
+    hook: "二战刚结束,美国偷偷把 1600+ 纳粹科学家+他们的家属塞进美国,洗掉前科。",
+    story: [
+      "1945–1959 年美国情报机关 JIOA 通过 Paperclip 行动从战败德国引进 1600 多名科学家与工程师。包括 V-2 火箭设计师 Wernher von Braun、纳粹党员、SS 成员、甚至直接参与达豪/米特尔劳奥集中营人员。",
+      "杜鲁门 1946 年秘密令禁引入「真正的纳粹分子」,JIOA 直接为目标人篡改履历——用回形针(paperclip)夹一份新简历到档案上。von Braun 后来成 NASA 阿波罗火箭总师,登月就是他造的 Saturn V。",
+      "苏联同期跑了类似行动「奥索维亚金行动」抢人。70 年代起部分文件解密,90 年代起公众讨论。今日 NASA 部分核心架构、美国军用航空、化武/生物医药体系都有这条移植链的痕迹。"
+    ],
+    mainstreamView: "完全已解密,有名单有档案。冷战必要妥协。",
+    hereticalView: "如果美国 1945 年愿意为火箭技术给纳粹党员洗白,2020 年代为 AI/量子人才向哪些机构妥协,只能等下一轮档案解密。",
+    weirdRating: 4,
+    credibilityLow: 100,
+    credibilityHigh: 100,
+    status: "active",
+    links: {"wiki":"https://en.wikipedia.org/wiki/Operation_Paperclip"}
   }
 
 ];
