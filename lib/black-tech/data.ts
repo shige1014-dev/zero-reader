@@ -34,6 +34,13 @@ export interface BlackTech {
   transferPath: string;
   review: string;
   civilianApplications: CivilianApplication[];
+  civilianFuture: {
+    example: string;
+    newCompanies: string;
+    industryImpact: string;
+    aiSynergy: string;
+    socialChange: string;
+  };
   biggestChange: string;
   confidence: number;
 }

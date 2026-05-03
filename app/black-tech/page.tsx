@@ -164,6 +164,32 @@ function BlackTechCard({ tech, index }: { tech: BlackTech; index: number }) {
           ))}
         </div>
 
+        <details className="blacktech-future">
+          <summary>
+            <span className="blacktech-future-tag">FUTURE SCENARIO · 未来情境</span>
+            <span className="blacktech-future-cta">展开 ↓</span>
+          </summary>
+          <p className="blacktech-future-example">📍 {tech.civilianFuture.example}</p>
+          <dl className="blacktech-future-grid">
+            <div>
+              <dt>新公司类型</dt>
+              <dd>{tech.civilianFuture.newCompanies}</dd>
+            </div>
+            <div>
+              <dt>产业冲击</dt>
+              <dd>{tech.civilianFuture.industryImpact}</dd>
+            </div>
+            <div>
+              <dt>AI 加成后</dt>
+              <dd>{tech.civilianFuture.aiSynergy}</dd>
+            </div>
+            <div>
+              <dt>社会结构</dt>
+              <dd>{tech.civilianFuture.socialChange}</dd>
+            </div>
+          </dl>
+        </details>
+
         <div className="blacktech-change">
           <span>改变什么</span>
           <p>{tech.biggestChange}</p>
