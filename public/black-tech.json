@@ -1,0 +1,305 @@
+{
+  "maturityOrder": ["已商用", "试点中", "实验室", "推测"],
+  "funnel": [
+    { "label": "公开预算 / 机构项目", "count": 14, "note": "能查到预算、论文、采购或试验方向" },
+    { "label": "工程原型 / 试点场景", "count": 9, "note": "已有样机、试点或行业早期采购" },
+    { "label": "供应链降本", "count": 6, "note": "材料、制造、软件、维护成本进入商业曲线" },
+    { "label": "监管放行 / 民用买单", "count": 4, "note": "进入医疗、城市、工业、个人设备" }
+  ],
+  "techs": [
+    {
+      "id": "directed-energy",
+      "title": "定向能防御",
+      "en": "DIRECTED ENERGY",
+      "level": "公开军用",
+      "maturity": "试点中",
+      "horizon": "2027-2035",
+      "industries": ["城市", "工业"],
+      "museumEraId": "ai",
+      "militaryOrigin": "激光/高功率微波用于拦截无人机、炮弹、传感器和小型高速目标。",
+      "transferGate": "高功率电源、热管理、光学跟踪、法规授权同时成熟后，才会从军用阵地进入机场、港口和能源设施。",
+      "signal": "反无人机需求已经从战场扩散到机场、边境、油气设施和大型活动安防。",
+      "transferPath": "先进入固定设施的反无人机系统，再进入移动平台和工业非接触加工。",
+      "review": "这是最接近民用落地的黑科技之一。它不会以科幻武器形态出现，而会先成为低空经济的基础安防层：机场、港口、油气、电网、体育场都需要它。",
+      "civilianApplications": [
+        { "field": "城市", "product": "机场/港口反无人机穹顶", "changes": "低空经济真正铺开前，城市必须先有低成本、低附带伤害的防护层。" },
+        { "field": "工业", "product": "非接触式清障与高能加工", "changes": "危险场景里减少人工进入，电力、矿山、化工设施维护会更自动化。" }
+      ],
+      "biggestChange": "低空会从“谁都能飞”变成“被实时识别、压制、授权的空域”。",
+      "confidence": 86
+    },
+    {
+      "id": "hypersonic-materials",
+      "title": "高超声速材料",
+      "en": "HYPERSONIC SKIN",
+      "level": "公开军用",
+      "maturity": "实验室",
+      "horizon": "2030-2040",
+      "industries": ["工业", "交通", "能源"],
+      "museumEraId": "posthuman",
+      "militaryOrigin": "再入飞行器、导弹外壳、极端热环境控制、主动冷却结构。",
+      "transferGate": "关键不是飞得多快，而是耐热材料、涂层、冷却和可制造性进入工业供应链。",
+      "signal": "陶瓷基复材、主动冷却、耐热涂层开始从国防项目外溢到能源和航天制造。",
+      "transferPath": "先落到发动机、刹车、热防护、电池壳体，再进入更远期高速运输。",
+      "review": "民用版不会先变成“上海到纽约一小时”，而会先改变所有高温设备。谁能把极端热管理做便宜，谁就能拿到能源、航天和重工业红利。",
+      "civilianApplications": [
+        { "field": "交通", "product": "高速航空与亚轨道部件", "changes": "远期压缩洲际物流时间，但会先在发动机、刹车、壳体上落地。" },
+        { "field": "能源", "product": "高温涡轮机与电池热防护", "changes": "让发电设备、电池包、工业炉在更高温度下保持寿命和安全边界。" }
+      ],
+      "biggestChange": "极端热环境会从军工难题变成能源、航天、重工业的材料红利。",
+      "confidence": 78
+    },
+    {
+      "id": "quantum-sensing",
+      "title": "量子传感",
+      "en": "QUANTUM SENSING",
+      "level": "公开军用",
+      "maturity": "试点中",
+      "horizon": "2028-2038",
+      "industries": ["医疗", "城市", "工业"],
+      "museumEraId": "ai",
+      "militaryOrigin": "无 GPS 导航、潜艇探测、地下结构识别、精密计时和微弱磁场探测。",
+      "transferGate": "设备要从实验台变成低维护、小型化、可校准的工程产品。",
+      "signal": "测绘、医疗脑磁、地下空间和导航备份是最早的民用入口。",
+      "transferPath": "先进入测绘/医疗/能源勘探，再成为自动驾驶和关键设施的冗余感知层。",
+      "review": "量子传感的民用价值不在“量子”这个词，而在它能读到传统设备读不到的微弱信号。医疗、地下城市、能源勘探会比消费电子更早受益。",
+      "civilianApplications": [
+        { "field": "医疗", "product": "低成本脑磁/心磁成像", "changes": "神经疾病诊断会从大型医院专用设备，逐步变成更普及的功能检测。" },
+        { "field": "城市", "product": "地下管网与空洞扫描", "changes": "道路塌陷、旧城改造和地下施工会更像“先透视再动刀”。" }
+      ],
+      "biggestChange": "导航和探测会不再完全依赖卫星；看不见的地下、海下和脑内信号会变成可读数据。",
+      "confidence": 82
+    },
+    {
+      "id": "noninvasive-bci",
+      "title": "非侵入脑机接口",
+      "en": "NON-SURGICAL BCI",
+      "level": "半公开",
+      "maturity": "实验室",
+      "horizon": "2030-2045",
+      "industries": ["医疗", "个人"],
+      "museumEraId": "posthuman",
+      "militaryOrigin": "神经状态监测、无人系统辅助控制、复杂任务负荷识别。",
+      "transferGate": "非侵入式读写精度、延迟、舒适度和隐私监管必须同时过线。",
+      "signal": "医疗康复会先落地，消费级“意念控制”会比网络想象慢很多。",
+      "transferPath": "先做康复与辅助输入，再进入 AR 工作台和无声交互。",
+      "review": "真正要看的不是“脑控鼠标”演示，而是长期佩戴是否舒服、数据是否稳定、隐私边界是否清楚。医疗康复的价值明确，消费场景还需要等待。",
+      "civilianApplications": [
+        { "field": "医疗", "product": "康复训练与假肢控制", "changes": "中风、脊髓损伤和运动障碍患者能更早恢复部分行动能力。" },
+        { "field": "个人", "product": "无声交互与注意力辅助", "changes": "办公和 AR 设备可能从键鼠触控，扩展到眼动、肌电、脑电混合输入。" }
+      ],
+      "biggestChange": "人机交互会从“手指输入”走向“神经状态 + 意图识别”。",
+      "confidence": 64
+    },
+    {
+      "id": "autonomous-swarms",
+      "title": "蜂群自治",
+      "en": "AUTONOMOUS SWARMS",
+      "level": "公开军用",
+      "maturity": "已商用",
+      "horizon": "2026-2034",
+      "industries": ["农业", "城市", "工业"],
+      "museumEraId": "ai",
+      "militaryOrigin": "低成本无人机集群、海空协同、分布式侦察、诱饵与压制。",
+      "transferGate": "真正转民用靠的不是单机炫技，而是群体调度、抗干扰通信、低价维修和责任认定。",
+      "signal": "灾害搜救、农业巡检和海洋采样的 ROI 比城市配送更早成立。",
+      "transferPath": "从农业和巡检开始，逐步进入灾害救援、海洋作业和城市维护。",
+      "review": "蜂群已经不是遥远概念，差别只在自治程度。民用最早不是送外卖，而是人不想去、不能去、去不起的地方：农田、火场、海上、管线。",
+      "civilianApplications": [
+        { "field": "农业", "product": "多机农田巡检/施药/授粉", "changes": "农业从“人巡田”变成“机器群持续感知”，小农场也能获得精细化管理。" },
+        { "field": "城市", "product": "灾害搜救蜂群", "changes": "地震、洪水、火灾后先派机器群进入危险区域，黄金救援时间被拉长。" }
+      ],
+      "biggestChange": "机器人会从单体工具变成群体基础设施。",
+      "confidence": 90
+    },
+    {
+      "id": "electronic-warfare",
+      "title": "电子战仿真",
+      "en": "RF DIGITAL TWIN",
+      "level": "半公开",
+      "maturity": "试点中",
+      "horizon": "2028-2036",
+      "industries": ["通信", "交通", "城市"],
+      "museumEraId": "ai",
+      "militaryOrigin": "实时电磁环境模拟、雷达欺骗、通信压制与反压制。",
+      "transferGate": "电磁频谱要被建成城市级数字孪生，才能服务 6G、自动驾驶和工业无线。",
+      "signal": "频谱越来越拥挤，车载雷达、卫星通信、无人机链路都会抢同一个空气层。",
+      "transferPath": "先为车载雷达、6G 和卫星通信做仿真测试，再成为城市电磁治理工具。",
+      "review": "这项技术听起来冷门，但会变成 6G、自动驾驶和低空经济的底层测试台。未来城市不是只有道路拥堵，也会有电磁拥堵。",
+      "civilianApplications": [
+        { "field": "通信", "product": "6G 频谱数字孪生", "changes": "城市建网会先在仿真里排冲突，减少盲目铺基站和无线死角。" },
+        { "field": "交通", "product": "自动驾驶雷达压力测试场", "changes": "车在上路前先经历复杂电磁混战，安全验证会更接近真实城市。" }
+      ],
+      "biggestChange": "空气中的电磁频谱会像道路一样被规划、收费、管制和优化。",
+      "confidence": 72
+    },
+    {
+      "id": "bio-manufacturing",
+      "title": "战场生物制造",
+      "en": "BIO-MANUFACTURING",
+      "level": "公开军用",
+      "maturity": "试点中",
+      "horizon": "2027-2037",
+      "industries": ["医疗", "工业"],
+      "museumEraId": "posthuman",
+      "militaryOrigin": "前线药物、材料、燃料、食品和伤口处理材料的快速本地生产。",
+      "transferGate": "配方库、便携反应器、质量检测和生物安全审批要组合成可部署系统。",
+      "signal": "模块化生物反应器和合成生物材料从实验室转向工厂与偏远医疗点。",
+      "transferPath": "先从偏远医疗、应急药物、低碳材料切入，再进入本地化制造网络。",
+      "review": "它的核心不是“生物很神奇”，而是制造地点会改变。药物、材料和食品的一部分可能从大型中心工厂，转向可部署的小型反应器。",
+      "civilianApplications": [
+        { "field": "医疗", "product": "按需药物和疫苗微工厂", "changes": "偏远地区和突发疫情不再完全等待中心化药厂发货。" },
+        { "field": "工业", "product": "低碳材料和生物基化学品", "changes": "部分塑料、胶、纤维和添加剂会从石化路线转向生物路线。" }
+      ],
+      "biggestChange": "制造会从“全球大厂集中生产”增加一条“现场按需生产”的路线。",
+      "confidence": 76
+    },
+    {
+      "id": "stealth-metamaterials",
+      "title": "超材料隐身",
+      "en": "METAMATERIALS",
+      "level": "半公开",
+      "maturity": "实验室",
+      "horizon": "2030-2045",
+      "industries": ["城市", "通信", "医疗"],
+      "museumEraId": "posthuman",
+      "militaryOrigin": "降低雷达、红外、声学特征，改变电磁波和声波传播路径。",
+      "transferGate": "从单频段演示走向宽频、便宜、耐用、可维修，是民用化前提。",
+      "signal": "天线小型化、隔热、声学降噪、医疗成像会比“隐形斗篷”先落地。",
+      "transferPath": "先进入天线、声学、隔热和成像，再谈主动伪装。",
+      "review": "不要被“隐身衣”带偏。真正可商业化的是材料对波的管理：声波、热辐射、电磁波。建筑、通信和医疗成像是更现实的出口。",
+      "civilianApplications": [
+        { "field": "城市", "product": "建筑隔热/降噪外皮", "changes": "建筑不只靠厚墙隔热隔音，而是靠材料结构管理热、声、电磁波。" },
+        { "field": "通信", "product": "小型高性能天线", "changes": "可穿戴、车联网、卫星终端会变薄，信号方向控制更强。" }
+      ],
+      "biggestChange": "材料会从被动承重，升级为主动管理光、热、声、电磁的界面。",
+      "confidence": 58
+    },
+    {
+      "id": "leo-mesh",
+      "title": "低轨作战网",
+      "en": "LEO MESH",
+      "level": "公开军用",
+      "maturity": "已商用",
+      "horizon": "2026-2032",
+      "industries": ["通信", "农业", "城市"],
+      "museumEraId": "ai",
+      "militaryOrigin": "低轨卫星网承载情报、通信、导航备份与弹性指挥。",
+      "transferGate": "卫星制造、发射成本、终端功耗和频谱协调决定民用扩张速度。",
+      "signal": "商业星座与政府载荷共用平台，通信、遥感、导航边界变模糊。",
+      "transferPath": "从偏远宽带和灾后通信切入，再接入遥感、导航和直接到手机。",
+      "review": "低轨网已经从军用韧性通信变成商业基础设施。它改变的是网络覆盖的默认假设：不是地面有塔才有网，而是天上一直有补盲层。",
+      "civilianApplications": [
+        { "field": "通信", "product": "全球低轨宽带", "changes": "海上、山区、灾区和飞机上的联网体验会接近城市。" },
+        { "field": "农业", "product": "近实时遥感订阅", "changes": "农场、矿山、保险公司可以更频繁地看见地表变化。" }
+      ],
+      "biggestChange": "网络会从“地面基站覆盖”扩展成“天基节点持续补盲”。",
+      "confidence": 88
+    },
+    {
+      "id": "night-thermal-vision",
+      "title": "夜视与热成像",
+      "en": "THERMAL VISION",
+      "level": "公开军用",
+      "maturity": "已商用",
+      "horizon": "2026-2030",
+      "industries": ["个人", "城市", "工业"],
+      "museumEraId": "data",
+      "militaryOrigin": "夜战、边境侦察、目标识别、车辆和单兵热成像。",
+      "transferGate": "传感器降价、手机/汽车算力接入、隐私边界明确后才会大规模扩散。",
+      "signal": "车载夜视、手机外接热像仪、消防与巡检设备已经进入商用阶段。",
+      "transferPath": "从消防、安防、工业巡检到汽车和个人户外设备，逐步变成普及传感层。",
+      "review": "这是典型的“军用先用、民用降本”路径。它已经不神秘，关键变化是热成像会被 AI 解读，成为看见温度、泄漏、生命体和设备异常的通用能力。",
+      "civilianApplications": [
+        { "field": "城市", "product": "消防/搜救热成像", "changes": "烟雾、夜间和遮挡环境下，救援更早定位人和危险热源。" },
+        { "field": "个人", "product": "车载夜视与户外热像设备", "changes": "夜间驾驶、露营、安防会获得第二套视觉通道。" }
+      ],
+      "biggestChange": "普通设备会开始看见“温度世界”，安全、维修、搜索都会更早发现异常。",
+      "confidence": 92
+    },
+    {
+      "id": "resilient-navigation",
+      "title": "抗干扰导航",
+      "en": "RESILIENT NAV",
+      "level": "公开军用",
+      "maturity": "试点中",
+      "horizon": "2027-2035",
+      "industries": ["交通", "城市", "工业"],
+      "museumEraId": "ai",
+      "militaryOrigin": "GPS 被干扰或欺骗时，军用平台需要惯导、视觉、星基、地磁和量子备份导航。",
+      "transferGate": "要把多源导航做成便宜、可靠、可认证的组合系统，才能进入车、船、无人机和城市基础设施。",
+      "signal": "低空经济、自动驾驶和海运都开始意识到单一 GPS 不够安全。",
+      "transferPath": "先从无人机、船舶、矿山和自动驾驶封闭场景开始，再扩散到城市级定位基础设施。",
+      "review": "这项技术会很隐形，但非常重要。未来无人车、无人机、机器人越多，越不能只相信 GPS。抗干扰导航会成为机器社会的安全底座。",
+      "civilianApplications": [
+        { "field": "交通", "product": "无人车/船/机冗余定位", "changes": "GPS 弱信号或被欺骗时，自动系统仍能保持安全运行。" },
+        { "field": "工业", "product": "矿山和港口自主导航", "changes": "封闭场景里的自动化设备不用依赖单一卫星定位。" }
+      ],
+      "biggestChange": "机器会从“依赖 GPS”走向“多源感知定位”，自动化可靠性上一个台阶。",
+      "confidence": 84
+    },
+    {
+      "id": "adaptive-camouflage",
+      "title": "自适应伪装",
+      "en": "ADAPTIVE CAMO",
+      "level": "民间猜想",
+      "maturity": "推测",
+      "horizon": "2035+",
+      "industries": ["城市", "个人"],
+      "museumEraId": "posthuman",
+      "militaryOrigin": "传闻多来自主动红外伪装、变色材料、柔性显示和视觉欺骗研究。",
+      "transferGate": "要从传闻变产品，需要柔性显示、热辐射管理、供电和耐候材料同时成熟。",
+      "signal": "车身变色、建筑动态外立面、可穿戴显示是比“隐形衣”更现实的入口。",
+      "transferPath": "先成为节能外墙、可变车身和服装表面，再谈复杂伪装。",
+      "review": "它最容易被夸张成隐身衣，但现实出口更朴素：外观和热反射可编程。建筑、车、服装会先吃到材料可变性的红利。",
+      "civilianApplications": [
+        { "field": "城市", "product": "动态节能外立面", "changes": "建筑外墙根据日照和温度改变反射率，降低空调负荷。" },
+        { "field": "个人", "product": "可变色服装/车身/舞台材料", "changes": "外观从一次性设计变成可下载、可切换、可编程。" }
+      ],
+      "biggestChange": "外观会从固定涂层变成软件控制的材料界面。",
+      "confidence": 42
+    },
+    {
+      "id": "weather-control",
+      "title": "局地天气干预",
+      "en": "WEATHER OPS",
+      "level": "民间猜想",
+      "maturity": "推测",
+      "horizon": "2035+",
+      "industries": ["农业", "城市"],
+      "museumEraId": "posthuman",
+      "militaryOrigin": "公开层面主要是人工增雨、云物理和气象建模；更强版本多属网络传闻。",
+      "transferGate": "必须有可验证效果、跨境监管和环境副作用评估，否则只能停留在争议里。",
+      "signal": "高精度气象数字孪生、无人机播撒、城市热岛治理会先合流。",
+      "transferPath": "先做干旱、烟尘、热岛和火灾风险管理，再谈更强天气干预。",
+      "review": "这项必须谨慎看待。可验证的小尺度天气管理有现实需求，但网上流传的强控制版本证据不足。真正关键是监管和可复现效果。",
+      "civilianApplications": [
+        { "field": "农业", "product": "干旱风险干预服务", "changes": "农业保险会从事后赔付，增加事前气象干预和风险定价。" },
+        { "field": "城市", "product": "热岛/烟尘/火灾气象管理", "changes": "城市会把天气视为可部分管理的公共基础设施。" }
+      ],
+      "biggestChange": "天气会从纯自然变量，变成少量可干预、但高度受监管的公共系统。",
+      "confidence": 35
+    },
+    {
+      "id": "silent-propulsion",
+      "title": "静默推进",
+      "en": "SILENT PROPULSION",
+      "level": "民间猜想",
+      "maturity": "推测",
+      "horizon": "2035-2050",
+      "industries": ["交通", "工业"],
+      "museumEraId": "posthuman",
+      "militaryOrigin": "潜航器降噪、电推进、磁流体推进等方向公开存在，但夸张版本常被神秘化。",
+      "transferGate": "民用化取决于电机、功率电子、流体控制、材料寿命和成本同步下降。",
+      "signal": "低噪城市交通、水下机器人、安静压缩机比神秘飞行器更真实。",
+      "transferPath": "从泵、压缩机、水下机器人和电推进设备开始，逐步降低城市机器噪声。",
+      "review": "不要把它等同于玄学飞行器。可靠的静音推进更可能先改变城市噪声、水下机器人和数据中心设备，而不是突然出现反重力交通。",
+      "civilianApplications": [
+        { "field": "交通", "product": "低噪电推进交通工具", "changes": "城市交通噪音下降，夜间物流和低空飞行更容易被社区接受。" },
+        { "field": "工业", "product": "静音泵、压缩机、水下机器人", "changes": "医院、数据中心、实验室和海洋设施会变得更安静、更稳定。" }
+      ],
+      "biggestChange": "机器的存在感会下降：更少噪音、更少振动、更适合贴近人生活。",
+      "confidence": 46
+    }
+  ]
+}

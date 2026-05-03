@@ -1,0 +1,1 @@
+{"_type":"memory","key":"zerozero-reader-avoid-running-npm-run-build-while","value":"zerozero-reader: avoid running npm run build while Next dev server is serving a browser verification session; both touch .next and can cause temporary 404/static chunk misses. For UI verification, run build first, then restart npm run dev before Playwright checks."}

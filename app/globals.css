@@ -555,6 +555,837 @@ body{padding-top:58px}
   color:#E8C880;
 }
 
+/* === 黑科技谱系 BLACK TECH 2076 === */
+.blacktech-shell{
+  max-width:1240px;
+  margin:0 auto;
+  padding:42px 18px 96px;
+  color:#F5EFE3;
+}
+.blacktech-hero{
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,1.12fr) minmax(300px,.88fr);
+  gap:28px;
+  min-height:520px;
+  align-items:center;
+  overflow:hidden;
+  border:0.5px solid rgba(212,182,112,0.14);
+  border-radius:18px;
+  padding:44px;
+  background:
+    linear-gradient(135deg, rgba(212,182,112,0.10), transparent 34%),
+    radial-gradient(circle at 74% 44%, rgba(112,141,170,0.18), transparent 34%),
+    linear-gradient(180deg, rgba(28,24,19,0.88), rgba(16,14,11,0.76));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.05),
+    0 36px 110px rgba(0,0,0,0.48);
+}
+.blacktech-hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(212,182,112,0.052) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,182,112,0.052) 1px, transparent 1px);
+  background-size:34px 34px;
+  mask-image:linear-gradient(90deg, rgba(0,0,0,0.78), rgba(0,0,0,0.26));
+}
+.blacktech-hero-copy{
+  position:relative;
+  z-index:1;
+  max-width:720px;
+}
+.blacktech-kicker{
+  margin:0 0 20px;
+  color:#D4B670;
+  font-family:"IBM Plex Mono","SFMono-Regular",monospace;
+  font-size:11px;
+  letter-spacing:.34em;
+}
+.blacktech-hero h1{
+  margin:0;
+  color:#F5EFE3;
+  font-family:"Iowan Old Style","Palatino Linotype",Georgia,serif;
+  font-size:clamp(38px,6vw,76px);
+  font-weight:500;
+  line-height:1.05;
+  letter-spacing:.02em;
+}
+.blacktech-manifest{
+  margin:18px 0 0;
+  color:#E8C880;
+  font-family:"IBM Plex Mono","SFMono-Regular",monospace;
+  font-size:13px;
+  line-height:1.7;
+  letter-spacing:.18em;
+}
+.blacktech-thesis{
+  max-width:690px;
+  margin:20px 0 0;
+  color:#C9BFA8;
+  font-size:15px;
+  line-height:1.9;
+}
+.blacktech-legend{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin:28px 0 0;
+}
+.blacktech-legend span{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  border:0.5px solid rgba(255,255,255,0.08);
+  border-radius:999px;
+  padding:8px 12px;
+  background:rgba(255,255,255,0.028);
+  color:#A89B82;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:11px;
+  letter-spacing:.08em;
+}
+.blacktech-legend i{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+}
+.blacktech-dot-open{background:#D4B670; box-shadow:0 0 14px rgba(212,182,112,0.7)}
+.blacktech-dot-gray{background:#9DA8C4; box-shadow:0 0 14px rgba(157,168,196,0.56)}
+.blacktech-dot-rumor{background:#B46E55; box-shadow:0 0 14px rgba(180,110,85,0.5)}
+.blacktech-radar{
+  position:relative;
+  z-index:1;
+  width:min(420px,100%);
+  aspect-ratio:1;
+  justify-self:center;
+  border-radius:50%;
+  border:0.5px solid rgba(212,182,112,0.22);
+  background:
+    radial-gradient(circle, rgba(212,182,112,0.14) 0 2px, transparent 3px),
+    radial-gradient(circle at 50% 50%, rgba(212,182,112,0.10), transparent 58%),
+    conic-gradient(from 45deg, rgba(212,182,112,0.18), transparent 18%, rgba(112,141,170,0.12), transparent 48%, rgba(212,182,112,0.14));
+  box-shadow:
+    inset 0 0 64px rgba(212,182,112,0.08),
+    0 0 60px rgba(112,141,170,0.12);
+}
+.blacktech-radar::before,
+.blacktech-radar::after{
+  content:"";
+  position:absolute;
+  inset:50% auto auto 0;
+  width:100%;
+  height:1px;
+  background:rgba(212,182,112,0.16);
+}
+.blacktech-radar::after{
+  transform:rotate(90deg);
+}
+.blacktech-radar-ring{
+  position:absolute;
+  border:0.5px solid rgba(212,182,112,0.16);
+  border-radius:50%;
+}
+.ring-a{inset:12%}
+.ring-b{inset:28%}
+.ring-c{inset:43%}
+.blacktech-sweep{
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:conic-gradient(from 210deg, rgba(212,182,112,0.28), rgba(212,182,112,0.02) 18%, transparent 32%);
+  animation:blacktechSweep 7s linear infinite;
+}
+.blacktech-radar p{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  margin:0;
+  text-align:center;
+  color:#E8C880;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:12px;
+  line-height:1.55;
+  letter-spacing:.28em;
+}
+.blacktech-radar .node{
+  position:absolute;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#E8C880;
+  box-shadow:0 0 20px rgba(232,200,128,0.9);
+}
+.node-1{left:24%; top:35%}
+.node-2{right:18%; top:44%}
+.node-3{left:48%; bottom:19%}
+.node-4{right:31%; top:19%; background:#9DA8C4!important}
+@keyframes blacktechSweep{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+.blacktech-map{
+  margin:46px 0 24px;
+}
+.blacktech-stats{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:10px;
+  margin:30px 0 12px;
+}
+.blacktech-stats article{
+  border:0.5px solid rgba(255,255,255,0.08);
+  border-radius:8px;
+  padding:12px 14px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.052), rgba(255,255,255,0.024));
+}
+.blacktech-stats span{
+  display:block;
+  color:#8E8470;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.18em;
+}
+.blacktech-stats strong{
+  display:block;
+  margin:5px 0 0;
+  color:#F5EFE3;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:26px;
+  font-weight:600;
+  line-height:1;
+}
+.blacktech-filter-shell{
+  position:sticky;
+  top:64px;
+  z-index:20;
+  margin:0 0 26px;
+  padding:10px 0;
+  background:linear-gradient(180deg, rgba(20,17,13,0.94), rgba(20,17,13,0.76));
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:0.5px solid rgba(212,182,112,0.12);
+}
+.blacktech-filter-body{
+  display:grid;
+  gap:10px;
+}
+.blacktech-drawer-trigger{
+  display:none;
+  width:100%;
+  margin:0 0 10px;
+}
+.blacktech-filter-group.mem-board-tabs{
+  max-width:none;
+  margin:0;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+}
+.blacktech-filter-button{
+  cursor:pointer;
+  text-align:left;
+}
+.blacktech-intel[data-highlight-field="医疗"] .blacktech-card:not([data-fields~="医疗"]),
+.blacktech-intel[data-highlight-field="城市"] .blacktech-card:not([data-fields~="城市"]),
+.blacktech-intel[data-highlight-field="工业"] .blacktech-card:not([data-fields~="工业"]),
+.blacktech-intel[data-highlight-field="个人"] .blacktech-card:not([data-fields~="个人"]){
+  opacity:.42;
+}
+.blacktech-intel[data-highlight-field="医疗"] .blacktech-card[data-fields~="医疗"],
+.blacktech-intel[data-highlight-field="城市"] .blacktech-card[data-fields~="城市"],
+.blacktech-intel[data-highlight-field="工业"] .blacktech-card[data-fields~="工业"],
+.blacktech-intel[data-highlight-field="个人"] .blacktech-card[data-fields~="个人"]{
+  border-color:rgba(232,201,122,0.46);
+  box-shadow:0 0 0 1px rgba(232,201,122,0.12), 0 18px 54px rgba(0,0,0,0.42);
+}
+.blacktech-intel[data-highlight-field="医疗"] [data-field-card="医疗"],
+.blacktech-intel[data-highlight-field="城市"] [data-field-card="城市"],
+.blacktech-intel[data-highlight-field="工业"] [data-field-card="工业"],
+.blacktech-intel[data-highlight-field="个人"] [data-field-card="个人"]{
+  border-color:rgba(232,201,122,0.5);
+  background:linear-gradient(180deg, rgba(232,201,122,0.14), rgba(255,255,255,0.035));
+}
+.blacktech-section-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:18px;
+  margin:0 0 18px;
+  padding:0 2px 14px;
+  border-bottom:0.5px solid rgba(212,182,112,0.13);
+}
+.blacktech-section-head p{
+  margin:0;
+  color:#7A6F5C;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.32em;
+}
+.blacktech-section-head h2{
+  max-width:720px;
+  margin:0;
+  color:#E8C880;
+  font-family:"Iowan Old Style",Georgia,serif;
+  font-size:22px;
+  font-weight:500;
+  line-height:1.45;
+  text-align:right;
+}
+.blacktech-transfer-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
+}
+.blacktech-transfer-card{
+  min-height:128px;
+  border:0.5px solid rgba(255,255,255,0.07);
+  border-radius:12px;
+  padding:18px;
+  background:
+    linear-gradient(180deg, rgba(28,24,19,0.72), rgba(20,17,13,0.54));
+}
+.blacktech-transfer-card span{
+  display:block;
+  margin:0 0 10px;
+  color:#D4B670;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:11px;
+  letter-spacing:.18em;
+}
+.blacktech-transfer-card p{
+  margin:0;
+  color:#C9BFA8;
+  font-size:13px;
+  line-height:1.75;
+}
+.blacktech-transfer-card strong{
+  display:block;
+  margin:12px 0 0;
+  padding-top:10px;
+  border-top:0.5px dashed rgba(255,255,255,0.08);
+  color:#8E8470;
+  font-size:12px;
+  font-weight:500;
+  line-height:1.65;
+}
+.blacktech-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+  margin:0;
+}
+.blacktech-maturity-board{
+  display:flex;
+  flex-direction:column;
+  gap:30px;
+  margin:26px 0 0;
+}
+.blacktech-maturity-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:14px;
+  margin:0 0 12px;
+  padding:0 0 10px;
+  border-bottom:0.5px solid rgba(212,182,112,0.12);
+}
+.blacktech-maturity-head p{
+  margin:0;
+  color:#E8C880;
+  font-family:"Iowan Old Style",Georgia,serif;
+  font-size:24px;
+  line-height:1.2;
+}
+.blacktech-maturity-head span{
+  color:#7A6F5C;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.18em;
+}
+.blacktech-card{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  border:0.5px solid rgba(255,255,255,0.07);
+  border-radius:14px;
+  padding:19px;
+  background:
+    linear-gradient(135deg, rgba(212,182,112,0.075), transparent 28%),
+    linear-gradient(180deg, rgba(28,24,19,0.84), rgba(18,16,13,0.68));
+  transition:transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+.blacktech-card.is-filter-hidden{
+  display:none;
+}
+.blacktech-card-open{
+  border-color:rgba(232,201,122,0.2);
+}
+.blacktech-card-open::before{
+  content:"";
+  position:absolute;
+  inset:0 auto 0 0;
+  width:4px;
+  background:#D4B670;
+}
+.blacktech-card-gray{
+  border-style:dashed;
+  opacity:.9;
+  background:
+    linear-gradient(135deg, rgba(157,168,196,0.07), transparent 28%),
+    linear-gradient(180deg, rgba(28,24,19,0.76), rgba(18,16,13,0.58));
+}
+.blacktech-card-rumor{
+  border-color:rgba(180,110,85,0.18);
+  filter:saturate(.78);
+}
+.blacktech-card-rumor::before{
+  content:"";
+  position:absolute;
+  top:0;
+  right:0;
+  width:34px;
+  height:34px;
+  background:linear-gradient(135deg, transparent 0 49%, rgba(180,110,85,0.78) 50% 100%);
+}
+.blacktech-card-body{
+  padding:18px;
+}
+.blacktech-card::after{
+  content:"";
+  position:absolute;
+  left:18px;
+  right:18px;
+  bottom:0;
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(212,182,112,0.5), transparent);
+}
+.blacktech-card:hover{
+  transform:translateY(-2px);
+  border-color:rgba(212,182,112,0.28);
+  box-shadow:0 22px 58px rgba(0,0,0,0.36);
+}
+.blacktech-card-top,
+.blacktech-card footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.blacktech-number,
+.blacktech-card footer{
+  color:#7A6F5C;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.16em;
+}
+.blacktech-level{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  border-radius:999px;
+  padding:5px 9px;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.12em;
+  border:0.5px solid;
+}
+.blacktech-level-open{
+  color:#E8C880;
+  border-color:rgba(212,182,112,0.36);
+  background:rgba(212,182,112,0.09);
+}
+.blacktech-level-gray{
+  color:#B8C1D8;
+  border-color:rgba(157,168,196,0.32);
+  background:rgba(157,168,196,0.08);
+}
+.blacktech-level-rumor{
+  color:#D1967F;
+  border-color:rgba(180,110,85,0.32);
+  background:rgba(180,110,85,0.08);
+}
+.blacktech-en{
+  margin:16px 0 8px;
+  color:#7A6F5C;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.28em;
+}
+.blacktech-card h2{
+  margin:0;
+  color:#F5EFE3;
+  font-family:"Iowan Old Style",Georgia,serif;
+  font-size:24px;
+  font-weight:500;
+  letter-spacing:.02em;
+}
+.blacktech-title{
+  margin:0;
+}
+.blacktech-meta-line{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin:12px 0 0;
+}
+.blacktech-meta-line span{
+  border:0.5px solid rgba(255,255,255,0.07);
+  border-radius:999px;
+  padding:5px 8px;
+  color:#8E8470;
+  background:rgba(255,255,255,0.025);
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.1em;
+}
+.blacktech-meter{
+  height:4px;
+  margin:16px 0 16px;
+  overflow:hidden;
+  border-radius:999px;
+  background:rgba(255,255,255,0.06);
+}
+.blacktech-meter span{
+  display:block;
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg, rgba(180,110,85,0.9), rgba(212,182,112,0.95), rgba(157,168,196,0.9));
+}
+.blacktech-review{
+  margin:0;
+  color:#D8CEB7;
+  font-size:13px;
+  line-height:1.72;
+}
+.blacktech-brief-grid{
+  display:grid;
+  gap:8px;
+  margin:14px 0 0;
+}
+.blacktech-intel-detail{
+  border:0.5px solid rgba(255,255,255,0.06);
+  border-radius:8px;
+  background:rgba(255,255,255,0.022);
+  overflow:hidden;
+}
+.blacktech-intel-detail summary{
+  display:grid;
+  grid-template-columns:18px 72px minmax(0,1fr);
+  gap:8px;
+  align-items:start;
+  cursor:pointer;
+  padding:10px;
+  list-style:none;
+}
+.blacktech-intel-detail summary::-webkit-details-marker{
+  display:none;
+}
+.blacktech-intel-detail summary span{
+  color:#D4B670;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:11px;
+}
+.blacktech-intel-detail summary b{
+  color:#D4B670;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.12em;
+}
+.blacktech-intel-detail summary em{
+  color:#A89B82;
+  font-size:12.5px;
+  font-style:normal;
+  line-height:1.55;
+}
+.blacktech-intel-detail[open] summary em{
+  display:none;
+}
+.blacktech-intel-detail p{
+  margin:0;
+  padding:0 10px 10px 108px;
+  color:#D8CEB7;
+  font-size:13px;
+  line-height:1.68;
+}
+.blacktech-civilian-stack{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin:16px 0 0;
+}
+.blacktech-civilian-row{
+  display:grid;
+  grid-template-columns:48px minmax(0,1fr);
+  gap:10px;
+  border:0.5px solid rgba(255,255,255,0.055);
+  border-radius:8px;
+  padding:10px;
+  background:rgba(255,255,255,0.022);
+}
+.blacktech-civilian-row span{
+  color:#E8C880;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.16em;
+  padding-top:2px;
+}
+.blacktech-civilian-row p{
+  margin:0;
+  color:#A89B82;
+  font-size:12.5px;
+  line-height:1.62;
+}
+.blacktech-civilian-row b{
+  display:block;
+  margin:0 0 3px;
+  color:#F5EFE3;
+  font-weight:500;
+}
+.blacktech-change{
+  margin:14px 0 0;
+  border-left:2px solid rgba(212,182,112,0.34);
+  border-radius:0 8px 8px 0;
+  padding:10px 12px;
+  background:linear-gradient(90deg, rgba(212,182,112,0.07), rgba(255,255,255,0.018));
+}
+.blacktech-change span{
+  display:block;
+  margin:0 0 4px;
+  color:#D4B670;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.18em;
+}
+.blacktech-change p{
+  margin:0;
+  color:#D8CEB7;
+  font-size:13px;
+  line-height:1.65;
+}
+.blacktech-card footer{
+  margin:18px 0 0;
+  padding:12px 0 0;
+  border-top:0.5px dashed rgba(255,255,255,0.08);
+}
+.blacktech-card-actions{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin:16px 0 0;
+}
+.blacktech-era-link{
+  margin:0;
+}
+.blacktech-observe{
+  flex:0 0 auto;
+  border:0.5px solid rgba(212,182,112,0.34);
+  border-radius:999px;
+  padding:8px 10px;
+  color:#14110D;
+  background:#D4B670;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.12em;
+  cursor:pointer;
+  transition:filter .16s ease, opacity .16s ease;
+}
+.blacktech-observe:hover{
+  filter:brightness(1.08);
+}
+.blacktech-observe:disabled{
+  cursor:default;
+  opacity:.72;
+}
+.blacktech-note{
+  margin:42px 0 0;
+  border:0.5px solid rgba(212,182,112,0.16);
+  border-radius:16px;
+  padding:28px;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(212,182,112,0.11), transparent 30%),
+    linear-gradient(180deg, rgba(28,24,19,0.72), rgba(20,17,13,0.62));
+}
+.blacktech-funnel{
+  margin:42px 0 0;
+}
+.blacktech-funnel-svg{
+  display:block;
+  width:min(860px,100%);
+  height:auto;
+  margin:12px auto 0;
+  border:0.5px solid rgba(212,182,112,0.14);
+  border-radius:14px;
+  background:
+    linear-gradient(rgba(212,182,112,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,182,112,0.045) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(28,24,19,0.72), rgba(20,17,13,0.54));
+  background-size:28px 28px, 28px 28px, auto;
+}
+.blacktech-funnel-layer{
+  stroke:rgba(255,255,255,0.12);
+  stroke-width:1;
+}
+.blacktech-funnel-layer.layer-1{fill:rgba(212,182,112,0.26)}
+.blacktech-funnel-layer.layer-2{fill:rgba(212,182,112,0.19)}
+.blacktech-funnel-layer.layer-3{fill:rgba(157,168,196,0.16)}
+.blacktech-funnel-layer.layer-4{fill:rgba(180,110,85,0.16)}
+.blacktech-funnel-label{
+  fill:#F5EFE3;
+  font-family:"Iowan Old Style",Georgia,serif;
+  font-size:17px;
+  font-weight:600;
+}
+.blacktech-funnel-note{
+  fill:#A89B82;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.04em;
+}
+.blacktech-note p{
+  margin:0 0 10px;
+  color:#7A6F5C;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  letter-spacing:.34em;
+}
+.blacktech-note h2{
+  margin:0 0 18px;
+  color:#E8C880;
+  font-family:"Iowan Old Style",Georgia,serif;
+  font-size:26px;
+  font-weight:500;
+}
+.blacktech-note div{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+}
+.blacktech-note span{
+  border-left:2px solid rgba(212,182,112,0.28);
+  padding:8px 10px;
+  background:rgba(255,255,255,0.024);
+  color:#C9BFA8;
+  font-size:12.5px;
+  line-height:1.55;
+}
+@media (max-width:1020px){
+  .blacktech-hero{
+    grid-template-columns:1fr;
+    min-height:0;
+  }
+  .blacktech-radar{
+    width:min(360px,86vw);
+  }
+  .blacktech-transfer-grid,
+  .blacktech-note div{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .blacktech-grid{
+    grid-template-columns:1fr;
+  }
+  .blacktech-stats{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+}
+@media (max-width:639.98px){
+  .blacktech-shell{
+    padding:28px 0 72px;
+  }
+  .blacktech-hero{
+    border-radius:14px;
+    padding:22px 20px;
+    gap:14px;
+  }
+  .blacktech-radar{
+    display:none;
+  }
+  .blacktech-kicker{
+    margin-bottom:14px;
+    font-size:9px;
+    letter-spacing:.28em;
+  }
+  .blacktech-hero h1{
+    font-size:38px;
+  }
+  .blacktech-manifest{
+    margin-top:12px;
+    font-size:11px;
+    letter-spacing:.12em;
+  }
+  .blacktech-thesis{
+    font-size:14px;
+    line-height:1.7;
+    display:-webkit-box;
+    -webkit-line-clamp:3;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+  }
+  .blacktech-legend{
+    margin-top:18px;
+    gap:7px;
+  }
+  .blacktech-legend span{
+    padding:7px 9px;
+    font-size:10px;
+  }
+  .blacktech-filter-shell{
+    top:54px;
+  }
+  .blacktech-drawer-trigger{
+    display:flex;
+  }
+  .blacktech-filter-body{
+    display:none;
+  }
+  .blacktech-filter-body.is-open{
+    display:grid;
+  }
+  .blacktech-filter-group.mem-board-tabs,
+  .blacktech-stats{
+    grid-template-columns:1fr 1fr;
+  }
+  .blacktech-stats article{
+    padding:10px;
+  }
+  .blacktech-stats strong{
+    font-size:21px;
+  }
+  .blacktech-section-head{
+    display:block;
+  }
+  .blacktech-section-head h2{
+    margin-top:10px;
+    text-align:left;
+    font-size:19px;
+  }
+  .blacktech-transfer-grid,
+  .blacktech-grid,
+  .blacktech-note div{
+    grid-template-columns:1fr;
+  }
+  .blacktech-card{
+    min-height:0;
+  }
+  .blacktech-intel-detail summary{
+    grid-template-columns:16px 64px minmax(0,1fr);
+  }
+  .blacktech-intel-detail p{
+    padding-left:98px;
+  }
+  .blacktech-card-actions{
+    align-items:stretch;
+    flex-direction:column;
+  }
+  .blacktech-observe{
+    width:100%;
+  }
+}
+
 /* —— Timeline backbone —— */
 .proph-timeline{
   position:relative;

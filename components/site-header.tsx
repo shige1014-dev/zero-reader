@@ -17,6 +17,8 @@ const ITEMS = [
     icon: "M3 8h18M3 13h18M3 18h18M5 8V4h14v4M5 23h14" },
   { href: "/cabinet",                                label: "怪谈奇闻", match: (p: string) => p.startsWith("/cabinet"),
     icon: "M5 4h14v16H5zM9 4v16M5 8h4M5 12h4M5 16h4M14 9h2M14 13h2" },
+  { href: "/black-tech",                             label: "黑科技",   match: (p: string) => p.startsWith("/black-tech"),
+    icon: "M12 2l7 4v6c0 5-3.2 8.5-7 10-3.8-1.5-7-5-7-10V6l7-4zM9 12h6M12 9v6" },
   { href: "/what-if",                                label: "假如系列", match: (p: string) => p.startsWith("/what-if"),
     icon: "M12 3a9 9 0 1 0 9 9M12 3v9l5 3M12 3a9 9 0 0 1 8.49 6" },
   { href: "/civilization-leap/01-ai-rewrites-os",    label: "文明跃迁", match: (p: string) => p.startsWith("/civilization-leap"),
