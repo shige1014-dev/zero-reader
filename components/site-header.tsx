@@ -9,6 +9,8 @@ const ITEMS = [
     icon: "M3 21h18M5 21V10l7-5 7 5v11M9 21V14h6v7M2 10h20" },
   { href: "/matrix",                                 label: "三维股票", match: (p: string) => p.startsWith("/matrix"),
     icon: "M4 4h16v16H4zM4 9h16M9 4v16" },
+  { href: "/stock-learning",                         label: "股票学习网", match: (p: string) => p.startsWith("/stock-learning"),
+    icon: "M4 19V5M4 19h16M8 15l3-3 3 2 5-7M8 19v-4M14 19v-5M20 19V7" },
   { href: "/prophecies",                             label: "预言堂",   match: (p: string) => p.startsWith("/prophecies"),
     icon: "M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" },
   { href: "/memorials",                              label: "纪念册",   match: (p: string) => p.startsWith("/memorials"),

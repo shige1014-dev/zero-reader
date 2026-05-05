@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1536" viewBox="0 0 1024 1536" role="img" aria-labelledby="title desc">
+  <title id="title">文字版式库存</title>
+  <desc id="desc">一组纪念册版式样张，展示大标题、期号、日期、摘要、标签和正文的网格关系。</desc>
+  <defs>
+    <radialGradient id="bg" cx="62%" cy="34%" r="78%">
+      <stop offset="0" stop-color="#111f2a"/>
+      <stop offset=".48" stop-color="#0a1724"/>
+      <stop offset="1" stop-color="#050912"/>
+    </radialGradient>
+    <linearGradient id="paper" x1="0" x2="1">
+      <stop offset="0" stop-color="#e8dcc7"/>
+      <stop offset=".58" stop-color="#bfa985"/>
+      <stop offset="1" stop-color="#6b5840"/>
+    </linearGradient>
+    <linearGradient id="cityGlow" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#76c8e8" stop-opacity=".34"/>
+      <stop offset=".55" stop-color="#d8b27a" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity=".04"/>
+    </linearGradient>
+    <radialGradient id="dreamOrb" cx="48%" cy="45%" r="60%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".82"/>
+      <stop offset=".38" stop-color="#76c8e8" stop-opacity=".55"/>
+      <stop offset=".72" stop-color="#d8b27a" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="crystal" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".52"/>
+      <stop offset=".45" stop-color="#76c8e8" stop-opacity=".34"/>
+      <stop offset="1" stop-color="#d8b27a" stop-opacity=".3"/>
+    </linearGradient>
+    
+    <linearGradient id="thumb0" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0a1724"/>
+      <stop offset=".62" stop-color="#76c8e8" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#050912"/>
+    </linearGradient>
+
+    <linearGradient id="thumb1" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#111f2a"/>
+      <stop offset=".62" stop-color="#d8b27a" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#050912"/>
+    </linearGradient>
+
+    <linearGradient id="thumb2" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0a1724"/>
+      <stop offset=".62" stop-color="#76c8e8" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#050912"/>
+    </linearGradient>
+
+    <linearGradient id="thumb3" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#111f2a"/>
+      <stop offset=".62" stop-color="#d8b27a" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#050912"/>
+    </linearGradient>
+    <filter id="softGlow"><feGaussianBlur stdDeviation="9" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <style>
+      .serif{font-family:"Songti SC","Noto Serif CJK SC","STSong",serif}
+      .sans{font-family:"Inter","Avenir Next","Helvetica Neue",Arial,sans-serif}
+      .title{font-size:112px;font-weight:700;letter-spacing:5px;fill:url(#paper)}
+      .small{font-family:"Inter","Avenir Next",Arial,sans-serif;font-size:18px;letter-spacing:5px}
+      .micro{font-family:"Inter","Avenir Next",Arial,sans-serif;font-size:13px;letter-spacing:3px}
+      .body{font-family:"Songti SC","Noto Serif CJK SC",serif;font-size:24px;letter-spacing:3px}
+    </style>
+  </defs>
+  <rect width="1024" height="1536" fill="url(#bg)"/>
+  <rect x="14" y="14" width="996" height="1508" fill="none" stroke="#d8b27a" stroke-opacity=".44"/>
+  <path d="M36 36 H178 M846 36 H988 M36 1500 H178 M846 1500 H988" stroke="#d8b27a" stroke-opacity=".58"/>
+  <path d="M512 30 v64 M512 1442 v64" stroke="#d8b27a" stroke-opacity=".25"/>
+  <circle cx="512" cy="74" r="24" fill="none" stroke="#d8b27a" stroke-opacity=".55"/>
+  <text x="52" y="86" class="small" fill="#f1d7a2">ZERO 2076</text>
+  <text x="790" y="86" class="small" fill="#f1d7a2" text-anchor="end">IMAGE STOCK</text>
+  <text x="52" y="126" class="micro" fill="#d8b27a" opacity=".76">PERSONAL ARCHIVE · MEMORIAL SERIES</text>
+
+  <g transform="translate(52 170)">
+    <text x="0" y="0" class="title serif">文字版式库存</text>
+    <text x="0" y="164" class="small" fill="#d8b27a">IMAGE STOCK · 2026-05-02</text>
+    <text x="0" y="228" class="body" fill="#e8dcc7" opacity=".9">让标题、编号和正文成为视觉资产</text>
+  </g>
+
+  <g opacity=".9">
+    
+      <g transform="translate(0 22)">
+        <rect x="90" y="785" width="840" height="410" rx="18" fill="rgba(255,255,255,0.035)" stroke="#d8b27a" stroke-opacity=".35"/>
+        <rect x="140" y="842" width="250" height="310" rx="10" fill="#08111b" stroke="#d8b27a" stroke-opacity=".55"/>
+        <text x="166" y="890" class="small" fill="#f1d7a2">CONTACT SHEET</text>
+        <rect x="166" y="922" width="48" height="30" rx="3" fill="url(#thumb0)" stroke="#d8b27a" stroke-opacity=".28"/>
+<rect x="232" y="922" width="48" height="30" rx="3" fill="url(#thumb1)" stroke="#d8b27a" stroke-opacity=".28"/>
+<rect x="298" y="922" width="48" height="30" rx="3" fill="url(#thumb2)" stroke="#d8b27a" stroke-opacity=".28"/>
+<rect x="166" y="964" width="48" height="30" rx="3" fill="url(#thumb3)" stroke="#d8b27a" stroke-opacity=".28"/>
+<rect x="232" y="964" width="48" height="30" rx="3" fill="url(#thumb0)" stroke="#d8b27a" stroke-opacity=".28"/>
+<rect x="298" y="964" width="48" height="30" rx="3" fill="url(#thumb1)" stroke="#d8b27a" stroke-opacity=".28"/>
+<rect x="166" y="1006" width="48" height="30" rx="3" fill="url(#thumb2)" stroke="#d8b27a" stroke-opacity=".28"/>
+<rect x="232" y="1006" width="48" height="30" rx="3" fill="url(#thumb3)" stroke="#d8b27a" stroke-opacity=".28"/>
+<rect x="298" y="1006" width="48" height="30" rx="3" fill="url(#thumb0)" stroke="#d8b27a" stroke-opacity=".28"/>
+<rect x="166" y="1048" width="48" height="30" rx="3" fill="url(#thumb1)" stroke="#d8b27a" stroke-opacity=".28"/>
+<rect x="232" y="1048" width="48" height="30" rx="3" fill="url(#thumb2)" stroke="#d8b27a" stroke-opacity=".28"/>
+<rect x="298" y="1048" width="48" height="30" rx="3" fill="url(#thumb3)" stroke="#d8b27a" stroke-opacity=".28"/>
+<rect x="166" y="1090" width="48" height="30" rx="3" fill="url(#thumb0)" stroke="#d8b27a" stroke-opacity=".28"/>
+<rect x="232" y="1090" width="48" height="30" rx="3" fill="url(#thumb1)" stroke="#d8b27a" stroke-opacity=".28"/>
+<rect x="298" y="1090" width="48" height="30" rx="3" fill="url(#thumb2)" stroke="#d8b27a" stroke-opacity=".28"/>
+        <rect x="440" y="835" width="175" height="288" rx="8" fill="rgba(255,255,255,0.055)" stroke="#76c8e8" stroke-opacity=".45"/>
+        <rect x="642" y="835" width="175" height="288" rx="8" fill="rgba(255,255,255,0.055)" stroke="#d8b27a" stroke-opacity=".42"/>
+        <rect x="682" y="886" width="96" height="140" rx="5" fill="#0f1b25" stroke="#d8b27a" stroke-opacity=".5"/>
+        <path d="M476 1020 H582 M476 1048 H570 M476 1076 H548" stroke="#d8b27a" stroke-opacity=".52"/>
+        
+      <g opacity="0.72">
+        <rect x="566" y="460" width="92" height="112" rx="8" fill="rgba(255,255,255,0.045)" stroke="#d8b27a" stroke-opacity=".45"/>
+        <path d="M578 540 C596 498, 621 588, 646 494" fill="none" stroke="#76c8e8" stroke-opacity=".52"/>
+        <circle cx="600" cy="502" r="12" fill="#76c8e8" opacity=".18"/>
+        <path d="M580 552 H644" stroke="#d8b27a" stroke-opacity=".45"/>
+      </g>
+
+      <g opacity="0.72">
+        <rect x="682" y="460" width="92" height="112" rx="8" fill="rgba(255,255,255,0.045)" stroke="#d8b27a" stroke-opacity=".45"/>
+        <path d="M694 540 C712 498, 737 588, 762 494" fill="none" stroke="#76c8e8" stroke-opacity=".52"/>
+        <circle cx="716" cy="502" r="16" fill="#76c8e8" opacity=".18"/>
+        <path d="M696 552 H760" stroke="#d8b27a" stroke-opacity=".45"/>
+      </g>
+
+      <g opacity="0.72">
+        <rect x="798" y="460" width="92" height="112" rx="8" fill="rgba(255,255,255,0.045)" stroke="#d8b27a" stroke-opacity=".45"/>
+        <path d="M810 540 C828 498, 853 588, 878 494" fill="none" stroke="#76c8e8" stroke-opacity=".52"/>
+        <circle cx="832" cy="502" r="12" fill="#76c8e8" opacity=".18"/>
+        <path d="M812 552 H876" stroke="#d8b27a" stroke-opacity=".45"/>
+      </g>
+
+      <g opacity="0.6499999999999999">
+        <rect x="566" y="590" width="92" height="112" rx="8" fill="rgba(255,255,255,0.045)" stroke="#d8b27a" stroke-opacity=".45"/>
+        <path d="M578 670 C596 628, 621 718, 646 624" fill="none" stroke="#76c8e8" stroke-opacity=".52"/>
+        <circle cx="600" cy="632" r="16" fill="#76c8e8" opacity=".18"/>
+        <path d="M580 682 H644" stroke="#d8b27a" stroke-opacity=".45"/>
+      </g>
+
+      <g opacity="0.6499999999999999">
+        <rect x="682" y="590" width="92" height="112" rx="8" fill="rgba(255,255,255,0.045)" stroke="#d8b27a" stroke-opacity=".45"/>
+        <path d="M694 670 C712 628, 737 718, 762 624" fill="none" stroke="#76c8e8" stroke-opacity=".52"/>
+        <circle cx="716" cy="632" r="12" fill="#76c8e8" opacity=".18"/>
+        <path d="M696 682 H760" stroke="#d8b27a" stroke-opacity=".45"/>
+      </g>
+
+      <g opacity="0.6499999999999999">
+        <rect x="798" y="590" width="92" height="112" rx="8" fill="rgba(255,255,255,0.045)" stroke="#d8b27a" stroke-opacity=".45"/>
+        <path d="M810 670 C828 628, 853 718, 878 624" fill="none" stroke="#76c8e8" stroke-opacity=".52"/>
+        <circle cx="832" cy="632" r="16" fill="#76c8e8" opacity=".18"/>
+        <path d="M812 682 H876" stroke="#d8b27a" stroke-opacity=".45"/>
+      </g>
+      </g>
+  </g>
+
+  <g transform="translate(52 1262)">
+    <rect x="0" y="0" width="920" height="168" rx="18" fill="rgba(0,0,0,.28)" stroke="#d8b27a" stroke-opacity=".5"/>
+    <path d="M305 24 V144 M622 24 V144" stroke="#d8b27a" stroke-opacity=".36"/>
+    <text x="32" y="48" class="micro" fill="#f1d7a2">TODAY'S NOTE</text>
+    <text x="32" y="88" class="body" fill="#e8dcc7" opacity=".86">一组纪念册版式样张，展示大标题、期号</text>
+<text x="32" y="115" class="body" fill="#e8dcc7" opacity=".86">、日期、摘要、标签和正文的网格关系。</text>
+    <text x="340" y="48" class="micro" fill="#f1d7a2">STATUS</text>
+    <text x="340" y="96" class="body" fill="#d8b27a">可做海报</text>
+    <text x="660" y="48" class="micro" fill="#f1d7a2">CARD</text>
+    <text x="660" y="98" class="small" fill="#d8b27a">NO.020</text>
+  </g>
+
+  <text x="52" y="1486" class="micro" fill="#d8b27a" opacity=".72">© ZERO 2076</text>
+  <text x="512" y="1486" class="micro" fill="#d8b27a" opacity=".72" text-anchor="middle">BUILDING THE LONG-TERM FUTURE</text>
+  <text x="972" y="1486" class="micro" fill="#d8b27a" opacity=".72" text-anchor="end">MEMORIAL CARD</text>
+</svg>

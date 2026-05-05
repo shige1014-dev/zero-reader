@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1536" viewBox="0 0 1024 1536" role="img" aria-labelledby="title desc">
+  <title id="title">城市鲸</title>
+  <desc id="desc">一头由光和半透明组织构成的巨鲸背负微型城市，在星海和云层之间缓慢游动，壮丽而温柔。</desc>
+  <defs>
+    <radialGradient id="bg" cx="72%" cy="34%" r="78%">
+      <stop offset="0" stop-color="#24153c"/>
+      <stop offset=".48" stop-color="#111632"/>
+      <stop offset="1" stop-color="#050614"/>
+    </radialGradient>
+    <linearGradient id="paper" x1="0" x2="1">
+      <stop offset="0" stop-color="#e8dcc7"/>
+      <stop offset=".58" stop-color="#bfa985"/>
+      <stop offset="1" stop-color="#6b5840"/>
+    </linearGradient>
+    <linearGradient id="cityGlow" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#95d8ff" stop-opacity=".34"/>
+      <stop offset=".55" stop-color="#e2bd84" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity=".04"/>
+    </linearGradient>
+    <radialGradient id="dreamOrb" cx="48%" cy="45%" r="60%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".82"/>
+      <stop offset=".38" stop-color="#95d8ff" stop-opacity=".55"/>
+      <stop offset=".72" stop-color="#a98bff" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="crystal" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".52"/>
+      <stop offset=".45" stop-color="#95d8ff" stop-opacity=".34"/>
+      <stop offset="1" stop-color="#a98bff" stop-opacity=".3"/>
+    </linearGradient>
+    
+    <linearGradient id="thumb0" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#111632"/>
+      <stop offset=".62" stop-color="#95d8ff" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#050614"/>
+    </linearGradient>
+
+    <linearGradient id="thumb1" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#24153c"/>
+      <stop offset=".62" stop-color="#e2bd84" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#050614"/>
+    </linearGradient>
+
+    <linearGradient id="thumb2" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#111632"/>
+      <stop offset=".62" stop-color="#95d8ff" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#050614"/>
+    </linearGradient>
+
+    <linearGradient id="thumb3" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#24153c"/>
+      <stop offset=".62" stop-color="#e2bd84" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#050614"/>
+    </linearGradient>
+    <filter id="softGlow"><feGaussianBlur stdDeviation="9" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <style>
+      .serif{font-family:"Songti SC","Noto Serif CJK SC","STSong",serif}
+      .sans{font-family:"Inter","Avenir Next","Helvetica Neue",Arial,sans-serif}
+      .title{font-size:112px;font-weight:700;letter-spacing:5px;fill:url(#paper)}
+      .small{font-family:"Inter","Avenir Next",Arial,sans-serif;font-size:18px;letter-spacing:5px}
+      .micro{font-family:"Inter","Avenir Next",Arial,sans-serif;font-size:13px;letter-spacing:3px}
+      .body{font-family:"Songti SC","Noto Serif CJK SC",serif;font-size:24px;letter-spacing:3px}
+    </style>
+  </defs>
+  <rect width="1024" height="1536" fill="url(#bg)"/>
+  <rect x="14" y="14" width="996" height="1508" fill="none" stroke="#e2bd84" stroke-opacity=".44"/>
+  <path d="M36 36 H178 M846 36 H988 M36 1500 H178 M846 1500 H988" stroke="#e2bd84" stroke-opacity=".58"/>
+  <path d="M512 30 v64 M512 1442 v64" stroke="#e2bd84" stroke-opacity=".25"/>
+  <circle cx="512" cy="74" r="24" fill="none" stroke="#e2bd84" stroke-opacity=".55"/>
+  <text x="52" y="86" class="small" fill="#ffe1a6">ZERO 2076</text>
+  <text x="790" y="86" class="small" fill="#ffe1a6" text-anchor="end">WILD IMAGINATION</text>
+  <text x="52" y="126" class="micro" fill="#e2bd84" opacity=".76">PERSONAL ARCHIVE · MEMORIAL SERIES</text>
+
+  <g transform="translate(52 170)">
+    <text x="0" y="0" class="title serif">城市鲸</text>
+    <text x="0" y="164" class="small" fill="#e2bd84">WILD IMAGINATION · 2026-05-02</text>
+    <text x="0" y="228" class="body" fill="#f0e4d0" opacity=".9">一座城市在巨兽背上缓慢迁徙</text>
+  </g>
+
+  <g opacity=".9">
+    
+    <g opacity=".92">
+      <circle cx="760" cy="360" r="118" fill="url(#dreamOrb)" opacity=".72"/>
+      <circle cx="805" cy="332" r="54" fill="none" stroke="#ffe1a6" stroke-opacity=".45"/>
+      <path d="M130 1040 C250 842, 450 820, 560 650 C672 476, 780 492, 944 338" fill="none" stroke="#95d8ff" stroke-width="8" stroke-opacity=".55"/>
+      <path d="M116 1056 C280 906, 456 900, 612 770 C738 665, 832 552, 948 462" fill="none" stroke="#e2bd84" stroke-width="2" stroke-opacity=".62"/>
+      <path d="M470 560 C642 408, 874 420, 940 548 C860 648, 655 685, 492 612 C432 680, 372 682, 325 620 C378 622, 430 596, 470 560 Z" fill="url(#crystal)" stroke="#95d8ff" stroke-opacity=".78"/>
+             <circle cx="846" cy="535" r="7" fill="#ffe1a6"/>
+      <g transform="translate(150 785)">
+        <rect x="0" y="0" width="250" height="280" rx="130" fill="rgba(255,255,255,.04)" stroke="#e2bd84" stroke-opacity=".5"/>
+        <path d="M55 220 C88 120, 148 118, 196 52" fill="none" stroke="#95d8ff" stroke-opacity=".56"/>
+        <path d="M70 184 C116 164, 132 104, 178 88" fill="none" stroke="#a98bff" stroke-opacity=".54"/>
+      </g>
+      <circle cx="70" cy="110" r="1.5" fill="#ffe1a6" opacity="0.24"/>
+<circle cx="153" cy="237" r="2.5" fill="#95d8ff" opacity="0.32999999999999996"/>
+<circle cx="236" cy="364" r="3.5" fill="#95d8ff" opacity="0.42"/>
+<circle cx="319" cy="491" r="4.5" fill="#ffe1a6" opacity="0.51"/>
+<circle cx="402" cy="618" r="1.5" fill="#95d8ff" opacity="0.6"/>
+<circle cx="485" cy="745" r="2.5" fill="#95d8ff" opacity="0.24"/>
+<circle cx="568" cy="872" r="3.5" fill="#ffe1a6" opacity="0.32999999999999996"/>
+<circle cx="651" cy="999" r="4.5" fill="#95d8ff" opacity="0.42"/>
+<circle cx="734" cy="1126" r="1.5" fill="#95d8ff" opacity="0.51"/>
+<circle cx="817" cy="233" r="2.5" fill="#ffe1a6" opacity="0.6"/>
+<circle cx="900" cy="360" r="3.5" fill="#95d8ff" opacity="0.24"/>
+<circle cx="103" cy="487" r="4.5" fill="#95d8ff" opacity="0.32999999999999996"/>
+<circle cx="186" cy="614" r="1.5" fill="#ffe1a6" opacity="0.42"/>
+<circle cx="269" cy="741" r="2.5" fill="#95d8ff" opacity="0.51"/>
+<circle cx="352" cy="868" r="3.5" fill="#95d8ff" opacity="0.6"/>
+<circle cx="435" cy="995" r="4.5" fill="#ffe1a6" opacity="0.24"/>
+<circle cx="518" cy="1122" r="1.5" fill="#95d8ff" opacity="0.32999999999999996"/>
+<circle cx="601" cy="229" r="2.5" fill="#95d8ff" opacity="0.42"/>
+<circle cx="684" cy="356" r="3.5" fill="#ffe1a6" opacity="0.51"/>
+<circle cx="767" cy="483" r="4.5" fill="#95d8ff" opacity="0.6"/>
+<circle cx="850" cy="610" r="1.5" fill="#95d8ff" opacity="0.24"/>
+<circle cx="933" cy="737" r="2.5" fill="#ffe1a6" opacity="0.32999999999999996"/>
+<circle cx="136" cy="864" r="3.5" fill="#95d8ff" opacity="0.42"/>
+<circle cx="219" cy="991" r="4.5" fill="#95d8ff" opacity="0.51"/>
+<circle cx="302" cy="1118" r="1.5" fill="#ffe1a6" opacity="0.6"/>
+<circle cx="385" cy="225" r="2.5" fill="#95d8ff" opacity="0.24"/>
+<circle cx="468" cy="352" r="3.5" fill="#95d8ff" opacity="0.32999999999999996"/>
+<circle cx="551" cy="479" r="4.5" fill="#ffe1a6" opacity="0.42"/>
+<circle cx="634" cy="606" r="1.5" fill="#95d8ff" opacity="0.51"/>
+<circle cx="717" cy="733" r="2.5" fill="#95d8ff" opacity="0.6"/>
+<circle cx="800" cy="860" r="3.5" fill="#ffe1a6" opacity="0.24"/>
+<circle cx="883" cy="987" r="4.5" fill="#95d8ff" opacity="0.32999999999999996"/>
+<circle cx="86" cy="1114" r="1.5" fill="#95d8ff" opacity="0.42"/>
+<circle cx="169" cy="221" r="2.5" fill="#ffe1a6" opacity="0.51"/>
+<circle cx="252" cy="348" r="3.5" fill="#95d8ff" opacity="0.6"/>
+<circle cx="335" cy="475" r="4.5" fill="#95d8ff" opacity="0.24"/>
+<circle cx="418" cy="602" r="1.5" fill="#ffe1a6" opacity="0.32999999999999996"/>
+<circle cx="501" cy="729" r="2.5" fill="#95d8ff" opacity="0.42"/>
+    </g>
+  </g>
+
+  <g transform="translate(52 1262)">
+    <rect x="0" y="0" width="920" height="168" rx="18" fill="rgba(0,0,0,.28)" stroke="#e2bd84" stroke-opacity=".5"/>
+    <path d="M305 24 V144 M622 24 V144" stroke="#e2bd84" stroke-opacity=".36"/>
+    <text x="32" y="48" class="micro" fill="#ffe1a6">TODAY'S NOTE</text>
+    <text x="32" y="88" class="body" fill="#f0e4d0" opacity=".86">一头由光和半透明组织构成的巨鲸背负微</text>
+<text x="32" y="115" class="body" fill="#f0e4d0" opacity=".86">型城市，在星海和云层之间缓慢游动，壮</text>
+<text x="32" y="142" class="body" fill="#f0e4d0" opacity=".86">丽而温柔。</text>
+    <text x="340" y="48" class="micro" fill="#ffe1a6">STATUS</text>
+    <text x="340" y="96" class="body" fill="#e2bd84">可做海报</text>
+    <text x="660" y="48" class="micro" fill="#ffe1a6">CARD</text>
+    <text x="660" y="98" class="small" fill="#e2bd84">NO.035</text>
+  </g>
+
+  <text x="52" y="1486" class="micro" fill="#e2bd84" opacity=".72">© ZERO 2076</text>
+  <text x="512" y="1486" class="micro" fill="#e2bd84" opacity=".72" text-anchor="middle">BUILDING THE LONG-TERM FUTURE</text>
+  <text x="972" y="1486" class="micro" fill="#e2bd84" opacity=".72" text-anchor="end">MEMORIAL CARD</text>
+</svg>

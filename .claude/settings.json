@@ -59,8 +59,7 @@
       {
         "hooks": [
           {
-            "command": "node \"$CLAUDE_PROJECT_DIR/.wolf/hooks/session-start.js\"",
-            "timeout": 5,
+            "command": "bd prime",
             "type": "command"
           }
         ],
@@ -69,7 +68,8 @@
       {
         "hooks": [
           {
-            "command": "bd prime",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.wolf/hooks/session-start.js\"",
+            "timeout": 5,
             "type": "command"
           }
         ],

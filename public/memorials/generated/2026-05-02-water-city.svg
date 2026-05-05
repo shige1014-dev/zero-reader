@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1536" viewBox="0 0 1024 1536" role="img" aria-labelledby="title desc">
+  <title id="title">水上城市边缘</title>
+  <desc id="desc">未来水边城市边缘，可浮动住宅、湿地缓冲带、公共栈道和能源设施组合成气候适应社区。</desc>
+  <defs>
+    <radialGradient id="bg" cx="62%" cy="34%" r="78%">
+      <stop offset="0" stop-color="#111f2a"/>
+      <stop offset=".48" stop-color="#0a1724"/>
+      <stop offset="1" stop-color="#050912"/>
+    </radialGradient>
+    <linearGradient id="paper" x1="0" x2="1">
+      <stop offset="0" stop-color="#e8dcc7"/>
+      <stop offset=".58" stop-color="#bfa985"/>
+      <stop offset="1" stop-color="#6b5840"/>
+    </linearGradient>
+    <linearGradient id="cityGlow" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#76c8e8" stop-opacity=".34"/>
+      <stop offset=".55" stop-color="#d8b27a" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity=".04"/>
+    </linearGradient>
+    <radialGradient id="dreamOrb" cx="48%" cy="45%" r="60%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".82"/>
+      <stop offset=".38" stop-color="#76c8e8" stop-opacity=".55"/>
+      <stop offset=".72" stop-color="#d8b27a" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="crystal" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".52"/>
+      <stop offset=".45" stop-color="#76c8e8" stop-opacity=".34"/>
+      <stop offset="1" stop-color="#d8b27a" stop-opacity=".3"/>
+    </linearGradient>
+    
+    <linearGradient id="thumb0" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0a1724"/>
+      <stop offset=".62" stop-color="#76c8e8" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#050912"/>
+    </linearGradient>
+
+    <linearGradient id="thumb1" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#111f2a"/>
+      <stop offset=".62" stop-color="#d8b27a" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#050912"/>
+    </linearGradient>
+
+    <linearGradient id="thumb2" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0a1724"/>
+      <stop offset=".62" stop-color="#76c8e8" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#050912"/>
+    </linearGradient>
+
+    <linearGradient id="thumb3" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#111f2a"/>
+      <stop offset=".62" stop-color="#d8b27a" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#050912"/>
+    </linearGradient>
+    <filter id="softGlow"><feGaussianBlur stdDeviation="9" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <style>
+      .serif{font-family:"Songti SC","Noto Serif CJK SC","STSong",serif}
+      .sans{font-family:"Inter","Avenir Next","Helvetica Neue",Arial,sans-serif}
+      .title{font-size:112px;font-weight:700;letter-spacing:5px;fill:url(#paper)}
+      .small{font-family:"Inter","Avenir Next",Arial,sans-serif;font-size:18px;letter-spacing:5px}
+      .micro{font-family:"Inter","Avenir Next",Arial,sans-serif;font-size:13px;letter-spacing:3px}
+      .body{font-family:"Songti SC","Noto Serif CJK SC",serif;font-size:24px;letter-spacing:3px}
+    </style>
+  </defs>
+  <rect width="1024" height="1536" fill="url(#bg)"/>
+  <rect x="14" y="14" width="996" height="1508" fill="none" stroke="#d8b27a" stroke-opacity=".44"/>
+  <path d="M36 36 H178 M846 36 H988 M36 1500 H178 M846 1500 H988" stroke="#d8b27a" stroke-opacity=".58"/>
+  <path d="M512 30 v64 M512 1442 v64" stroke="#d8b27a" stroke-opacity=".25"/>
+  <circle cx="512" cy="74" r="24" fill="none" stroke="#d8b27a" stroke-opacity=".55"/>
+  <text x="52" y="86" class="small" fill="#f1d7a2">ZERO 2076</text>
+  <text x="790" y="86" class="small" fill="#f1d7a2" text-anchor="end">FUTURE WORLD</text>
+  <text x="52" y="126" class="micro" fill="#d8b27a" opacity=".76">PERSONAL ARCHIVE · MEMORIAL SERIES</text>
+
+  <g transform="translate(52 170)">
+    <text x="0" y="0" class="title serif">水上城市边缘</text>
+    <text x="0" y="164" class="small" fill="#d8b27a">FUTURE WORLD · 2026-05-02</text>
+    <text x="0" y="228" class="body" fill="#e8dcc7" opacity=".9">气候适应改变居住边界</text>
+  </g>
+
+  <g opacity=".9">
+    
+      <g transform="translate(0 18)">
+        <path d="M82 1010 C210 840, 315 860, 430 710 C560 540, 668 640, 925 435 L925 1190 L82 1190 Z" fill="url(#cityGlow)" opacity=".8"/>
+        <g stroke="#d8b27a" stroke-opacity=".45" fill="rgba(255,255,255,0.05)">
+          <rect x="130" y="850" width="92" height="245"/>
+          <rect x="246" y="768" width="78" height="327"/>
+          <rect x="350" y="690" width="118" height="405"/>
+          <rect x="520" y="760" width="92" height="335"/>
+          <rect x="654" y="620" width="118" height="475"/>
+          <rect x="806" y="792" width="86" height="303"/>
+        </g>
+        <path d="M95 1040 C285 972, 412 946, 566 990 C690 1025, 792 1004, 930 900" fill="none" stroke="#76c8e8" stroke-width="6" stroke-opacity=".55"/>
+        <path d="M126 1148 H880" stroke="#d8b27a" stroke-opacity=".32"/>
+        <rect x="88" y="660" width="270" height="210" rx="15" fill="rgba(7,20,32,0.62)" stroke="#76c8e8" stroke-opacity=".65"/>
+        <text x="118" y="706" class="small" fill="#f1d7a2">SYSTEMS OVERVIEW</text>
+        <path d="M138 790 C178 730, 218 850, 272 760 C304 708, 326 788, 340 742" fill="none" stroke="#76c8e8" stroke-opacity=".68"/>
+        <rect x="626" y="536" width="286" height="190" rx="15" fill="rgba(7,20,32,0.56)" stroke="#d8b27a" stroke-opacity=".56"/>
+        <path d="M675 654 L730 590 L812 612 L860 572" fill="none" stroke="#d8b27a" stroke-opacity=".62"/>
+      </g>
+  </g>
+
+  <g transform="translate(52 1262)">
+    <rect x="0" y="0" width="920" height="168" rx="18" fill="rgba(0,0,0,.28)" stroke="#d8b27a" stroke-opacity=".5"/>
+    <path d="M305 24 V144 M622 24 V144" stroke="#d8b27a" stroke-opacity=".36"/>
+    <text x="32" y="48" class="micro" fill="#f1d7a2">TODAY'S NOTE</text>
+    <text x="32" y="88" class="body" fill="#e8dcc7" opacity=".86">未来水边城市边缘，可浮动住宅、湿地缓</text>
+<text x="32" y="115" class="body" fill="#e8dcc7" opacity=".86">冲带、公共栈道和能源设施组合成气候适</text>
+<text x="32" y="142" class="body" fill="#e8dcc7" opacity=".86">应社区。</text>
+    <text x="340" y="48" class="micro" fill="#f1d7a2">STATUS</text>
+    <text x="340" y="96" class="body" fill="#d8b27a">可做海报</text>
+    <text x="660" y="48" class="micro" fill="#f1d7a2">CARD</text>
+    <text x="660" y="98" class="small" fill="#d8b27a">NO.030</text>
+  </g>
+
+  <text x="52" y="1486" class="micro" fill="#d8b27a" opacity=".72">© ZERO 2076</text>
+  <text x="512" y="1486" class="micro" fill="#d8b27a" opacity=".72" text-anchor="middle">BUILDING THE LONG-TERM FUTURE</text>
+  <text x="972" y="1486" class="micro" fill="#d8b27a" opacity=".72" text-anchor="end">MEMORIAL CARD</text>
+</svg>

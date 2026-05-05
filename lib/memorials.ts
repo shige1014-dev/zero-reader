@@ -90,12 +90,46 @@ function draftEntry(input: {
   essay: string;
   posterBrief: string;
 }): MemorialEntry {
+  const imageOverrides: Record<string, string> = {
+    "2026-05-02-holdings-first-fill": "/memorials/generated/2026-05-02-holdings-first-fill.png",
+    "2026-05-02-polymarket-gap": "/memorials/generated/2026-05-02-polymarket-gap.png",
+    "2026-05-02-board-health-check": "/memorials/generated/2026-05-02-board-health-check.png",
+    "2026-05-02-weekly-poster-pipeline": "/memorials/generated/2026-05-02-weekly-poster-pipeline.png",
+    "2026-05-02-vault-index": "/memorials/generated/2026-05-02-vault-index.png",
+    "2026-05-02-cleanup-to-commit": "/memorials/generated/2026-05-02-cleanup-to-commit.png",
+    "2026-05-02-composition-archive": "/memorials/generated/2026-05-02-composition-archive.png",
+    "2026-05-02-color-archive": "/memorials/generated/2026-05-02-color-archive.png",
+    "2026-05-02-light-samples": "/memorials/generated/2026-05-02-light-samples.png",
+    "2026-05-02-type-layout": "/memorials/generated/2026-05-02-type-layout.png",
+    "2026-05-02-material-library": "/memorials/generated/2026-05-02-material-library.png",
+    "2026-05-02-cover-candidates": "/memorials/generated/2026-05-02-cover-candidates.png",
+    "2026-05-02-style-review": "/memorials/generated/2026-05-02-style-review.png",
+    "2026-05-02-asset-call-sheet": "/memorials/generated/2026-05-02-asset-call-sheet.png",
+    "2026-05-02-ai-school": "/memorials/generated/2026-05-02-ai-school.png",
+    "2026-05-02-home-studio": "/memorials/generated/2026-05-02-home-studio.png",
+    "2026-05-02-energy-neighborhood": "/memorials/generated/2026-05-02-energy-neighborhood.png",
+    "2026-05-02-robot-street": "/memorials/generated/2026-05-02-robot-street.png",
+    "2026-05-02-civil-interface": "/memorials/generated/2026-05-02-civil-interface.png",
+    "2026-05-02-water-city": "/memorials/generated/2026-05-02-water-city.png",
+    "2026-05-02-time-bank": "/memorials/generated/2026-05-02-time-bank.png",
+    "2026-05-02-world-dashboard": "/memorials/generated/2026-05-02-world-dashboard.png",
+    "2026-05-02-inverted-library": "/memorials/generated/2026-05-02-inverted-library.png",
+    "2026-05-02-liquid-clock": "/memorials/generated/2026-05-02-liquid-clock.png",
+    "2026-05-02-city-whale": "/memorials/generated/2026-05-02-city-whale.png",
+    "2026-05-02-memory-orchard": "/memorials/generated/2026-05-02-memory-orchard.png",
+    "2026-05-02-sky-market": "/memorials/generated/2026-05-02-sky-market.png",
+    "2026-05-02-moon-garden": "/memorials/generated/2026-05-02-moon-garden.png",
+    "2026-05-02-door-ocean": "/memorials/generated/2026-05-02-door-ocean.png",
+    "2026-05-02-star-forge": "/memorials/generated/2026-05-02-star-forge.png"
+  };
+
   return {
     date: input.slug,
     week: "W18",
     collection: input.collection,
     title: input.title,
     theme: input.theme,
+    image: imageOverrides[input.slug] ?? `/memorials/generated/${input.slug}.svg`,
     worklog: [
       `补齐「${input.title}」章节定位。`,
       "先写入文章、历史意义和海报 brief，作为后续生成图片的文字底稿。",
