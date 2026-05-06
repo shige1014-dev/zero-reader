@@ -25,6 +25,8 @@ const ITEMS = [
     icon: "M12 3a9 9 0 1 0 9 9M12 3v9l5 3M12 3a9 9 0 0 1 8.49 6" },
   { href: "/civilization-leap/01-ai-rewrites-os",    label: "文明跃迁", match: (p: string) => p.startsWith("/civilization-leap"),
     icon: "M4 19V5a2 2 0 0 1 2-2h11l3 3v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zM8 8h8M8 12h8M8 16h5" },
+  { href: "/novels",                                 label: "小说",     match: (p: string) => p.startsWith("/novels"),
+    icon: "M4 4h12a4 4 0 0 1 4 4v12H8a4 4 0 0 1-4-4V4zM4 4v16M8 8h8M8 12h8M8 16h5" },
 ];
 
 export function SiteHeader() {
