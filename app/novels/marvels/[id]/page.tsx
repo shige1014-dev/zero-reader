@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import fs from "node:fs";
+import path from "node:path";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MARVEL_STORIES, MARVEL_COVERS, MARVELS_META } from "@/lib/novels/marvels";
@@ -67,6 +69,20 @@ export default function MarvelStoryPage({ params }: { params: { id: string } }) 
             <span>🔮 {s.themeNote}</span>
           </p>
         </header>
+
+        {(() => {
+          const audioPath = `/audio/marvels/${s.id}.mp3`;
+          const localPath = path.join(process.cwd(), "public", audioPath);
+          const hasAudio = fs.existsSync(localPath);
+          return hasAudio ? (
+            <div className="nv-audio">
+              <p className="nv-audio-label">🎙 朗读 · OpenAI TTS · 中文女声 (nova)</p>
+              <audio controls preload="none" src={audioPath}>
+                您的浏览器不支持音频播放
+              </audio>
+            </div>
+          ) : null;
+        })()}
 
         {ext?.pullQuote && (
           <div className="nv-pullquote">
