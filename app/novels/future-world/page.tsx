@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import fs from "node:fs";
+import path from "node:path";
 import Link from "next/link";
 import { FUTURE_WORLD_META, FUTURE_WORLD_CHAPTERS, FUTURE_COVERS } from "@/lib/novels/future-world";
 import "../novels.css";
@@ -27,23 +29,33 @@ export default function FutureWorldIndex() {
         {FUTURE_WORLD_CHAPTERS.map((ch) => {
           const ext = FUTURE_COVERS[ch.id];
           const num = String(ch.number).padStart(2, "0");
+          const audioPath = `/audio/future-world/${ch.id}.mp3`;
+          const hasAudio = fs.existsSync(path.join(process.cwd(), "public", audioPath));
           return (
-            <Link key={ch.id} href={`/novels/future-world/${ch.id}`} className="nv-chapter-card">
-              <div
-                className="nv-chapter-cover"
-                style={{ backgroundImage: ext?.cover ? `url(${ext.cover})` : undefined }}
-              >
-                <span className="nv-chapter-num">CH · {num}</span>
-              </div>
-              <div className="nv-chapter-info">
-                <p className="nv-chapter-sub">{ch.subtitle}</p>
-                <h3>{ch.title}</h3>
-                {ext?.pullQuote && (
-                  <p className="nv-chapter-quote">&ldquo;{ext.pullQuote.slice(0, 60)}…&rdquo;</p>
-                )}
-                <p className="nv-chapter-meta">{ch.protagonist} · ~{ch.wordCount} 字</p>
-              </div>
-            </Link>
+            <article key={ch.id} className="nv-chapter-card">
+              <Link href={`/novels/future-world/${ch.id}`} className="nv-chapter-link">
+                <div
+                  className="nv-chapter-cover"
+                  style={{ backgroundImage: ext?.cover ? `url(${ext.cover})` : undefined }}
+                >
+                  <span className="nv-chapter-num">CH · {num}</span>
+                </div>
+                <div className="nv-chapter-info">
+                  <p className="nv-chapter-sub">{ch.subtitle}</p>
+                  <h3>{ch.title}</h3>
+                  {ext?.pullQuote && (
+                    <p className="nv-chapter-quote">&ldquo;{ext.pullQuote.slice(0, 60)}…&rdquo;</p>
+                  )}
+                  <p className="nv-chapter-meta">{ch.protagonist} · ~{ch.wordCount} 字</p>
+                </div>
+              </Link>
+              {hasAudio && (
+                <div className="nv-chapter-audio">
+                  <span className="nv-chapter-audio-label">🎙 朗读</span>
+                  <audio controls preload="none" src={audioPath} />
+                </div>
+              )}
+            </article>
           );
         })}
       </section>

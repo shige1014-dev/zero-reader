@@ -261,13 +261,40 @@
   border: 1px solid var(--nv-line);
   border-radius: 4px;
   overflow: hidden;
-  text-decoration: none;
-  color: inherit;
   transition: all 0.2s ease;
 }
 .nv-chapter-card:hover {
   border-color: var(--nv-line-strong);
   transform: translateY(-2px);
+}
+.nv-chapter-link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  flex: 1;
+}
+.nv-chapter-audio {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--nv-bg-deep);
+  border-top: 1px solid var(--nv-line);
+}
+.nv-chapter-audio-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--nv-accent);
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+.nv-chapter-audio audio {
+  flex: 1;
+  height: 32px;
+  filter: invert(0.88) hue-rotate(180deg) brightness(1.05);
+  border-radius: 4px;
 }
 .nv-chapter-cover {
   position: relative;
@@ -424,6 +451,33 @@
   letter-spacing: 0.06em;
 }
 .nv-reader-meta span { display: inline-flex; align-items: center; gap: 6px; }
+
+/* Audio player */
+.nv-audio {
+  margin: 32px auto;
+  max-width: 640px;
+  padding: 18px 22px;
+  background: var(--nv-bg-soft);
+  border: 1px solid var(--nv-line-strong);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.nv-audio-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--nv-accent);
+  margin: 0;
+  text-transform: uppercase;
+}
+.nv-audio audio {
+  width: 100%;
+  height: 40px;
+  filter: invert(0.9) hue-rotate(180deg);
+  border-radius: 4px;
+}
 
 /* Pull quote */
 .nv-pullquote {
