@@ -6,7 +6,7 @@ import "./novels.css";
 
 export const metadata: Metadata = {
   title: "ZERO 2076 NOVELS · 小说",
-  description: "未来世界 · 沪川 · 通 (10 章长篇) + 光怪陆离想象馆 (10 篇独立童话)。报刊式阅读, 图文并置。"
+  description: `未来世界 · 沪川 · 通 (${FUTURE_WORLD_META.totalChapters} 章长篇) + 光怪陆离想象馆 (${MARVELS_META.totalStories} 篇独立童话)。报刊式阅读, 图文并置。`
 };
 
 export default function NovelsIndex() {
