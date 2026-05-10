@@ -147,19 +147,13 @@ html{scroll-behavior:smooth}
   box-shadow:0 4px 14px rgba(232,201,122,.18);
 }
 
-/* ━━━ Sticky 双层快跳导航 ━━━ */
+/* ━━━ 双层快跳导航 (不浮动, 跟内容滚) ━━━ */
 .sl-nav-sticky{
-  position:sticky;
-  top:60px;
-  z-index:30;
-  background:rgba(20,17,13,.94);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-  margin:0 -16px 18px;
+  background:rgba(20,17,13,.6);
+  margin:0 0 18px;
   padding:10px 16px;
   border:1px solid rgba(232,201,122,.18);
   border-radius:12px;
-  box-shadow:0 4px 14px rgba(0,0,0,.3);
 }
 .sl-nav-row{
   display:flex;flex-wrap:wrap;align-items:center;gap:5px 6px;
@@ -208,12 +202,9 @@ html{scroll-behavior:smooth}
 .sl-nav-toggle:hover{background:rgba(232,201,122,.16);border-style:solid}
 @media (max-width:640px){
   .sl-nav-sticky{
-    position: sticky;
-    top: 52px;
-    margin: 0 -10px 10px;
-    padding: 4px 6px;
+    margin: 0 0 10px;
+    padding: 6px 8px;
     border-radius: 8px;
-    background: rgba(20, 17, 13, .98);
   }
   .sl-nav-row + .sl-nav-row {
     margin-top: 4px; padding-top: 4px;
