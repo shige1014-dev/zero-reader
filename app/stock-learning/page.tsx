@@ -71,7 +71,7 @@ export default function StockLearningPage() {
                 <p>{category.thesis}</p>
                 <div className="stocklearn-mini-tickers">
                   {items.slice(0, 6).map((item) => (
-                    <span key={item.ticker}>{item.ticker}</span>
+                    <a key={item.ticker} href={`#tk-${item.ticker}`} className="stocklearn-mini-link">{item.ticker}</a>
                   ))}
                 </div>
               </article>
@@ -87,14 +87,14 @@ export default function StockLearningPage() {
         </div>
         <div className="stocklearn-priority-grid">
           {topCandidates.map((item) => (
-            <article key={item.ticker} className={`stocklearn-priority stocklearn-rating-${item.rating.toLowerCase()}`}>
+            <a key={item.ticker} href={`#tk-${item.ticker}`} className={`stocklearn-priority stocklearn-priority-link stocklearn-rating-${item.rating.toLowerCase()}`}>
               <div>
                 <span className="stocklearn-ticker">{item.ticker}</span>
                 <p>{item.nameZh}</p>
               </div>
               <strong>{item.futurePotential}</strong>
               <span>{ratingLabels[item.rating]} · {portfolioRoles[item.portfolioRole]}</span>
-            </article>
+            </a>
           ))}
         </div>
       </section>

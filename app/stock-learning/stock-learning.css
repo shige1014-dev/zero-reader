@@ -110,6 +110,43 @@
   .stocklearn-scenarios em{grid-column:1/-1;text-align:right;padding-top:2px}
 }
 
+/* ━━━ 锚跳偏移 + smooth scroll ━━━ */
+html{scroll-behavior:smooth}
+.stocklearn-card[id^="tk-"], .stocklearn-category[id^="cat-"]{
+  scroll-margin-top:160px;
+}
+
+/* PORTFOLIO MAP mini ticker 跳转 */
+.stocklearn-mini-link{
+  display:inline-block;
+  padding:3px 10px;
+  background:rgba(255,255,255,.02);
+  border:1px solid rgba(232,201,122,.18);
+  border-radius:99px;
+  color:#A89B82;
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;
+  text-decoration:none;
+  transition:all .15s ease;
+  cursor:pointer;
+}
+.stocklearn-mini-link:hover{
+  background:rgba(232,201,122,.14);
+  border-color:#E8C97A;
+  color:#FFD86B;
+  transform:translateY(-1px);
+}
+
+/* HIGH CONVICTION 卡片可点 */
+.stocklearn-priority-link{
+  text-decoration:none;cursor:pointer;
+  transition:all .18s ease;
+  display:inherit;
+}
+.stocklearn-priority-link:hover{
+  transform:translateY(-2px);
+  box-shadow:0 4px 14px rgba(232,201,122,.18);
+}
+
 /* ━━━ Sticky 双层快跳导航 ━━━ */
 .sl-nav-sticky{
   position:sticky;
