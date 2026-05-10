@@ -166,6 +166,15 @@ body {
 }
 .zh-topbar::-webkit-scrollbar{display:none}
 .zh-topbar{padding-left:max(env(safe-area-inset-left), 12px); padding-right:max(env(safe-area-inset-right), 12px);}
+.zh-dot{
+  flex:0 0 auto;
+  width:6px;height:6px;
+  border-radius:50%;
+  margin:0 12px;
+  background:radial-gradient(circle at 35% 35%, #FFE9A8 0%, #FFD86B 50%, #C89060 100%);
+  box-shadow:0 0 8px rgba(255,216,107,.7);
+  align-self:center;
+}
 @media (min-width: 720px){
   .zh-topbar{justify-content:center}
 }
