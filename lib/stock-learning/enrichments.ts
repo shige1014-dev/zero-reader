@@ -280,6 +280,934 @@ const E: StockEnrichment[] = [
       base: { trigger: "稳步扩容", impact: "+30%" },
       bear: { trigger: "GPU 价格战", impact: "-50%" }
     }
+  },
+  {
+    ticker: "AAOI",
+    exchange: "NASDAQ",
+    hq: "美国·加州 圣何塞",
+    founded: 1997,
+    employees: "1K",
+    capTier: "micro",
+    industryTags: ["光模块", "光纤通信", "数据中心互连", "5G基础设施"],
+    ceo: "Jianming Wu",
+    business: "设计并制造高速光电模块和相关产品,主要应用于数据中心、电信网络及云计算基础设施。产品涵盖100G/400G光收发模块、AOC有源光缆、光学芯片等,为超大规模数据中心运营商和设备制造商供应关键光互连组件。",
+    products: ["100G/400G光模块", "有源光缆(AOC)", "光学芯片", "硅光集成模块", "PAM4光芯片"],
+    customers: ["Meta", "Google", "Amazon", "微软", "中国云厂商"],
+    competitors: ["Broadcom", "Marvell Technology", "Intel Altera", "Lumentum", "II-VI Incorporated"],
+    catalysts: ["2024-2025年超大规模数据中心资本支出周期加速", "AI芯片互连带宽需求升级(800G/1.6T模块)", "客户库存去化完成后订单恢复", "高利润产品(硅光/PAM4)出货占比提升"],
+    scenarios: {
+      bull: {
+        trigger: "AI数据中心资本支出超预期+新客户大额订单落地",
+        impact: "+120% 估值变化"
+      },
+      base: {
+        trigger: "行业温和增长,数据中心投资平稳推进",
+        impact: "+25%"
+      },
+      bear: {
+        trigger: "云厂商资本支出大幅缩减或库存继续堆积",
+        impact: "-45%"
+      }
+    }
+  },
+  {
+    ticker: "AXTI",
+    exchange: "NASDAQ",
+    hq: "美国·加州 弗里蒙特",
+    founded: 1986,
+    employees: "0.5K",
+    capTier: "micro",
+    industryTags: ["化合物半导体", "光电子衬底", "GaAs晶片", "集成光学"],
+    ceo: "Morris S. Young",
+    business: "设计和制造化合物半导体衬底,主要产品为砷化镓(GaAs)、砷化铝镓(AlGaAs)和其他III-V族化合物晶片。产品广泛应用于光通信、射频功率放大器、光电子集成电路等领域。以代工和自有品牌模式供应全球客户。",
+    products: ["GaAs晶片", "AlGaAs衬底", "InP晶片", "光电子集成电路基片"],
+    customers: ["Skyworks Solutions", "Broadcom", "Qorvo", "Analog Devices"],
+    competitors: ["Macom Technology", "Transphorm", "Power Integrations", "台湾宏捷科"],
+    catalysts: ["5G射频功率器件需求增长", "光通信芯片升级周期", "新能源汽车功率管理芯片采用", "产能扩张与良率提升"],
+    scenarios: {
+      bull: {
+        trigger: "5G/6G基站部署加速+数据中心光互连需求爆发,公司产能利用率突破85%+",
+        impact: "+120%"
+      },
+      base: {
+        trigger: "行业稳定增长,衬底需求年均增10%,市场份额保持",
+        impact: "+25%"
+      },
+      bear: {
+        trigger: "下游芯片设计产能过剩,客户库存调整,产能利用率跌至50%以下",
+        impact: "-45%"
+      }
+    }
+  },
+  {
+    ticker: "LWLG",
+    exchange: "NASDAQ",
+    hq: "美国·加州 圣地亚哥",
+    founded: 2001,
+    employees: "<1K",
+    capTier: "micro",
+    industryTags: ["聚合物光子", "硅光子芯片", "数据中心光学", "光电集成"],
+    ceo: "Peter Jurica",
+    business: "开发电光调制器(EOM)和相关聚合物光子芯片技术，用于超高速数据传输和光学信号处理。产品基于有机聚合物材料，提供更高集成度和更低功耗的光学解决方案，主要应用于数据中心、AI芯片通信和远程光纤网络。",
+    products: ["聚合物电光调制器(Polymer EOM)", "硅光子集成电路", "光学信号处理芯片"],
+    customers: ["国防承包商", "电信设备制造商", "云计算数据中心运营商"],
+    competitors: ["Broadcom(硅光子)", "Marvell(光学模块)", "Infinera(长距光传输)", "Coherent(光学组件)"],
+    catalysts: ["AI数据中心高速互联需求爆发(2024-2025)", "与Tier-1芯片制造商量产合作签署", "聚合物EOM芯片流片成功和可靠性验证", "防务/政府订单或合同公布"],
+    scenarios: {
+      bull: {
+        trigger: "成功进入NVIDIA/AMD AI芯片光学互联供应链，实现规模量产出货",
+        impact: "+200-300%"
+      },
+      base: {
+        trigger: "稳步推进原型客户验证，保持融资能力，市场教育初见成效",
+        impact: "+30-50%"
+      },
+      bear: {
+        trigger: "硅光子技术快速迭代压低价格，公司融资困难或客户验证失败",
+        impact: "-50-70%"
+      }
+    }
+  },
+  {
+    ticker: "LITE",
+    exchange: "NASDAQ",
+    hq: "美国·加州 圣何塞",
+    founded: 2015,
+    employees: "3.5K",
+    capTier: "large",
+    industryTags: ["光模块", "光通信芯片", "数据中心互联", "AI基础设施"],
+    ceo: "Alan Lowe",
+    business: "设计和制造高速光模块及相关光学芯片，主要用于数据中心、电信网络和超大规模云计算客户的网络互联。产品涵盖 400G/800G 超高速光收发器、硅光芯片和相关集成解决方案，受益于 AI 算力增长驱动的数据中心流量需求。",
+    products: ["硅光收发器模块", "400G/800G 光模块", "相干光学模块", "光芯片组件"],
+    customers: ["Meta", "Google", "AWS", "微软", "电信运营商"],
+    competitors: ["Broadcom", "Coherent Corp", "Infinera", "Marvell Technology"],
+    catalysts: ["2024-2025年 800G 光模块规模商用部署", "AI 数据中心资本支出周期持续强劲", "光硅集成芯片市场份额扩展", "5G/6G 电信网络升级投资"],
+    scenarios: {
+      bull: {
+        trigger: "AI 数据中心需求超预期，主要云厂商争抢 800G 订单，硅光技术成为行业标准",
+        impact: "+45% 估值变化"
+      },
+      base: {
+        trigger: "数据中心景气周期稳定增长，400G/800G 市场逐步铺开，竞争加剧但份额保持",
+        impact: "+15% 估值变化"
+      },
+      bear: {
+        trigger: "云厂商资本开支回缩，Broadcom 等巨头抢占市场，硅光成本优势被侵蚀",
+        impact: "-35% 估值变化"
+      }
+    }
+  },
+  {
+    ticker: "USAR",
+    exchange: "NASDAQ",
+    hq: "美国·德州 休斯顿",
+    founded: 2020,
+    employees: "<1K",
+    capTier: "micro",
+    industryTags: ["稀土元素提炼", "关键矿物加工", "国内供应链", "防守性矿业"],
+    ceo: "Rex Energy (管理团队)",
+    business: "专注于美国本土稀土元素的提炼与加工,以及关键矿物的开采。通过建立国内供应链,减少对中国稀土的依赖,服务国防、新能源电池、风力发电等战略性产业。获得美国政府资金支持与采购保障。",
+    products: ["稀土氧化物", "稀土金属分离物", "磁铁矿精矿", "关键矿物浓缩物"],
+    customers: ["美国国防部", "新能源电池制造商", "风力涡轮机制造商", "稀土磁铁供应链"],
+    competitors: ["MP Materials (MP)", "Lynas Rare Earths (LYC)", "Energy Fuels (UUUU)", "中国稀土集团"],
+    catalysts: ["2025年美国稀土加工产能认证", "国防采购订单签署", "政府供应链补贴落地", "稀土价格上升周期", "供应链多元化政策推进"],
+    scenarios: {
+      bull: {
+        trigger: "美国政府长期稀土采购合同签署 + 稀土价格突破历史高位",
+        impact: "+300%"
+      },
+      base: {
+        trigger: "稳定政府补贴与小额订单,产能利用率50-70%",
+        impact: "+40%"
+      },
+      bear: {
+        trigger: "中国稀土出口放松 + 产能建设延期 + 融资困难",
+        impact: "-60%"
+      }
+    }
+  },
+  {
+    ticker: "UUUU",
+    exchange: "NASDAQ",
+    hq: "美国·科罗拉多州 丹佛",
+    founded: 1987,
+    employees: "0.5K",
+    capTier: "small",
+    industryTags: ["铀矿开采", "稀土元素提炼", "关键矿物供应", "核能燃料"],
+    ceo: "Mark Chalmers",
+    business: "Energy Fuels 是北美最大独立铀生产商，同时开发稀土元素提炼业务。主要通过采矿与浸滤工艺生产铀浓缩物(U3O8)，并在怀俄明州White Mesa运营唯一商业铀磨坊。近年拓展稀土分离产能，满足清洁能源与防卫工业对关键矿物的需求。",
+    products: ["铀浓缩物(U3O8)", "稀土氧化物混合物", "铀磨坊服务(White Mesa)"],
+    customers: ["美国能源部(DOE)", "核电运营商", "防卫承包商", "国际核燃料需求方"],
+    competitors: ["Cameco(加拿大)", "Kazatomprom(哈萨克)", "Sprott Physical Uranium Trust", "Ur-Energy"],
+    catalysts: ["2024-2025年美国铀采购协议签署(DOE战略储备)", "White Mesa稀土分离装置商业化运营", "国际核能复兴推动铀长协需求增长", "关键矿物法案(IRA)补贴与税收优惠落地"],
+    scenarios: {
+      bull: {
+        trigger: "铀价突破$70/磅+DOE签署多年采购协议+稀土分离产能达产",
+        impact: "+150%"
+      },
+      base: {
+        trigger: "铀价稳定$50-65/磅+逐步提升产量+稀土业务初步盈利",
+        impact: "+35%"
+      },
+      bear: {
+        trigger: "铀价跌至$40/磅以下+融资困难+White Mesa装置延期",
+        impact: "-45%"
+      }
+    }
+  },
+  {
+    ticker: "ALB",
+    exchange: "NYSE",
+    hq: "美国·北卡罗来纳州 夏洛特",
+    founded: 1887,
+    employees: "5K",
+    capTier: "large",
+    industryTags: ["锂矿开采", "电池材料", "特种化学品", "关键矿物"],
+    ceo: "Kent Masters",
+    business: "全球最大锂生产商之一，主要开采和精炼锂、钴、溴等关键矿物。通过澳洲Greenbushes和智利Maricunga等矿产资产供应EV电池、储能系统及工业化学品，受益于新能源车电气化浪潮。",
+    products: ["电池级氢氧化锂", "电池级碳酸锂", "钴产品", "溴化学品", "高纯锂盐"],
+    customers: ["特斯拉", "宁德时代", "LG Energy Solution", "宝马", "大众"],
+    competitors: ["Livent", "SQM (智利化工)", "Ganfeng Lithium(赣锋锂业)", "Pilbara Minerals"],
+    catalysts: ["2024-2025年Spodumene精炼产能投产(美国Kemerton扩产)", "美国IRA《通胀削减法案》锂矿补贴政策落地", "Maricunga锂矿2025年投产(日产2万吨)", "EV全球销量突破2000万台(对锂需求拉动)"],
+    scenarios: {
+      bull: {
+        trigger: "锂价维持$500-600/吨、Maricunga按期投产、美国本土化政策补贴、EV渗透率达30%",
+        impact: "+45%"
+      },
+      base: {
+        trigger: "锂价回落$300-400/吨、产能稳步释放、成本控制到位、EV需求平稳增长",
+        impact: "+8%"
+      },
+      bear: {
+        trigger: "锂价崩跌至$150/吨以下、产能过剩、EV销量低于预期、中国低成本竞争加剧",
+        impact: "-35%"
+      }
+    }
+  },
+  {
+    ticker: "MP",
+    exchange: "NYSE",
+    hq: "美国·加州 拉古纳丘陵",
+    founded: 2017,
+    employees: "1K",
+    capTier: "mid",
+    industryTags: ["稀土元素提炼", "关键矿物", "美国本土化", "国防供应链"],
+    ceo: "James Litinsky",
+    business: "运营美国最大稀土矿山芒廷帕斯，提炼分离稀土氧化物及混合稀土产品。专注于为美国防务、清洁能源和高科技制造业供应稀土，减少对中国进口依赖。获得美国政府补助和采购承诺支持。",
+    products: ["稀土氧化物混合物", "分离稀土产品", "稀土金属合金"],
+    customers: ["美国国防部", "特斯拉", "通用汽车", "洛克希德马丁"],
+    competitors: ["Lynas Rare Earths (LYC)", "Energy Fuels (UUUU)", "USA Rare Earth LLC"],
+    catalysts: ["2024年产能扩产至完全商业化运营", "美国政府国防采购合同定单确认", "EV电机供应合同签署（磁铁用稀土）"],
+    scenarios: {
+      bull: {
+        trigger: "产能突破+美国防务订单落地+EV磁铁长期供应协议",
+        impact: "+80%"
+      },
+      base: {
+        trigger: "稳定产能爬坡，政府订单部分兑现，市场需求温和增长",
+        impact: "+15%"
+      },
+      bear: {
+        trigger: "产能延迟、稀土价格暴跌、政府补助削减或合同取消",
+        impact: "-60%"
+      }
+    }
+  },
+  {
+    ticker: "UEC",
+    exchange: "NASDAQ",
+    hq: "美国·德克萨斯州 拉伯克",
+    founded: 2006,
+    employees: "0.3K",
+    capTier: "micro",
+    industryTags: ["铀矿开采", "核燃料供应", "能源转型", "美国本土化"],
+    ceo: "Amir Adnani",
+    business: "专注铀矿勘探与开采的美国本土生产商。通过并购和自有项目在美国西部和中部拥有多个铀矿资产。受益于核电复兴、美国能源独立政策和核武库维护需求增长,致力于成为美国主要铀供应商。",
+    products: ["铀精矿(U3O8)", "铀勘探项目权益", "后端铀处理服务"],
+    customers: ["美国能源部", "电力公司核电站", "核燃料转换商"],
+    competitors: ["Cameco(加拿大)", "Kazatomprom(哈萨克)", "Sprott Physical Uranium Trust", "Denison Mines"],
+    catalysts: ["2025年美国国防部增加铀采购合同", "美国铀浓缩产能提升公告", "核电站运营延期政策通过", "国际铀价突破$100/磅"],
+    scenarios: {
+      bull: {
+        trigger: "美国核能政策加强+铀价突破$100/磅+公司启动商业开采",
+        impact: "+180%"
+      },
+      base: {
+        trigger: "温和核电需求增长+铀价$70-85/磅+部分项目延迟推进",
+        impact: "+35%"
+      },
+      bear: {
+        trigger: "铀价跌至$50以下+融资困难+项目延期+核能政策反转",
+        impact: "-55%"
+      }
+    }
+  },
+  {
+    ticker: "UAMY",
+    exchange: "NASDAQ",
+    hq: "美国·蒙大拿州 Coeur d'Alene",
+    founded: 1971,
+    employees: "<0.5K",
+    capTier: "micro",
+    industryTags: ["critical-minerals", "antimony-production", "precious-metals-mining", "defense-supply-chain"],
+    ceo: "Patrick Highsmith",
+    business: "开采和冶炼锑矿，主要通过位于蒙大拿州的Sunshine矿山生产精炼锑及其他贵金属副产品。锑是美国战略储备矿物，广泛用于阻燃剂、半导体、电池和国防应用。公司产能约3000吨/年，占全球产量3-5%。",
+    products: ["精炼锑锭", "锑氧化物", "贵金属副产品(银、金)", "锑化工产品"],
+    customers: ["化工制造商", "阻燃剂生产商", "防御承包商", "电池制造商"],
+    competitors: ["Glencore(全球最大锑生产商)", "中国锑矿企业", "Teck Resources"],
+    catalysts: ["2024-2025年美国战略储备收购计划启动", "国防工业需求增长驱动(芯片法案关联)", "锑价格上升(当前$6-8/lb)", "新产能扩建宣布"],
+    scenarios: {
+      bull: {
+        trigger: "美国政府战略储备采购启动+锑价升至$10/lb以上+国防订单增加",
+        impact: "+150-200%"
+      },
+      base: {
+        trigger: "稳定锑价$7-8/lb+适度国防需求+产能保持60-70%利用率",
+        impact: "+15-25%"
+      },
+      bear: {
+        trigger: "全球经济衰退+中国出口压低价格至$5/lb以下+产能利用率跌至40%",
+        impact: "-40-60%"
+      }
+    }
+  },
+  {
+    ticker: "SNDK",
+    exchange: "NASDAQ",
+    hq: "美国·加州 圣何塞",
+    founded: 1988,
+    employees: "13K",
+    capTier: "large",
+    industryTags: ["NAND闪存", "固态硬盘(SSD)", "存储芯片", "消费电子存储"],
+    ceo: "Sanjay Mehrotra",
+    business: "全球领先的存储解决方案供应商，主要生产NAND闪存芯片、固态硬盘(SSD)、USB闪存驱动器和存储卡等产品。产品广泛应用于PC、移动设备、数据中心和企业存储领域，通过向OEM厂商和零售渠道销售，掌握存储芯片市场重要份额。",
+    products: ["SSD固态硬盘(Extreme/Ultra系列)", "USB闪存驱动器(Cruzer系列)", "内存卡(microSD)", "NAND闪存芯片", "企业级存储解决方案"],
+    customers: ["Apple", "Dell", "HP", "Lenovo", "三星", "华为"],
+    competitors: ["SK海力士(SK Hynix)", "铠侠(Kioxia)", "美光(Micron)", "英特尔(Intel)", "三星(Samsung)"],
+    catalysts: ["AI服务器存储芯片需求爆发(2024-2025)", "新一代高密度3D NAND工艺量产(2025)", "企业SSD更新周期加速(2024-2025)", "手机存储容量升级推动(2024)", "汽车电子存储需求增长(2024-2025)"],
+    scenarios: {
+      bull: {
+        trigger: "AI数据中心存储需求超预期+NAND芯片涨价周期启动",
+        impact: "+45%"
+      },
+      base: {
+        trigger: "存储芯片供需平衡，PC和手机出货稳定增长",
+        impact: "+12%"
+      },
+      bear: {
+        trigger: "芯片产能过剩导致价格战+消费电子需求萎缩",
+        impact: "-35%"
+      }
+    }
+  },
+  {
+    ticker: "WDC",
+    exchange: "NASDAQ",
+    hq: "美国·加州 圣何塞",
+    founded: 1985,
+    employees: "70K",
+    capTier: "large",
+    industryTags: ["存储芯片", "硬盘驱动器", "固态硬盘", "数据中心", "消费电子"],
+    ceo: "Rick Cloudman",
+    business: "全球领先的存储解决方案供应商，主要产品包括硬盘驱动器(HDD)和固态硬盘(SSD)。服务数据中心、个人计算、消费电子及嵌入式系统等市场，通过OEM、零售及渠道合作伙伴分发。",
+    products: ["WD Blue HDD", "WD Red NAS硬盘", "WD Black游戏硬盘", "WD Blue SSD", "WD Black SN850X NVMe固态硬盘"],
+    customers: ["Dell", "HP", "Seagate代工客户", "云服务商(AWS/Azure/阿里云)", "消费者PC品牌"],
+    competitors: ["Seagate Technology", "Kioxia Holdings", "Samsung Electronics", "SK Hynix", "Micron Technology"],
+    catalysts: ["AI数据中心存储需求爆发带动企业级SSD销量增长", "CXL内存芯片与存储整合方案商业化", "2024-2025年存储芯片价格触底反弹，毛利率恢复"],
+    scenarios: {
+      bull: {
+        trigger: "AI芯片需求驱动数据中心存储容量升级，企业级SSD ASP提升20%+，毛利率回升至35%",
+        impact: "+45%"
+      },
+      base: {
+        trigger: "存储市场温和复苏，PC和服务器出货量稳定增长，毛利率维持25-28%水平",
+        impact: "+8%"
+      },
+      bear: {
+        trigger: "NAND闪存产能过剩导致价格继续下跌，PC周期衰退，云厂商自研存储分流，毛利率跌至18%",
+        impact: "-35%"
+      }
+    }
+  },
+  {
+    ticker: "MRAM",
+    exchange: "NASDAQ",
+    hq: "美国·亚利桑那州 钱德勒市",
+    founded: 1994,
+    employees: "<1K",
+    capTier: "micro",
+    industryTags: ["磁阻随机存取存储器", "非易失性存储芯片", "边缘计算存储", "工业级存储"],
+    ceo: "Sanjeev Aggarwal",
+    business: "专业设计和制造磁阻随机存取存储器(MRAM)芯片，提供非易失性、低功耗、高速存储解决方案。产品广泛应用于工业控制、汽车电子、物联网和航天等对可靠性要求高的领域。",
+    products: ["STT-MRAM存储芯片", "Toggle MRAM存储芯片", "嵌入式MRAM解决方案", "工业级存储模块"],
+    customers: ["恩智浦半导体", "意法半导体", "英特尔", "汽车Tier1供应商"],
+    competitors: ["三星电子(DRAM/NAND)", "美光科技(存储芯片)", "铠侠(NAND闪存)", "Crossbar(ReRAM初创)"],
+    catalysts: ["2024-2025年汽车芯片采购高峰期，MRAM用于ADAS和车身控制", "工业4.0和边缘AI芯片需求增长，低功耗存储需求提升", "与主流芯片设计公司的流片合作达成商用"],
+    scenarios: {
+      bull: {
+        trigger: "汽车电动化推进、工业控制芯片大规模采购、MRAM成为主流存储选项",
+        impact: "+120~150%"
+      },
+      base: {
+        trigger: "稳定供应小批量客户，保持研发投入，市场份额缓慢提升",
+        impact: "+15~25%"
+      },
+      bear: {
+        trigger: "竞争对手推出更优成本方案、客户产品线取消、芯片需求下滑",
+        impact: "-40~60%"
+      }
+    }
+  },
+  {
+    ticker: "ONDS",
+    exchange: "NASDAQ",
+    hq: "美国·加州 圣地亚哥",
+    founded: 2012,
+    employees: "0.1K",
+    capTier: "micro",
+    industryTags: ["无人系统", "工业物联网", "专网通信", "国防科技"],
+    ceo: "Eric Frazier",
+    business: "开发无人驾驶系统和工业级无线网络解决方案,专注于国防、能源、运输等受管制行业。核心产品集成无人车平台与LoRa/5G专网通信技术,为军方及企业客户提供远程操控和自主任务系统。",
+    products: ["OP-5无人车平台", "OP-7无人系统", "LoRa Enterprise网络", "Ondas V2X通信模块", "军用任务控制软件"],
+    customers: ["美国国防部", "美国陆军工程兵团", "能源运营商", "港口物流企业"],
+    competitors: ["Intuitive Machines", "AeroVironment", "Teledyne Technologies", "L3Harris Technologies"],
+    catalysts: ["2025年美国国防采购订单落地或合同公告", "与Tier-1防务承包商建立战略合作伙伴关系", "LoRa无人系统在能源基础设施的商业化部署案例", "融资完成或关键产品认证(FDA/军方)", "国际出口许可获批(ITAR豁免范围扩大)"],
+    scenarios: {
+      bull: {
+        trigger: "获得多年期国防部合同(>$5000万)或战略投资方加入",
+        impact: "+150%"
+      },
+      base: {
+        trigger: "持续小额试点订单,商业化缓慢推进,维持研发节奏",
+        impact: "+25%"
+      },
+      bear: {
+        trigger: "预期国防合同延迟或取消,现金耗尽融资困难,技术无法商用化",
+        impact: "-60%"
+      }
+    }
+  },
+  {
+    ticker: "OSS",
+    exchange: "NASDAQ",
+    hq: "美国·加州 圣地亚哥",
+    founded: 2001,
+    employees: "<0.5K",
+    capTier: "micro",
+    industryTags: ["边缘计算", "AI推理加速", "国防供应链", "GPU集群"],
+    ceo: "Steve Cooper",
+    business: "专注于边缘AI计算硬件与解决方案,主要为国防、政府及企业客户提供高密度GPU服务器和推理加速系统。通过自主设计的散热、互联技术降低边缘部署成本,重点服务美国国防部及情报机构的现地AI应用需求。",
+    products: ["Articia服务器(GPU密度优化)", "边缘AI推理平台", "热管理解决方案", "国防级认证系统"],
+    customers: ["美国国防部", "美国情报机构", "国防承包商(Lockheed、Raytheon等)"],
+    competitors: ["NVIDIA(数据中心GPU)", "Super Micro(国防服务器)", "Jülich Supercomputing Center(欧洲替代方案)"],
+    catalysts: ["2025年国防AI采购预算落地(DoD增加边缘部署拨款)", "与Tier-1防务商达成大额集成合同", "获得新一代国防认证(针对高机密应用)"],
+    scenarios: {
+      bull: {
+        trigger: "国防部宣布边缘AI现代化计划且OSS中标核心供应商角色,季度收入环比+50%+",
+        impact: "+150%"
+      },
+      base: {
+        trigger: "稳定获得防务订单,年收入$20-30M,利润率10-15%",
+        impact: "+25%"
+      },
+      bear: {
+        trigger: "国防预算削减或关键客户转向NVIDIA集成方案,失去主要合同",
+        impact: "-60%"
+      }
+    }
+  },
+  {
+    ticker: "IONQ",
+    exchange: "NASDAQ",
+    hq: "美国·马里兰州 College Park",
+    founded: 2015,
+    employees: "0.2K",
+    capTier: "micro",
+    industryTags: ["离子阱量子计算", "量子硬件", "云量子服务", "企业软件"],
+    ceo: "Peter Chapman",
+    business: "开发离子阱技术量子计算机，通过IonQ Cloud平台提供云端量子计算服务。面向金融风险建模、药物发现、优化问题等领域的企业客户。采用量子即服务(QaaS)模式，与AWS、Azure等云厂商集成，降低用户接入门槛。",
+    products: ["IonQ系列量子处理器（Harmony/Aria）", "IonQ Cloud量子计算平台", "企业量子应用套件"],
+    customers: ["美国国防部", "Hyundai", "Pasqal", "企业云厂商集成客户"],
+    competitors: ["IBM Quantum", "Google Quantum AI", "Rigetti Computing", "D-Wave Systems"],
+    catalysts: ["2024-2025年Aria量子芯片商业化部署", "与主流云厂商扩大集成深度，企业客户增长", "联邦政府量子计算投资加速（CHIPS法案后续资金）", "首个商业化量子优势应用案例落地"],
+    scenarios: {
+      bull: {
+        trigger: "Aria芯片性能超预期，企业客户数快速增长，政府研发订单增加",
+        impact: "+200%"
+      },
+      base: {
+        trigger: "稳步商业化进展，市场接受度提升但增速温和",
+        impact: "+40%"
+      },
+      bear: {
+        trigger: "技术路线遇冷，竞争对手超越，融资枯竭，商业化停滞",
+        impact: "-60%"
+      }
+    }
+  },
+  {
+    ticker: "QBTS",
+    exchange: "NASDAQ",
+    hq: "美国·加拿大·卑诗省·本拿比",
+    founded: 1999,
+    employees: "2K",
+    capTier: "micro",
+    industryTags: ["量子退火", "量子计算", "云量子服务", "优化算法"],
+    ceo: "Jarett Hauen",
+    business: "开发量子退火系统与云平台,通过D-Wave量子计算机解决复杂优化问题。采用订阅+硬件+服务模式,向企业和研究机构提供量子计算资源访问权限。主要收入来自Leap云平台和定制化硬件销售。",
+    products: ["Advantage量子处理器", "Leap量子云平台", "Ocean SDK开发工具", "定制化量子系统"],
+    customers: ["谷歌", "洛克希德马丁", "丰田", "NASA", "金融机构"],
+    competitors: ["IBM量子", "IonQ", "Rigetti Computing", "Google Quantum AI"],
+    catalysts: ["2024-2025年量子优势在金融风险模型中的商业应用验证", "企业客户签署长期Leap平台合同与定制系统订单", "下一代Advantage处理器(更多量子比特、更高相干时间)发布", "与云厂商(AWS/Azure)的量子服务深度集成扩展"],
+    scenarios: {
+      bull: {
+        trigger: "量子退火在制药/金融优化中实现可验证的经济效益,大客户扩大订单量,云平台月活用户翻倍",
+        impact: "+180%"
+      },
+      base: {
+        trigger: "Leap平台用户稳步增长,企业POC项目转化为付费订阅,硬件销售保持个位数增长",
+        impact: "+25%"
+      },
+      bear: {
+        trigger: "量子优势难以在主流应用中验证,资本市场对量子计算热情退温,竞争对手技术路线突破",
+        impact: "-55%"
+      }
+    }
+  },
+  {
+    ticker: "RGTI",
+    exchange: "NASDAQ",
+    hq: "美国·加州 伯克利",
+    founded: 2013,
+    employees: "<1K",
+    capTier: "micro",
+    industryTags: ["超导量子计算", "量子硬件", "混合量子-经典系统", "量子云服务"],
+    ceo: "Chad Rigetti",
+    business: "开发超导量子处理器(QPU)与混合量子-经典计算平台。通过Aspen系列芯片提供云端量子计算服务,目标应用于化学模拟、优化问题求解。与企业/研究机构合作验证量子优势,商业化路径包括云API与芯片授权。",
+    products: ["Aspen-M系列超导量子处理器", "Quantum Cloud Service(量子云平台)", "Forest量子开发框架", "pyQuil量子编程SDK"],
+    customers: ["Google", "美国国防部", "学术研究机构"],
+    competitors: ["IBM Quantum", "IonQ", "D-Wave Systems", "Atom Computing"],
+    catalysts: ["实现量子优势里程碑(特定应用超越经典)", "与大科技公司新增战略合作协议", "融资或成本显著下降,芯片良率改善", "药物发现/材料科学领域实际应用发布"],
+    scenarios: {
+      bull: {
+        trigger: "2025年演示可重现的量子优势案例,或获得大额企业/政府订单",
+        impact: "+150-250%"
+      },
+      base: {
+        trigger: "持续技术迭代,云服务用户稳步增长,但未证明经济可行性",
+        impact: "+20-50%"
+      },
+      bear: {
+        trigger: "技术突破延期,融资困难,竞争者领先,商业化时间表推后3年以上",
+        impact: "-60-80%"
+      }
+    }
+  },
+  {
+    ticker: "FLY",
+    exchange: "NASDAQ",
+    hq: "美国·德克萨斯州·得克萨斯城",
+    founded: 2017,
+    employees: "0.5K",
+    capTier: "micro",
+    industryTags: ["商业航天", "小运载火箭", "轨道级运输"],
+    ceo: "Bill Weber",
+    business: "开发和运营小运载火箭系统,主要产品为Alpha火箭,用于将小卫星送入轨道。商业模式聚焦于为商业、政府和国防客户提供低成本、可靠的轨道运输服务。产品开发自主,争取降低每次发射成本并提高发射频率。",
+    products: ["Alpha火箭", "Beta火箭(开发中)", "轨道级运输服务"],
+    customers: ["美国太空军", "DARPA", "商业卫星运营商"],
+    competitors: ["Rocket Lab", "Virgin Orbit", "Relativity Space", "Axiom Space"],
+    catalysts: ["Alpha火箭首次商业发射成功并实现定期发射(2024-2025)", "获得DARPA或太空军长期合同订单", "Beta火箭(中运载)通过首飞里程碑"],
+    scenarios: {
+      bull: {
+        trigger: "Alpha实现月度发射频率+获得政府长期采购合同,验证商业模式可扩展性",
+        impact: "+200%"
+      },
+      base: {
+        trigger: "Alpha稳定运营年发射8-12次,小幅获得商业订单,融资继续支撑运营",
+        impact: "+30%"
+      },
+      bear: {
+        trigger: "发射失败导致合同违约,融资困难,竞争对手抢占市场份额",
+        impact: "-60%"
+      }
+    }
+  },
+  {
+    ticker: "SATL",
+    exchange: "NASDAQ",
+    hq: "美国·阿根廷·布宜诺斯艾利斯(总部) / 美国·佛罗里达州·迈阿密(美国运营)",
+    founded: 2010,
+    employees: "<1K",
+    capTier: "micro",
+    industryTags: ["卫星遥感", "地球观测", "高分辨率影像", "商业航天", "地理信息"],
+    ceo: "Emiliano Kargieman",
+    business: "提供高分辨率卫星遥感影像和地球观测数据服务。自主研发低轨卫星星座,采集0.5米级分辨率图像,为农业、国防、保险、基础设施等行业客户提供实时地表数据分析。通过订阅和数据销售模式变现。",
+    products: ["Aleph卫星星座", "高分辨率影像数据库", "地球观测API服务", "变化检测算法"],
+    customers: ["阿根廷农业部", "保险公司", "国防机构", "基础设施运营商"],
+    competitors: ["Maxar Technologies", "Planet Labs", "BlackSky", "Capella Space"],
+    catalysts: ["Aleph星座达到12颗卫星(2024-2025年扩产)", "获得美国政府合同或地理空间情报机构订单", "实现月度经常性收入(MRR)达到显著增长里程碑"],
+    scenarios: {
+      bull: {
+        trigger: "星座快速部署+美国防务合同+利润率改善",
+        impact: "+250%"
+      },
+      base: {
+        trigger: "稳定扩展卫星群+商业客户缓慢积累+融资维持运营",
+        impact: "+30%"
+      },
+      bear: {
+        trigger: "融资困难+卫星发射延迟+商业模式验证失败",
+        impact: "-60%"
+      }
+    }
+  },
+  {
+    ticker: "PL",
+    exchange: "NYSE",
+    hq: "美国·加州 旧金山",
+    founded: 2010,
+    employees: "1K",
+    capTier: "small",
+    industryTags: ["卫星遥感", "地球成像", "商业航天", "地理空间情报"],
+    ceo: "Will Marshall",
+    business: "运营全球最大的地球成像卫星星座(Dove卫星群),提供日更新的全球高分辨率卫星影像数据。客户包括政府部门、农业、保险、城市规划等行业,通过订阅和API模式获取收入,核心竞争力是小卫星规模化部署和数据处理能力。",
+    products: ["Dove卫星星座", "Planet Explorer平台", "SkySat高分卫星", "Tasking服务"],
+    customers: ["美国国务院", "美国农业部", "Maxar", "农业科技公司"],
+    competitors: ["Maxar Technologies", "Rocket Lab", "BlackSky", "Spire Global"],
+    catalysts: ["2024-2025年Dove星座扩展至200+颗卫星,覆盖能力提升", "与美国国防部/情报机构长期合同续签或扩大", "AI处理算法商业化,提高数据变现能力", "国际政府客户拓展(欧洲、日本等地)", "与农业遥感大客户签署多年大合同"],
+    scenarios: {
+      bull: {
+        trigger: "获得5年期政府大单(>1亿美元),AI赋能数据产品商业化加速,星座运营成本/颗卫星大幅下降",
+        impact: "+150%"
+      },
+      base: {
+        trigger: "稳定运营200+颗卫星,政府/商业收入均衡增长,毛利率维持40-50%",
+        impact: "+30%"
+      },
+      bear: {
+        trigger: "政府预算削减导致合同流失,商业客户增速放缓,卫星故障率高企,与Maxar竞争恶化",
+        impact: "-40%"
+      }
+    }
+  },
+  {
+    ticker: "ASTS",
+    exchange: "NASDAQ",
+    hq: "美国·德克萨斯州 中城",
+    founded: 2017,
+    employees: "0.5K",
+    capTier: "micro",
+    industryTags: ["卫星通信", "太空基础设施", "移动网络", "轨道卫星"],
+    ceo: "Abel Avellan",
+    business: "开发低地轨道卫星群为全球提供直连蜂窝服务。通过部署蓝鸟卫星网络，无需改造手机即可在海洋、偏远地区和灾区实现4G/5G覆盖。采用与运营商的合作协议模式获取频谱和收入分成。",
+    products: ["Bluebird卫星群", "轨道卫星蜂窝网络", "地面网关系统"],
+    customers: ["全球电信运营商", "移动网络运营商", "政府应急部门"],
+    competitors: ["Starlink（SpaceX）", "OneWeb（英国卫星）", "Kuiper（亚马逊）", "Iridium Communications"],
+    catalysts: ["2024年下半年首颗蓝鸟卫星轨道部署", "2025年首个商业运营协议签署（电信运营商合作）", "2025-2026年卫星批量发射实现网络覆盖", "FCC频谱许可证最终批准"],
+    scenarios: {
+      bull: {
+        trigger: "成功部署50+卫星、与主要运营商签署长期合同、实现全球覆盖商业化",
+        impact: "+400%"
+      },
+      base: {
+        trigger: "按计划推进卫星发射、获得2-3个区域运营商合作协议",
+        impact: "+80%"
+      },
+      bear: {
+        trigger: "卫星发射延期、融资困难、关键运营商合作失败、频谱审批受阻",
+        impact: "-70%"
+      }
+    }
+  },
+  {
+    ticker: "AMPX",
+    exchange: "NASDAQ",
+    hq: "美国·加州 圣何塞",
+    founded: 2010,
+    employees: "0.5K",
+    capTier: "micro",
+    industryTags: ["硅纳米线电池", "高能量密度电池", "电动汽车电池", "储能电池"],
+    ceo: "Kang Sun",
+    business: "专注硅纳米线阳极技术的下一代锂电池研发与制造。采用专利硅纳米线结构替代传统石墨阳极，实现更高能量密度（350+ Wh/kg）和更长续航。产品主要用于电动汽车和储能系统，致力于从中试阶段向商业化生产规模突破。",
+    products: ["硅纳米线高能量密度电池", "电动汽车定制电池模组", "储能级电池系统"],
+    customers: ["潜在客户包含主流车企OEM", "能源储存运营商"],
+    competitors: ["Contemporary Amperex Technology (CATL)", "LG Energy Solution", "Panasonic", "QuantumScape"],
+    catalysts: ["2025年年中商业化产线投产与首批量产交付", "与Tier-1汽车制造商的采购协议签署", "硅纳米线电池成本下降突破与毛利率转正"],
+    scenarios: {
+      bull: {
+        trigger: "成功量产、获得主流车企大单、能量密度领先竞争对手显著",
+        impact: "+250%"
+      },
+      base: {
+        trigger: "量产延迟、产能爬坡缓慢、市场接受度低于预期",
+        impact: "+15%"
+      },
+      bear: {
+        trigger: "技术瓶颈无法突破、成本控制失败、融资困难",
+        impact: "-70%"
+      }
+    }
+  },
+  {
+    ticker: "TE",
+    exchange: "NASDAQ",
+    hq: "美国·德克萨斯州 休斯顿",
+    founded: 2022,
+    employees: "<1K",
+    capTier: "micro",
+    industryTags: ["太阳能制造", "清洁能源硬件", "光伏电池", "能源转型"],
+    ceo: "Tulsi Tanti",
+    business: "专注高效太阳能电池与组件制造，采用先进工艺提升转换效率。通过垂直整合供应链降低成本，瞄准美国本土化生产需求。产品主要面向大型公用事业、商业屋顶及工业用电场景。",
+    products: ["高效单晶硅太阳能电池", "光伏组件系统", "储能集成解决方案"],
+    customers: ["美国公用事业公司", "商业太阳能开发商", "工业园区"],
+    competitors: ["First Solar", "Sunpower", "Hanwha Q Cells", "Canadian Solar"],
+    catalysts: ["美国《通胀削减法案》IRA 制造税抵补 扩大覆盖范围（2024-2025）", "德克萨斯州工厂产能达到 GW 级别量产（2024 下半年）", "获得大型公用事业长期采购协议签约（2025）"],
+    scenarios: {
+      bull: {
+        trigger: "本土产能快速扩张+IRA 补贴叠加+美国光伏装机量年增30%+获得3GW+订单",
+        impact: "+280%"
+      },
+      base: {
+        trigger: "稳定产能增长+行业竞争加剧+平均毛利率维持12-15%",
+        impact: "+45%"
+      },
+      bear: {
+        trigger: "中国进口组件价格战+产能爬坡受阻+IRA 政策调整+现金流枯竭",
+        impact: "-65%"
+      }
+    }
+  },
+  {
+    ticker: "EOSE",
+    exchange: "NASDAQ",
+    hq: "美国·宾夕法尼亚州 费城",
+    founded: 2008,
+    employees: "<1K",
+    capTier: "micro",
+    industryTags: ["长时储能", "铁-空气电池", "可再生能源整合", "微电网"],
+    ceo: "Joe Mastrangelo",
+    business: "开发并商业化长时储能(LDES)系统,采用专有铁-空气电池技术。产品可储存电能4-12小时,主要应用于电网级储能、可再生能源时间转移和微电网。目标为降低储能成本,支持可再生能源的大规模部署。",
+    products: ["Iron Air Battery (铁-空气电池)", "长时储能系统 (LDES)", "微电网储能解决方案"],
+    customers: ["美国电力公司", "独立电力生产商(IPPs)", "工业用户"],
+    competitors: ["Form Energy (铁-空气电池竞品)", "Hydrostor (压缩空气储能)", "Eos Energy Devices (液流电池)", "Fluence (多技术储能)"],
+    catalysts: ["首个商业规模项目部署交付(2024-2025)", "国际订单签署或试点扩展", "铁-空气电池技术验证与成本下降证明", "IRA投资税收抵免资格确认"],
+    scenarios: {
+      bull: {
+        trigger: "铁-空气电池成本突破至$100/kWh以下,获得主要电力公司订单,技术验证成功",
+        impact: "+150%"
+      },
+      base: {
+        trigger: "小规模部署进行,成本缓步下降,获得政府补贴支持,竞争加剧但占有小份额",
+        impact: "+20%"
+      },
+      bear: {
+        trigger: "技术延迟、成本目标未达、融资困难、竞争对手(Form Energy)抢占市场",
+        impact: "-60%"
+      }
+    }
+  },
+  {
+    ticker: "BE",
+    exchange: "NYSE",
+    hq: "美国·加州 圣何塞",
+    founded: 2002,
+    employees: "3K",
+    capTier: "small",
+    industryTags: ["固体氧化物燃料电池", "分布式发电", "清洁能源硬件"],
+    ceo: "KR Sridhar",
+    business: "设计、制造和销售固体氧化物燃料电池(SOFC)系统，用于数据中心、工业园区及电信基站的分布式电力生成。通过燃料电池将天然气/氢气直接转化为电力和热能，效率高达60%+，无需电网升级改造。",
+    products: ["Bloom Box燃料电池模块", "能源服务器系统", "现场发电解决方案"],
+    customers: ["Apple数据中心", "Walmart配送中心", "Google园区"],
+    competitors: ["Plug Power(质子交换膜燃料电池)", "Ballard Power", "FuelCell Energy"],
+    catalysts: ["2024-2025年数据中心订单加速(AI算力需求)", "欧洲绿色协议补贴政策落地", "氢能基础设施完善降低运营成本"],
+    scenarios: {
+      bull: {
+        trigger: "数据中心燃料电池部署加速，年度订单超500套；政府补贴政策扩大到工业领域",
+        impact: "+120%"
+      },
+      base: {
+        trigger: "稳定增长，年增长15-20%；部分合同延期但最终落地",
+        impact: "+25%"
+      },
+      bear: {
+        trigger: "市场对氢成本担忧加重；主要客户采购减少；技术可靠性问题",
+        impact: "-45%"
+      }
+    }
+  },
+  {
+    ticker: "IREN",
+    exchange: "NASDAQ",
+    hq: "美国·弗吉尼亚州 阿什本",
+    founded: 2007,
+    employees: "1K",
+    capTier: "large",
+    industryTags: ["AI数据中心", "超大规模基础设施", "GPU托管", "云计算"],
+    ceo: "Jeff Themlitz",
+    business: "运营超大规模数据中心设施，专注于高性能计算和AI工作负载。提供GPU集群托管、定制化基础设施租赁和AI模型训练服务。客户包括云厂商、大型科技公司及AI初创企业，通过长期合同获得稳定收入。",
+    products: ["GPU集群托管服务", "定制化数据中心设施", "AI训练基础设施租赁", "电力管理解决方案"],
+    customers: ["Meta", "OpenAI", "微软", "Anthropic"],
+    competitors: ["CoreWeave", "Lambda Labs", "Crusoe Energy", "Equinix", "Digital Realty"],
+    catalysts: ["2024年新数据中心扩建完成，GPU容量+30-50%", "2024-2025年长期合同续签/升级，显示需求稳定性", "能源效率改善达成，PUE指标业界领先"],
+    scenarios: {
+      bull: {
+        trigger: "AI芯片需求爆发，大模型训练外包率提升，IREN满座率>95%且价格上涨10%+",
+        impact: "+40-60%"
+      },
+      base: {
+        trigger: "AI基础设施需求持续增长，IREN利用率80-90%，稳定扩建执行",
+        impact: "+15-25%"
+      },
+      bear: {
+        trigger: "大客户减少租赁、芯片制程突破降低算力成本、云厂商自建数据中心投入减少",
+        impact: "-30-45%"
+      }
+    }
+  },
+  {
+    ticker: "CIFR",
+    exchange: "NASDAQ",
+    hq: "美国·德克萨斯州·达拉斯",
+    founded: 2017,
+    employees: "0.5K",
+    capTier: "micro",
+    industryTags: ["GPU算力出租", "AI推理加速", "高性能计算", "数据中心基础设施"],
+    ceo: "未公开确认",
+    business: "Cipher Digital 通过优化GPU集群与液冷技术，为AI训练和推理工作负载提供按需高性能计算资源。主要采用自建或租赁数据中心模式，向AI公司、云服务商提供算力即服务（CaaS），竞争对手相对较少的AI专用基础设施提供商。",
+    products: ["GPU集群管理平台", "液冷HPC服务", "按需算力租赁服务", "AI推理加速方案"],
+    customers: ["AI创业企业", "云计算厂商", "企业级AI应用客户"],
+    competitors: ["Lambda Labs", "Crusoe Energy", "CoreWeave", "Paperspace"],
+    catalysts: ["2024年底/2025年H1 大客户签约公告", "单位成本（$/FLOPS）改进公告", "扩建数据中心容量交付", "与大模型公司战略合作落地"],
+    scenarios: {
+      bull: {
+        trigger: "获得大型AI公司长期算力购买协议（>$10M ARR）+ 毛利率突破40%",
+        impact: "+120%"
+      },
+      base: {
+        trigger: "稳定增长，年化ARR达$20-30M，毛利率30-35%，保持融资能力",
+        impact: "+35%"
+      },
+      bear: {
+        trigger: "大客户流失、GPU供应链波动导致成本上升、现金流枯竭需融资稀释",
+        impact: "-55%"
+      }
+    }
+  },
+  {
+    ticker: "SERV",
+    exchange: "NASDAQ",
+    hq: "美国·加州 洛杉矶",
+    founded: 2014,
+    employees: "<0.5K",
+    capTier: "micro",
+    industryTags: ["autonomous delivery robots", "last-mile logistics", "food delivery automation"],
+    ceo: "Ali Kashani",
+    business: "开发和部署自主配送机器人，主要在城市环境进行食品和商品最后一公里配送。通过与Uber Eats等平台合作，机器人在人行道上自主行驶，降低配送成本并提高效率。商业模式为机器人部署费用和按单计费。",
+    products: ["Serve Delivery Robot", "自主配送平台软件"],
+    customers: ["Uber Eats", "本地餐饮商户", "零售商户"],
+    competitors: ["Waymo Via", "Amazon Scout", "Nuro", "Refraction AI", "Starship Technologies"],
+    catalysts: ["2024-2025年Uber Eats订单量扩展至更多城市", "获得FDA或城市监管部门扩大部署许可", "融资或战略投资者入股"],
+    scenarios: {
+      bull: {
+        trigger: "Uber Eats大规模扩展机器人配送至50+城市，年订单增长3倍以上",
+        impact: "+150%"
+      },
+      base: {
+        trigger: "稳步在5-8个主要城市运营，单位经济学持续改善",
+        impact: "+20%"
+      },
+      bear: {
+        trigger: "监管限制或技术可靠性问题导致部署停滞，竞争加剧压低价格",
+        impact: "-60%"
+      }
+    }
+  },
+  {
+    ticker: "SYM",
+    exchange: "NASDAQ",
+    hq: "美国·密歇根州 普利茅斯",
+    founded: 2012,
+    employees: "0.5K",
+    capTier: "micro",
+    industryTags: ["warehouse automation", "robotic systems", "supply chain robotics", "AI-driven logistics"],
+    ceo: "Rick Faulkner",
+    business: "开发模块化仓储自动化机器人和软件系统，为零售、电商、快递等企业提供智能化物流解决方案。通过AI视觉和机器学习优化货物分拣、搬运、打包流程，降低人工成本并提升效率。",
+    products: ["Symbotic Autonomous Mobile Robots (AMR)", "Warehouse Management Software", "Vision-based sorting systems", "Robotic picking arms"],
+    customers: ["ABF Freight", "J.B. Hunt", "Walmart supply chain"],
+    competitors: ["KUKA", "ABB Robotics", "Fanuc", "Intra Logistics"],
+    catalysts: ["与大型零售商签署新的自动化合同（2024-2025）", "AI视觉系统升级版本发布提升分拣精度", "国际市场扩展（欧洲/亚洲代理协议）"],
+    scenarios: {
+      bull: {
+        trigger: "沃尔玛/亚马逊等巨头大规模采购，订单簿突破1亿美元",
+        impact: "+180%"
+      },
+      base: {
+        trigger: "稳定获得2-3家中型物流客户，年营收增长30-40%",
+        impact: "+45%"
+      },
+      bear: {
+        trigger: "技术集成困难延缓交付，主要客户项目取消或推迟",
+        impact: "-65%"
+      }
+    }
+  },
+  {
+    ticker: "NVTS",
+    exchange: "NASDAQ",
+    hq: "美国·加州 圣何塞",
+    founded: 2014,
+    employees: "0.5K",
+    capTier: "micro",
+    industryTags: ["氮化镓芯片", "功率半导体", "快速充电", "电源管理"],
+    ceo: "Gene Sheridan",
+    business: "专业设计和销售氮化镓(GaN)功率半导体芯片,替代传统硅基方案。产品应用于快速充电器、适配器、消费电子电源管理。采用Fabless模式,芯片设计自主,制造委外台积电等代工厂。",
+    products: ["GaNFast功率IC芯片", "USB-C PD快速充电方案", "AC-DC电源管理芯片", "评估板和参考设计"],
+    customers: ["联想", "戴尔", "小米", "充电器ODM厂商"],
+    competitors: ["德州仪器(TI)", "英飞凌(Infineon)", "Power Integrations", "安森美(onsemi)"],
+    catalysts: ["2024-2025年笔记本电脑快充渗透率提升,GaN方案成标配", "AI服务器电源需求增长,高功率GaN芯片订单放量", "手机、iPad等消费电子100W+快充普及周期"],
+    scenarios: {
+      bull: {
+        trigger: "笔记本/手机快充标配化,服务器电源采用率提升至20%+",
+        impact: "+120%"
+      },
+      base: {
+        trigger: "消费电子稳定采购,市场份额维持5-8%,行业增速15-20%",
+        impact: "+25%"
+      },
+      bear: {
+        trigger: "大厂自研GaN芯片,台积电产能挤压,竞争对手降价倾销",
+        impact: "-55%"
+      }
+    }
+  },
+  {
+    ticker: "AMBQ",
+    exchange: "NASDAQ",
+    hq: "美国·加州 圣荷西",
+    founded: 2006,
+    employees: "0.3K",
+    capTier: "micro",
+    industryTags: ["超低功耗芯片", "物联网处理器", "可穿戴设备芯片", "语音识别SoC"],
+    ceo: "Hannes Smarason",
+    business: "设计并销售超低功耗微控制器和SoC芯片,主要用于物联网、可穿戴、智能家居等终端设备。采用Arm内核+专有低功耗架构,销售模式为芯片授权和设计服务。产品功耗优势显著,续航时间长达数年(AAA电池供电)。",
+    products: ["Apollo4 Max微控制器", "Apollo3 Blue MCU", "Audios语音识别SoC", "低功耗蓝牙芯片"],
+    customers: ["Google", "Amazon", "Sony", "小米"],
+    competitors: ["Nordic Semiconductor", "NXP Semiconductor", "STMicroelectronics", "Texas Instruments"],
+    catalysts: ["2024-2025年AI耳机/可穿戴设备爆发期,语音识别芯片需求增长", "与大型IoT平台客户的量产订单确认(出货突破100万片+)", "企业级和工业IoT应用拓展,ASP提升"],
+    scenarios: {
+      bull: {
+        trigger: "AI可穿戴设备销量超预期+大客户产品搭载AMBQ芯片量产",
+        impact: "+120%"
+      },
+      base: {
+        trigger: "IoT市场稳步增长,逐步扩大市场份额",
+        impact: "+25%"
+      },
+      bear: {
+        trigger: "大客户流失,主要产品被更低成本竞品替代,利润率压缩",
+        impact: "-45%"
+      }
+    }
   }
 ];
 
