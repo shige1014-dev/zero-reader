@@ -155,10 +155,7 @@ body { padding-top: 56px; }
   position: relative;
   overflow: hidden;
   border: 1px solid var(--border);
-  background:
-    radial-gradient(circle at 92% -10%, hsla(42, 54%, 64%, .1), transparent 34%),
-    linear-gradient(180deg, rgba(26, 22, 18, .88), rgba(15, 13, 10, .78));
-  box-shadow: 0 24px 80px rgba(0, 0, 0, .22);
+  background: linear-gradient(180deg, rgba(26, 22, 18, .88), rgba(15, 13, 10, .78));
 }
 .hero-main::before,
 .hero-panel::before,
@@ -405,18 +402,12 @@ body { padding-top: 56px; }
 
 .intel {
   border: 1px solid var(--border);
-  background:
-    radial-gradient(circle at 92% -10%, hsla(42, 54%, 64%, .1), transparent 34%),
-    linear-gradient(180deg, rgba(26, 22, 18, .88), rgba(15, 13, 10, .78));
-  box-shadow: 0 24px 80px rgba(0, 0, 0, .22);
+  background: linear-gradient(180deg, rgba(26, 22, 18, .88), rgba(15, 13, 10, .78));
 }
 
 .figures {
   border: 1px solid var(--border);
-  background:
-    radial-gradient(circle at 92% -10%, hsla(42, 54%, 64%, .1), transparent 34%),
-    linear-gradient(180deg, rgba(26, 22, 18, .88), rgba(15, 13, 10, .78));
-  box-shadow: 0 24px 80px rgba(0, 0, 0, .22);
+  background: linear-gradient(180deg, rgba(26, 22, 18, .88), rgba(15, 13, 10, .78));
 }
 
 .figure-grid {
@@ -1796,6 +1787,21 @@ footer {
 }
 @media (max-width: 720px) {
   .cc-pair { grid-template-columns: 1fr; }
+  .stops-grid { gap: 10px; margin-top: 10px; }
+  .stop-card { padding: 12px 14px; border-radius: 10px; }
+  .stop-head { gap: 8px; margin-bottom: 8px; }
+  .stop-icon { font-size: 22px; }
+  .stop-head h3 { font-size: 14px; }
+  .stop-tag { font-size: 8px; padding: 2px 7px; }
+  .stop-rule { padding: 7px 9px; margin-bottom: 8px; }
+  .stop-rule b { font-size: 9px; }
+  .stop-rule span { font-size: 12px; }
+  .stop-grid2 { grid-template-columns: 1fr; gap: 6px; margin-bottom: 8px; }
+  .stop-grid2 > div { padding: 6px 8px; }
+  .stop-grid2 span { font-size: 8px; }
+  .stop-grid2 p { font-size: 11px; line-height: 1.5; }
+  .stop-advice { padding: 8px 10px; font-size: 11.5px; }
+  .stop-svg { margin: 2px 0 8px; padding: 4px 2px; }
 }
 
 /* mini SVG 视觉 */
