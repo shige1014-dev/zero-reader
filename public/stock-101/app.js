@@ -232,6 +232,70 @@ const FRAMEWORK = [
   },
 ];
 
+// ─── 12 K 线经典形态 ─────────────────────
+const KLINE_PATTERNS = [
+  { name:"锤子线", group:"反转", color:"#7AE8A0",
+    use:"下跌后底部反转信号. 长下影 + 小实体 + 短上影",
+    teach:"出现在下跌末端 = 多头入场强信号; 上涨中无意义",
+    confirm:"次日放量阳线收高 = 反转确认; 阴线吞没 = 失败",
+    svg:`<svg viewBox="0 0 100 80"><line x1="50" y1="10" x2="50" y2="35" stroke="#A89B82" stroke-width="2"/><rect x="42" y="20" width="16" height="18" fill="#7AE8A0"/><line x1="50" y1="38" x2="50" y2="72" stroke="#A89B82" stroke-width="2"/></svg>` },
+  { name:"倒锤子", group:"反转", color:"#7AE8A0",
+    use:"下跌末端反转预警, 比锤子弱",
+    teach:"上方试探失败但买盘介入",
+    confirm:"次日放量阳线突破上影最高",
+    svg:`<svg viewBox="0 0 100 80"><line x1="50" y1="8" x2="50" y2="45" stroke="#A89B82" stroke-width="2"/><rect x="42" y="45" width="16" height="22" fill="#7AE8A0"/></svg>` },
+  { name:"多头吞没", group:"反转", color:"#7AE8A0",
+    use:"下跌末端最强反转信号",
+    teach:"前一根阴 + 后一根大阳完全吞没前阴实体",
+    confirm:"吞没量越大越有效, 第三日确认上涨",
+    svg:`<svg viewBox="0 0 100 80"><line x1="30" y1="25" x2="30" y2="55" stroke="#FF6B6B" stroke-width="2"/><rect x="24" y="30" width="12" height="20" fill="#FF6B6B"/><line x1="70" y1="15" x2="70" y2="65" stroke="#7AE8A0" stroke-width="2"/><rect x="62" y="20" width="16" height="40" fill="#7AE8A0"/></svg>` },
+  { name:"空头吞没", group:"反转", color:"#FF6B6B",
+    use:"高位反转 / 见顶强信号",
+    teach:"前一根阳 + 后一根大阴完全吞没",
+    confirm:"高位放量 + 跌破前低确认",
+    svg:`<svg viewBox="0 0 100 80"><line x1="30" y1="25" x2="30" y2="55" stroke="#7AE8A0" stroke-width="2"/><rect x="24" y="30" width="12" height="20" fill="#7AE8A0"/><line x1="70" y1="15" x2="70" y2="65" stroke="#FF6B6B" stroke-width="2"/><rect x="62" y="20" width="16" height="40" fill="#FF6B6B"/></svg>` },
+  { name:"启明星", group:"反转", color:"#7AE8A0",
+    use:"底部反转 3 根组合",
+    teach:"大阴 → 小实体 → 大阳, 跨越前阴中点",
+    confirm:"第三根阳线收过第一根中线 = 强反转",
+    svg:`<svg viewBox="0 0 130 80"><line x1="20" y1="10" x2="20" y2="60" stroke="#FF6B6B" stroke-width="2"/><rect x="14" y="15" width="12" height="40" fill="#FF6B6B"/><line x1="65" y1="55" x2="65" y2="68" stroke="#A89B82" stroke-width="2"/><rect x="59" y="60" width="12" height="6" fill="#A89B82"/><line x1="110" y1="20" x2="110" y2="60" stroke="#7AE8A0" stroke-width="2"/><rect x="104" y="25" width="12" height="30" fill="#7AE8A0"/></svg>` },
+  { name:"黄昏星", group:"反转", color:"#FF6B6B",
+    use:"顶部反转 3 根组合",
+    teach:"大阳 → 小实体 → 大阴, 跨越前阳中点",
+    confirm:"第三根阴跌破第一根中线 = 见顶",
+    svg:`<svg viewBox="0 0 130 80"><line x1="20" y1="20" x2="20" y2="65" stroke="#7AE8A0" stroke-width="2"/><rect x="14" y="25" width="12" height="35" fill="#7AE8A0"/><line x1="65" y1="14" x2="65" y2="22" stroke="#A89B82" stroke-width="2"/><rect x="59" y="14" width="12" height="6" fill="#A89B82"/><line x1="110" y1="20" x2="110" y2="65" stroke="#FF6B6B" stroke-width="2"/><rect x="104" y="30" width="12" height="30" fill="#FF6B6B"/></svg>` },
+  { name:"十字星", group:"中性", color:"#FFD86B",
+    use:"多空平衡 / 犹豫信号",
+    teach:"开 = 收, 实体几乎无, 上下影",
+    confirm:"趋势末端 = 转折; 震荡中无意义",
+    svg:`<svg viewBox="0 0 100 80"><line x1="50" y1="10" x2="50" y2="70" stroke="#FFD86B" stroke-width="2"/><line x1="36" y1="40" x2="64" y2="40" stroke="#FFD86B" stroke-width="3"/></svg>` },
+  { name:"红三兵", group:"持续", color:"#7AE8A0",
+    use:"强势上涨持续信号",
+    teach:"3 根阳线连续, 收盘新高",
+    confirm:"整理后突破 + 红三兵 = 主升浪",
+    svg:`<svg viewBox="0 0 130 80"><line x1="20" y1="50" x2="20" y2="68" stroke="#7AE8A0" stroke-width="2"/><rect x="14" y="55" width="12" height="11" fill="#7AE8A0"/><line x1="65" y1="35" x2="65" y2="60" stroke="#7AE8A0" stroke-width="2"/><rect x="59" y="40" width="12" height="18" fill="#7AE8A0"/><line x1="110" y1="20" x2="110" y2="50" stroke="#7AE8A0" stroke-width="2"/><rect x="104" y="25" width="12" height="22" fill="#7AE8A0"/></svg>` },
+  { name:"三只乌鸦", group:"持续", color:"#FF6B6B",
+    use:"强势下跌持续信号",
+    teach:"3 根阴线连续, 收盘新低",
+    confirm:"高位 + 放量 + 跌破均线 = 趋势确立",
+    svg:`<svg viewBox="0 0 130 80"><line x1="20" y1="10" x2="20" y2="35" stroke="#FF6B6B" stroke-width="2"/><rect x="14" y="15" width="12" height="18" fill="#FF6B6B"/><line x1="65" y1="20" x2="65" y2="48" stroke="#FF6B6B" stroke-width="2"/><rect x="59" y="25" width="12" height="20" fill="#FF6B6B"/><line x1="110" y1="35" x2="110" y2="65" stroke="#FF6B6B" stroke-width="2"/><rect x="104" y="40" width="12" height="22" fill="#FF6B6B"/></svg>` },
+  { name:"头肩顶", group:"反转", color:"#FF6B6B",
+    use:"中长期顶部反转 (周线最准)",
+    teach:"左肩 → 头 (新高) → 右肩 (低于头). 跌破颈线 = 反转",
+    confirm:"颈线跌破 + 量放大",
+    svg:`<svg viewBox="0 0 200 80"><path d="M10 60 L40 40 L60 50 L90 20 L120 50 L150 35 L180 60" fill="none" stroke="#FF6B6B" stroke-width="2"/><line x1="40" y1="50" x2="150" y2="50" stroke="#FFD86B" stroke-width="1.5" stroke-dasharray="4 3"/></svg>` },
+  { name:"头肩底", group:"反转", color:"#7AE8A0",
+    use:"中长期底部反转",
+    teach:"左肩 → 头 (新低) → 右肩 (高于头). 突破颈线 = 反转",
+    confirm:"突破 + 放量, 回踩颈线不破",
+    svg:`<svg viewBox="0 0 200 80"><path d="M10 20 L40 40 L60 30 L90 60 L120 30 L150 45 L180 20" fill="none" stroke="#7AE8A0" stroke-width="2"/><line x1="40" y1="30" x2="150" y2="30" stroke="#FFD86B" stroke-width="1.5" stroke-dasharray="4 3"/></svg>` },
+  { name:"跳空缺口", group:"持续", color:"#FFD86B",
+    use:"突破/中继/衰竭三种含义",
+    teach:"突破 = 主升初; 中继 = 主升中; 衰竭 = 末端",
+    confirm:"突破缺口 + 量放大不回补 = 强趋势",
+    svg:`<svg viewBox="0 0 100 80"><line x1="30" y1="40" x2="30" y2="70" stroke="#7AE8A0" stroke-width="2"/><rect x="24" y="45" width="12" height="22" fill="#7AE8A0"/><line x1="70" y1="10" x2="70" y2="35" stroke="#7AE8A0" stroke-width="2"/><rect x="64" y="14" width="12" height="18" fill="#7AE8A0"/><line x1="42" y1="38" x2="60" y2="38" stroke="#FFD86B" stroke-width="1.5" stroke-dasharray="3 2"/></svg>` },
+];
+
 // ─── K 线 6 对比 (好走势 vs 坏走势) ─────────────────────
 const CHART_PAIRS = [
   {
@@ -424,6 +488,85 @@ const CASES = [
       ["对照",    "Berkshire 同期 +50%, 价值股反弹"],
     ],
     lesson: "买故事股的最大风险不是公司不好, 是估值过热 + 加息周期错配; ETF 也会被打出原形",
+  },
+  // ───── 经典扩充 +6 ─────
+  {
+    tk: "META", cn: "Meta (FB)", year: "2003-2025", glyph: "📘", color: "#3a8aa6",
+    headline: "$23 IPO → ATH $382 → $88 → 复活到 $700",
+    teach: "广告业务韧性 + 第二曲线失败 + AI 重启",
+    story: "2012 IPO $38, 第一天破发. 2013-2021 广告业务 + IG 收购 + 移动端转型, 涨 10 倍.\n\n2021-22 押注元宇宙 ($30B 烧钱) + 广告增长放缓 + 隐私监管, 跌 76% 到 $88.\n\n2023 Llama AI + Reality Labs 缩支 + 广告复苏, 反弹 8 倍到 $700.",
+    points: [
+      ["业务", "广告 (98%) + Reality Labs + Llama AI"],
+      ["护城河", "FB+IG+WA 全球 30 亿用户网络效应"],
+      ["关键指标", "DAU / ARPU / 广告 CPM / RL 烧钱率"],
+      ["教训", "好公司也会因第二曲线失败被痛打"],
+    ],
+    lesson: "便宜不便宜要看护城河 + 主业, 不要被第二曲线烧钱吓到 (扎克最便宜时期反而是最好买点)",
+  },
+  {
+    tk: "NFLX", cn: "网飞", year: "2002-2025", glyph: "🎬", color: "#FF6B6B",
+    headline: "$1 → $700 → $162 → $1100 (流媒体战争)",
+    teach: "护城河切换 + 价格战 + 用户增长拐点",
+    story: "2002 DVD 邮寄 IPO. 2007 转流媒体, 2013 Netflix Originals (House of Cards), 2017-21 涨到 $700.\n\n2022 Q1 用户首次净流失 (-20 万) + 密码共享危机, 跌到 $162 (-77%).\n\n2023 推广告订阅 + 严打共享 + 多年内容投资变现, 反弹到 $1100. 现在是流媒体唯一稳定盈利者.",
+    points: [
+      ["业务", "全球 2.7 亿订户, 12 国本地内容"],
+      ["护城河", "20 年 $200B+ 内容版权 + 算法 + 全球网络"],
+      ["关键指标", "净订户增 / ARPU / 内容投资回报"],
+      ["反转点", "广告订阅 + 反共享是关键"],
+    ],
+    lesson: "用户负增长 = 反向买入信号 (公司大改革); 但是要看公司是否有改革动力",
+  },
+  {
+    tk: "BRK.B", cn: "伯克希尔", year: "1965-2025", glyph: "🦬", color: "#5a8aa6",
+    headline: "$15 → $470, 60 年 31000 倍 (年化 ~20%)",
+    teach: "复利 + 价值投资 + 永续持有",
+    story: "1965 巴菲特接手 $19 / 股纺织厂. 60 年后, 一股 BRK.A 价 $700K+, BRK.B $470. 长期年化 ~20%.\n\n投资逻辑: 简单生意 (Coke/AmEx/Apple) + 永续持有 + 现金充裕等危机抄底 + 不分红 (税效).\n\n关键: 巴菲特 60 年没大幅回撤, 1999 互联网泡沫前减仓, 2008 抄底高盛/BAC.",
+    points: [
+      ["业务", "保险浮存金 + 工业 + 公开市场组合"],
+      ["护城河", "巴菲特/芒格的资本配置 + 永续期"],
+      ["关键指标", "Book Value / Float / Look-through Earnings"],
+      ["复利启示", "20% × 60 年 = 31000x; 慢就是快"],
+    ],
+    lesson: "复利的力量比单笔暴利重要 100 倍; 长期慢慢来比一次大赌赢更确定",
+  },
+  {
+    tk: "COST", cn: "Costco 好市多", year: "1985-2025", glyph: "🛒", color: "#7AE8A0",
+    headline: "$10 IPO → $1000 ATH (40 年 100 倍)",
+    teach: "会员制 + 慢生意 + 客户粘性",
+    story: "1985 IPO. 40 年从仓库零售到 $1000+ 股价, 年化 ~13%.\n\n模式: 收会员费 (利润 70% 来自会员) + 卖商品几乎不赚钱 (毛利 11% vs 沃尔玛 24%) + 客户用爱用 (90%+ 续费率).\n\n关键: 它把'让利'作为主战略, 客户因低价而忠诚.",
+    points: [
+      ["业务", "1300 家仓储 + 1.3 亿会员卡 + 自有品牌"],
+      ["护城河", "规模采购 + 90% 续费 + 不可复制效率"],
+      ["关键指标", "续费率 / 会员费收入 / 同店销售"],
+      ["哲学", "Make it cheaper for everyone, win on volume"],
+    ],
+    lesson: "好生意往往看起来很无聊. 看透商业本质比追热门股更划算",
+  },
+  {
+    tk: "COIN", cn: "Coinbase", year: "2021-2025", glyph: "💎", color: "#9a8aa0",
+    headline: "$381 IPO → $32 → $300 (跟币市同周期)",
+    teach: "周期股 + 高 Beta + 监管风险",
+    story: "2021 直接 IPO $381. 一年后 BTC 跌 75% + SEC 起诉, 跌到 $32.\n\n2024 BTC ETF 通过 + Trump 当选 + 加密政策松绑, 反弹到 $300.\n\n核心: COIN 是 BTC 的 2-3x 杠杆代理. BTC 涨 100%, COIN 涨 200-300%; BTC 跌 50%, COIN 跌 75%.",
+    points: [
+      ["业务", "加密货币交易 + 托管 + 质押 + 衍生品"],
+      ["护城河", "美国合规龙头 + 机构客户基础"],
+      ["关键指标", "交易量 / 平均费率 / 托管资产"],
+      ["周期", "BTC 周期 = COIN 周期, 同涨同跌放大"],
+    ],
+    lesson: "高 Beta 周期股: 找到周期低点比公司质量更重要; 仓位务必小",
+  },
+  {
+    tk: "SHOP", cn: "Shopify", year: "2015-2025", glyph: "🛍", color: "#7AE8A0",
+    headline: "$17 IPO → $1750 → $260 → $130 (SaaS 估值过山车)",
+    teach: "SaaS 估值切换 + 加息冲击 + 业务剥离",
+    story: "2015 IPO. 2020 疫情电商爆发 + SaaS 估值狂热, 涨 100x 到 $1750. PS 60+.\n\n2022 加息 + 电商减速 + 自营物流亏损, 跌 85% 到 $260.\n\n2023 卖掉物流业务 + 聚焦 SaaS 平台, 估值修复但没回 ATH.",
+    points: [
+      ["业务", "电商 SaaS 平台 + 支付 (Shopify Payments) + 物流"],
+      ["护城河", "中小商家电商首选 + 200 万商户网络"],
+      ["关键指标", "GMV / Take Rate / NRR / 用户留存"],
+      ["教训", "PS 60+ 的 SaaS 是估值泡沫顶, 加息时刻"],
+    ],
+    lesson: "SaaS 估值有 cycle: PS 30+ 警惕 / PS 5- 机会; PE 比 PS 更可靠衡量真值",
   },
 ];
 
@@ -1663,6 +1806,16 @@ function caseChart(tk, color) {
     MU: "M10 80 L40 60 L70 35 L100 50 L130 75 L160 90 L190 70 L220 50 L250 65 L280 75 L310 50 L340 30",
     BABA: "M10 50 L40 30 L70 20 L100 30 L130 55 L160 80 L190 95 L220 90 L250 75 L280 60 L310 50 L340 45",
     AMZN: "M10 99 L40 96 L70 92 L100 85 L130 75 L160 70 L190 60 L220 50 L250 38 L280 28 L310 18 L340 12",
+    ENRON: "M10 60 L50 50 L90 35 L130 25 L170 30 L200 50 L230 75 L260 95 L290 105 L320 108 L340 109",
+    LEH: "M10 50 L50 40 L90 30 L130 35 L170 50 L200 70 L230 88 L260 100 L290 108 L320 109 L340 109",
+    WE: "M10 50 L40 30 L70 20 L100 35 L130 50 L160 70 L190 85 L220 95 L250 100 L280 105 L310 108 L340 110",
+    ARKK: "M10 60 L40 40 L70 25 L100 18 L130 22 L160 40 L190 65 L220 85 L250 95 L280 90 L310 85 L340 80",
+    META: "M10 60 L40 50 L70 40 L100 30 L130 22 L160 18 L190 60 L220 88 L250 60 L280 35 L310 15 L340 8",
+    NFLX: "M10 80 L40 70 L70 55 L100 40 L130 25 L160 18 L190 60 L220 90 L250 70 L280 35 L310 12 L340 5",
+    "BRK.B": "M10 100 L40 95 L70 88 L100 78 L130 68 L160 58 L190 48 L220 38 L250 28 L280 20 L310 12 L340 6",
+    COST: "M10 100 L40 95 L70 90 L100 82 L130 72 L160 62 L190 52 L220 40 L250 30 L280 22 L310 14 L340 8",
+    COIN: "M10 80 L30 30 L50 22 L80 50 L110 75 L140 95 L170 100 L200 90 L230 70 L260 50 L290 35 L320 20 L340 18",
+    SHOP: "M10 90 L40 70 L70 50 L100 25 L130 8 L160 12 L190 40 L220 70 L250 88 L280 80 L310 65 L340 55",
   };
   const path = charts[tk];
   if (!path) return "";
@@ -1692,6 +1845,24 @@ function renderFramework() {
       <div class="fw-line"><span>✓ 通过</span><p>${f.test}</p></div>
       <div class="fw-line bad"><span>✗ 卡住</span><p>${f.fail}</p></div>
       <div class="fw-eg">📚 ${f.example}</div>
+    </article>
+  `).join("");
+}
+
+// K 线 12 形态 render
+function renderKlinePatterns() {
+  const grid = document.getElementById("klineGrid");
+  if (!grid) return;
+  grid.innerHTML = KLINE_PATTERNS.map((k) => `
+    <article class="kp-card" style="--vc:${k.color}">
+      <div class="kp-svg">${k.svg}</div>
+      <header class="kp-head">
+        <span class="kp-group">${k.group}</span>
+        <h4>${k.name}</h4>
+      </header>
+      <p class="kp-use"><b>用法</b> ${k.use}</p>
+      <p class="kp-teach"><b>解读</b> ${k.teach}</p>
+      <p class="kp-confirm"><b>确认</b> ${k.confirm}</p>
     </article>
   `).join("");
 }
@@ -2029,6 +2200,7 @@ setQuizSection("ALL");
 renderCases();
 renderFramework();
 renderChartCompare();
+renderKlinePatterns();
 renderStops();
 renderMasters();
 renderVCs();
