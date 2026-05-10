@@ -7,6 +7,7 @@ import {
   STOCK_LEARNING_CANDIDATES
 } from "@/lib/stock-learning/data";
 import { getEnrichment } from "@/lib/stock-learning/enrichments";
+import StockLearnNav from "./StockLearnNav";
 import "./stock-learning.css";
 
 export const metadata: Metadata = {
@@ -103,11 +104,12 @@ export default function StockLearningPage() {
           <p>CLASSIFIED WATCHLIST</p>
           <h2>分类、评级、理由</h2>
         </div>
+        <StockLearnNav />
         <div className="stocklearn-category-stack">
           {STOCK_CATEGORIES.map((category) => {
             const items = candidates.filter((item) => item.category === category.id);
             return (
-              <section key={category.id} className="stocklearn-category">
+              <section key={category.id} id={`cat-${category.id}`} className="stocklearn-category">
                 <header className="stocklearn-category-head">
                   <div>
                     <p>{category.allocation}% MODEL WEIGHT</p>
@@ -119,7 +121,7 @@ export default function StockLearningPage() {
                   {items.map((item) => {
                     const ext = getEnrichment(item.ticker);
                     return (
-                    <article key={item.ticker} className="stocklearn-card">
+                    <article key={item.ticker} id={`tk-${item.ticker}`} className="stocklearn-card">
                       <div className="stocklearn-card-top">
                         <div>
                           <h4>{item.ticker}</h4>

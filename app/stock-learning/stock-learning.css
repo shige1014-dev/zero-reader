@@ -109,3 +109,67 @@
   .stocklearn-scenarios .ss-row{grid-template-columns:auto 1fr;gap:6px}
   .stocklearn-scenarios em{grid-column:1/-1;text-align:right;padding-top:2px}
 }
+
+/* ━━━ Sticky 双层快跳导航 ━━━ */
+.sl-nav-sticky{
+  position:sticky;
+  top:60px;
+  z-index:30;
+  background:rgba(20,17,13,.94);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  margin:0 -16px 18px;
+  padding:10px 16px;
+  border:1px solid rgba(232,201,122,.18);
+  border-radius:12px;
+  box-shadow:0 4px 14px rgba(0,0,0,.3);
+}
+.sl-nav-row{
+  display:flex;flex-wrap:wrap;align-items:center;gap:5px 6px;
+}
+.sl-nav-row + .sl-nav-row{
+  margin-top:8px;
+  padding-top:8px;
+  border-top:1px dashed rgba(232,201,122,.14);
+}
+.sl-nav-label{
+  font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;
+  color:#7A6F5C;text-transform:uppercase;
+  margin-right:4px;
+}
+.sl-nav-chip{
+  padding:4px 10px;
+  background:rgba(255,255,255,.02);
+  border:1px solid rgba(232,201,122,.16);
+  border-radius:99px;
+  color:#A89B82;
+  font-size:11.5px;letter-spacing:.04em;
+  font-family:inherit;cursor:pointer;
+  transition:all .15s ease;
+}
+.sl-nav-chip:hover{border-color:#E8C97A;color:#FFD86B;background:rgba(232,201,122,.08)}
+.sl-nav-cat .sl-nav-count{
+  margin-left:4px;font-size:10px;color:#7A6F5C;
+}
+.sl-nav-cat:hover .sl-nav-count{color:#E8C97A}
+.sl-nav-tk{font-family:var(--font-mono);font-size:10.5px;font-weight:600;letter-spacing:.06em;}
+.sl-nav-tk-s{border-color:rgba(255,216,107,.4);color:#FFD86B}
+.sl-nav-tk-a{border-color:rgba(200,144,96,.4);color:#C89060}
+.sl-nav-tk-b{border-color:rgba(138,154,122,.3);color:#8A9A7A}
+.sl-nav-tk-c{border-color:rgba(154,138,138,.3);color:#9A8A8A}
+.sl-nav-toggle{
+  margin-left:auto;
+  padding:4px 12px;
+  background:rgba(232,201,122,.08);
+  border:1px dashed rgba(232,201,122,.32);
+  border-radius:99px;
+  color:#E8C97A;
+  font-size:11px;letter-spacing:.08em;
+  cursor:pointer;font-family:inherit;
+  transition:all .15s ease;
+}
+.sl-nav-toggle:hover{background:rgba(232,201,122,.16);border-style:solid}
+@media (max-width:640px){
+  .sl-nav-sticky{top:56px;margin:0 -10px 14px;padding:8px 10px}
+  .sl-nav-toggle{margin-left:0;width:100%;text-align:center;margin-top:4px}
+}
