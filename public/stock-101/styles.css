@@ -53,21 +53,26 @@ a { color: inherit; text-decoration: none; }
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 50;
-  display: flex; align-items: center; justify-content: center;
+  display: flex; align-items: center; justify-content: flex-start;
   gap: 0;
-  padding: 8px 16px;
-  background: rgba(20, 17, 13, 0.92);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 0.5px solid rgba(255, 255, 255, 0.06);
+  padding: 8px 12px;
+  background: #14110d;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
 }
+.z-topnav::-webkit-scrollbar { display: none; }
 .z-tab {
   flex: 0 0 auto;
   width: 44px; height: 36px;
-  display: flex; align-items: center; justify-content: center;
+  display: inline-flex; align-items: center; justify-content: center;
   color: #8E8470; text-decoration: none;
   border-radius: 6px;
   transition: all .15s ease;
+  scroll-snap-align: center;
 }
 .z-tab:hover { color: #e8c97a; background: rgba(232,201,122,.08); }
 .z-tab.active { color: #ffd86b; background: rgba(232,201,122,.14); }
