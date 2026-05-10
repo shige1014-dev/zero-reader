@@ -1762,7 +1762,78 @@ footer {
   line-height: 1.6;
 }
 @media (max-width: 720px) {
-  .cc-pair { grid-template-columns: 1fr; }
+  .cc-pair { grid-template-columns: 1fr; padding: 10px 12px; gap: 8px; }
+  .cc-half { padding: 8px 10px; }
+  .cc-tag { font-size: 10.5px; }
+  .cc-teach { font-size: 11.5px; padding: 6px 9px; }
+
+  /* 经典案例 + 大师 + VC 卡片 (case-card 通用) */
+  .case-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px;
+  }
+  .case-card {
+    min-width: 0; max-width: 100%;
+    padding: 14px 16px !important;
+    word-break: break-word; overflow-wrap: anywhere;
+  }
+  .case-head { gap: 10px; margin-bottom: 8px; padding-bottom: 8px; }
+  .case-icon { font-size: 22px; }
+  .case-title h3 { font-size: 14px; }
+  .case-tk { font-size: 10px; }
+  .case-year { font-size: 10px; }
+  .case-headline { font-size: 13px; margin-bottom: 6px; }
+  .case-teach { font-size: 11px; margin-bottom: 8px; }
+  .case-story { padding: 8px 10px; font-size: 11.5px; line-height: 1.65; }
+  .case-points { grid-template-columns: 1fr; gap: 5px; }
+  .case-point { padding: 6px 8px; }
+  .case-point span { font-size: 8px; }
+  .case-point b { font-size: 11px; }
+  .case-lesson { padding: 8px 10px; font-size: 11.5px; line-height: 1.55; }
+  .case-lesson b { font-size: 8px; }
+  .case-svg { margin: 4px 0 8px; }
+
+  /* 大师 / VC 内嵌区块 */
+  .master-rules, .master-section {
+    padding: 7px 10px; margin: 8px 0;
+  }
+  .master-rules h4, .master-section h4 { font-size: 9px; }
+  .master-rules li { font-size: 11.5px; padding: 2px 0 2px 12px; }
+  .master-section p { font-size: 11.5px; line-height: 1.6; }
+  .master-quote { padding: 7px 10px; font-size: 11.5px; }
+
+  /* 7 步框架 */
+  .framework-steps { grid-template-columns: 1fr; gap: 8px; margin-top: 10px; }
+  .fw-step { padding: 12px 14px 10px; }
+  .fw-step-num { font-size: 22px; }
+  .fw-step-icon { font-size: 22px; }
+  .fw-step h4 { font-size: 14px; margin-bottom: 8px; }
+  .fw-line { padding: 6px 9px; }
+  .fw-line p { font-size: 11.5px; }
+  .fw-eg { padding: 7px 9px; font-size: 11px; line-height: 1.55; }
+
+  /* 风险清单 + matrix */
+  .matrix-block { padding: 12px 14px; }
+  .matrix-table { overflow-x: auto; }
+  .risk-grid { grid-template-columns: 1fr !important; gap: 8px; }
+  .checklist-grid { grid-template-columns: 1fr !important; }
+
+  /* textbook block */
+  .textbook-block { padding: 16px 18px; margin: 12px 0; }
+  .textbook-block h3 { font-size: 17px; }
+  .textbook-block > p { font-size: 12.5px; line-height: 1.7; }
+  .textbook-grid { grid-template-columns: 1fr !important; gap: 10px; }
+
+  /* knowledge strip / deep-grid / course-grid */
+  .knowledge-strip { grid-template-columns: 1fr !important; gap: 8px; }
+  .deep-grid { grid-template-columns: 1fr !important; gap: 10px; }
+  .course-grid { grid-template-columns: 1fr !important; gap: 10px; }
+  .course-card { padding: 14px 16px !important; }
+
+  /* lesson-detail 紧凑 */
+  .lesson-actions { flex-direction: column; gap: 6px; }
+  .lesson-btn { width: 100%; }
+
   /* Metrics 移动端紧凑 */
   .metric-tabs { padding: 6px 8px; gap: 4px; margin: 10px 0; }
   .metric-tab { padding: 3px 8px; font-size: 11px; }
