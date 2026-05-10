@@ -1,0 +1,689 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>股票基础学习</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="shell">
+    <div class="z-banner">
+      <a href="/" class="z-back">← 零零阅读</a>
+      <span class="z-banner-title">📘 股票学习 · 0 → 投资之神</span>
+    </div>
+    <header class="topbar">
+      <a class="tab active" href="#overview" data-page-link="overview">学习台</a>
+      <a class="tab" href="#metrics" data-page-link="metrics">关键指标</a>
+      <a class="tab" href="#cases" data-page-link="cases">经典案例</a>
+      <a class="tab" href="#stops" data-page-link="stops">止盈止损</a>
+      <a class="tab" href="#masters" data-page-link="masters">大神策略</a>
+      <a class="tab" href="#vc-risk" data-page-link="vc-risk">风投+风控</a>
+    </header>
+
+    <main id="top">
+      <section class="hero page-section" id="overview" data-page="overview">
+        <div class="hero-main">
+          <p class="kicker">STOCK LEARNING BOARD</p>
+          <h1>股票基础学习台</h1>
+          <p class="lead">给零基础用户的一条学习路径：先建立市场常识，再学会读行情，最后进入公司分析、估值、仓位和复盘。</p>
+          <div class="hero-actions">
+            <a href="#basics" data-page-link="basics">开始第一课</a>
+            <a href="#lesson">查看当前课程</a>
+          </div>
+        </div>
+        <aside class="hero-panel">
+          <div class="progress-ring" id="progressRing" aria-label="学习进度">
+            <svg viewBox="0 0 120 120" width="120" height="120">
+              <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(212,182,112,.18)" stroke-width="10"/>
+              <circle id="progressCircle" cx="60" cy="60" r="50" fill="none" stroke="#e8c97a" stroke-width="10"
+                stroke-linecap="round" stroke-dasharray="314" stroke-dashoffset="314"
+                transform="rotate(-90 60 60)"/>
+              <text id="progressText" x="60" y="58" text-anchor="middle" fill="#e8c97a" font-size="28" font-weight="700">0</text>
+              <text x="60" y="80" text-anchor="middle" fill="#a89b82" font-size="11" letter-spacing="0.18em">/ 17</text>
+            </svg>
+          </div>
+          <strong id="progressLabel">还没开始</strong>
+          <p id="progressDesc">完成 17 课程从"股票是什么"到"复盘系统"。点"标记完成"记录进度。</p>
+          <button id="resetProgress" class="reset-btn" type="button" hidden>重置进度</button>
+        </aside>
+      </section>
+
+      <section class="intel page-section" data-page="overview">
+        <div class="section-head">
+          <p>QUICK MAP</p>
+          <h2>10 分钟建立股票认知地图</h2>
+        </div>
+        <div class="intel-grid">
+          <article><span>资产属性</span><strong>股票不是存款</strong><p>它代表公司所有权，价格每天波动，没有保本承诺。</p></article>
+          <article><span>价格来源</span><strong>买卖撮合</strong><p>股价由愿意买的人和愿意卖的人共同形成，不是公司直接定价。</p></article>
+          <article><span>收益来源</span><strong>价差 + 分红</strong><p>短期看价格波动，长期看企业盈利和现金流。</p></article>
+          <article><span>行情工具</span><strong>K线只是记录</strong><p>K线记录价格，不自动预测未来，必须结合成交量和位置。</p></article>
+          <article><span>公司分析</span><strong>先商业模式</strong><p>先知道公司靠什么赚钱，再看财报、指标和估值。</p></article>
+          <article><span>风险底线</span><strong>先算亏损</strong><p>买入前写清楚最多亏多少、跌到哪里退出、仓位是多少。</p></article>
+        </div>
+      </section>
+
+      <section class="course-overview page-section" data-page="overview">
+        <div class="section-head">
+          <p>17 LESSONS · 课程总览</p>
+          <h2>17 课 · 点任意一课开始</h2>
+        </div>
+        <div class="overview-grid" id="overviewGrid"></div>
+      </section>
+
+      <section class="lesson-detail page-section" id="lesson" data-page="overview" aria-live="polite">
+        <div class="lesson-title-block">
+          <p><span id="lessonStep">第 1 课 / 17</span> · NOW LEARNING</p>
+          <h2 id="lessonTitle">股票是什么</h2>
+        </div>
+        <article class="lesson-content">
+          <p id="lessonBody">股票代表公司的一部分所有权。买股票不是买一串代码，而是在承担波动的同时，分享一家公司的经营结果。</p>
+          <figure class="lesson-visual" id="lessonVisual" aria-label="课程图例"></figure>
+          <div class="lesson-columns">
+            <section>
+              <h3>本课目标</h3>
+              <ul id="lessonGoals"></ul>
+            </section>
+            <section>
+              <h3>新手误区</h3>
+              <p id="lessonMistake"></p>
+            </section>
+            <section>
+              <h3>小练习</h3>
+              <p id="lessonPractice"></p>
+            </section>
+          </div>
+          <div class="lesson-actions">
+            <button id="lessonPrev" class="lesson-btn" type="button">← 上一课</button>
+            <button id="lessonComplete" class="lesson-btn primary" type="button">✓ 标记完成</button>
+            <button id="lessonNext" class="lesson-btn" type="button">下一课 →</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="level page-section" id="basics" data-page="overview">
+        <div class="section-head">
+          <p>LEVEL 1 · 认识股票 (01-06)</p>
+          <h2>先建立认知, 再谈交易</h2>
+        </div>
+        <div class="page-intro">
+          <p>这一页解决“我到底在买什么”。不要急着看指标，先理解股票、市场、账户、指数、收益和新手禁区。完成这部分后，至少要能用自己的话解释：股票为什么会涨跌，我最多能亏多少。</p>
+          <ul>
+            <li>学习重点：所有权、撮合交易、基础下单、指数和个股差异。</li>
+            <li>完成标准：能写出一笔模拟交易的买入理由和退出条件。</li>
+          </ul>
+        </div>
+        <article class="textbook-block">
+          <div class="chapter-mark">CHAPTER 01</div>
+          <h3>股票市场的第一性原理</h3>
+          <p>股票市场的核心不是“预测明天涨跌”，而是让公司所有权可以被公开交易。你看到的每一个价格，都是某一刻买方和卖方达成一致的结果。理解这一点后，才能避免把股票当作存款、彩票或单纯的走势图。</p>
+          <div class="textbook-grid">
+            <section>
+              <h4>核心定义</h4>
+              <dl>
+                <div><dt>股票</dt><dd>公司所有权的一部分，持有人理论上分享公司经营成果，也承担价格波动。</dd></div>
+                <div><dt>股价</dt><dd>市场当下成交价格，受基本面、资金、情绪和预期共同影响。</dd></div>
+                <div><dt>股东</dt><dd>持有公司股份的人，不论持股多少，本质上都是公司所有者之一。</dd></div>
+              </dl>
+            </section>
+            <section>
+              <h4>例题</h4>
+              <p>如果你用 1000 元买入一只股票，之后上涨 10%，但公司并没有分红，你的收益主要来自哪里？</p>
+              <p class="answer">答案：来自市场价格上涨带来的价差收益，不是公司直接把利润发给你。</p>
+            </section>
+          </div>
+        </article>
+        <div class="knowledge-strip">
+          <article><b>核心公式</b><p>收益率 =（卖出价 - 买入价 + 分红）/ 买入成本</p></article>
+          <article><b>第一原则</b><p>买股票 = 买公司的一小部分，不是买一条K线。</p></article>
+          <article><b>入门动作</b><p>每次模拟买入前，写下买入理由、仓位、退出条件。</p></article>
+        </div>
+        <div class="course-grid">
+          <button class="course-card tone-gold" data-lesson="0"><span>01</span><strong>股票是什么</strong><em>公司所有权 · 股东 · 收益来源</em><p>弄清你买的不是代码，而是一家公司未来经营结果的一部分。</p><small>关键词：所有权 / 分红 / 价差</small></button>
+          <button class="course-card tone-sage" data-lesson="1"><span>02</span><strong>市场怎么运转</strong><em>交易所 · 买卖双方 · 价格形成</em><p>理解股价来自买卖撮合，市场价格不等于真实价值。</p><small>关键词：委托 / 成交 / 流动性</small></button>
+          <button class="course-card tone-blue" data-lesson="2"><span>03</span><strong>账户与下单</strong><em>开户 · 委托 · 成交 · 手续费</em><p>下单前确认买什么、买多少、错了如何退出。</p><small>关键词：限价单 / 市价单 / 成本</small></button>
+          <button class="course-card tone-ink" data-lesson="3"><span>04</span><strong>指数和个股</strong><em>大盘 · 行业 · 分散风险</em><p>先看市场和行业，再看单家公司，避免孤立判断。</p><small>关键词：指数 / 行业 / 贝塔</small></button>
+          <button class="course-card tone-gold" data-lesson="4"><span>05</span><strong>收益与亏损</strong><em>股价差 · 分红 · 波动</em><p>收益来自价差和分红，风险来自价格下跌和判断错误。</p><small>公式：收益率 = 收益 / 成本</small></button>
+          <button class="course-card tone-sage" data-lesson="5"><span>06</span><strong>新手禁区</strong><em>杠杆 · 听消息 · 满仓</em><p>先避开会让你一次出局的行为，再训练研究能力。</p><small>原则：小仓位、慢学习、可复盘</small></button>
+        </div>
+        <div class="deep-grid">
+          <article>
+            <h3>新手必须分清的 4 件事</h3>
+            <dl>
+              <div><dt>公司</dt><dd>真实经营主体，负责卖产品、服务和创造利润。</dd></div>
+              <div><dt>股票</dt><dd>公司所有权凭证，价格每天交易变化。</dd></div>
+              <div><dt>股价</dt><dd>市场当下愿意成交的价格，不等于真实价值。</dd></div>
+              <div><dt>账户</dt><dd>交易工具，不是研究能力本身。</dd></div>
+            </dl>
+          </article>
+          <article>
+            <h3>第一次模拟买入清单</h3>
+            <ul>
+              <li>我买的是哪家公司，而不是哪个代码？</li>
+              <li>这家公司靠什么赚钱？</li>
+              <li>我准备投入总资金的多少比例？</li>
+              <li>如果跌 8% 或逻辑变坏，我怎么处理？</li>
+            </ul>
+          </article>
+        </div>
+        <section class="matrix-block">
+          <h3>新手第一张判断表</h3>
+          <div class="matrix-table">
+            <div class="matrix-row head"><span>维度</span><span>要问的问题</span><span>危险信号</span></div>
+            <div class="matrix-row"><span>资产属性</span><span>我买的是公司所有权，还是只是在赌涨跌？</span><span>只知道代码，不知道公司业务。</span></div>
+            <div class="matrix-row"><span>资金来源</span><span>这笔钱是否短期要用？是否借来的？</span><span>借钱买、刷信用、用生活费。</span></div>
+            <div class="matrix-row"><span>仓位</span><span>如果亏 10%，是否还能正常生活和学习？</span><span>第一次买就满仓或重仓单票。</span></div>
+            <div class="matrix-row"><span>退出</span><span>价格跌了或逻辑错了，我在哪里退出？</span><span>只写赚钱目标，不写亏损条件。</span></div>
+          </div>
+        </section>
+      </section>
+
+      <section class="level page-section" id="market" data-page="overview">
+        <div class="section-head">
+          <p>LEVEL 2 · 行情阅读 (07-11)</p>
+          <h2>看图 + 看公司, 一气呵成</h2>
+        </div>
+        <div class="page-intro">
+          <p>这页合并 L2 行情 + L3 公司价值。先学会看懂市场在发生什么 (L2), 再看公司本身值不值得 (L3)。最后用图例 + 关键指标对照, 让数字变成判断。</p>
+          <p><strong>本页学习地图:</strong> 07-11 行情阅读 (5 课) → 12-17 价值判断 (6 课) → 末尾图例</p>
+        </div>
+        <div class="page-intro">
+          <p>这一页解决“市场现在发生了什么”。K线、成交量、趋势、盘口和情绪都只是观察工具，不是答案。新手要先学会描述行情，再考虑判断方向。</p>
+          <ul>
+            <li>学习重点：开高低收、量价配合、趋势位置、流动性、情绪波动。</li>
+            <li>完成标准：能说清楚一只股票最近是在上涨、下跌还是震荡，以及成交量是否配合。</li>
+          </ul>
+        </div>
+        <article class="textbook-block">
+          <div class="chapter-mark">CHAPTER 02</div>
+          <h3>从价格记录到市场行为</h3>
+          <p>行情阅读不是为了寻找神奇形态，而是训练你观察市场行为。K线告诉你价格走过哪里，成交量告诉你参与程度，趋势和位置告诉你风险收益是否对称。</p>
+          <div class="textbook-grid">
+            <section>
+              <h4>读图顺序</h4>
+              <ol>
+                <li>先判断大盘和行业环境。</li>
+                <li>再判断个股处于高位、低位还是震荡区间。</li>
+                <li>观察成交量是否支持价格变化。</li>
+                <li>最后才看当天K线形态。</li>
+              </ol>
+            </section>
+            <section>
+              <h4>课堂例子</h4>
+              <p>一只股票连续上涨 30% 后出现放量长上影线，说明上方出现较强分歧。它不等于一定下跌，但说明继续追入的风险已经上升。</p>
+              <p class="answer">结论：形态要结合位置。低位长上影和高位长上影意义不同。</p>
+            </section>
+          </div>
+        </article>
+        <div class="knowledge-strip">
+          <article><b>读盘顺序</b><p>先看趋势，再看位置，再看成交量，最后看当天K线。</p></article>
+          <article><b>关键指标</b><p>成交量、换手率、均线、支撑压力、买卖价差。</p></article>
+          <article><b>危险信号</b><p>高位放量滞涨、连续缩量反弹、盘口价差过大。</p></article>
+        </div>
+        <div class="course-grid five">
+          <button class="course-card tone-blue" data-lesson="6"><span>07</span><strong>K线四价</strong><em>开盘 · 收盘 · 最高 · 最低</em><p>K线是价格记录，不是预测答案。重点看实体、影线和出现位置。</p><small>检查：这根K线在高位还是低位？</small></button>
+          <button class="course-card tone-gold" data-lesson="7"><span>08</span><strong>成交量</strong><em>放量 · 缩量 · 换手率</em><p>成交量代表参与度，能帮助判断上涨或下跌是否有共识。</p><small>检查：价格变化有没有量配合？</small></button>
+          <button class="course-card tone-sage" data-lesson="8"><span>09</span><strong>趋势和位置</strong><em>支撑 · 压力 · 均线</em><p>先判断价格处于高位、低位还是震荡区间，再谈买卖。</p><small>检查：当前价离半年高点多远？</small></button>
+          <button class="course-card tone-ink" data-lesson="9"><span>10</span><strong>盘口基础</strong><em>买一卖一 · 价差 · 流动性</em><p>盘口帮助理解短期交易难易度，但不能替代长期研究。</p><small>检查：买卖价差是否过大？</small></button>
+          <button class="course-card tone-blue" data-lesson="10"><span>11</span><strong>市场情绪</strong><em>上涨恐惧 · 下跌贪婪</em><p>情绪会放大波动，交易前要把情绪和规则分开。</p><small>检查：我是分析后买，还是怕错过？</small></button>
+        </div>
+        <div class="deep-grid">
+          <article>
+            <h3>一分钟读盘模板</h3>
+            <ol>
+              <li>先看大盘和行业：今天是整体强还是个股强？</li>
+              <li>再看趋势位置：当前在高位、低位还是震荡中间？</li>
+              <li>再看成交量：上涨/下跌有没有量配合？</li>
+              <li>最后看K线：当天情绪是强、弱，还是分歧？</li>
+            </ol>
+          </article>
+          <article>
+            <h3>行情语言速译</h3>
+            <dl>
+              <div><dt>放量上涨</dt><dd>买入意愿增强，但高位也可能是分歧变大。</dd></div>
+              <div><dt>缩量上涨</dt><dd>抛压不大，但持续性需要观察。</dd></div>
+              <div><dt>放量下跌</dt><dd>卖压明显，先别急着接。</dd></div>
+              <div><dt>长上影线</dt><dd>上方抛压出现，位置越高越要谨慎。</dd></div>
+            </dl>
+          </article>
+        </div>
+        <section class="matrix-block">
+          <h3>K线和行情怎么看</h3>
+          <div class="matrix-table">
+            <div class="matrix-row head"><span>现象</span><span>可能含义</span><span>不能直接下的结论</span></div>
+            <div class="matrix-row"><span>长阳线</span><span>当天买方强，收盘接近高位。</span><span>不等于明天一定继续涨。</span></div>
+            <div class="matrix-row"><span>长阴线</span><span>当天卖压强，市场愿意用更低价格成交。</span><span>不等于公司基本面已经坏掉。</span></div>
+            <div class="matrix-row"><span>长上影</span><span>冲高后被卖回，说明上方有压力或分歧。</span><span>低位和高位含义不同，不能孤立判断。</span></div>
+            <div class="matrix-row"><span>放量上涨</span><span>更多资金参与买入，趋势可能更有力度。</span><span>高位放量也可能是换手出货。</span></div>
+            <div class="matrix-row"><span>缩量反弹</span><span>卖压暂时变小，但买入共识可能不足。</span><span>不能只因上涨就判断反转。</span></div>
+          </div>
+        </section>
+        <section class="matrix-block">
+          <h3>特别标志性的 K线形态</h3>
+          <div class="matrix-table">
+            <div class="matrix-row head"><span>形态</span><span>常见含义</span><span>使用前提</span></div>
+            <div class="matrix-row"><span>锤子线</span><span>下跌后被买盘拉回，低位可能出现承接。</span><span>必须出现在下跌后，并看第二天是否确认。</span></div>
+            <div class="matrix-row"><span>倒锤子线</span><span>上方试探失败，但也可能代表低位试盘。</span><span>不能单独判断，要看后续能否放量突破。</span></div>
+            <div class="matrix-row"><span>吞没形态</span><span>后一根K线实体覆盖前一根，说明力量切换。</span><span>低位看多头吞没，高位看空头吞没更有意义。</span></div>
+            <div class="matrix-row"><span>十字星</span><span>多空暂时平衡，市场犹豫。</span><span>趋势末端更重要，震荡中意义较弱。</span></div>
+            <div class="matrix-row"><span>跳空缺口</span><span>市场预期突然变化，价格越过一段区域。</span><span>要区分突破缺口、衰竭缺口和消息刺激。</span></div>
+          </div>
+        </section>
+        <section class="matrix-block">
+          <h3>20日线和50日线怎么用</h3>
+          <p class="matrix-note">均线是过去价格的平均值。20日线更接近短中期情绪，50日线更接近中期趋势。均线不是支撑魔法线，只是观察市场成本和趋势方向的工具。</p>
+          <div class="matrix-table">
+            <div class="matrix-row head"><span>观察点</span><span>可能说明</span><span>注意事项</span></div>
+            <div class="matrix-row"><span>价格在20日线上</span><span>短期走势相对强。</span><span>高位远离20日线，反而可能过热。</span></div>
+            <div class="matrix-row"><span>价格跌破20日线</span><span>短期动能转弱或进入整理。</span><span>一次跌破不等于趋势结束。</span></div>
+            <div class="matrix-row"><span>20日线上穿50日线</span><span>短中期趋势可能转强。</span><span>震荡市容易假突破。</span></div>
+            <div class="matrix-row"><span>20日线下穿50日线</span><span>短中期趋势可能转弱。</span><span>要结合成交量和基本面。</span></div>
+            <div class="matrix-row"><span>50日线走平/向上</span><span>中期趋势趋稳。</span><span>均线滞后，不适合单独做买卖依据。</span></div>
+          </div>
+        </section>
+      </section>
+
+      <section class="level page-section" id="value-half" data-page="overview">
+        <div class="section-head">
+          <p>LEVEL 3 · 价值判断 (12-17)</p>
+          <h2>从公司本身判断</h2>
+        </div>
+        <div class="page-intro">
+          <p>这一页解决“这家公司值不值得研究”。先看商业模式，再看财报和关键指标，最后才讨论估值、仓位和复盘。顺序不能反，因为估值必须建立在理解公司的基础上。</p>
+          <ul>
+            <li>学习重点：公司怎么赚钱、利润质量、关键指标、价格和价值。</li>
+            <li>完成标准：能用三句话描述一家公司，并说明当前价格是否值得继续研究。</li>
+          </ul>
+        </div>
+        <article class="textbook-block">
+          <div class="chapter-mark">CHAPTER 03</div>
+          <h3>从公司到价格：价值判断的路径</h3>
+          <p>真正的投资研究从公司开始，而不是从股价开始。你需要先理解公司如何赚钱，再检查财报是否支持这个故事，最后判断当前价格是否划算。</p>
+          <div class="textbook-grid">
+            <section>
+              <h4>研究公式</h4>
+              <p class="formula">投资判断 = 商业模式 × 财务质量 × 估值安全边际 × 仓位控制</p>
+              <p>任何一项为零，整体判断都应该降级。</p>
+            </section>
+            <section>
+              <h4>例题</h4>
+              <p>公司利润增长 50%，但经营现金流连续两年为负，这说明什么？</p>
+              <p class="answer">说明利润质量需要进一步检查，可能存在应收账款、存货或一次性收益问题。</p>
+            </section>
+          </div>
+        </article>
+        <div class="knowledge-strip">
+          <article><b>研究顺序</b><p>商业模式 → 财报质量 → 指标对比 → 估值区间 → 仓位计划。</p></article>
+          <article><b>关键问题</b><p>它赚谁的钱？竞争优势是什么？现金流是否跟得上利润？</p></article>
+          <article><b>估值底线</b><p>好公司也会买贵，便宜公司也可能是价值陷阱。</p></article>
+        </div>
+        <div class="course-grid">
+          <button class="course-card tone-sage" data-lesson="11"><span>12</span><strong>商业模式</strong><em>公司靠什么赚钱</em><p>研究公司先问卖什么、卖给谁、为什么客户持续付费。</p><small>模板：产品 × 客户 × 竞争优势</small></button>
+          <button class="course-card tone-gold" data-lesson="12"><span>13</span><strong>财报三表</strong><em>利润表 · 资产负债表 · 现金流</em><p>利润表看赚钱，资产负债表看家底，现金流看钱是否进来。</p><small>检查：利润和现金流是否一致？</small></button>
+          <button class="course-card tone-blue" data-lesson="13"><span>14</span><strong>关键指标</strong><em>收入 · 毛利率 · ROE</em><p>指标像体检表，要和同行、历史和商业模式一起看。</p><small>指标：毛利率 / ROE / 负债率</small></button>
+          <button class="course-card tone-ink" data-lesson="14"><span>15</span><strong>估值入门</strong><em>PE · PB · 安全边际</em><p>估值不是算精确价格，而是判断价格是否有安全边际。</p><small>问题：好公司现在是否太贵？</small></button>
+          <button class="course-card tone-gold" data-lesson="15"><span>16</span><strong>仓位管理</strong><em>分批 · 上限 · 止损</em><p>仓位决定你判断错时还能不能继续学习。</p><small>规则：单只股票不超过总资金20%</small></button>
+          <button class="course-card tone-sage" data-lesson="16"><span>17</span><strong>复盘系统</strong><em>交易记录 · 错误清单</em><p>复盘把每次买卖变成学习材料，而不是只记盈亏。</p><small>记录：理由 / 仓位 / 退出 / 教训</small></button>
+        </div>
+        <div class="deep-grid">
+          <article>
+            <h3>公司研究最小框架</h3>
+            <ol>
+              <li>业务：卖什么，客户是谁，是否刚需。</li>
+              <li>竞争：有没有品牌、成本、渠道、技术或网络效应。</li>
+              <li>财务：收入、利润、现金流是否一致。</li>
+              <li>价格：估值是否给了安全边际。</li>
+            </ol>
+          </article>
+          <article>
+            <h3>常见指标怎么用</h3>
+            <dl>
+              <div><dt>毛利率</dt><dd>产品赚钱能力，越高通常说明定价权越强。</dd></div>
+              <div><dt>ROE</dt><dd>股东资金回报率，要和负债率一起看。</dd></div>
+              <div><dt>经营现金流</dt><dd>利润是否真的变成钱。</dd></div>
+              <div><dt>PE / PB</dt><dd>估值工具，必须结合行业和公司质量。</dd></div>
+            </dl>
+          </article>
+        </div>
+        <section class="matrix-block">
+          <h3>看股票要判断的数据</h3>
+          <div class="matrix-table">
+            <div class="matrix-row head"><span>数据</span><span>说明什么</span><span>怎么用</span></div>
+            <div class="matrix-row"><span>收入增长</span><span>公司卖出的产品或服务是否扩大。</span><span>看连续多年，不只看单季度。</span></div>
+            <div class="matrix-row"><span>毛利率</span><span>产品定价权和成本压力。</span><span>和同行比，突然下降要查原因。</span></div>
+            <div class="matrix-row"><span>ROE</span><span>股东资金的回报效率。</span><span>必须和负债率一起看，避免高杠杆假象。</span></div>
+            <div class="matrix-row"><span>经营现金流</span><span>利润有没有变成真实现金。</span><span>长期低于净利润，要查应收账款和存货。</span></div>
+            <div class="matrix-row"><span>PE / PB</span><span>市场给公司利润或净资产的定价。</span><span>低估值不自动等于便宜。</span></div>
+          </div>
+        </section>
+        <section class="matrix-block">
+          <h3>股票体检表：从 6 个问题快速过滤</h3>
+          <div class="matrix-table">
+            <div class="matrix-row head"><span>问题</span><span>健康表现</span><span>需要警惕</span></div>
+            <div class="matrix-row"><span>业务是否清楚</span><span>一句话能说明卖什么、卖给谁、为什么赚钱。</span><span>只能讲概念、生态、愿景，讲不清收入来源。</span></div>
+            <div class="matrix-row"><span>收入是否持续</span><span>多年收入稳定增长，波动有合理解释。</span><span>收入靠一次性订单、补贴或周期高点。</span></div>
+            <div class="matrix-row"><span>利润是否真实</span><span>净利润和经营现金流大体匹配。</span><span>利润增长但现金流长期为负。</span></div>
+            <div class="matrix-row"><span>负债是否可控</span><span>债务规模和现金流能力匹配。</span><span>短债高、现金少、利息压力上升。</span></div>
+            <div class="matrix-row"><span>估值是否合理</span><span>价格没有透支过度乐观预期。</span><span>所有收益都依赖未来高增长。</span></div>
+            <div class="matrix-row"><span>风险是否能承受</span><span>即使亏损，也不会影响整体账户和生活。</span><span>一旦下跌就影响心态或现金需求。</span></div>
+          </div>
+        </section>
+      </section>
+
+      <section class="cases-page page-section" id="cases" data-page="cases">
+        <div class="section-head">
+          <p>CLASSIC CASES · 经典案例</p>
+          <h2>用真实公司学股票</h2>
+        </div>
+        <div class="page-intro">
+          <p>课本概念学完后, 把它放进真实公司去看。每个案例 = 一家公司 + 一段历史 + 应学到的一课。先看公司故事, 再回到自己的判断框架。</p>
+        </div>
+
+        <!-- 7 步判断好股票框架 -->
+        <article class="textbook-block">
+          <div class="chapter-mark">FRAMEWORK · 7 步</div>
+          <h3>怎么判断这是不是一只好股票</h3>
+          <p>研究股票不是看"明天涨不涨", 而是按 7 步过滤 — 每一步过不了就别上场。借鉴 巴菲特 / 林奇 / 马克斯 / 芒格 综合框架。</p>
+          <div class="framework-steps" id="frameworkSteps"></div>
+        </article>
+
+        <!-- K 线对照: 好/坏走势 -->
+        <article class="textbook-block">
+          <div class="chapter-mark">CHART READING · K 线</div>
+          <h3>K 线告诉你这股票现在是什么状态</h3>
+          <p>同一根 K 线在不同位置含义完全不同。这 6 个对比图教你"位置 + 形态 + 量"三维读盘。</p>
+          <div class="chart-compare-grid" id="chartCompareGrid"></div>
+        </article>
+
+        <div class="section-head"><p>CLASSIC COMPANIES · 8 大案例</p><h2>真实公司教学</h2></div>
+        <div class="case-grid" id="caseGrid"></div>
+      </section>
+
+      <section class="cases-page page-section" id="metrics" data-page="metrics">
+        <div class="section-head">
+          <p>KEY METRICS · 关键指标速查</p>
+          <h2>看到数字立刻能判断</h2>
+        </div>
+        <div class="page-intro">
+          <p>25 个最重要指标, 含英文缩写 + 全称 + 公式 + 健康范围 + 警惕信号 + 真实案例。背熟之后, 看一眼财报就知道公司是好是差。</p>
+        </div>
+        <div class="metric-tabs" id="metricTabs"></div>
+        <div class="metric-grid" id="metricGrid"></div>
+      </section>
+
+      <section class="cases-page page-section" id="stops" data-page="stops">
+        <div class="section-head">
+          <p>STOP-LOSS · TAKE-PROFIT · 止盈止损</p>
+          <h2>买之前先想清楚怎么走</h2>
+        </div>
+        <div class="page-intro">
+          <p>不会止损是新手最大杀手, 不会止盈是中阶最大遗憾。本节系统讲 5 种止损 + 4 种止盈 + 心理误区, 配真实案例。</p>
+        </div>
+        <div class="stops-grid" id="stopsGrid"></div>
+      </section>
+
+      <section class="cases-page page-section" id="masters" data-page="masters">
+        <div class="section-head">
+          <p>LEGENDARY INVESTORS · 投资大师</p>
+          <h2>站在巨人肩上学</h2>
+        </div>
+        <div class="page-intro">
+          <p>10 位真正用业绩证明过自己的大师。每人有不同时代 + 不同打法。先理解他们的"思维框架", 再借鉴可复制的部分。</p>
+        </div>
+        <div class="case-grid" id="mastersGrid"></div>
+      </section>
+
+      <section class="cases-page page-section" id="vc" data-page="vc-risk">
+        <div class="section-head">
+          <p>VC + RISK · 风投心得 + 风险清单</p>
+          <h2>顶级风投怎么选 + 怎么不亏</h2>
+        </div>
+        <div class="page-intro">
+          <p>这页合并 VC 投资框架 + 散户风险清单。Sequoia/a16z/YC 等大牌 VC 选公司的方法论同样适合二级市场。下方是 12 项硬性风险红线, 必须遵守。</p>
+        </div>
+        <div class="case-grid" id="vcGrid"></div>
+      </section>
+
+      <section class="risk page-section" id="risk-page" data-page="vc-risk">
+        <div class="section-head">
+          <p>RISK CHECKLIST · 风险红线</p>
+          <h2>买之前先防错 (12 项检查)</h2>
+        </div>
+        <div class="page-intro">
+          <p>VC 找好公司, 散户先防错。下方 12 项是新手必经红线 — 任何一项不过关都不该出手。</p>
+        </div>
+        <article class="textbook-block">
+          <div class="chapter-mark">CHAPTER 04</div>
+          <h3>风险控制是入门课，不是高级课</h3>
+          <p>很多新手不是因为不会找到上涨股票而亏损，而是因为一次错误投入太多、没有退出条件、亏损后不断加仓。风险控制的本质，是让你在判断错时还能继续学习。</p>
+          <div class="textbook-grid">
+            <section>
+              <h4>仓位例子</h4>
+              <p>总资金 10000 元，单只股票上限 20%，即最多买入 2000 元。如果单笔最大亏损设为 8%，这笔交易的预算亏损是 160 元。</p>
+            </section>
+            <section>
+              <h4>课后练习</h4>
+              <p>写下你的第一条交易纪律：单只股票最大仓位是多少？最大亏损是多少？触发什么条件必须退出？</p>
+            </section>
+          </div>
+        </article>
+        <section class="matrix-block danger">
+          <h3>哪些陷阱不能碰</h3>
+          <div class="matrix-table">
+            <div class="matrix-row head"><span>类型</span><span>表现</span><span>处理方式</span></div>
+            <div class="matrix-row"><span>借钱交易</span><span>用贷款、信用卡、保证金扩大本金。</span><span>新手直接排除。</span></div>
+            <div class="matrix-row"><span>听消息买入</span><span>理由来自群聊、短视频、朋友一句话。</span><span>没有独立研究，不下单。</span></div>
+            <div class="matrix-row"><span>财报异常</span><span>利润涨，现金流差，应收账款和存货大增。</span><span>先暂停，查原因。</span></div>
+            <div class="matrix-row"><span>高位讲故事</span><span>涨很多之后，市场开始只讲远大叙事。</span><span>回到估值和现金流。</span></div>
+            <div class="matrix-row"><span>单票过重</span><span>一家公司决定整个账户命运。</span><span>降低集中度，设置上限。</span></div>
+          </div>
+        </section>
+        <section class="matrix-block">
+          <h3>什么时候才考虑提高仓位</h3>
+          <p class="matrix-note">这不是鼓励重仓，而是给“提高仓位”设置门槛。只有同时满足多个条件，才有资格从小仓位进入中等仓位；单一条件不够。</p>
+          <div class="matrix-table">
+            <div class="matrix-row head"><span>条件</span><span>合格表现</span><span>不合格表现</span></div>
+            <div class="matrix-row"><span>理解度</span><span>能讲清业务、客户、竞争优势和风险。</span><span>只知道它最近涨得好。</span></div>
+            <div class="matrix-row"><span>财务质量</span><span>收入、利润、现金流长期匹配。</span><span>利润好看但现金流长期差。</span></div>
+            <div class="matrix-row"><span>估值</span><span>价格有安全边际，不靠乐观假设。</span><span>所有收益都依赖未来高增长。</span></div>
+            <div class="matrix-row"><span>组合风险</span><span>即使判断错，也不会毁掉整体账户。</span><span>单只股票亏损会影响生活或心态。</span></div>
+            <div class="matrix-row"><span>退出规则</span><span>有明确减仓/退出触发条件。</span><span>只说“长期持有”，没有错误处理。</span></div>
+          </div>
+        </section>
+        <section class="matrix-block">
+          <h3>买入前 12 项检查清单</h3>
+          <div class="checklist-grid">
+            <label><input type="checkbox"> 我能用一句话讲清公司业务</label>
+            <label><input type="checkbox"> 我知道公司主要客户是谁</label>
+            <label><input type="checkbox"> 我看过最近一期财报</label>
+            <label><input type="checkbox"> 我检查了经营现金流</label>
+            <label><input type="checkbox"> 我知道主要风险是什么</label>
+            <label><input type="checkbox"> 我比较过同行估值</label>
+            <label><input type="checkbox"> 我设定了单票仓位上限</label>
+            <label><input type="checkbox"> 我知道跌到哪里要重新评估</label>
+            <label><input type="checkbox"> 我不是因为别人推荐而买</label>
+            <label><input type="checkbox"> 我不是因为怕错过而买</label>
+            <label><input type="checkbox"> 我能接受短期波动</label>
+            <label><input type="checkbox"> 我写下了买入理由</label>
+          </div>
+        </section>
+        <div class="risk-grid">
+          <article><span>01</span><strong>不用借来的钱交易</strong><p>杠杆会放大错误，新手先保护本金和学习节奏。</p></article>
+          <article><span>02</span><strong>先写退出条件</strong><p>买入前决定最大亏损，不要等亏损扩大后再找理由。</p></article>
+          <article><span>03</span><strong>看不懂就不买</strong><p>不知道公司怎么赚钱，就没有长期持有依据。</p></article>
+          <article><span>04</span><strong>先小仓位练习</strong><p>用小金额体验流程，先训练纪律，再追求收益。</p></article>
+        </div>
+      </section>
+
+      <section class="figures page-section" id="figures" data-page="overview">
+        <div class="section-head">
+          <p>STANDARD FIGURES · 图例参考</p>
+          <h2>看一眼就懂的标准图</h2>
+        </div>
+        <div class="page-intro">
+          <p>这些图是学习股票时最常用的“视觉模型”。先用图理解概念，再回到真实行情和财报里验证。不要把任何图形当成自动买卖信号。</p>
+          <ul>
+            <li>图例用于建立判断框架，不代表具体投资建议。</li>
+            <li>真实决策必须结合公司基本面、估值、仓位和风险承受能力。</li>
+          </ul>
+        </div>
+
+        <div class="figure-grid">
+          <article class="figure-card">
+            <div class="figure-head"><span>FIG 01</span><h3>K线 + 20日 / 50日均线</h3></div>
+            <svg viewBox="0 0 720 360" role="img" aria-label="K线与20日50日均线图">
+              <rect x="38" y="36" width="644" height="246" rx="16" fill="rgba(20,17,13,.5)" stroke="rgba(212,182,112,.16)"/>
+              <g stroke="rgba(245,239,227,.08)">
+                <line x1="66" y1="90" x2="654" y2="90"/><line x1="66" y1="150" x2="654" y2="150"/><line x1="66" y1="210" x2="654" y2="210"/>
+              </g>
+              <path d="M70 210 C130 185 170 178 220 158 S330 116 390 132 S500 165 642 84" fill="none" stroke="#e8c97a" stroke-width="4"/>
+              <path d="M70 226 C150 202 222 190 294 162 S430 134 642 118" fill="none" stroke="#8da7c3" stroke-width="4"/>
+              <g>
+                <rect x="88" y="174" width="16" height="48" fill="#7aa88a"/><line x1="96" y1="156" x2="96" y2="236" stroke="#7aa88a" stroke-width="3"/>
+                <rect x="136" y="158" width="16" height="62" fill="#d4b670"/><line x1="144" y1="140" x2="144" y2="230" stroke="#d4b670" stroke-width="3"/>
+                <rect x="184" y="138" width="16" height="54" fill="#7aa88a"/><line x1="192" y1="122" x2="192" y2="208" stroke="#7aa88a" stroke-width="3"/>
+                <rect x="232" y="128" width="16" height="70" fill="#7aa88a"/><line x1="240" y1="110" x2="240" y2="218" stroke="#7aa88a" stroke-width="3"/>
+                <rect x="280" y="116" width="16" height="82" fill="#d4b670"/><line x1="288" y1="96" x2="288" y2="214" stroke="#d4b670" stroke-width="3"/>
+                <rect x="328" y="94" width="16" height="62" fill="#7aa88a"/><line x1="336" y1="78" x2="336" y2="170" stroke="#7aa88a" stroke-width="3"/>
+                <rect x="376" y="110" width="16" height="52" fill="#d4b670"/><line x1="384" y1="90" x2="384" y2="178" stroke="#d4b670" stroke-width="3"/>
+                <rect x="424" y="126" width="16" height="62" fill="#d4b670"/><line x1="432" y1="104" x2="432" y2="202" stroke="#d4b670" stroke-width="3"/>
+                <rect x="472" y="106" width="16" height="86" fill="#7aa88a"/><line x1="480" y1="86" x2="480" y2="208" stroke="#7aa88a" stroke-width="3"/>
+                <rect x="520" y="88" width="16" height="72" fill="#7aa88a"/><line x1="528" y1="70" x2="528" y2="176" stroke="#7aa88a" stroke-width="3"/>
+                <rect x="568" y="76" width="16" height="66" fill="#7aa88a"/><line x1="576" y1="58" x2="576" y2="158" stroke="#7aa88a" stroke-width="3"/>
+              </g>
+              <text x="74" y="318" fill="#e8c97a" font-size="14">20日线：更敏感，观察短中期节奏</text>
+              <text x="360" y="318" fill="#8da7c3" font-size="14">50日线：更平滑，观察中期趋势</text>
+            </svg>
+            <p>重点看价格和均线的距离、均线方向，以及突破时成交量是否配合。</p>
+          </article>
+
+          <article class="figure-card">
+            <div class="figure-head"><span>FIG 02</span><h3>量价关系图</h3></div>
+            <svg viewBox="0 0 720 360" role="img" aria-label="量价关系图">
+              <rect x="44" y="42" width="632" height="236" rx="16" fill="rgba(20,17,13,.5)" stroke="rgba(212,182,112,.16)"/>
+              <path d="M70 196 L132 176 L194 182 L256 136 L318 146 L380 96 L442 110 L504 82 L566 128 L642 118" fill="none" stroke="#e8c97a" stroke-width="5"/>
+              <g opacity=".78">
+                <rect x="72" y="238" width="28" height="28" fill="#8da7c3"/><rect x="134" y="218" width="28" height="48" fill="#7aa88a"/>
+                <rect x="196" y="228" width="28" height="38" fill="#8da7c3"/><rect x="258" y="186" width="28" height="80" fill="#7aa88a"/>
+                <rect x="320" y="202" width="28" height="64" fill="#8da7c3"/><rect x="382" y="154" width="28" height="112" fill="#7aa88a"/>
+                <rect x="444" y="174" width="28" height="92" fill="#8da7c3"/><rect x="506" y="138" width="28" height="128" fill="#7aa88a"/>
+                <rect x="568" y="196" width="28" height="70" fill="#d4b670"/>
+              </g>
+              <text x="76" y="318" fill="#d9d1c0" font-size="15">价格上涨 + 成交量放大：趋势更有参与度</text>
+              <text x="430" y="318" fill="#d9d1c0" font-size="15">高位放量滞涨：分歧变大</text>
+            </svg>
+            <p>量价一起看。只看价格容易忽略市场参与度，只看量也容易误判位置。</p>
+          </article>
+
+          <article class="figure-card">
+            <div class="figure-head"><span>FIG 03</span><h3>财报三表关系图</h3></div>
+            <svg viewBox="0 0 720 360" role="img" aria-label="财报三表关系图">
+              <rect x="74" y="78" width="150" height="150" rx="18" fill="rgba(212,182,112,.13)" stroke="rgba(212,182,112,.35)"/>
+              <rect x="286" y="78" width="150" height="150" rx="18" fill="rgba(122,168,138,.13)" stroke="rgba(122,168,138,.35)"/>
+              <rect x="498" y="78" width="150" height="150" rx="18" fill="rgba(141,167,195,.13)" stroke="rgba(141,167,195,.35)"/>
+              <text x="110" y="122" fill="#e8c97a" font-size="20">利润表</text><text x="102" y="162" fill="#d9d1c0" font-size="14">赚了多少</text>
+              <text x="310" y="122" fill="#e8c97a" font-size="20">资产负债表</text><text x="326" y="162" fill="#d9d1c0" font-size="14">家底如何</text>
+              <text x="526" y="122" fill="#e8c97a" font-size="20">现金流量表</text><text x="538" y="162" fill="#d9d1c0" font-size="14">钱进没进来</text>
+              <path d="M224 152 H286 M436 152 H498" stroke="#d4b670" stroke-width="3" stroke-dasharray="8 8"/>
+              <text x="102" y="286" fill="#d9d1c0" font-size="16">利润增长但现金流差：要重点检查利润质量。</text>
+            </svg>
+            <p>不要只看利润。真实研究要同时看利润、资产负债和现金流。</p>
+          </article>
+
+          <article class="figure-card">
+            <div class="figure-head"><span>FIG 04</span><h3>风险收益矩阵</h3></div>
+            <svg viewBox="0 0 720 360" role="img" aria-label="风险收益矩阵">
+              <line x1="108" y1="270" x2="620" y2="270" stroke="#a89b82" stroke-width="2"/>
+              <line x1="108" y1="270" x2="108" y2="58" stroke="#a89b82" stroke-width="2"/>
+              <text x="560" y="304" fill="#a89b82" font-size="14">风险高</text>
+              <text x="54" y="70" fill="#a89b82" font-size="14">收益高</text>
+              <rect x="130" y="86" width="190" height="76" rx="14" fill="rgba(122,168,138,.16)" stroke="rgba(122,168,138,.38)"/>
+              <rect x="380" y="86" width="190" height="76" rx="14" fill="rgba(212,182,112,.16)" stroke="rgba(212,182,112,.38)"/>
+              <rect x="130" y="184" width="190" height="76" rx="14" fill="rgba(141,167,195,.14)" stroke="rgba(141,167,195,.34)"/>
+              <rect x="380" y="184" width="190" height="76" rx="14" fill="rgba(160,80,60,.18)" stroke="rgba(212,182,112,.28)"/>
+              <text x="168" y="130" fill="#f5efe3" font-size="16">高收益 / 低风险</text>
+              <text x="424" y="130" fill="#f5efe3" font-size="16">高收益 / 高风险</text>
+              <text x="174" y="228" fill="#f5efe3" font-size="16">低收益 / 低风险</text>
+              <text x="424" y="228" fill="#f5efe3" font-size="16">低收益 / 高风险</text>
+            </svg>
+            <p>优先避开“低收益高风险”。高收益高风险也不能重仓试错。</p>
+          </article>
+
+          <article class="figure-card">
+            <div class="figure-head"><span>FIG 05</span><h3>仓位金字塔</h3></div>
+            <svg viewBox="0 0 720 360" role="img" aria-label="仓位金字塔">
+              <polygon points="360,62 576,282 144,282" fill="rgba(212,182,112,.08)" stroke="rgba(212,182,112,.32)"/>
+              <line x1="246" y1="178" x2="474" y2="178" stroke="rgba(212,182,112,.28)"/>
+              <line x1="194" y1="232" x2="526" y2="232" stroke="rgba(212,182,112,.28)"/>
+              <text x="320" y="140" fill="#e8c97a" font-size="17">核心仓</text>
+              <text x="300" y="210" fill="#d9d1c0" font-size="17">观察仓 / 分批</text>
+              <text x="278" y="264" fill="#a89b82" font-size="17">现金与备用资金</text>
+              <text x="118" y="318" fill="#d9d1c0" font-size="15">仓位越高，理解度、估值安全边际和退出规则要求越高。</text>
+            </svg>
+            <p>仓位不是信心表达，而是错误成本管理。</p>
+          </article>
+
+          <article class="figure-card">
+            <div class="figure-head"><span>FIG 06</span><h3>估值安全边际</h3></div>
+            <svg viewBox="0 0 720 360" role="img" aria-label="估值安全边际图">
+              <rect x="92" y="120" width="540" height="56" rx="28" fill="rgba(245,239,227,.08)" stroke="rgba(212,182,112,.22)"/>
+              <rect x="118" y="120" width="160" height="56" rx="28" fill="rgba(122,168,138,.25)"/>
+              <rect x="278" y="120" width="190" height="56" fill="rgba(212,182,112,.18)"/>
+              <rect x="468" y="120" width="138" height="56" rx="28" fill="rgba(141,167,195,.18)"/>
+              <line x1="302" y1="92" x2="302" y2="206" stroke="#e8c97a" stroke-width="4"/>
+              <text x="148" y="154" fill="#f5efe3" font-size="16">安全边际</text>
+              <text x="336" y="154" fill="#f5efe3" font-size="16">合理区</text>
+              <text x="500" y="154" fill="#f5efe3" font-size="16">偏贵</text>
+              <text x="254" y="232" fill="#e8c97a" font-size="15">当前价格</text>
+              <text x="92" y="292" fill="#d9d1c0" font-size="15">好公司也可能买贵，便宜公司也可能是价值陷阱。</text>
+            </svg>
+            <p>估值要回答：现在的价格是否给了足够容错空间。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="quiz page-section" id="quiz-page" data-page="DELETED" hidden>
+        <div class="section-head">
+          <p>QUIZ · 30 题</p>
+          <h2>分章节小测</h2>
+        </div>
+        <div class="page-intro quiz-intro">
+          <p>每章 10 题, 共 30 题。≥ 80% 算掌握。可分章测或综合 30 题一次跑。</p>
+        </div>
+        <div class="quiz-tabs">
+          <button type="button" data-quiz-section="L1" class="quiz-tab">L1 基础常识 · 10</button>
+          <button type="button" data-quiz-section="L2" class="quiz-tab">L2 行情阅读 · 10</button>
+          <button type="button" data-quiz-section="L3" class="quiz-tab">L3 价值判断 · 10</button>
+          <button type="button" data-quiz-section="ALL" class="quiz-tab active">综合 30 题</button>
+        </div>
+        <div class="quiz-box">
+          <div class="quiz-head"><span id="quizStep">1 / 30</span><strong id="quizScore">得分 0</strong></div>
+          <h3 id="question"></h3>
+          <div id="answers" class="answers"></div>
+          <p id="feedback" class="feedback"></p>
+        </div>
+      </section>
+
+      <section class="level page-section" id="review-page" data-page="overview">
+        <div class="section-head">
+          <p>REVIEW TEMPLATE</p>
+          <h2>交易后复盘模板</h2>
+        </div>
+        <div class="review-sheet">
+          <div><span>1</span><strong>买入前理由</strong><p>当时为什么买？基于公司、行情、估值，还是情绪？</p></div>
+          <div><span>2</span><strong>实际结果</strong><p>价格怎么走？和原计划相比，是否偏离？</p></div>
+          <div><span>3</span><strong>过程评价</strong><p>盈利不一定正确，亏损不一定错误。重点看过程是否遵守规则。</p></div>
+          <div><span>4</span><strong>下次改进</strong><p>把错误写成规则，例如“不在高位放量滞涨后追入”。</p></div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      本页面只用于股票基础知识学习，不构成任何投资建议。市场有风险，投资需谨慎。
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

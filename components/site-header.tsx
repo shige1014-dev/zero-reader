@@ -23,7 +23,9 @@ const ITEMS = [
   // ─── 中间 · 学习台 home ───
   { href: "/",                                       label: "学习台",   match: (p: string) => p === "/",
     icon: "M3 12l9-9 9 9M5 10v10h14V10" },
-  // ─── 右侧 · 股票 (3) ───
+  // ─── 右侧 · 股票 (4) ───
+  { href: "/stock-101/index.html",                   label: "股票学习", match: (p: string) => p.startsWith("/stock-101"),
+    icon: "M4 19h16M6 19V9l4-3 4 3v10M14 19v-7M14 12l4-3v10" },
   { href: "/stock-learning",                         label: "股票学习网", match: (p: string) => p.startsWith("/stock-learning"),
     icon: "M4 19V5M4 19h16M8 15l3-3 3 2 5-7M8 19v-4M14 19v-5M20 19V7" },
   { href: "/bedrock",                                label: "基岩层",   match: (p: string) => p.startsWith("/bedrock"),
