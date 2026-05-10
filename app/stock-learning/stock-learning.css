@@ -207,6 +207,27 @@ html{scroll-behavior:smooth}
 }
 .sl-nav-toggle:hover{background:rgba(232,201,122,.16);border-style:solid}
 @media (max-width:640px){
-  .sl-nav-sticky{top:56px;margin:0 -10px 14px;padding:8px 10px}
+  .sl-nav-sticky{
+    top: 52px;
+    margin: 0 -10px 12px;
+    padding: 6px 8px;
+  }
+  .sl-nav-row-cat {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+  .sl-nav-row-cat::-webkit-scrollbar { display: none; }
+  .sl-nav-row-cat .sl-nav-chip { flex-shrink: 0; }
+  .sl-nav-chip { padding: 3px 8px; font-size: 11px; }
+  .sl-nav-cat .sl-nav-count { font-size: 9px; margin-left: 2px; }
+  .sl-nav-toggle { padding: 3px 10px; font-size: 10px; }
+  .sl-nav-row-tk {
+    max-height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 4px;
+  }
   .sl-nav-toggle{margin-left:0;width:100%;text-align:center;margin-top:4px}
 }
