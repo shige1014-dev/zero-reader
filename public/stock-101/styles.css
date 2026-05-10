@@ -150,13 +150,7 @@ body { padding-top: 56px; }
 .level::before,
 .risk::before,
 .quiz::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 24px;
-  right: 24px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, hsla(42, 54%, 64%, .55), transparent);
+  display: none;
 }
 .hero-main > *,
 .hero-panel > *,
@@ -173,17 +167,7 @@ body { padding-top: 56px; }
   padding: clamp(20px, 3vw, 36px);
   border-radius: 18px;
 }
-.hero-main::after {
-  content: "";
-  position: absolute;
-  right: -80px;
-  bottom: -120px;
-  width: 360px;
-  height: 360px;
-  border: 1px solid hsla(42, 54%, 64%, .12);
-  border-radius: 50%;
-  background: radial-gradient(circle, hsla(42, 54%, 64%, .08), transparent 60%);
-}
+.hero-main::after { display: none; }
 
 .kicker,
 .section-head p,
