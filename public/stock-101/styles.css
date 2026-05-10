@@ -111,9 +111,7 @@ body { padding-top: 56px; }
   padding: 8px;
   border: 1px solid var(--border);
   border-radius: 999px;
-  background: linear-gradient(180deg, rgba(31, 26, 20, .86), rgba(20, 17, 13, .7));
-  backdrop-filter: blur(18px);
-  box-shadow: 0 14px 44px rgba(0, 0, 0, .22);
+  background: #14110d;
   scrollbar-width: none;
 }
 .topbar::-webkit-scrollbar { display: none; }
