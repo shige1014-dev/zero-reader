@@ -7,7 +7,6 @@ import {
   STOCK_LEARNING_CANDIDATES
 } from "@/lib/stock-learning/data";
 import { getEnrichment } from "@/lib/stock-learning/enrichments";
-import StockLearnFilter from "./StockLearnFilter";
 import "./stock-learning.css";
 
 export const metadata: Metadata = {
@@ -29,13 +28,6 @@ const candidates = [...STOCK_LEARNING_CANDIDATES].sort((a, b) => {
 const topCandidates = candidates.slice(0, 12);
 const onlineStrongBuyCount = STOCK_LEARNING_CANDIDATES.filter((item) => item.online.consensus === "Strong Buy").length;
 const noCoverageCount = STOCK_LEARNING_CANDIDATES.filter((item) => item.online.consensus === "无覆盖").length;
-const tierCount = {
-  S: STOCK_LEARNING_CANDIDATES.filter((i) => i.rating === "S").length,
-  A: STOCK_LEARNING_CANDIDATES.filter((i) => i.rating === "A").length,
-  B: STOCK_LEARNING_CANDIDATES.filter((i) => i.rating === "B").length,
-  C: STOCK_LEARNING_CANDIDATES.filter((i) => i.rating === "C").length,
-};
-const enrichedCount = STOCK_LEARNING_CANDIDATES.filter((i) => getEnrichment(i.ticker)).length;
 
 export default function StockLearningPage() {
   return (
@@ -50,15 +42,8 @@ export default function StockLearningPage() {
         <div className="stocklearn-stats" aria-label="股票学习网统计">
           <Metric label="候选标的" value={`${STOCK_LEARNING_CANDIDATES.length} 只`} />
           <Metric label="主题层" value={`${STOCK_CATEGORIES.length} 类`} />
-          <Metric label="完整资料" value={`${enrichedCount} / ${STOCK_LEARNING_CANDIDATES.length}`} />
-          <Metric label="Strong Buy" value={`${onlineStrongBuyCount} 只`} />
-          <Metric label="待核验" value={`${noCoverageCount} 只`} />
-        </div>
-        <div className="sl-tier-stats">
-          <span className="sl-tier-stat sl-tier-s">⭐ S 级 <b>{tierCount.S}</b></span>
-          <span className="sl-tier-stat sl-tier-a">⭐ A 级 <b>{tierCount.A}</b></span>
-          <span className="sl-tier-stat sl-tier-b">⭐ B 级 <b>{tierCount.B}</b></span>
-          <span className="sl-tier-stat sl-tier-c">⭐ C 级 <b>{tierCount.C}</b></span>
+          <Metric label="网上 Strong Buy" value={`${onlineStrongBuyCount} 只`} />
+          <Metric label="待核验覆盖" value={`${noCoverageCount} 只`} />
         </div>
         <p className="stocklearn-disclaimer">
           网上评级来自 StockAnalysis 公开分析师共识抓取，时间敏感；长期评级是学习台内部框架，不构成投资建议。
@@ -116,9 +101,128 @@ export default function StockLearningPage() {
       <section className="stocklearn-section" aria-label="股票分类评级表">
         <div className="stocklearn-section-head">
           <p>CLASSIFIED WATCHLIST</p>
-          <h2>分类筛选 · 全部 {STOCK_LEARNING_CANDIDATES.length} 只</h2>
+          <h2>分类、评级、理由</h2>
         </div>
-        <StockLearnFilter candidates={candidates} />
+        <div className="stocklearn-category-stack">
+          {STOCK_CATEGORIES.map((category) => {
+            const items = candidates.filter((item) => item.category === category.id);
+            return (
+              <section key={category.id} className="stocklearn-category">
+                <header className="stocklearn-category-head">
+                  <div>
+                    <p>{category.allocation}% MODEL WEIGHT</p>
+                    <h3>{category.label}</h3>
+                  </div>
+                  <span>{items.length} 只</span>
+                </header>
+                <div className="stocklearn-card-grid">
+                  {items.map((item) => {
+                    const ext = getEnrichment(item.ticker);
+                    return (
+                    <article key={item.ticker} className="stocklearn-card">
+                      <div className="stocklearn-card-top">
+                        <div>
+                          <h4>{item.ticker}</h4>
+                          <p>{item.nameZh}</p>
+                          <span>{item.name}</span>
+                        </div>
+                        <div className="stocklearn-score">
+                          <strong>{item.futurePotential}</strong>
+                          <span>潜力值</span>
+                        </div>
+                      </div>
+                      <div className="stocklearn-badges">
+                        <span>{ratingLabels[item.rating]}</span>
+                        <span>{portfolioRoles[item.portfolioRole]}</span>
+                        <span>{item.suggestedWeight}</span>
+                      </div>
+
+                      {ext && (ext.exchange || ext.hq || ext.founded || ext.employees || ext.ceo) && (
+                        <ul className="stocklearn-meta-row">
+                          {ext.exchange && <li>📈 {ext.exchange}</li>}
+                          {ext.hq && <li>📍 {ext.hq}</li>}
+                          {ext.founded && <li>🗓 {ext.founded}</li>}
+                          {ext.employees && <li>👥 {ext.employees}</li>}
+                          {ext.ceo && <li>👤 {ext.ceo}</li>}
+                        </ul>
+                      )}
+
+                      <p className="stocklearn-thesis">{ext?.business ?? item.thesis}</p>
+                      <p className="stocklearn-risk">{item.risk}</p>
+
+                      {ext?.products && ext.products.length > 0 && (
+                        <div className="stocklearn-mini-block">
+                          <h5>🎯 关键产品</h5>
+                          <ul>{ext.products.map((p) => <li key={p}>{p}</li>)}</ul>
+                        </div>
+                      )}
+
+                      {(ext?.customers || ext?.competitors) && (
+                        <div className="stocklearn-twocol-block">
+                          {ext.customers && (
+                            <div>
+                              <h5>🤝 客户</h5>
+                              <p>{ext.customers.join(" · ")}</p>
+                            </div>
+                          )}
+                          {ext.competitors && (
+                            <div>
+                              <h5>⚔ 对手</h5>
+                              <p>{ext.competitors.join(" · ")}</p>
+                            </div>
+                          )}
+                        </div>
+                      )}
+
+                      {ext?.catalysts && ext.catalysts.length > 0 && (
+                        <div className="stocklearn-mini-block">
+                          <h5>🔥 催化</h5>
+                          <ul>{ext.catalysts.map((c) => <li key={c}>{c}</li>)}</ul>
+                        </div>
+                      )}
+
+                      {ext?.scenarios && (
+                        <div className="stocklearn-scenarios">
+                          <div className="ss-row ss-bull">
+                            <strong>🐂 牛</strong>
+                            <span>{ext.scenarios.bull.trigger}</span>
+                            <em>{ext.scenarios.bull.impact}</em>
+                          </div>
+                          <div className="ss-row ss-base">
+                            <strong>⚖ 基</strong>
+                            <span>{ext.scenarios.base.trigger}</span>
+                            <em>{ext.scenarios.base.impact}</em>
+                          </div>
+                          <div className="ss-row ss-bear">
+                            <strong>🐻 熊</strong>
+                            <span>{ext.scenarios.bear.trigger}</span>
+                            <em>{ext.scenarios.bear.impact}</em>
+                          </div>
+                        </div>
+                      )}
+
+                      {ext?.industryTags && ext.industryTags.length > 0 && (
+                        <div className="stocklearn-tag-row">
+                          {ext.industryTags.map((t) => <span key={t}>{t}</span>)}
+                        </div>
+                      )}
+
+                      <div className="stocklearn-online">
+                        <span>网上评级</span>
+                        <strong>{item.online.consensus}</strong>
+                        <em>
+                          {item.online.analysts === null ? "无分析师覆盖" : `${item.online.analysts} 位 · 目标价 ${item.online.target} · ${item.online.upside}`}
+                        </em>
+                        <a href={item.online.sourceUrl} target="_blank" rel="noreferrer">来源</a>
+                      </div>
+                    </article>
+                    );
+                  })}
+                </div>
+              </section>
+            );
+          })}
+        </div>
       </section>
 
       <section className="stocklearn-section stocklearn-rules" aria-label="使用规则">
