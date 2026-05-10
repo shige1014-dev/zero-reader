@@ -48,9 +48,57 @@ a { color: inherit; text-decoration: none; }
   padding: 18px clamp(16px, 3vw, 42px) 58px;
 }
 
+/* 零零阅读 总栏 (12 icon, 顶部固定) */
+.z-topnav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 50;
+  display: flex; align-items: center; justify-content: center;
+  gap: 0;
+  padding: 8px 16px;
+  background: rgba(20, 17, 13, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.06);
+}
+.z-tab {
+  flex: 0 0 auto;
+  width: 44px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  color: #8E8470; text-decoration: none;
+  border-radius: 6px;
+  transition: all .15s ease;
+}
+.z-tab:hover { color: #e8c97a; background: rgba(232,201,122,.08); }
+.z-tab.active { color: #ffd86b; background: rgba(232,201,122,.14); }
+.z-dot {
+  flex-shrink: 0;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  margin: 0 10px;
+  background: radial-gradient(circle at 35% 35%, #FFE9A8 0%, #FFD86B 50%, #C89060 100%);
+  box-shadow: 0 0 8px rgba(255,216,107,.7);
+}
+body { padding-top: 56px; }
+
+/* z-banner 缩小 + 紧贴 topbar */
+.z-banner {
+  display: flex; align-items: center; justify-content: center;
+  padding: 6px 14px;
+  margin: 6px 0 8px;
+  background: rgba(232,201,122,.05);
+  border: 1px solid rgba(232,201,122,.16);
+  border-radius: 8px;
+}
+.z-banner-title {
+  font-family: "Iowan Old Style", "Songti SC", Georgia, serif;
+  font-size: 11px; letter-spacing: .14em;
+  color: #ffd86b;
+}
+
 .topbar {
   position: sticky;
-  top: 14px;
+  top: 56px;
   z-index: 20;
   display: flex;
   gap: 8px;
