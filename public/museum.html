@@ -57,6 +57,12 @@ button{font:inherit}
 }
 .zh-topbar .zh-tab:hover{color:var(--t1); background:rgba(255,255,255,0.03)}
 .zh-topbar .zh-tab.active{color:var(--gold); background:var(--gold-soft)}
+.zh-dot{
+  flex:0 0 auto; width:6px; height:6px; border-radius:50%;
+  margin:0 12px; align-self:center;
+  background:radial-gradient(circle at 35% 35%, #FFE9A8 0%, #FFD86B 50%, #C89060 100%);
+  box-shadow:0 0 8px rgba(255,216,107,.7);
+}
 @media (max-width:639.98px){
   .zh-topbar .zh-tab{width:48px; height:38px; margin:0 2px}
   #museumRoot{padding-top:54px}
