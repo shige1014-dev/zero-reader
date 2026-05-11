@@ -1870,6 +1870,95 @@ footer {
   .stop-svg { margin: 2px 0 8px; padding: 4px 2px; }
 }
 
+/* ━━━━━━━ 经济学家 28 位 ━━━━━━━ */
+.econ-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.econ-card {
+  padding: 16px 18px;
+  background: linear-gradient(180deg, rgba(20,17,13,.7), rgba(15,13,10,.55));
+  border: 1px solid rgba(212,182,112,.16);
+  border-left: 3px solid var(--vc, #e8c97a);
+  border-radius: 10px;
+  min-width: 0; max-width: 100%;
+  word-break: break-word;
+}
+.econ-head {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed rgba(212,182,112,.16);
+}
+.econ-id {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px; font-weight: 700;
+  color: var(--vc, #e8c97a);
+  letter-spacing: .06em;
+}
+.econ-school {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9px; letter-spacing: .14em;
+  padding: 2px 7px;
+  background: rgba(232,201,122,.1);
+  color: var(--vc, #e8c97a);
+  border-radius: 4px;
+  border: 1px solid var(--vc, rgba(232,201,122,.3));
+  text-transform: uppercase;
+}
+.econ-flag { font-size: 14px; margin-left: auto; }
+.econ-name {
+  margin: 0 0 2px;
+  font-family: "Iowan Old Style", "Songti SC", Georgia, serif;
+  font-size: 18px; color: #f5efe3;
+  letter-spacing: .04em;
+}
+.econ-en {
+  margin: 0 0 10px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px; letter-spacing: .06em;
+  color: var(--muted);
+}
+.econ-core {
+  margin: 0 0 8px;
+  font-size: 12.5px; line-height: 1.65;
+  color: var(--vc, #e8c97a);
+  font-weight: 600;
+}
+.econ-quote {
+  margin: 8px 0;
+  padding: 8px 12px;
+  font-style: italic;
+  font-size: 12.5px;
+  color: #cfc4ad;
+  line-height: 1.6;
+  border-left: 2px solid rgba(232,201,122,.3);
+  background: rgba(255,255,255,.012);
+  border-radius: 0 6px 6px 0;
+}
+.econ-book, .econ-lesson {
+  margin: 6px 0;
+  font-size: 11.5px;
+  color: #d9d1c0;
+  line-height: 1.6;
+}
+.econ-book b, .econ-lesson b {
+  display: inline-block;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9px; letter-spacing: .14em;
+  color: #ffd86b;
+  margin-right: 5px;
+  text-transform: uppercase;
+}
+@media (max-width: 720px) {
+  .econ-grid { grid-template-columns: 1fr !important; }
+  .econ-card { padding: 12px 14px; }
+  .econ-name { font-size: 16px; }
+  .econ-quote { font-size: 11.5px; padding: 7px 10px; }
+}
+
 /* ━━━━━━━ K 线 12 形态 ━━━━━━━ */
 .kline-grid {
   display: grid;

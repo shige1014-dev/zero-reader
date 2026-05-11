@@ -1647,6 +1647,117 @@ const MASTERS = [
   },
 ];
 
+// ─── 经济学家 28 位 (8 大学派) ─────────────────────
+const ECONOMISTS = [
+  // 古典经济学 (4)
+  { id:"E01", school:"古典", name:"亚当·斯密", en:"Adam Smith", year:"1723-1790", country:"🇬🇧", color:"#7AE8A0",
+    core:"看不见的手 + 分工与劳动价值", quote:"我们的晚餐, 不来自屠夫善心, 而是他自身利益",
+    book:"《国富论》(1776)", lesson:"市场通过价格信号自发协调资源, 投资就是参与这个协调系统" },
+  { id:"E02", school:"古典", name:"大卫·李嘉图", en:"David Ricardo", year:"1772-1823", country:"🇬🇧", color:"#7AE8A0",
+    core:"比较优势 + 地租理论", quote:"比绝对优势更重要的, 是比较优势",
+    book:"《政治经济学及赋税原理》", lesson:"投资国际化要看比较优势; 哪些行业本国效率更高就买" },
+  { id:"E03", school:"古典", name:"马尔萨斯", en:"Thomas Malthus", year:"1766-1834", country:"🇬🇧", color:"#7AE8A0",
+    core:"人口论 + 有效需求不足", quote:"人口按几何增长, 食物按算术增长",
+    book:"《人口论》(1798)", lesson:"周期性悲观论祖师, 教你警惕过度乐观与资源约束" },
+  { id:"E04", school:"古典", name:"约翰·穆勒", en:"John Stuart Mill", year:"1806-1873", country:"🇬🇧", color:"#7AE8A0",
+    core:"功利主义 + 自由市场 + 累进税", quote:"市场效率与社会正义并不冲突",
+    book:"《政治经济学原理》", lesson:"资本主义需要矫正机制, 长期看政策友好行业更稳" },
+
+  // 新古典 (3)
+  { id:"E05", school:"新古典", name:"阿尔弗雷德·马歇尔", en:"Alfred Marshall", year:"1842-1924", country:"🇬🇧", color:"#5a8aa6",
+    core:"供需均衡 + 边际效用 + 弹性", quote:"价格背后是供给与需求的剪刀",
+    book:"《经济学原理》(1890)", lesson:"估值就是均衡点; 偏离均衡过远迟早回归" },
+  { id:"E06", school:"新古典", name:"瓦尔拉斯", en:"Léon Walras", year:"1834-1910", country:"🇫🇷", color:"#5a8aa6",
+    core:"一般均衡理论", quote:"所有市场相互关联, 同时清算",
+    book:"《纯粹政治经济学要义》", lesson:"市场是连通器, 加息影响所有资产, 不要孤立看一只股" },
+  { id:"E07", school:"新古典", name:"庞巴维克", en:"Eugen Böhm-Bawerk", year:"1851-1914", country:"🇦🇹", color:"#5a8aa6",
+    core:"时间偏好 + 资本与利息", quote:"今天的 100 元比明年的 100 元更值钱",
+    book:"《资本与利息》", lesson:"贴现率决定一切估值; 利率越高, 远期现金流越不值钱" },
+
+  // 凯恩斯派 (3)
+  { id:"E08", school:"凯恩斯派", name:"凯恩斯", en:"John Maynard Keynes", year:"1883-1946", country:"🇬🇧", color:"#FFD86B",
+    core:"有效需求 + 货币政策 + 动物精神", quote:"市场保持非理性的时间, 可能比你能保持偿付能力的时间更长",
+    book:"《通论》(1936)", lesson:"短期市场被情绪驱动 (动物精神), 不要 ALL IN 等理性回归" },
+  { id:"E09", school:"凯恩斯派", name:"萨缪尔森", en:"Paul Samuelson", year:"1915-2009", country:"🇺🇸", color:"#FFD86B",
+    core:"新古典综合 + 多次预测错误", quote:"经济学家预测了 9 次衰退中的 5 次",
+    book:"《经济学》(教科书)", lesson:"宏观预测不可靠, 不要把宏观判断当投资唯一依据" },
+  { id:"E10", school:"凯恩斯派", name:"明斯基", en:"Hyman Minsky", year:"1919-1996", country:"🇺🇸", color:"#FFD86B",
+    core:"金融不稳定性假说 / Minsky Moment", quote:"稳定本身孕育不稳定",
+    book:"《稳定不稳定经济》", lesson:"看似稳定时, 杠杆和投机暗中累积; 2008 危机的预言者" },
+
+  // 货币派 (2)
+  { id:"E11", school:"货币派", name:"米尔顿·弗里德曼", en:"Milton Friedman", year:"1912-2006", country:"🇺🇸", color:"#FF6B6B",
+    core:"货币主义 + 自由市场 + 永久收入", quote:"通胀始终是、并且无处不是货币现象",
+    book:"《美国货币史》", lesson:"看 M2 + 央行流动性比看 PE 更靠前; 流动性退潮股权先跌" },
+  { id:"E12", school:"货币派", name:"卢卡斯", en:"Robert Lucas", year:"1937-2023", country:"🇺🇸", color:"#FF6B6B",
+    core:"理性预期 + 卢卡斯批判", quote:"政策只在被预期外时才有效",
+    book:"《理性预期》", lesson:"市场会预演政策, Fed 决议时通常 'Buy the rumor, sell the news'" },
+
+  // 奥地利学派 (3)
+  { id:"E13", school:"奥地利", name:"哈耶克", en:"Friedrich Hayek", year:"1899-1992", country:"🇦🇹", color:"#C89060",
+    core:"价格是分散知识的汇总 + 反计划经济", quote:"价格能容纳无数人的局部信息",
+    book:"《通往奴役之路》", lesson:"市场比专家聪明 (集体智慧); 但要识别价格扭曲点" },
+  { id:"E14", school:"奥地利", name:"米塞斯", en:"Ludwig von Mises", year:"1881-1973", country:"🇦🇹", color:"#C89060",
+    core:"人之行动学 + 反通胀 + 商业周期", quote:"信用扩张总会以萧条告终",
+    book:"《人的行动》", lesson:"超低利率制造泡沫, 加息周期触发泡沫破裂. 周期不可避免" },
+  { id:"E15", school:"奥地利", name:"罗斯巴德", en:"Murray Rothbard", year:"1926-1995", country:"🇺🇸", color:"#C89060",
+    core:"完全自由市场 + 黄金本位 + 反央行", quote:"央行制造的衰退比解决的多",
+    book:"《美国大萧条》", lesson:"看政府干预的副作用 — 救市常埋更大隐患" },
+
+  // 创新理论 (1)
+  { id:"E16", school:"创新", name:"约瑟夫·熊彼特", en:"Joseph Schumpeter", year:"1883-1950", country:"🇦🇹", color:"#9a8aa0",
+    core:"创造性破坏 + 企业家精神 + 长波周期", quote:"创新会创造新秩序, 也会摧毁旧秩序",
+    book:"《资本主义、社会主义与民主》", lesson:"投资未来 = 找下一个能破坏现有秩序的公司 (NVDA / TSLA)" },
+
+  // 公共选择 / 制度 (2)
+  { id:"E17", school:"制度", name:"科斯", en:"Ronald Coase", year:"1910-2013", country:"🇬🇧", color:"#7AA88A",
+    core:"交易成本 + 企业边界 + 产权理论", quote:"企业存在是因为市场交易成本太高",
+    book:"《企业的性质》", lesson:"垄断 / 网络效应公司护城河深 (e.g. GOOGL/META) 因为客户切换成本高" },
+  { id:"E18", school:"制度", name:"诺斯", en:"Douglass North", year:"1920-2015", country:"🇺🇸", color:"#7AA88A",
+    core:"制度变迁 + 路径依赖", quote:"制度决定长期增长, 不是资源",
+    book:"《制度、制度变迁与经济绩效》", lesson:"看国家投资先看制度质量; 制度恶化的国家股权风险陡升" },
+
+  // 博弈论 (2)
+  { id:"E19", school:"博弈论", name:"约翰·纳什", en:"John Nash", year:"1928-2015", country:"🇺🇸", color:"#5a7d8a",
+    core:"纳什均衡 + 非合作博弈", quote:"每个玩家都做出最优反应, 没人有动力改变",
+    book:"《非合作博弈论》", lesson:"市场参与者博弈, 不要试图打败大资金, 找他们没注意的角落" },
+  { id:"E20", school:"博弈论", name:"托马斯·谢林", en:"Thomas Schelling", year:"1921-2016", country:"🇺🇸", color:"#5a7d8a",
+    core:"冲突的策略 + 聚焦点 + 可信威胁", quote:"理性的疯子比理性的清醒人更有威慑力",
+    book:"《冲突的战略》", lesson:"贸易战 / 加息预期管理本质是博弈, 看央行的'承诺可信度'" },
+
+  // 行为经济 (3)
+  { id:"E21", school:"行为", name:"丹尼尔·卡尼曼", en:"Daniel Kahneman", year:"1934-2024", country:"🇮🇱", color:"#FF9F40",
+    core:"系统 1 vs 系统 2 + 损失厌恶 + 锚定", quote:"亏 100 的痛 > 赚 100 的乐 (2.5x)",
+    book:"《思考, 快与慢》", lesson:"自己最大的对手是自己的心理; 写下决策避免快思考冲动" },
+  { id:"E22", school:"行为", name:"理查德·泰勒", en:"Richard Thaler", year:"1945-", country:"🇺🇸", color:"#FF9F40",
+    core:"心理账户 + 助推 + 禀赋效应", quote:"人不是完全理性, 但行为可预测",
+    book:"《助推》《错误行为》", lesson:"散户系统性犯错 = 长期 alpha 来源; 反人性才能赚钱" },
+  { id:"E23", school:"行为", name:"罗伯特·席勒", en:"Robert Shiller", year:"1946-", country:"🇺🇸", color:"#FF9F40",
+    core:"非理性繁荣 + CAPE / Shiller PE", quote:"市场叙事比基本面更能解释波动",
+    book:"《非理性繁荣》", lesson:"CAPE > 30 历史是大顶警告; 警惕叙事股 (.com / SaaS / AI)" },
+
+  // 增长理论 (2)
+  { id:"E24", school:"增长", name:"罗伯特·索洛", en:"Robert Solow", year:"1924-2023", country:"🇺🇸", color:"#5a9a8a",
+    core:"增长模型 + 技术进步是长期动力", quote:"长期增长 80% 来自技术进步, 不是资本积累",
+    book:"《增长理论》", lesson:"长期投资科技股 > 重资产; 复利来自技术杠杆" },
+  { id:"E25", school:"增长", name:"保罗·罗默", en:"Paul Romer", year:"1955-", country:"🇺🇸", color:"#5a9a8a",
+    core:"内生增长 + 知识非竞争性", quote:"知识是唯一可以无限复制的资产",
+    book:"《内生增长理论》", lesson:"软件 / IP / 算法公司利润可无限扩展 (e.g. Microsoft/Adobe)" },
+
+  // 人力资本 (1)
+  { id:"E26", school:"人力", name:"加里·贝克尔", en:"Gary Becker", year:"1930-2014", country:"🇺🇸", color:"#a89060",
+    core:"人力资本 + 经济学帝国主义", quote:"教育是回报最高的投资, 平均年化 10-15%",
+    book:"《人力资本》", lesson:"投资自己 (技能/认知) 比投资股票更复利; 提升自己 → 决策更准" },
+
+  // 不确定性 / 风险 (2)
+  { id:"E27", school:"风险", name:"弗兰克·奈特", en:"Frank Knight", year:"1885-1972", country:"🇺🇸", color:"#7a5a8a",
+    core:"风险 vs 不确定性 (可计算 vs 不可)", quote:"利润来自承担真正不确定性",
+    book:"《风险, 不确定性和利润》", lesson:"风险 (VaR/Beta) 可定价, 真不确定性 (黑天鹅) 不能; 留缓冲" },
+  { id:"E28", school:"风险", name:"塔勒布", en:"Nassim Taleb", year:"1960-", country:"🇱🇧", color:"#7a5a8a",
+    core:"黑天鹅 + 反脆弱 + 杠铃策略", quote:"重要的事情都是黑天鹅, 你预测不了",
+    book:"《黑天鹅》《反脆弱》", lesson:"90% 极端安全 (国债/SPY) + 10% 极端冒险 (期权/早期); 拒绝中间地带" },
+];
+
 // ─── VC 投资心得 (8 家) ─────────────────────
 const VCS = [
   {
@@ -2072,6 +2183,27 @@ function renderMasters() {
   `).join("");
 }
 
+// 经济学家 render
+function renderEconomists() {
+  const grid = document.getElementById("econGrid");
+  if (!grid) return;
+  grid.innerHTML = ECONOMISTS.map((e) => `
+    <article class="econ-card" style="--vc:${e.color}">
+      <header class="econ-head">
+        <span class="econ-id">${e.id}</span>
+        <span class="econ-school">${e.school}</span>
+        <span class="econ-flag">${e.country}</span>
+      </header>
+      <h3 class="econ-name">${e.name}</h3>
+      <p class="econ-en">${e.en} · ${e.year}</p>
+      <p class="econ-core">▸ ${e.core}</p>
+      <blockquote class="econ-quote">"${e.quote}"</blockquote>
+      <p class="econ-book"><b>代表作</b> ${e.book}</p>
+      <p class="econ-lesson"><b>对投资的启示</b> ${e.lesson}</p>
+    </article>
+  `).join("");
+}
+
 // VC render
 function renderVCs() {
   const grid = document.getElementById("vcGrid");
@@ -2203,6 +2335,7 @@ renderChartCompare();
 renderKlinePatterns();
 renderStops();
 renderMasters();
+renderEconomists();
 renderVCs();
 renderMetrics();
 renderOverviewGrid();
