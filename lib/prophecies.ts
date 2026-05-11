@@ -530,6 +530,167 @@ export const PROPHECIES: Prophecy[] = [
     confidence: 1,
     linked: ["singularity", "asi-tipping"],
     takeaway: "人类可能不是终点，是过渡形态"
+  },
+  {
+    id: "hbm-monopoly",
+    title: "HBM 寡头化, 三家垄断全球 AI 算力上游",
+    year: 2027,
+    horizon: "near",
+    category: "ai",
+    source: "SK Hynix 2025 全球第一份额报告 + Samsung HBM3E 良率追赶失败",
+    basis: "HBM3E/4 制程门槛极高 (TSV + 良率), 资本开支三年累计 $200B+",
+    triggers: [
+      "SK Hynix 维持 50%+ 全球 HBM 份额超过 18 个月",
+      "美光 HBM4 良率 < 60%, 落后 SK 一代",
+      "三星 HBM4 仍未通过 NVDA 验证"
+    ],
+    mechanism: "AI 算力链的瓶颈不在 GPU 而在 HBM, 谁掌握 HBM 谁就掐住 NVDA 喉咙。",
+    secondOrder: [
+      "韩国 (SK + 三星) 重新成为全球科技话语主导方之一",
+      "中国大基金对国产 HBM 加码 $50B+",
+      "NVDA 估值开始与 SK Hynix 强相关 (而非与 OpenAI 强相关)"
+    ],
+    confidence: 5,
+    linked: ["ai-power-crunch", "agi-2029"],
+    takeaway: "AI 不是 GPU 之战, 是 HBM 之战"
+  },
+  {
+    id: "trump-tariff-reset",
+    title: "Trump 2.0 关税重塑全球供应链",
+    year: 2026,
+    horizon: "near",
+    category: "geopolitics",
+    source: "Trump 2025-01 上任后 60+ 项关税公告 + de minimis 取消",
+    basis: "新关税在 2025-2026 系统性提高 + 中美科技脱钩政策叠加",
+    triggers: [
+      "Temu / Shein 在美 GMV -50% YoY",
+      "墨西哥 / 越南 / 印度对美出口 +30% YoY (替代中国)",
+      "美国本土制造业新增产能创 40 年新高"
+    ],
+    mechanism: "全球供应链从 \"China + 1\" 加速为 \"China + N\", 印度 / 墨西哥 / 越南 / 马来 受益。",
+    secondOrder: [
+      "Apple / Tesla / Walmart 的中国供应链占比 2027 跌破 30%",
+      "海运 / 跨境物流 / 电商基础设施重置",
+      "美元强势叠加, 新兴市场分化加剧"
+    ],
+    confidence: 5,
+    linked: ["dollar-erosion", "fourth-turning"],
+    takeaway: "全球化 1.0 翻篇, 区域化 2.0 开始"
+  },
+  {
+    id: "open-source-catchup",
+    title: "开源模型逼平闭源前沿, AI 红利稀释",
+    year: 2026,
+    horizon: "near",
+    category: "ai",
+    source: "DeepSeek-R1 (2025-01) / Llama 4 / Qwen 系列 + 训练成本暴跌",
+    basis: "开源训练栈 + 高质量合成数据 + 跨研究室知识扩散",
+    triggers: [
+      "开源模型在 5 大权威 benchmark 进入前 3",
+      "训练前沿模型成本从 $100M 降至 $5M",
+      "中国 / 法国 / 印度 实验室在前沿模型有持续话语权"
+    ],
+    mechanism: "前沿能力扩散速度快于商业模式建立速度, 模型本身价值被快速去权化。",
+    secondOrder: [
+      "OpenAI / Anthropic 利润率压力上升, 必须从模型转向应用层",
+      "GPU 算力需求短期不变 (推理仍涨), 但议价权回到云厂商手中",
+      "国家级 AI 主权战略升温: 法国 / 印度 / 沙特 / UAE 各自下场"
+    ],
+    confidence: 5,
+    linked: ["agi-2029", "hbm-monopoly"],
+    takeaway: "AI 不是赢家通吃, 是基础设施战, 类似云计算"
+  },
+  {
+    id: "stablecoin-mainstream",
+    title: "稳定币进入主流支付 + 美债场外锚定",
+    year: 2027,
+    horizon: "near",
+    category: "geopolitics",
+    source: "GENIUS Act (2025) 通过 + Circle 上市 + Tether 储备透明化",
+    basis: "美国稳定币法律承认 + 全球美元结算的链上替代渠道",
+    triggers: [
+      "USDC + USDT 流通量合计突破 $1T",
+      "新兴市场 (阿根廷 / 土耳其 / 尼日利亚) 50%+ 储蓄链上化",
+      "Visa / Mastercard 全面接入稳定币结算轨"
+    ],
+    mechanism: "稳定币锚定美债 → 实质上让美债需求多了「散户全球」这一层, 美元霸权延寿 10 年。",
+    secondOrder: [
+      "传统跨境汇款 (SWIFT / Wise) 业务量下滑",
+      "央行数字货币 (CBDC) 计划被稳定币抢跑, 各国监管反过来追稳定币",
+      "比特币 \"避通胀\" 叙事被稳定币部分稀释"
+    ],
+    confidence: 5,
+    linked: ["dollar-erosion", "btc-million"],
+    takeaway: "稳定币是美元第二春, 不是替代品"
+  },
+  {
+    id: "robotaxi-cheap",
+    title: "Robotaxi 单公里成本跌破 $0.5, 私家车开始减少",
+    year: 2028,
+    horizon: "near",
+    category: "ai",
+    source: "Tesla Robotaxi Austin 2025-06 上线 + Waymo 旧金山规模化",
+    basis: "L4 自动驾驶 + 电动车成本曲线 + 全天候运营",
+    triggers: [
+      "Tesla Robotaxi 在 5+ 美国城市规模化, 单车日营收 > $300",
+      "Waymo + Cruise 共占 Top 20 城市 30% 出行份额",
+      "美国新车销量首次 YoY -10%"
+    ],
+    mechanism: "出行从\"拥有\"转为\"调用\", 私家车保有率 30 年首次下行。",
+    secondOrder: [
+      "二手车市场 + 停车场资产价值崩塌",
+      "汽车保险业务模式重写 (按车 vs 按行程)",
+      "城市规划从\"车道 + 停车场\"转向\"调度点 + 行人空间\""
+    ],
+    confidence: 4,
+    linked: ["humanoid-bom"],
+    takeaway: "出行所有权终结, 但拥车情感存在更久"
+  },
+  {
+    id: "solo-founder-norm",
+    title: "Solo Founder $10M ARR 成为常态",
+    year: 2028,
+    horizon: "near",
+    category: "ai",
+    source: "Cursor / Replit / Vercel 数据 + 2026 个人 SaaS 爆发",
+    basis: "Coding AI + 营销 AI + 客服 AI + 部署自动化叠加",
+    triggers: [
+      "美国 Solo Founder $1M+ ARR 公司数突破 5000",
+      "Stripe 个人开发者订阅 ARR 占比 > 25%",
+      "传统 SaaS 公司 (Salesforce / HubSpot) 客户流失明显"
+    ],
+    mechanism: "前互联网时代\"团队 = 杠杆\", AI 时代\"AI = 杠杆\", 公司大小不再决定输出能力。",
+    secondOrder: [
+      "中型企业 (50-500 人) 受挤压最严重",
+      "VC 模型转向 \"超小团队 + 极高估值\"",
+      "雇佣关系 / 401k / 医保等社会保障体系压力大"
+    ],
+    confidence: 4,
+    linked: ["one-person-economy", "labor-deflation"],
+    takeaway: "1 人公司不是工具人, 是新的雇主形态"
+  },
+  {
+    id: "ai-legal-personhood",
+    title: "AI 系统获得有限法律主体资格",
+    year: 2032,
+    horizon: "mid",
+    category: "civilization",
+    source: "欧盟 AI Act 2026-08 生效 + 联邦法院 AI 出庭案例累积",
+    basis: "AI 代理在合同 / 诉讼 / 决策环节频繁出现, 责任归属无法用传统法律框架",
+    triggers: [
+      "欧盟通过\"AI 代理\"有限法律地位草案",
+      "第一家公司用 AI CEO 提交 SEC 季度财报",
+      "AI 主导的合同纠纷在大陆法系国家被受理"
+    ],
+    mechanism: "法律主体不再限于自然人 + 法人, 增加\"算法人\"过渡范畴。",
+    secondOrder: [
+      "AI 是否享有\"言论自由\"成为宪法议题",
+      "AI 主导的犯罪行为 (违规交易 / 操纵市场) 立法滞后",
+      "保险 / 担保 / 信托业务向 AI 客体扩展"
+    ],
+    confidence: 3,
+    linked: ["agi-2029", "ai-rewrites-legal"],
+    takeaway: "法律主体的定义在 AGI 之前先松动"
   }
 ];
 
