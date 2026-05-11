@@ -740,6 +740,87 @@ export const BEDROCK_COMPANIES: BedrockCompany[] = [
     whyAINeedsIt: "PCB / 系统级仿真 + 部分 IC 设计工具。",
     rhythmStatus: "工业软件与 EDA 双线，订单稳健。",
     substituteLevel: "中", starRating: 3, replacementYears: "5-10 年"
+  },
+  // ===== 2025 新增基岩 =====
+  {
+    ticker: "6920.T", name: "Lasertec", nameZh: "莱泽科技", country: "🇯🇵",
+    tier: "semi-equipment", bypassIndex: 9,
+    whatItDoes: "EUV 光罩缺陷检测设备全球独家供应商, ASML 必备配套.",
+    whyAINeedsIt: "3nm 以下节点光罩缺陷检测无替代品, 直接决定 NVDA/AMD 先进芯片良率.",
+    rhythmStatus: "订单 backlog 排到 2028, 单台售价 $5000 万+.",
+    substituteLevel: "无", starRating: 5, replacementYears: "永不"
+  },
+  {
+    ticker: "ASMI.AS", name: "ASM International", nameZh: "先进半导体材料", country: "🇳🇱",
+    tier: "semi-equipment", bypassIndex: 8,
+    whatItDoes: "ALD (原子层沉积) 设备全球龙头, 3nm/2nm 节点必需.",
+    whyAINeedsIt: "先进制程的 high-k 介质层沉积无替代; HBM4 制造同样依赖.",
+    rhythmStatus: "2025 订单 +60% YoY, GAAFET / nanosheet 节点拉动.",
+    substituteLevel: "低", starRating: 5, replacementYears: "20+ 年"
+  },
+  {
+    ticker: "6857.T", name: "Advantest", nameZh: "爱德万", country: "🇯🇵",
+    tier: "semi-equipment", bypassIndex: 8,
+    whatItDoes: "AI 芯片测试设备龙头, 与 Teradyne 双寡头, HBM/GPU 必测.",
+    whyAINeedsIt: "AI 芯片 + HBM 堆叠测试无替代, 每颗 NVDA H100/B200 出厂前都在 Advantest 设备上测过.",
+    rhythmStatus: "AI 测试设备订单 2024-2025 翻倍, 2026 已签满.",
+    substituteLevel: "低", starRating: 5, replacementYears: "20+ 年"
+  },
+  {
+    ticker: "AVGO", name: "Broadcom", nameZh: "博通", country: "🇺🇸",
+    tier: "photonics-network", bypassIndex: 9,
+    whatItDoes: "客制化 AI ASIC + 网络芯片 + 光通信 (Tomahawk 系列) 三线齐发.",
+    whyAINeedsIt: "Google TPU + Meta MTIA + OpenAI 自研芯片都找 AVGO 代设计; 数据中心网络芯片寡头.",
+    rhythmStatus: "AI 收入 2025 突破 $200 亿, 客户名单包括 Top 7 hyperscaler 中 5 家.",
+    substituteLevel: "低", starRating: 5, replacementYears: "20+ 年"
+  },
+  {
+    ticker: "ENTG", name: "Entegris", nameZh: "恩特格里斯", country: "🇺🇸",
+    tier: "semi-materials", bypassIndex: 8,
+    whatItDoes: "半导体特种过滤 + 流体管理 + 化学品输送全产业链.",
+    whyAINeedsIt: "晶圆厂建设必需基础设施, 每座 fab 建厂直接拉动订单, 行业进入门槛极高.",
+    rhythmStatus: "TSMC + Samsung + Intel 全球扩产同步拉动 Entegris 订单.",
+    substituteLevel: "低", starRating: 4, replacementYears: "10-15 年"
+  },
+  {
+    ticker: "BE", name: "Bloom Energy", nameZh: "布鲁姆能源", country: "🇺🇸",
+    tier: "power-grid", bypassIndex: 7,
+    whatItDoes: "固体氧化物燃料电池 (SOFC), 数据中心备用 + 主供电.",
+    whyAINeedsIt: "电网无法承载 AI 数据中心扩张时, 燃料电池是\"非电网\"快速部署方案. AWS / Equinix 已采购.",
+    rhythmStatus: "2025 订单 +90% YoY, 数据中心客户占新增订单 70%.",
+    substituteLevel: "中", starRating: 4, replacementYears: "10-15 年"
+  },
+  {
+    ticker: "TLN", name: "Talen Energy", nameZh: "塔伦能源", country: "🇺🇸",
+    tier: "power-grid", bypassIndex: 8,
+    whatItDoes: "拥有 Susquehanna 核电站 (2.5 GW), 直接供电 AWS 数据中心 (\"behind-the-meter\").",
+    whyAINeedsIt: "核电是 AI 数据中心唯一可大规模 24/7 零碳供电方案; 直供模式绕开公共电网.",
+    rhythmStatus: "AWS 长协 + 微软 / Meta 谈判中. 2024 股价 +300%.",
+    substituteLevel: "低", starRating: 5, replacementYears: "20+ 年"
+  },
+  {
+    ticker: "CRWV", name: "CoreWeave", nameZh: "CoreWeave", country: "🇺🇸",
+    tier: "dc-physical", bypassIndex: 7,
+    whatItDoes: "AI 专用云算力供应商, 主要 GPU 租赁给 OpenAI/Microsoft/Meta.",
+    whyAINeedsIt: "NVDA 第二大 GPU 客户, OpenAI 2025-03 签 11 年 $119 亿合约, 在主流云之外的 AI 算力第三极.",
+    rhythmStatus: "2025-03 IPO, ARR $19 亿, GPU 装机量 25 万 H100/B200 等效.",
+    substituteLevel: "中", starRating: 4, replacementYears: "5-10 年"
+  },
+  {
+    ticker: "SMCI", name: "Super Micro Computer", nameZh: "超微电脑", country: "🇺🇸",
+    tier: "dc-physical", bypassIndex: 7,
+    whatItDoes: "AI 服务器系统集成龙头, 液冷服务器 + NVDA GPU 出货第一.",
+    whyAINeedsIt: "NVDA 整机出货前 3, xAI + Meta + Oracle 大客户. 液冷方案占新订单 50%+.",
+    rhythmStatus: "2024 营收 $150 亿 +110% YoY. 财报 / 会计风波后基本面恢复.",
+    substituteLevel: "中", starRating: 4, replacementYears: "5-10 年"
+  },
+  {
+    ticker: "6963.T", name: "Rohm", nameZh: "罗姆", country: "🇯🇵",
+    tier: "motor-power", bypassIndex: 7,
+    whatItDoes: "SiC 功率半导体, 电动车 + 储能 + 机器人电机控制核心.",
+    whyAINeedsIt: "人形机器人量产关键卡点之一: 小型化高效功率芯片. Tesla Optimus / Figure 02 都用 Rohm SiC.",
+    rhythmStatus: "SiC 产能 2025-2027 翻倍, 但人形机器人 + EV 双拉动需求超过供给.",
+    substituteLevel: "低", starRating: 4, replacementYears: "10-15 年"
   }
 ];
 

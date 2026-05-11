@@ -8,7 +8,7 @@
   "funnel": [
     {
       "label": "公开预算 / 机构项目",
-      "count": 14,
+      "count": 20,
       "note": "能查到预算、论文、采购或试验方向"
     },
     {
@@ -580,6 +580,258 @@
         "industryImpact": "冲击传统泵/压缩机/电机制造（声学指标进入采购合同）；扩充医院手术室、数据中心冷却、夜间物流、海洋作业。",
         "aiSynergy": "AI + 静默推进 = 城市机器进入「无感运行」：物流车/无人机/室内机器人在人不察觉中工作，城市机器密度可成倍提升而不增加噪声污染。",
         "socialChange": "「机器存在感」下降，城市机器人化与人居共存的心理阻力降低；夜间经济与夜间静默服务（夜送药/夜清洁）规模化。"
+      }
+    },
+    {
+      "id": "compact-fusion",
+      "title": "紧凑型聚变堆",
+      "en": "COMPACT FUSION",
+      "level": "半公开",
+      "maturity": "试点中",
+      "horizon": "2028-2040",
+      "industries": [
+        "能源",
+        "工业"
+      ],
+      "museumEraId": "ai",
+      "militaryOrigin": "DARPA + 美国能源部 + 海军核反应堆署 (NNSA) 数十年研究; 美国海军核动力航母 / 潜艇技术为聚变工程提供热管理 / 中子屏蔽 / 高纯材料基础.",
+      "transferGate": "并网 + 平价电 + 民用法规授权同时通过. Helion 2028 商业并网, Commonwealth Fusion SPARC 2028 实证 Q>1, TAE 2030 商用.",
+      "signal": "私募融资 2020-2025 累计 $80 亿+. Helion + CFS + TAE + Tokamak Energy 五家进入工程实施期, 不再是论文.",
+      "transferPath": "先进入数据中心 + 离网工业园区 + 海岛 / 偏远矿区 (小型 50-100MW), 然后并网取代天然气调峰电站, 最后大规模替代煤电核电.",
+      "review": "聚变是 2030 年代最大单一颠覆变量. 一旦平价电 < $0.02/kWh 落地, AI 算力 / 农业 / 海水淡化 / 工业流程都重写. 已经不是科幻, 是工程问题.",
+      "civilianApplications": [
+        {
+          "field": "能源",
+          "product": "数据中心专用 50-100MW 聚变堆",
+          "changes": "AI 推理 / 训练成本崩塌, 算力不再受电网限制."
+        },
+        {
+          "field": "工业",
+          "product": "化工 / 钢铁 / 水泥用零碳超高温热源",
+          "changes": "工业脱碳从理论可能变经济划算."
+        }
+      ],
+      "biggestChange": "能源价格逼近零, 推动整体物价结构重排, 类似 1960 年代电气化对农业 / 制造业的影响.",
+      "confidence": 65,
+      "civilianFuture": {
+        "example": "2032 内华达沙漠, Helion 第 6 号商业堆并网, 100MW 全售给隔壁 Meta 数据中心, 一度电 1 美分, 不上电网.",
+        "newCompanies": "聚变工程总包商, 离网工业园区运营商, 聚变堆退役 / 中子屏蔽材料公司, 聚变废热商业化 (温室 / 海水淡化) 服务.",
+        "industryImpact": "完全改写能源市场结构: 石油 / 天然气需求长期下行, 输电网价值重估, 核电 (传统裂变) 在 SMR 之外面临替代风险.",
+        "aiSynergy": "AI 加速等离子体控制 (DeepMind 已用 RL 控制托卡马克), 让聚变工程从十年一代压缩为三年一代.",
+        "socialChange": "中东 / 俄罗斯 / 委内瑞拉 等石油国地缘地位下降; 拥有聚变工程能力的国家 (美 / 英 / 日 / 韩) 进入新霸权层级."
+      }
+    },
+    {
+      "id": "humanoid-combat-to-home",
+      "title": "战斗外骨骼 → 家用人形机器人",
+      "en": "HUMANOID: COMBAT TO HOME",
+      "level": "半公开",
+      "maturity": "试点中",
+      "horizon": "2026-2035",
+      "industries": [
+        "个人",
+        "工业",
+        "医疗"
+      ],
+      "museumEraId": "ai",
+      "militaryOrigin": "DARPA TALOS 项目 (2013-2019, 钢铁侠外骨骼), Sarcos Guardian XO, BAE Broadsword, 韩国 LIG Nex1 步兵增强装具.",
+      "transferGate": "成本曲线 + 安全认证 + 用户接受度. Tesla Optimus / Figure 02 / 1X NEO 2026 试点; BOM $20K 是大众市场门槛.",
+      "signal": "Figure AI 2026 估值 $40B, Tesla Optimus 2026 年产 1 万台试点. NVDA GR00T 平台为通用人形提供大脑.",
+      "transferPath": "先进入工厂 (BMW / Mercedes / Amazon 仓库), 然后进入老人陪护 / 家政, 最后是普通家庭.",
+      "review": "外骨骼 + 通用人形机器人 是 2026-2035 最直接的科幻成真. 不会一夜替代家政, 但 5 年内进入富裕家庭, 10 年进入中产, 15 年改写家庭定义.",
+      "civilianApplications": [
+        {
+          "field": "个人",
+          "product": "家用通用人形机器人 (家务 / 陪护 / 教育)",
+          "changes": "家政服务从月薪 5K 变成一次性 BOM $20K 资产."
+        },
+        {
+          "field": "工业",
+          "product": "工厂 / 仓库通用机器人工人",
+          "changes": "Amazon / Tesla / BMW 仓库 + 装配线劳动力替代加速."
+        },
+        {
+          "field": "医疗",
+          "product": "老人陪护 + 残障辅助外骨骼",
+          "changes": "日本 / 韩国 / 德国 老龄化国家率先采纳, 缓解护理空缺."
+        }
+      ],
+      "biggestChange": "家政 / 服务业 / 制造业三大蓝领领域同时压缩, 但机器人维护 / 训练师 / 行为审计新职业崛起.",
+      "confidence": 78,
+      "civilianFuture": {
+        "example": "2030 上海某新公房, 退休工程师老王每月用 $200 租一台 Figure-08X 帮忙做饭 / 接送孙子, 自己学吉他.",
+        "newCompanies": "人形机器人 OS, 训练数据采集公司, 机器人租赁运营商, 机器人行为审计 + 保险公司.",
+        "industryImpact": "家政 / 物流 / 装配 三大行业大幅压缩; 玩具 / 教育 / 陪护行业被 AI + 机器人共同重写.",
+        "aiSynergy": "通用 VLA (Vision-Language-Action) 模型让机器人从编程任务变成自然语言指令, 训练成本指数级下降.",
+        "socialChange": "人际关系结构变化: 老人 / 孩子 / 单身者长期与机器人共处, 引发心理学 / 伦理学新研究. 机器人陪伴是不是真陪伴成为社会议题."
+      }
+    },
+    {
+      "id": "rad-hard-chips",
+      "title": "抗辐照芯片",
+      "en": "RAD-HARD SEMICONDUCTORS",
+      "level": "公开军用",
+      "maturity": "已商用",
+      "horizon": "2025-2035",
+      "industries": [
+        "能源",
+        "通信",
+        "工业"
+      ],
+      "museumEraId": "compute",
+      "militaryOrigin": "冷战核战环境 + 卫星辐射环境催生 BAE / Microchip / Honeywell 抗辐照工艺, 用于军用卫星 + 核反应堆控制 + 弹道导弹.",
+      "transferGate": "成本降低 + 商业航天爆发 + 核 SMR 民用化. SpaceX Starlink + 商业月球 / 火星任务 + SMR 全球推进.",
+      "signal": "BAE / Microchip / Frontgrade 抗辐照 ASIC 出货 2024-2026 +200%, 商业卫星占比首次超过军用.",
+      "transferPath": "军用 / 大型卫星 → 商业卫星 (Starlink/AST SpaceMobile) → 核反应堆控制 → 极端工业环境 (深海 / 核废料处理 / 月球基地).",
+      "review": "抗辐照不是前沿, 是地基. 商业航天 + SMR + 月球商业 三轨叠加, 抗辐照芯片是隐形王者.",
+      "civilianApplications": [
+        {
+          "field": "通信",
+          "product": "低轨卫星集群核心计算单元",
+          "changes": "Starlink / Kuiper / AST SpaceMobile 都靠抗辐照芯片才能 10 年寿命."
+        },
+        {
+          "field": "能源",
+          "product": "SMR 小型核反应堆控制系统",
+          "changes": "数据中心专用 SMR 在 2028+ 商业化, 必须用抗辐照芯片."
+        },
+        {
+          "field": "工业",
+          "product": "核废料 / 深海 / 极端环境自主机器人",
+          "changes": "切尔诺贝利 / 福岛清理 + 深海采矿 + 月球基地建设全部依赖."
+        }
+      ],
+      "biggestChange": "极端环境不再是禁区, 而是新的商业前沿: 太空 / 深海 / 核 / 月球 都向私营资本开放.",
+      "confidence": 90,
+      "civilianFuture": {
+        "example": "2030 SpaceX 首批月球工业园区机器人采矿, 全部芯片采购自 BAE 抗辐照部门, 单芯片 $30K, 利润率 80%.",
+        "newCompanies": "商业太空芯片设计公司, SMR 控制系统集成商, 极端环境机器人运营商.",
+        "industryImpact": "改写半导体行业格局: 普通消费芯片 PE 杀至个位数, 抗辐照 / 工业 / 国防芯片估值 +50%.",
+        "aiSynergy": "AI 自动设计抗辐照电路 + AI 故障检测让小批量定制成本可控, 否则单 NRE 太高.",
+        "socialChange": "太空经济从概念变现实, 5-10 年新增万亿美元市场."
+      }
+    },
+    {
+      "id": "compact-nuclear-propulsion",
+      "title": "小型核动力推进",
+      "en": "COMPACT NUCLEAR PROPULSION",
+      "level": "公开军用",
+      "maturity": "试点中",
+      "horizon": "2030-2045",
+      "industries": [
+        "交通",
+        "能源"
+      ],
+      "museumEraId": "ai",
+      "militaryOrigin": "美国海军核动力潜艇 / 航母 70 年技术积累, 苏联 / 俄罗斯破冰船核动力, DARPA DRACO 太空核热推进 (2027 在轨测试).",
+      "transferGate": "民用法规 + 国际海事 / 太空治理 + 公众接受度. 燃料供应链 (HALEU 高浓度低富集铀) 商业化是关键.",
+      "signal": "DARPA + NASA DRACO 项目 2027 太空在轨核热推进测试. NuScale + X-energy 民用小型反应堆获批.",
+      "transferPath": "太空 (核热 / 核电推进) → 海洋 (商业核动力货船 / 破冰船 / 移动数据中心船) → 偏远基础设施 (北极 / 深海 / 月球).",
+      "review": "核动力推进是 1950 年代旧技术, 但在 2030 年代会因 (1) 商业航天 (2) 海洋脱碳 (3) 极地资源 三轨叠加, 重新成为主战场.",
+      "civilianApplications": [
+        {
+          "field": "交通",
+          "product": "深海商业核动力货船 / 北极航线",
+          "changes": "全球航运脱碳 + 北极航线开通, 核动力是唯一不烧化石燃料的方案."
+        },
+        {
+          "field": "能源",
+          "product": "海上移动核电站 (供电沿海城市 / 数据中心)",
+          "changes": "俄罗斯 Akademik Lomonosov 已示范, 中国 / 韩国 跟进."
+        }
+      ],
+      "biggestChange": "全球贸易 / 海运 / 太空殖民 进入核时代, 化石燃料船舶逐步淘汰.",
+      "confidence": 50,
+      "civilianFuture": {
+        "example": "2038 北极, 一艘 100MW 核动力商业货船从挪威到中国, 走北极航道, 比传统苏伊士航线快 40%, 零碳排放.",
+        "newCompanies": "民用核动力船舶设计 / 制造商, 海上 SMR 运营商, HALEU 燃料商业化公司, 核动力商业航运保险.",
+        "industryImpact": "全球航运 / 油气 / 港口 / 北极治理 重新洗牌. 远洋海运碳排首次出现可行的零排路径.",
+        "aiSynergy": "AI 用于核反应堆数字孪生 / 安全监控 / 故障预测, 让小型核电的安全性达到商业可保险水平.",
+        "socialChange": "反核运动在脱碳压力 + 工程更安全 + AI 监控加持下, 部分国家民意逆转 (法 / 韩 / 日 / 英)."
+      }
+    },
+    {
+      "id": "terahertz-comms",
+      "title": "太赫兹通信 (6G 核心)",
+      "en": "TERAHERTZ COMMUNICATIONS",
+      "level": "公开军用",
+      "maturity": "实验室",
+      "horizon": "2028-2040",
+      "industries": [
+        "通信",
+        "工业",
+        "医疗"
+      ],
+      "museumEraId": "network",
+      "militaryOrigin": "DARPA T-Wave 项目, 美军太赫兹雷达 + 安全短距通信 (无法监听), 中国 / 日本 / 韩国 6G 国家专项的核心频段.",
+      "transferGate": "硅基太赫兹收发芯片 + 室温运行 + 标准化 (3GPP Release 21). 当前美 / 韩 / 中 / 欧 6G 标准之争.",
+      "signal": "韩国 SK 电讯 + 三星 2025 演示 1Tbps 太赫兹链路. 日本 NTT DoCoMo 2027 室外 100Gbps 演示.",
+      "transferPath": "军用近场通信 → 数据中心机架间互联 → 6G 蜂窝基站 (2030) → 物联网密集场景 (工厂 / 医院 / 机场).",
+      "review": "太赫兹是 5G 之后的下一代通信, 但只有 100-1000m 短距有效. 它不是替代 5G, 是热点高密度区的新基础设施.",
+      "civilianApplications": [
+        {
+          "field": "通信",
+          "product": "6G 城市热点 + 数据中心内部超高速互联",
+          "changes": "AI 数据中心机架间链路成本 -70%, 训练大模型的网络瓶颈被打破."
+        },
+        {
+          "field": "工业",
+          "product": "工厂内部毫秒级实时控制无线网",
+          "changes": "5G 私网延迟 10ms 太慢, 太赫兹 0.1ms 让无线工厂自动化首次可行."
+        },
+        {
+          "field": "医疗",
+          "product": "无线高分辨率医学影像传输",
+          "changes": "MRI / CT 实时传输 + 远程手术不再受光纤限制."
+        }
+      ],
+      "biggestChange": "通信不再按基站规划, 而是按场景密度规划. 体育场 / 演唱会 / 机场 / 工厂 成为高带宽小区, 居民区仍以 5G 为主.",
+      "confidence": 55,
+      "civilianFuture": {
+        "example": "2032 首尔 K-POP 演唱会, 5 万人同时直播 8K + AR, 全靠场馆顶部 200 个太赫兹基站. 之前 5G 无法承载.",
+        "newCompanies": "太赫兹芯片设计 / 制造, 6G 私网集成商, 工业 / 医疗 太赫兹设备厂.",
+        "industryImpact": "传统毫米波 5G 设备投资曲线放缓, 太赫兹设备 / 收发芯片 / 测试设备成为新增长极.",
+        "aiSynergy": "AI 用于太赫兹波束赋形 / 反射规划 / 干扰预测, 让短距高频通信在真实环境可用.",
+        "socialChange": "城市通信地形变化: 老城区低速 / 新基建区高速, 数字鸿沟不再是有无网, 是带宽差."
+      }
+    },
+    {
+      "id": "cognitive-enhancement",
+      "title": "认知增强 (军用 → 民用)",
+      "en": "COGNITIVE ENHANCEMENT",
+      "level": "半公开",
+      "maturity": "试点中",
+      "horizon": "2027-2040",
+      "industries": [
+        "医疗",
+        "个人"
+      ],
+      "museumEraId": "posthuman",
+      "militaryOrigin": "DARPA Targeted Neuroplasticity Training (TNT) 项目, 美军 Modafinil 等促醒药使用 50 年, 经颅磁刺激 (TMS) 用于战斗飞行员训练.",
+      "transferGate": "FDA / 欧盟 EMA 监管放宽 + 长期安全数据 + 社会接受度. 2025-2027 多项 II/III 期临床进入关键阶段.",
+      "signal": "Neuralink 2024-Q3 首例人脑植入成功. 经颅磁刺激 (TMS) 治疗抑郁症进入主流. 促智药市场 2026 $25B.",
+      "transferPath": "军用飞行员 / 特战 → 临床抑郁 / ADHD / 阿尔茨海默 → 大学 / 职场 / 老人健脑.",
+      "review": "认知增强不是科幻变天才, 而是 (1) 治病 (抑郁 / ADHD / 阿尔茨海默) (2) 维持 (老化对抗) (3) 加分 (注意力 / 记忆). 民用化已经开始, 2030 进入主流.",
+      "civilianApplications": [
+        {
+          "field": "医疗",
+          "product": "经颅磁刺激 (TMS) 抑郁治疗 / 阿尔茨海默早期干预",
+          "changes": "心理 / 神经疾病从药物 + 谈话扩展到非侵入电磁干预, 治疗有效率提升."
+        },
+        {
+          "field": "个人",
+          "product": "促智补充剂 + 神经反馈训练 + 可穿戴 EEG",
+          "changes": "大脑训练从游戏变成日常健身, 类似今天的健身房 / 跑步, 工具化普及."
+        }
+      ],
+      "biggestChange": "智力从天赋 + 教育的二元结构, 变成可干预 / 可训练 / 可调节的三元结构. 教育 + 招聘 + 公平性体系全部重新思考.",
+      "confidence": 45,
+      "civilianFuture": {
+        "example": "2032 首尔某高中考前, 60% 学生戴着 $200 EEG 头环 + 30% 服用 FDA 批准的促智药. 教育部讨论是否禁止比赛日使用.",
+        "newCompanies": "消费级 TMS 设备厂, EEG + AI 神经反馈 SaaS, 高端促智药生物公司, 神经增强 + AI 协同训练机构.",
+        "industryImpact": "传统补习教育压缩, 神经训练类机构 + 设备崛起. 头部 SaaS 公司估值类比 Peloton 时代.",
+        "aiSynergy": "AI 个性化神经反馈协议 + 实时 EEG 分析, 让训练效果可测 / 可调 / 可量化.",
+        "socialChange": "公平问题: 有钱人是不是能买聪明? 教育 / 招聘 / 体育 / 学术 全部需要新规则. 国家可能立法增强禁区."
       }
     }
   ]
