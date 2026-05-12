@@ -241,15 +241,31 @@
   }
   aside .close:hover{background:rgba(61,46,34,.16);color:var(--text-dark)}
 
-  /* 上下翻页条 (固定在 panel 顶部, sibling 间切换) */
+  /* 翻页条 */
   .pager{
     flex-shrink:0;
     display:flex;align-items:center;justify-content:space-between;
-    padding:14px 60px 14px 18px;
+    padding:14px 18px;
     background:rgba(212,172,92,.12);
-    border-bottom:1px solid rgba(61,46,34,.08);
     font-size:11px;font-family:ui-monospace,monospace;
     color:var(--text-mid);letter-spacing:.06em;
+  }
+  .pager-top{
+    padding:14px 60px 14px 18px;
+    border-bottom:1px solid rgba(61,46,34,.08);
+  }
+  .pager-bottom{
+    display:none;
+    border-top:1px solid rgba(61,46,34,.08);
+  }
+  .pager-back{
+    background:rgba(184,144,70,.18);
+    border-color:rgba(184,144,70,.5);
+    color:var(--text-dark);
+    font-weight:700;
+  }
+  .pager-back:hover{
+    background:var(--gold-soft);
   }
   .pager-btn{
     display:inline-flex;align-items:center;gap:5px;
@@ -430,15 +446,25 @@
     .bubble-meta{font-size:9px;gap:5px}
     .bubble-impact{font-size:9px;padding:1px 5px}
 
-    /* panel 全宽 */
+    /* panel 全宽 + 控件下移 */
     aside{width:100%;right:-100%;top:50px}
     aside.open{right:0}
+    aside .close{display:none}                  /* 隐藏顶 × */
+    aside .pager-top{display:none}              /* 隐藏顶翻页 */
+    aside .pager-bottom{
+      display:flex;                              /* 显示底部 */
+      position:sticky;bottom:0;
+      background:linear-gradient(180deg,rgba(245,235,210,.95),rgba(232,219,189,.95));
+      backdrop-filter:blur(10px);
+      padding:12px 14px calc(12px + env(safe-area-inset-bottom));
+      box-shadow:0 -8px 20px -8px rgba(0,0,0,.15);
+    }
     aside .header-row{padding:16px 18px 12px}
     aside .title{font-size:18px;margin-bottom:4px}
     aside .title-en{font-size:10px;margin-bottom:10px}
     aside .body{padding:14px 18px 28px}
-    .pager{padding:10px 54px 10px 14px}
-    .pager-btn{padding:7px 11px;font-size:10.5px}
+    .pager-btn{padding:8px 12px;font-size:11px}
+    .pager-back{padding:8px 14px}
     .pager-info{font-size:9.5px}
     aside h3{font-size:9.5px;margin:18px 0 8px}
     .thesis{font-size:12.5px;padding:10px 13px;line-height:1.7}
@@ -495,13 +521,18 @@
 
 <aside id="panel">
   <button class="close" onclick="closePanel()">×</button>
-  <div class="pager">
-    <button class="pager-btn" id="prevBtn" onclick="navSibling(-1)">↑ 上一个</button>
-    <div class="pager-info" id="pagerInfo"></div>
-    <button class="pager-btn" id="nextBtn" onclick="navSibling(1)">下一个 ↓</button>
+  <div class="pager pager-top">
+    <button class="pager-btn" id="prevBtnTop" onclick="navSibling(-1)">↑ 上一个</button>
+    <div class="pager-info" id="pagerInfoTop"></div>
+    <button class="pager-btn" id="nextBtnTop" onclick="navSibling(1)">下一个 ↓</button>
   </div>
   <div class="header-row" id="panelHeader"></div>
   <div class="body" id="panelBody"></div>
+  <div class="pager pager-bottom">
+    <button class="pager-btn" id="prevBtnBot" onclick="navSibling(-1)">↑ 上一个</button>
+    <button class="pager-btn pager-back" onclick="closePanel()">✕ 返回</button>
+    <button class="pager-btn" id="nextBtnBot" onclick="navSibling(1)">下一个 ↓</button>
+  </div>
 </aside>
 
 <div class="legend">
@@ -1194,11 +1225,17 @@ function updatePager(id){
   const { siblings } = getSiblings(id);
   const idx = siblings.indexOf(id);
   const total = siblings.length;
-  document.getElementById("prevBtn").disabled = idx <= 0;
-  document.getElementById("nextBtn").disabled = idx >= total - 1;
-  document.getElementById("pagerInfo").innerHTML = total > 1
-    ? `<strong>${idx+1}</strong> / ${total} · 同级`
-    : `单节点 · 无邻居`;
+  const info = total > 1 ? `<strong>${idx+1}</strong> / ${total} · 同级` : `单节点`;
+  ["prevBtnTop","prevBtnBot"].forEach(bid => {
+    const el = document.getElementById(bid);
+    if (el) el.disabled = idx <= 0;
+  });
+  ["nextBtnTop","nextBtnBot"].forEach(bid => {
+    const el = document.getElementById(bid);
+    if (el) el.disabled = idx >= total - 1;
+  });
+  const infoEl = document.getElementById("pagerInfoTop");
+  if (infoEl) infoEl.innerHTML = info;
 }
 function navSibling(dir){
   if (!currentPanelId) return;
