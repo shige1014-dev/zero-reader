@@ -441,7 +441,7 @@
     border:1px solid rgba(184,144,70,.28);
     border-radius:99px;
     color:var(--text-dark);
-    font-weight:500;
+    font-weight:400;
     transition:all .15s;
   }
   .person:hover{background:rgba(184,144,70,.22);transform:translateY(-1px)}
@@ -516,7 +516,7 @@
   .ev{font-size:11.5px;line-height:1.65;padding:10px 14px;margin-bottom:6px;background:rgba(61,46,34,.03);border:1px solid rgba(61,46,34,.06);border-radius:8px;color:var(--text-dark)}
   .ev .ev-date{font-family:ui-monospace,monospace;font-size:9.5px;color:var(--gold);letter-spacing:.06em;font-weight:700;margin-bottom:3px}
   .stocks{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
-  .stock{display:inline-block;text-decoration:none;cursor:pointer;font-family:ui-monospace,monospace;font-size:11px;font-weight:700;padding:5px 10px;background:rgba(168,184,152,.18);border:1px solid rgba(168,184,152,.4);border-radius:5px;color:#5F8F5F;letter-spacing:.04em;transition:all .15s}
+  .stock{display:inline-block;text-decoration:none;cursor:pointer;font-family:ui-monospace,monospace;font-size:11px;font-weight:500;padding:5px 10px;background:rgba(168,184,152,.18);border:1px solid rgba(168,184,152,.4);border-radius:5px;color:#5F8F5F;letter-spacing:.04em;transition:all .15s}
   .stock:hover{background:rgba(168,184,152,.34);transform:translateY(-1px)}
   .stock.loss{background:rgba(200,137,110,.22);border-color:rgba(200,137,110,.45);color:#8E4A2F}
   .next-btn{display:block;width:100%;margin-top:18px;padding:14px;background:linear-gradient(180deg,#F0DCA8,#D4AC5C);border:none;color:#3D2E22;font-size:13.5px;font-weight:700;letter-spacing:.06em;border-radius:14px;cursor:pointer;box-shadow:0 8px 20px -8px rgba(212,172,92,.6);transition:all .2s}
@@ -952,6 +952,116 @@ const EXTRAS = {
     keyPeople:["Elon Musk (Neuralink)","Tom Oxley (Synchron)","Matt Angle (Paradromics)","Krishna Shenoy (Neuralink + Synchron)","Mary Lou Jepsen (Openwater)"],
     counter:["Eric Yablonka: BCI 临床进度被夸大","Marcus Wagner: 伦理问题大","Frances Haugen: 脑数据隐私无解","保守医学派: 侵入式风险太高"],
     plays:["NUSI (新晋 BCI 公司 - 高 beta)","XLV / IBB (医疗保险)","Neuralink 私募份额","对冲: 黑客事件 = 减仓"]
+  },
+
+  // ━━━ L1 节点扩充 (深度信息) ━━━
+  "energy":{
+    timeWindow:"2024-2030 主升",
+    triggers:["三里岛 1 号 2027 重启","Quanta 订单 backlog 突破 $40B","Helion 2028 商业并网"],
+    keyWatch:["CEG 季度营收","Constellation 数据中心 PPA 数量"],
+    watch:["铀矿价格 (U3O8)","电网新建项目审批","煤电退役进度"],
+    warnings:["聚变商业化提前 = 核电估值杀","加息周期重启 = 公用股压力"],
+    scenarios:{ bull:0.45, base:0.40, bear:0.15 },
+    analog:{ era:"1973-1979 石油危机", what:"能源短缺周期, 替代能源股 5-10x", lesson:"短缺周期持续 7-10 年, 上半场公用股, 下半场新能源" },
+    keyPeople:["Joe Dominguez (CEG CEO)","Chris Wright (Trump 能源部长)","Bill Gates (TerraPower)","Sam Altman (Helion)"],
+    counter:["桥水: '能源故事被透支 50%'","Morgan Stanley: 'Capex 周期顶 2026'","聚变激进派: '核电 5 年内被颠覆'"],
+    plays:["CEG + VST + TLN 三足","URA / URNM 铀矿 ETF","ETN call 期权","对冲: SMR ETF 小仓位"]
+  },
+  "asic":{
+    timeWindow:"2025-2028 渐进",
+    triggers:["AVGO AI 季度营收破 $5B","Google TPU + Meta MTIA 出货量超 NVDA 30%","OpenAI 自研芯片流片"],
+    keyWatch:["AVGO 季度 AI 营收","NVDA 客户集中度"],
+    watch:["MRVL 数据中心收入","CRDO / ALAB 光通信","TSMC 3nm 客户结构"],
+    warnings:["NVDA 软件护城河 (CUDA) 比预期深","ASIC NRE $500M 起","客户 lock-in 5-7 年"],
+    scenarios:{ bull:0.35, base:0.45, bear:0.20 },
+    analog:{ era:"2000s 通讯运营商自研芯片", what:"运营商最后还是买高通 / 博通, 自研多失败", lesson:"客户自研周期长, NVDA 短期仍主导. 但 5 年后客制化 50%+" },
+    keyPeople:["Hock Tan (AVGO CEO)","Matt Murphy (MRVL CEO)","Sam Altman (OpenAI 自研)","Jensen Huang (NVDA 防御)"],
+    counter:["NVDA 多头: '客制化是噱头, CUDA 不可替代'","半导体老兵: 客户没工程能力做芯片","AMD 派: AMD MI300X 才是真挑战"],
+    plays:["AVGO 长仓 (主要 beneficiary)","MRVL + ALAB + CRDO 配置","SMH ETF","对冲: NVDA put OTM"]
+  },
+  "app":{
+    timeWindow:"2025-2028 加速",
+    triggers:["Cursor IPO 估值 $30B+","Anthropic 收入 > 算力成本","Harvey / Hippocratic 客户突破"],
+    keyWatch:["Cursor / Devin ARR 增速","Anthropic 月活"],
+    watch:["传统 SaaS (CRM/ADBE) 转型","推理价格曲线","开源模型逼平时间"],
+    warnings:["AI 应用同质化, 护城河浅","Token 成本 > 订阅收入","Apple/Google 30% 抽成"],
+    scenarios:{ bull:0.30, base:0.45, bear:0.25 },
+    analog:{ era:"1990s 互联网应用层", what:"Yahoo / Google / Amazon 应用层赢家在基础设施泡沫破后崛起", lesson:"应用层赢家不在算力周期顶, 而在算力商品化后. 周期慢但深" },
+    keyPeople:["Michael Truell (Cursor CEO)","Dario Amodei (Anthropic)","Aravind Srinivas (Perplexity)","Winston Weinberg (Harvey CEO)"],
+    counter:["传统派: 'AI 应用 = wrapper, 没护城河'","Sequoia: 'AI 应用赚不到钱'","开源派: 'Anthropic / OpenAI 商业模式难'"],
+    plays:["MSFT 长仓 (OpenAI 受益)","Anthropic 私募 / TWLO","Cursor 私募份额","对冲: 推理价崩 = 减仓"]
+  },
+  "storage":{
+    timeWindow:"2025-2027 HBM4 + 2028 HBM5",
+    triggers:["SK Hynix HBM4 量产 (2026)","三星 HBM3E 通过 NVDA 验证","HBM 单价 > $10/GB"],
+    keyWatch:["SK Hynix HBM 出货 + ASP","三星 HBM4 良率"],
+    watch:["美光 HBM4 进度","NVDA Rubin 规格","长鑫 / 长江存储 HBM 突破"],
+    warnings:["HBM4 良率全行业拉胯","DRAM 商品周期顶","HBM5 新架构 (CXL?)"],
+    scenarios:{ bull:0.35, base:0.40, bear:0.25 },
+    analog:{ era:"2017-2018 DRAM 大周期", what:"上次周期 SK Hynix / 三星 涨 3-5x", lesson:"DRAM 是周期股, 不是成长股. HBM 是周期之上的结构性红利" },
+    keyPeople:["Kwak Noh-Jung (SK Hynix CEO)","Lee Jae-Yong (Samsung)","Sanjay Mehrotra (Micron CEO)"],
+    counter:["半导体派: 'HBM 周期顶 2026-Q2'","三星粉: 'HBM3E 终将通过, SK 优势短暂'","美光派: '美国本土供应链优先'"],
+    plays:["005930.KS + 000660.KS 韩股配置","MU 美股配置","KWEB (中国半导体)","对冲: DRAM 周期顶 = 减仓"]
+  },
+  "humanoid-actuator":{
+    timeWindow:"2026-2030 BOM 曲线",
+    triggers:["Harmonic Drive 订单 +100% YoY","Tesla Optimus 量产万台","中国减速器良率追上"],
+    keyWatch:["6324.T 季度订单","Tesla 财报 Optimus 段"],
+    watch:["NABTESCO / Sumitomo 产能","中国绿的谐波出货"],
+    warnings:["机器人需求未起 = 投资过早","中国卷死日本 = 利润压缩"],
+    scenarios:{ bull:0.40, base:0.45, bear:0.15 },
+    analog:{ era:"FANUC 工业机器人 1980-2000", what:"日本机器人零件 50 年护城河", lesson:"高精度机械加工不是软件可颠覆, 时间是朋友" },
+    keyPeople:["Akifusa Inaba (Harmonic 总裁)","Toshiyuki Murakami (Sumitomo)"],
+    counter:["中国激进派: '5 年内国产替代'","美国本土派: '战略物资必须本土化'"],
+    plays:["6324.T 日股长仓","NABTESCO","BOTZ ETF","绿的谐波 (A股, 高 beta)"]
+  },
+  "humanoid-vision":{
+    timeWindow:"2025-2028 大脑商业化",
+    triggers:["NVDA GR00T 量产合作 >10 家","VLA 模型开源进入家用","Mobileye L4 商用扩大"],
+    keyWatch:["NVDA GR00T 客户名单","Anthropic / Google VLA 进度"],
+    watch:["Apple Vision Pro 接口","Tesla FSD V13 通用化","开源 RT-2 / OpenVLA"],
+    warnings:["通用 VLA 比专用 VLM 难","数据闭环慢"],
+    scenarios:{ bull:0.50, base:0.40, bear:0.10 },
+    analog:{ era:"2015-2020 自动驾驶感知", what:"Mobileye / 特斯拉 5 年才完成", lesson:"视觉 AI 量产难度极高, 真到实用要 5-8 年" },
+    keyPeople:["Jensen Huang (NVDA)","Mobileye CEO Shashua","Tesla Optimus / FSD 团队"],
+    counter:["开源派: 'NVDA 平台被开源逼平'","学术派: 'VLA 仍有 hallucination'"],
+    plays:["NVDA 长仓","Mobileye (低估值)","LAZR / OUST 激光雷达"]
+  },
+  "nuclear":{
+    timeWindow:"2025-2035 复兴",
+    triggers:["三里岛 1 号机组重启签约","Oklo 首座 SMR 并网","SMR 工厂化生产成本下降"],
+    keyWatch:["NRC 月度审批数","铀矿现货价"],
+    watch:["Trump 核电立法","美国能源部 SMR 资助","老核电站重启数"],
+    warnings:["核事故任何国家发生 = 行业暂停","建设超支 (历史常态)","聚变冲击"],
+    scenarios:{ bull:0.50, base:0.35, bear:0.15 },
+    analog:{ era:"1950s 美国核电黄金期", what:"50 年代核电从 0 → 20% 美国电力", lesson:"核电复苏是 10+ 年长周期, 短期波动大" },
+    keyPeople:["Joe Dominguez (CEG)","Jim Robo (前 Nextera)","Caleb Brett (X-energy)"],
+    counter:["反核派: '废料问题 + 安全风险'","可再生派: '光伏 + 储能更便宜'"],
+    plays:["CEG + VST + TLN","CCJ + UEC 铀矿","BWXT (反应堆设备)","对冲: NLR ETF 分散"]
+  },
+  "fusion-swan":{
+    timeWindow:"2028-2035 商业并网",
+    triggers:["Helion 2028 商业并网","CFS Q>1 实证","TAE 商业堆启动"],
+    keyWatch:["Helion / CFS / TAE 工程进度","私募融资轮次"],
+    watch:["MSFT Helion 协议执行","各国聚变补贴政策"],
+    warnings:["商业化时间表激进, 大概率延期","工程难度被低估","成本曲线不达预期"],
+    scenarios:{ bull:0.20, base:0.50, bear:0.30 },
+    analog:{ era:"1950s 核聚变研究", what:"50+ 年从未商业化, 一直 '20 年后'", lesson:"聚变是 long-shot, 但 2028 是关键判断窗口" },
+    keyPeople:["David Kirtley (Helion CEO)","Bob Mumgaard (CFS CEO)","Sam Altman (投资人)"],
+    counter:["核电派: 'SMR 已够用'","学术派: '聚变工程比预测难 10 倍'"],
+    plays:["不直接投资 (都是私募)","Roper / Eaton 间接受益","等 IPO 时机"]
+  },
+  "stablecoin-origin":{
+    timeWindow:"2025-2030 主升",
+    triggers:["GENIUS Act 通过 (2025-06)","Circle IPO 估值溢出","USDC 流通破 $1T"],
+    keyWatch:["USDC + USDT 月度流通量","美债利率 vs Circle 季度营收"],
+    watch:["Visa / Mastercard 稳定币结算量","新兴市场采用率","Trump 加密政策"],
+    warnings:["Tether 储备透明度问题再爆 = 系统性风险","央行 CBDC 立法对抗","美债利率快速下行 = Circle 利润压力"],
+    scenarios:{ bull:0.50, base:0.35, bear:0.15 },
+    analog:{ era:"1990s 信用卡普及", what:"Visa / Mastercard 取代支票", lesson:"支付基础设施变革慢, 完成后 10 年护城河" },
+    keyPeople:["Jeremy Allaire (Circle CEO)","Paolo Ardoino (Tether CEO)","Brian Armstrong (Coinbase)","Cynthia Lummis (加密参议员)"],
+    counter:["Janet Yellen: 影子银行风险","欧盟 ECB: 货币主权威胁","Peter Thiel: '稳定币只是过渡, BTC 才是终点'"],
+    plays:["CRCL (Circle) 长仓","COIN 配置","BTC / ETH 仓位","对冲: 美债利率反转 = 减仓"]
   }
 };
 
