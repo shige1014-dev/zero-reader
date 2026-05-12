@@ -177,20 +177,12 @@
     color:#2F2010;
     box-shadow:0 8px 28px -10px rgba(212,182,112,.45), 0 3px 12px -6px rgba(0,0,0,.35);
   }
-  /* 黑天鹅 mini 竖排 */
-  .node.type-swan.l1 .bubble{
-    width:95px;min-height:72px;padding:7px 9px;
-    border-radius:9px;
-    background:linear-gradient(180deg,#3A2638,#2A1A28);
-    color:#E8D8E0;
-    border:1px dashed rgba(212,182,112,.4);
+  /* 黑天鹅 同尺寸 紫底标记 */
+  .node.type-swan .bubble{
+    background:linear-gradient(180deg,#E8DCEC,#DAC8E0) !important;
+    border:1px dashed rgba(168,139,192,.5) !important;
   }
-  .node.type-swan.l1 .bubble-tag{color:#C8A0D8;font-size:8px}
-  .node.type-swan.l1 .bubble-title{font-size:11px;color:#F0DCEC;line-height:1.2}
-  .node.type-swan.l1 .bubble-meta{font-size:9px}
-  .node.type-swan.l1 .meter-bar{background:rgba(255,255,255,.1)}
-  .node.type-swan.l1 .meter-fill{background:#B886C8}
-  .node.type-swan.l1 .bubble-impact{background:rgba(255,255,255,.15);color:#F0DCEC}
+  .node.type-swan .bubble-tag{color:#9F89B0}
   /* L1 — 米色 */
   .node.l1 .bubble{
     background:#EFE6D2;
@@ -1212,12 +1204,12 @@ function layoutRender(){
   if (pathStack.length === 0){
     layout[ORIGIN] = { x: CENTER, y: mobile ? 210 : 215, level: 0 };
     const l1All = NODES[ORIGIN].children;
-    // 分离 swan vs 其他
-    const swans = l1All.filter(id => NODES[id] && NODES[id].type === "swan");
+    // swan 放最后, main 在前
     const mainKids = l1All.filter(id => !(NODES[id] && NODES[id].type === "swan"));
+    const swans = l1All.filter(id => NODES[id] && NODES[id].type === "swan");
+    const ordered = [...mainKids, ...swans];
     const rowYStart = layout[ORIGIN].y + ORIGIN_H/2 + (mobile ? 70 : 80);
-    // 主节点 3 排
-    const N = mainKids.length;
+    const N = ordered.length;
     const r1 = Math.ceil(N / 3);
     const r2 = Math.ceil((N - r1) / 2);
     const r3 = N - r1 - r2;
@@ -1225,7 +1217,7 @@ function layoutRender(){
     let idx = 0;
     rowCounts.forEach((cnt, rowI) => {
       for (let c = 0; c < cnt; c++){
-        const id = mainKids[idx++];
+        const id = ordered[idx++];
         if (!id) return;
         layout[id] = {
           x: CENTER - (cnt-1)*L1_W/2 + c*L1_W,
@@ -1233,16 +1225,6 @@ function layoutRender(){
           level: 1
         };
       }
-    });
-    // 黑天鹅 mini 竖排 - origin 右侧
-    const swanX = mobile ? Math.min(screenCX() + 145, window.innerWidth - 50) : CX + 175;
-    const swanYStart = layout[ORIGIN].y - 30;
-    swans.forEach((id, i) => {
-      layout[id] = {
-        x: swanX,
-        y: swanYStart + i * 78,
-        level: 1
-      };
     });
     return;
   }
