@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>推演路径 · v4 Cube</title>
+<style>
+  :root{
+    --bg-1:#2a1f1a;
+    --bg-2:#1c1410;
+    --cream:#F5EEDD;
+    --cream-2:#EDE3CC;
+    --milk:#F8F2E4;
+    --warm-clay:#C8896E;
+    --warm-lavender:#A88BC0;
+    --gold:#B89046;
+    --gold-soft:#D4AC5C;
+    --text-dark:#3D2E22;
+    --text-mid:#5E4A38;
+    --text-dim:#8E7858;
+    --text-cream:#E0D2B4;
+    --text-cream-dim:#B8A88A;
+    --shadow:0 16px 38px -16px rgba(0,0,0,.55), 0 6px 16px -10px rgba(0,0,0,.35);
+    --shadow-hover:0 24px 56px -16px rgba(0,0,0,.6), 0 10px 24px -14px rgba(0,0,0,.45);
+    --shadow-pop:0 40px 80px -20px rgba(184,144,70,.5), 0 20px 40px -18px rgba(0,0,0,.55);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{
+    height:100%;
+    background:radial-gradient(ellipse at top,var(--bg-1) 0%,var(--bg-2) 70%);
+    color:var(--text-cream);
+    font-family:"PingFang SC","Noto Sans SC",sans-serif;
+    overflow:hidden;
+  }
+
+  body::before,body::after{
+    content:"";position:fixed;inset:-20%;pointer-events:none;
+    background:
+      radial-gradient(ellipse 50% 35% at 25% 35%,rgba(232,184,106,.05),transparent 60%),
+      radial-gradient(ellipse 45% 30% at 75% 65%,rgba(200,137,110,.04),transparent 60%);
+    filter:blur(50px);
+    z-index:0;
+  }
+  body::after{animation:drift 80s ease-in-out infinite;opacity:.6}
+  @keyframes drift{
+    0%,100%{transform:translate(0,0) scale(1)}
+    33%{transform:translate(2%,-2%) scale(1.04)}
+    66%{transform:translate(-1%,2%) scale(1.02)}
+  }
+
+  /* topbar */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    height:56px;padding:0 20px;
+    display:flex;align-items:center;gap:14px;
+    background:rgba(28,20,16,.6);
+    backdrop-filter:blur(24px) saturate(120%);
+    border-bottom:1px solid rgba(232,199,176,.08);
+  }
+  .logo{font-size:13px;letter-spacing:.16em;font-weight:500;color:var(--gold-soft);text-transform:uppercase;font-family:"Iowan Old Style",serif}
+  .logo small{margin-left:10px;color:var(--text-cream-dim);font-size:10px;letter-spacing:.08em;text-transform:none;font-style:italic}
+  .back-btn{
+    display:none;align-items:center;gap:6px;
+    padding:6px 12px 6px 9px;
+    background:rgba(245,238,221,.08);
+    border:1px solid rgba(245,238,221,.18);
+    border-radius:99px;
+    color:var(--cream);font-size:11.5px;
+    cursor:pointer;transition:all .2s;font-family:inherit;
+  }
+  .back-btn:hover{background:rgba(245,238,221,.14);transform:translateX(-2px)}
+  .back-btn.show{display:inline-flex}
+
+  .breadcrumb{display:flex;align-items:center;gap:6px;font-size:11px;font-family:ui-monospace,monospace;color:var(--text-cream-dim);flex:1;overflow:hidden}
+  .crumb{padding:4px 10px;background:rgba(245,238,221,.04);border:1px solid rgba(245,238,221,.12);border-radius:99px;color:#D6C7A8;cursor:pointer;transition:all .2s;white-space:nowrap}
+  .crumb:hover{background:rgba(245,238,221,.12);color:var(--cream)}
+  .crumb.now{background:rgba(212,172,92,.18);border-color:rgba(212,172,92,.45);color:var(--gold-soft);cursor:default}
+  .arr{color:var(--text-dim);font-size:9px;opacity:.6}
+  .depth{margin-left:auto;font-size:10px;letter-spacing:.12em;color:var(--text-cream-dim);font-family:ui-monospace,monospace;padding:5px 12px;background:rgba(245,238,221,.04);border:1px solid rgba(245,238,221,.1);border-radius:99px}
+  .depth strong{color:var(--gold-soft);font-weight:600}
+
+  /* canvas - flat (no 3D) */
+  main{
+    position:absolute;top:56px;left:0;right:0;bottom:0;
+    overflow:hidden;
+    z-index:1;
+  }
+  .stage{position:absolute;inset:0}
+
+  svg.edges{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+  .edge{
+    fill:none;
+    stroke:rgba(245,238,221,.15);
+    stroke-width:1;
+    stroke-dasharray:2 5;
+    transition:all .6s;
+  }
+  .edge.active{stroke:rgba(212,172,92,.6);stroke-width:1.5;stroke-dasharray:none}
+  .edge.swan{stroke:rgba(168,139,192,.3);stroke-dasharray:1 6}
+
+  /* path trail - flowing */
+  svg.trail{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+  .trail line{
+    stroke:rgba(212,172,92,.55);stroke-width:2;
+    stroke-dasharray:6 4;
+    animation:trailFlow 1.8s linear infinite;
+    filter:drop-shadow(0 0 4px rgba(212,172,92,.4));
+  }
+  @keyframes trailFlow{0%{stroke-dashoffset:0}100%{stroke-dashoffset:-20}}
+
+  /* down arrow */
+  .down-arrow{
+    position:absolute;width:34px;height:34px;
+    pointer-events:none;z-index:2;
+  }
+  .down-arrow path{fill:none;stroke:rgba(212,172,92,.6);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;animation:arrowBlink 2.2s ease-in-out infinite}
+  @keyframes arrowBlink{0%,100%{opacity:.4;transform:translateY(0)}50%{opacity:.95;transform:translateY(5px)}}
+
+  /* nodes - flat with simple animation */
+  .nodes{position:absolute;inset:0;pointer-events:none}
+  .node{
+    position:absolute;
+    pointer-events:auto;
+    cursor:pointer;
+    transform:translate(-50%,-50%);
+    transition:all .55s cubic-bezier(.34,1.4,.5,1);
+    -webkit-tap-highlight-color:transparent;
+  }
+  .node.entering{
+    opacity:0;
+    transform:translate(-50%,-50%) scale(.6);
+  }
+  .node.dim{
+    opacity:.4;
+    transform:translate(-50%,-50%) scale(.72);
+    filter:saturate(.7);
+  }
+  .node.dim:hover,.node.dim:active{opacity:.85}
+  .node.current .bubble{
+    box-shadow:var(--shadow-pop);
+    transform:scale(1.06);
+  }
+
+  /* cube-style bubble */
+  .bubble{
+    position:relative;
+    background:var(--cream);
+    border-radius:50% 50% 48% 52% / 60% 55% 45% 40%;
+    box-shadow:var(--shadow);
+    padding:16px 22px;
+    min-width:140px;
+    max-width:220px;
+    transition:all .35s cubic-bezier(.34,1.4,.5,1);
+    animation:float 7s ease-in-out infinite;
+  }
+  .node.l0 .bubble{border-radius:52% 48% 50% 50% / 55% 60% 40% 45%;min-width:160px;padding:20px 26px;background:linear-gradient(135deg,var(--milk),var(--cream-2))}
+  .node.l1 .bubble{border-radius:50% 50% 52% 48% / 58% 52% 48% 42%;min-width:150px}
+  .node.l2 .bubble{border-radius:54% 46% 50% 50% / 50% 56% 44% 50%;min-width:130px;padding:13px 17px}
+  .node.l3 .bubble{border-radius:55% 45% 48% 52% / 52% 58% 42% 48%;min-width:115px;padding:11px 14px}
+
+  .node:nth-child(odd) .bubble{animation-delay:-1.5s;animation-duration:7.5s}
+  .node:nth-child(3n) .bubble{animation-delay:-3s;animation-duration:6.5s}
+  @keyframes float{
+    0%,100%{transform:translateY(0) rotate(-.4deg)}
+    50%{transform:translateY(-5px) rotate(.4deg)}
+  }
+
+  .node.type-main .bubble{background:linear-gradient(135deg,#F5EEDD,#EBDFC4)}
+  .node.type-contra .bubble{background:linear-gradient(135deg,#EFE6D6,#DDD0B5)}
+  .node.type-swan .bubble{background:linear-gradient(135deg,#E8DCE8,#D4C0CC)}
+  .node.type-shrink .bubble{background:linear-gradient(135deg,#EBD3C0,#D8B59E)}
+  .node.type-origin .bubble{background:linear-gradient(135deg,#FAF1D6,#F0DCA8);box-shadow:0 24px 56px -22px rgba(232,184,106,.5),0 10px 26px -14px rgba(0,0,0,.4)}
+
+  /* tail */
+  .bubble::after,.bubble::before{content:"";position:absolute;background:inherit;border-radius:50%;z-index:-1}
+  .bubble::after{width:12px;height:12px;bottom:-7px;left:32%;box-shadow:var(--shadow)}
+  .bubble::before{width:7px;height:7px;bottom:-14px;left:26%;box-shadow:var(--shadow)}
+
+  .bubble-tag{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:5px;font-family:ui-monospace,monospace}
+  .node.type-contra .bubble-tag{color:var(--warm-clay)}
+  .node.type-swan .bubble-tag{color:var(--warm-lavender)}
+  .node.type-shrink .bubble-tag{color:#A85050}
+  .node.type-origin .bubble-tag{color:#8A6A1A}
+  .bubble-title{font-size:14px;font-weight:600;color:var(--text-dark);line-height:1.35;margin-bottom:6px}
+  .node.l0 .bubble-title{font-size:16px}
+  .node.l2 .bubble-title{font-size:13px}
+  .node.l3 .bubble-title{font-size:12px;margin-bottom:4px}
+  .bubble-meta{display:flex;align-items:center;gap:7px;font-size:10px;font-family:ui-monospace,monospace;color:var(--text-mid)}
+  .meter-bar{flex:1;height:3px;background:rgba(61,46,34,.08);border-radius:99px;overflow:hidden}
+  .meter-fill{height:100%;background:var(--gold);border-radius:99px}
+  .node.type-contra .meter-fill{background:var(--warm-clay)}
+  .node.type-swan .meter-fill{background:var(--warm-lavender)}
+  .bubble-impact{font-weight:700;color:var(--text-dark);padding:1px 6px;background:rgba(61,46,34,.06);border-radius:4px;font-size:10px}
+
+  .node:hover{z-index:10}
+  .node:hover .bubble{transform:scale(1.05);box-shadow:var(--shadow-hover)}
+  .node.visited:not(.current):not(.dim) .bubble{border:1px solid rgba(212,172,92,.35)}
+
+  /* === DETAIL PANEL: 右侧滑出 + 上下翻页 === */
+  aside{
+    position:fixed;top:56px;right:-460px;width:460px;bottom:0;
+    background:linear-gradient(180deg,#FBF6E8,#F2EAD3);
+    color:var(--text-dark);
+    box-shadow:-30px 0 80px -20px rgba(0,0,0,.55), -10px 0 30px -10px rgba(0,0,0,.4);
+    overflow:hidden;
+    transition:right .5s cubic-bezier(.34,1.4,.5,1);
+    z-index:50;
+    display:flex;
+    flex-direction:column;
+  }
+  aside.open{right:0}
+  aside .close{
+    position:absolute;top:14px;right:14px;
+    background:rgba(61,46,34,.08);border:none;color:var(--text-mid);
+    font-size:18px;cursor:pointer;
+    width:32px;height:32px;
+    border-radius:50%;display:grid;place-items:center;
+    transition:all .2s;z-index:5;
+  }
+  aside .close:hover{background:rgba(61,46,34,.16);color:var(--text-dark)}
+
+  /* 上下翻页条 (固定在 panel 顶部, sibling 间切换) */
+  .pager{
+    flex-shrink:0;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 18px;
+    background:rgba(212,172,92,.12);
+    border-bottom:1px solid rgba(61,46,34,.08);
+    font-size:11px;font-family:ui-monospace,monospace;
+    color:var(--text-mid);letter-spacing:.06em;
+  }
+  .pager-btn{
+    display:inline-flex;align-items:center;gap:5px;
+    padding:6px 12px;
+    background:rgba(245,238,221,.6);
+    border:1px solid rgba(184,144,70,.3);
+    border-radius:99px;
+    color:var(--text-dark);
+    font-size:11px;font-weight:600;
+    cursor:pointer;
+    transition:all .2s;
+    font-family:inherit;
+  }
+  .pager-btn:hover:not(:disabled){
+    background:var(--gold-soft);
+    transform:translateY(-1px);
+    box-shadow:0 4px 12px -4px rgba(184,144,70,.5);
+  }
+  .pager-btn:disabled{
+    opacity:.35;cursor:not-allowed;
+  }
+  .pager-info{
+    font-size:10px;color:var(--text-dim);
+    letter-spacing:.12em;text-transform:uppercase;
+    text-align:center;
+  }
+  .pager-info strong{color:var(--gold);font-weight:700}
+
+  aside .header-row{
+    padding:24px 28px 16px;
+    border-bottom:1px solid rgba(61,46,34,.08);
+    flex-shrink:0;
+  }
+  aside .kicker{font-size:10px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;font-weight:700;margin-bottom:8px;font-family:ui-monospace,monospace}
+  aside .title{font-size:22px;font-weight:600;color:var(--text-dark);margin-bottom:6px}
+  aside .title-en{font-size:11px;letter-spacing:.08em;color:var(--text-dim);font-family:"Iowan Old Style",serif;font-style:italic;margin-bottom:14px}
+  .meters-inline{display:flex;gap:18px;flex-wrap:wrap}
+  .meters-inline .meter{display:flex;align-items:center;gap:8px;font-size:11px}
+  .meters-inline .meter-label{width:auto;color:var(--text-dim);font-family:ui-monospace,monospace;font-size:10px}
+  .meters-inline .meter-track{width:90px;height:5px;background:rgba(61,46,34,.06);border-radius:99px;overflow:hidden}
+  .meters-inline .meter-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--warm-clay));border-radius:99px}
+  .meters-inline .meter-val{font-family:ui-monospace,monospace;font-size:11px;color:var(--text-dark);font-weight:700;min-width:42px;text-align:right}
+
+  aside .body{
+    padding:20px 28px 32px;
+    overflow-y:auto;
+    flex:1;
+    scrollbar-width:thin;
+  }
+  aside .body::-webkit-scrollbar{width:6px}
+  aside .body::-webkit-scrollbar-thumb{background:rgba(184,144,70,.3);border-radius:99px}
+
+  /* === 扩展字段样式 === */
+  .time-window{
+    display:inline-block;
+    padding:4px 11px;margin-bottom:14px;
+    background:rgba(184,144,70,.14);
+    border:1px solid rgba(184,144,70,.3);
+    border-radius:99px;
+    font-size:10.5px;font-family:ui-monospace,monospace;
+    color:var(--text-mid);letter-spacing:.06em;
+  }
+  .list-trigger li::before{content:"⚡";color:#C8896E}
+  .list-key li{
+    padding:6px 8px 6px 22px;
+    background:rgba(184,144,70,.08);
+    border-left:2px solid var(--gold);
+    margin-bottom:4px;border-radius:0 6px 6px 0;
+    font-weight:500;
+  }
+  .list-key li::before{content:"🔭";left:6px;top:6px}
+  .list-warn li{
+    padding:6px 8px 6px 22px;
+    background:rgba(168,80,80,.08);
+    border-left:2px solid #A85050;
+    margin-bottom:4px;border-radius:0 6px 6px 0;
+    color:#7A3A2F;
+  }
+  .list-warn li::before{content:"⚠";color:#A85050;left:6px;top:5px}
+
+  .scenarios{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+  .sc{display:flex;align-items:center;gap:8px;font-size:11px;font-family:ui-monospace,monospace}
+  .sc-label{width:36px;color:var(--text-mid);font-size:10px}
+  .sc-bar{flex:1;height:6px;background:rgba(61,46,34,.06);border-radius:99px;overflow:hidden}
+  .sc-fill{height:100%;border-radius:99px;display:block}
+  .sc-bull .sc-fill{background:linear-gradient(90deg,#8AB58A,#5C9E5C)}
+  .sc-bull .sc-label{color:#3F6B3F}
+  .sc-base .sc-fill{background:linear-gradient(90deg,#D4AC5C,#B89046)}
+  .sc-base .sc-label{color:var(--gold)}
+  .sc-bear .sc-fill{background:linear-gradient(90deg,#D8AE92,#A85050)}
+  .sc-bear .sc-label{color:#A85050}
+  .sc-val{font-weight:700;color:var(--text-dark);min-width:36px;text-align:right}
+
+  /* === 主题切换 === */
+  .theme-bar{
+    position:fixed;
+    top:62px;left:50%;transform:translateX(-50%);
+    z-index:20;
+    display:flex;gap:4px;
+    padding:5px;
+    background:rgba(28,20,16,.75);
+    border:1px solid rgba(232,199,176,.12);
+    border-radius:99px;
+    backdrop-filter:blur(14px);
+    max-width:calc(100vw - 32px);
+    overflow-x:auto;
+    overflow-y:hidden;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+    -webkit-overflow-scrolling:touch;
+    white-space:nowrap;
+  }
+  .theme-bar::-webkit-scrollbar{display:none}
+  .theme-btn{
+    flex:0 0 auto;
+    padding:5px 11px;
+    background:transparent;border:none;
+    color:var(--text-cream-dim);
+    font-size:11px;letter-spacing:.04em;
+    cursor:pointer;border-radius:99px;
+    font-family:inherit;
+    transition:all .2s;
+    display:inline-flex;align-items:center;gap:4px;
+  }
+  .theme-btn:hover{color:var(--cream)}
+  .theme-btn.active{
+    background:rgba(212,172,92,.25);
+    color:var(--gold-soft);
+    box-shadow:inset 0 0 0 1px rgba(212,172,92,.4);
+  }
+  .theme-btn .emoji{font-size:13px}
+  @media (max-width:720px){
+    .theme-bar{
+      top:54px;
+      padding:4px;gap:2px;
+      left:8px;right:8px;
+      transform:none;
+      max-width:calc(100vw - 16px);
+    }
+    .theme-btn{padding:5px 9px;font-size:10.5px;gap:3px}
+    .theme-btn .emoji{font-size:12px}
+  }
+  aside h3{font-size:10px;letter-spacing:.18em;font-weight:700;color:var(--gold);text-transform:uppercase;margin:0 0 10px;padding-bottom:6px;border-bottom:1px solid rgba(61,46,34,.08)}
+  .thesis{font-size:13.5px;line-height:1.8;color:var(--text-dark);background:rgba(212,172,92,.1);border-left:3px solid var(--gold);padding:12px 16px;border-radius:0 8px 8px 0}
+  ul.list{list-style:none;font-size:12.5px;line-height:1.75}
+  ul.list li{padding-left:18px;position:relative;color:var(--text-dark);margin-bottom:6px}
+  ul.list li::before{content:"▸";position:absolute;left:0;color:var(--gold);font-size:11px;top:2px}
+  .ev{font-size:11.5px;line-height:1.65;padding:10px 14px;margin-bottom:6px;background:rgba(61,46,34,.03);border:1px solid rgba(61,46,34,.06);border-radius:8px;color:var(--text-dark)}
+  .ev .ev-date{font-family:ui-monospace,monospace;font-size:9.5px;color:var(--gold);letter-spacing:.06em;font-weight:700;margin-bottom:3px}
+  .stocks{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
+  .stock{font-family:ui-monospace,monospace;font-size:10.5px;font-weight:700;padding:4px 9px;background:rgba(168,184,152,.22);border:1px solid rgba(168,184,152,.45);border-radius:5px;color:#3F5A3F;letter-spacing:.04em}
+  .stock.loss{background:rgba(200,137,110,.22);border-color:rgba(200,137,110,.45);color:#8E4A2F}
+  .next-btn{display:block;width:100%;margin-top:18px;padding:14px;background:linear-gradient(180deg,#F0DCA8,#D4AC5C);border:none;color:#3D2E22;font-size:13.5px;font-weight:700;letter-spacing:.06em;border-radius:14px;cursor:pointer;box-shadow:0 8px 20px -8px rgba(212,172,92,.6);transition:all .2s}
+  .next-btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px -8px rgba(212,172,92,.8)}
+  .end-note{margin-top:18px;padding:16px;text-align:center;font-size:11.5px;color:var(--text-dim);letter-spacing:.08em;border:1px dashed rgba(184,144,70,.3);border-radius:10px}
+
+  /* ━━━ 手机优化 ━━━ */
+  @media (max-width:720px){
+    header{height:50px;padding:0 12px;gap:8px}
+    .logo{font-size:11px}
+    .logo small{display:none}
+    .back-btn{padding:5px 10px 5px 7px;font-size:10.5px}
+    .breadcrumb{font-size:10px;gap:4px;flex:1}
+    .crumb{padding:3px 8px;font-size:10px;max-width:110px;overflow:hidden;text-overflow:ellipsis}
+    .depth{font-size:9px;padding:4px 9px}
+
+    main{top:50px}
+
+    /* nodes 缩小 */
+    .bubble{padding:11px 14px;min-width:108px;max-width:165px}
+    .node.l0 .bubble{min-width:128px;padding:13px 18px}
+    .node.l1 .bubble{min-width:115px;padding:11px 15px}
+    .node.l2 .bubble{min-width:100px;padding:9px 12px}
+    .node.l3 .bubble{min-width:90px;padding:8px 11px}
+    .bubble-tag{font-size:8px;margin-bottom:3px;letter-spacing:.14em}
+    .bubble-title{font-size:12px;margin-bottom:4px;line-height:1.3}
+    .node.l0 .bubble-title{font-size:13.5px}
+    .node.l2 .bubble-title{font-size:11px}
+    .node.l3 .bubble-title{font-size:10.5px}
+    .bubble-meta{font-size:9px;gap:5px}
+    .bubble-impact{font-size:9px;padding:1px 4px}
+
+    /* panel 全宽 */
+    aside{width:100%;right:-100%;top:50px}
+    aside.open{right:0}
+    aside .header-row{padding:16px 18px 12px}
+    aside .title{font-size:18px;margin-bottom:4px}
+    aside .title-en{font-size:10px;margin-bottom:10px}
+    aside .body{padding:14px 18px 28px}
+    .pager{padding:10px 14px}
+    .pager-btn{padding:7px 13px;font-size:11px}
+    .pager-info{font-size:9.5px}
+    aside h3{font-size:9.5px;margin:18px 0 8px}
+    .thesis{font-size:12.5px;padding:10px 13px;line-height:1.7}
+    ul.list{font-size:11.5px}
+    .ev{font-size:11px;padding:9px 12px}
+    .stock{font-size:10px;padding:3px 7px}
+    .next-btn{padding:13px;font-size:13px}
+
+    /* legend + hint 收纳 */
+    .legend{padding:8px 10px;font-size:9.5px;gap:5px;left:10px;bottom:10px}
+    .legend-dot{width:11px;height:11px}
+    .hint{font-size:9px;padding:5px 12px;bottom:10px;letter-spacing:.1em}
+  }
+  /* 超窄屏 (iPhone SE) */
+  @media (max-width:380px){
+    .bubble{min-width:96px;padding:9px 12px}
+    .bubble-title{font-size:11px}
+    .crumb{max-width:80px}
+    .legend{display:none}
+  }
+
+  /* hint */
+  .hint{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.16em;color:rgba(232,210,180,.6);text-transform:uppercase;font-family:ui-monospace,monospace;padding:7px 16px;background:rgba(28,20,16,.5);border:1px solid rgba(232,199,176,.1);border-radius:99px;backdrop-filter:blur(8px);z-index:10}
+  .hint.hidden{opacity:0;pointer-events:none;transition:opacity .3s}
+
+  .legend{position:fixed;left:18px;bottom:18px;display:flex;flex-direction:column;gap:7px;font-size:10.5px;color:rgba(232,210,180,.65);z-index:10;padding:12px 14px;background:rgba(28,20,16,.5);border:1px solid rgba(232,199,176,.1);border-radius:12px;backdrop-filter:blur(8px)}
+  .legend-item{display:flex;align-items:center;gap:8px}
+  .legend-dot{width:14px;height:14px;border-radius:50% 50% 48% 52% / 60% 55% 45% 40%}
+  .legend-dot.origin{background:linear-gradient(135deg,#FAF1D6,#F0DCA8)}
+  .legend-dot.main{background:linear-gradient(135deg,#F5EEDD,#EBDFC4)}
+  .legend-dot.contra{background:linear-gradient(135deg,#EFE6D6,#DDD0B5)}
+  .legend-dot.swan{background:linear-gradient(135deg,#E8DCE8,#D4C0CC)}
+</style>
+</head>
+<body>
+
+<header>
+  <button class="back-btn" id="backBtn" onclick="goBack()">← 返回</button>
+  <div class="logo">推演路径 <small>v7</small></div>
+  <div class="breadcrumb" id="crumbs"></div>
+  <div class="depth" id="depth">深度 <strong>0</strong> / 4</div>
+</header>
+
+<div class="theme-bar" id="themeBar"></div>
+
+<main>
+  <div class="stage" id="stage">
+    <svg class="edges" id="edges" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid meet"></svg>
+    <svg class="trail" id="trail" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid meet"></svg>
+    <div id="arrows"></div>
+    <div class="nodes" id="nodes"></div>
+  </div>
+</main>
+
+<aside id="panel">
+  <button class="close" onclick="closePanel()">×</button>
+  <div class="pager">
+    <button class="pager-btn" id="prevBtn" onclick="navSibling(-1)">↑ 上一个</button>
+    <div class="pager-info" id="pagerInfo"></div>
+    <button class="pager-btn" id="nextBtn" onclick="navSibling(1)">下一个 ↓</button>
+  </div>
+  <div class="header-row" id="panelHeader"></div>
+  <div class="body" id="panelBody"></div>
+</aside>
+
+<div class="legend">
+  <div class="legend-item"><span class="legend-dot origin"></span>起点</div>
+  <div class="legend-item"><span class="legend-dot main"></span>主流</div>
+  <div class="legend-item"><span class="legend-dot contra"></span>反共识</div>
+  <div class="legend-item"><span class="legend-dot swan"></span>⚡ 黑天鹅</div>
+</div>
+
+<div class="hint" id="hint">点击云朵 · 推演 · ESC 退回</div>
+
+<script>
+const NODES = {
+  "origin":{title:"AI 训练需求爆发",titleEn:"AI Training Demand Surge",type:"origin",prob:1.0,impact:5,thesis:"ChatGPT 引爆全球 LLM 军备, Stargate $500B / xAI Memphis / Meta Llama 同时推进. NVDA 单季营收 +200%, 算力成为新石油.",why:["OpenAI / Anthropic / xAI / Meta 累计 capex 2025 突破 $400B","NVDA 2025-Q1 数据中心收入占总营收 88%","全球科技巨头 5 年 AI 投入累计 $2T+","已发生且无可逆: 你只能问'下一步'"],evidence:[{date:"2025-01-21",src:"Stargate Project 公告 $500B 4 年部署"},{date:"2025-04-25",src:"NVDA Q1 营收 $44B (+78% YoY)"}],winners:["NVDA","AVGO","TSM","ARM"],losers:[],children:["energy","asic","app","storage","swan-deepseek"]},
+  "energy":{title:"下一爆发: 能源链",titleEn:"Next Boom: Energy",type:"main",prob:0.30,impact:4,thesis:"AI 数据中心电力需求 5x, 美国电网 10 年没扩产. 核电 / 电网 / 储能集体起飞.",why:["美国电力增速 1% → 5%, 缺口需 5-10 年","MSFT 重启三里岛 + Constellation 20 年长约","数据中心 capex 已签到 2028, 但电不够","Trump 推 SMR 立法加速"],evidence:[{date:"2024-09-20",src:"MSFT-CEG 三里岛 20 年购电协议"},{date:"2025-02-26",src:"VST Q4 营收 +35%"}],winners:["CEG","VST","TLN","ETN","GEV","PWR"],losers:["传统煤炭股"],children:["nuclear","grid","storage-energy","fusion-swan"]},
+  "asic":{title:"下一爆发: ASIC 客制",titleEn:"Custom ASIC",type:"main",prob:0.25,impact:4,thesis:"NVDA 毛利率 78% 招客户造反. Google/Meta/Amazon/OpenAI 全部找 AVGO/MRVL 自研芯片.",why:["GOOGL TPU + AWS Trainium2 + Meta MTIA 已量产","OpenAI 2025 起与 AVGO 签自研芯片协议","AVGO AI 收入 2025 突破 $200B (annualized)","客户不愿被 NVDA 锁死毛利率"],evidence:[{date:"2024-12-10",src:"OpenAI-AVGO 自研芯片合作"},{date:"2025-03-06",src:"AVGO AI 营收 Q1 $4.1B"}],winners:["AVGO","MRVL","ALAB","CRDO"],losers:["NVDA (毛利率压力)"],children:["asic-broadcom","asic-marvell","asic-optics"]},
+  "app":{title:"下一爆发: 应用层",titleEn:"App Layer",type:"contra",prob:0.20,impact:4,thesis:"算力 + 模型走向商品化, 价值链上移. Cursor / Replit / Perplexity / Harvey 等爆发.",why:["DeepSeek + 开源模型让前沿能力扩散","Cursor 9 个月 ARR 0→$400M, 史上最快","推理价格 / 1M token 2024→2026 -95%","应用层垄断者会出现 (类似 Office)"],evidence:[{date:"2025-04",src:"Cursor 估值 $9B, ARR $400M"},{date:"2025-01-20",src:"DeepSeek-R1 开源"}],winners:["MSFT","Anthropic","Cursor","Perplexity"],losers:["纯模型 API 厂商"],children:["app-coding","app-vertical","app-agent"]},
+  "storage":{title:"下一爆发: HBM/存储",titleEn:"HBM",type:"main",prob:0.18,impact:4,thesis:"HBM 是 AI 真正瓶颈. SK Hynix 50% 全球份额. HBM4 周期再涨 100%.",why:["每颗 H100 用 6 颗 HBM3, B200 用 8 颗 HBM3E","SK Hynix HBM3E 良率 70%+, 三星仍未过 NVDA","HBM 单价是 DDR5 的 5x, 利润率 50%+","DRAM 周期上行尾段叠加 HBM 红利"],evidence:[{date:"2025-04-25",src:"SK Hynix Q1 HBM 收入 +290%"}],winners:["005930.KS","000660.KS","MU"],losers:[],children:["storage-hbm","storage-dram","storage-china"]},
+  "swan-deepseek":{title:"⚡ 算法削算力",titleEn:"Algo Breakthrough",type:"swan",prob:0.07,impact:-5,thesis:"DeepSeek 式突破再次发生, 训练 / 推理算力需求被算法 5-10x 优化.",why:["DeepSeek-R1 已在 2025-01 给过一次警告","Mamba / 线性注意力 / MoE 持续突破","中 / 法 / 印 实验室持续小成本逼平","训练成本曲线已从 $100M 降到 $5M"],evidence:[{date:"2025-01-27",src:"DeepSeek-R1 致 NVDA 单日 -16.9%"}],winners:["应用层 SaaS","开源生态"],losers:["NVDA","算力基建股"],children:[]},
+  "nuclear":{title:"核电复苏",titleEn:"Nuclear Renaissance",type:"main",prob:0.65,impact:5,thesis:"30 年来核电首次扩张. SMR + 老核电站重启 + 新建核电.",why:["MSFT-CEG 三里岛 20 年协议是分水岭","Amazon-Talen 收购数据中心 (核电直供)","美国铀矿股 2024 涨 80-150%","Trump 行政令推 SMR 审批加速"],evidence:[{date:"2025-03",src:"Constellation Energy 12 月翻 3 倍"}],winners:["CEG","VST","TLN","CCJ","UEC"],losers:[],children:["nuc-uranium","nuc-smr","nuc-restart"]},
+  "grid":{title:"电网升级",titleEn:"Grid Modernization",type:"main",prob:0.80,impact:4,thesis:"输电瓶颈比发电更紧, 美国电网 30 年没升级. 变压器/输电线/工程公司订单到 2028.",why:["ETN/GEV/QNTA 订单 backlog 到 2028","新建输电线审批 5-10 年","AI 数据中心建在哪取决于电网","Trump+Biden 共同支持电网投资"],evidence:[{date:"2025-Q1",src:"Eaton 订单 backlog $11B"}],winners:["ETN","GEV","PWR","QNTA"],losers:[],children:["grid-transformer","grid-engineering"]},
+  "storage-energy":{title:"储能爆发",titleEn:"Storage Surge",type:"main",prob:0.55,impact:3,thesis:"太阳能 + 风电不能 24/7 供数据中心, 储能是必须.",why:["Tesla Megapack 订单 2026 backlog 满","FLNC 数据中心储能合同激增","AI 数据中心要求 99.99% 可用性"],evidence:[{date:"2025-Q1",src:"FLNC 营收 +120% YoY"}],winners:["FLNC","ENPH","TSLA"],losers:[],children:[]},
+  "fusion-swan":{title:"⚡ 聚变 2028 平价",titleEn:"Cheap Fusion",type:"swan",prob:0.12,impact:5,thesis:"Helion / CFS / TAE 2028 商业并网 + 一度电 < $0.02, 颠覆所有能源 thesis.",why:["Helion 2028 商业并网目标已立约","CFS SPARC 2028 实证 Q>1","私募融资累计 $80B+"],evidence:[{date:"2023-05",src:"MSFT-Helion 2028 购电协议 50MW"}],winners:["Helion","CFS"],losers:["核电股","燃气股"],children:["fusion-helion"]},
+  "nuc-uranium":{title:"铀矿涨价",titleEn:"Uranium",type:"main",prob:0.70,impact:4,thesis:"核电复苏前, 铀矿先涨. 2024 已涨 80-150%, 2025-2027 第二波.",why:["铀矿勘探 15 年才出货","哈萨克 + 加拿大 + 澳洲 三大供应国","60% 铀靠俄罗斯阵营","西方+中国核电同时扩张"],evidence:[{date:"2024-12",src:"Cameco 股价创历史新高"}],winners:["CCJ","UEC","DNN","NXE"],losers:[],children:[]},
+  "nuc-smr":{title:"SMR 量产",titleEn:"SMR",type:"main",prob:0.40,impact:5,thesis:"小型模块化反应堆 (50-300MW) 适合数据中心专供, NRC 审批 2026-2028.",why:["NuScale / X-energy / Oklo / TerraPower 同时推进","美国能源部 $9B 资助 SMR","Amazon + Google 各签 SMR 长协","审批从 10 年压到 3-5 年"],evidence:[{date:"2024-10",src:"Amazon-X-energy 长协 5GW"}],winners:["SMR","OKLO","BWXT"],losers:[],children:["nuc-smr-oklo","nuc-smr-nuscale"]},
+  "nuc-restart":{title:"老核电站重启",titleEn:"Restart",type:"main",prob:0.55,impact:4,thesis:"美国 + 日本 关停核电站重启, 比新建快 5 年.",why:["三里岛 / Palisades 等 5+ 座美国老站重启","日本 7 座福岛后关停核电重启","欧洲法国比利时跟进","老站现值 = 替代成本 $5B-15B"],evidence:[{date:"2024-09",src:"三里岛 1 号机组重启签约 MSFT"}],winners:["CEG","VST","TLN"],losers:[],children:[]},
+  "grid-transformer":{title:"变压器涨价",titleEn:"Transformer",type:"main",prob:0.85,impact:4,thesis:"高压变压器全球短缺, 交货期从 6 月延到 3 年.",why:["美国 70% 变压器靠进口","新建数据中心必须新变压器","老电网变压器平均 45 岁","硅钢供应紧"],evidence:[{date:"2025-Q1",src:"Hitachi Energy 订单 +50% YoY"}],winners:["ETN","HTHIY","SIE.DE"],losers:[],children:[]},
+  "grid-engineering":{title:"电力工程承建",titleEn:"Engineering",type:"main",prob:0.78,impact:4,thesis:"Quanta / MasTec / Primoris 承建商订单到 2028.",why:["输电线 + 数据中心连接同时建","政府基建法案资金 $65B","工程师 + 蓝领工人短缺","承建商可议价"],evidence:[{date:"2025-Q1",src:"Quanta 订单 backlog $34B"}],winners:["PWR","MTZ","PRIM"],losers:[],children:[]},
+  "asic-broadcom":{title:"AVGO 客制",titleEn:"Broadcom",type:"main",prob:0.75,impact:5,thesis:"GOOGL TPU + Meta MTIA + OpenAI 自研, AVGO 都在做.",why:["AVGO + Marvell 占客制 ASIC 85% 份额","每个 hyperscaler 都要自研","客户黏性 (设计 IP 共享)","摩根士丹利推 $3000 目标价"],evidence:[{date:"2025-03-06",src:"AVGO AI 营收 Q1 $4.1B"}],winners:["AVGO"],losers:[],children:["asic-broadcom-openai"]},
+  "asic-marvell":{title:"MRVL 数据中心",titleEn:"Marvell",type:"main",prob:0.55,impact:4,thesis:"Marvell 数据中心收入占比 75%.",why:["Amazon Trainium + Google TPU 客户","光通信 DSP 龙头","定制 SiP / 先进封装","客户集中度高"],evidence:[{date:"2025-Q1",src:"MRVL 数据中心收入 +70% YoY"}],winners:["MRVL"],losers:[],children:[]},
+  "asic-optics":{title:"光通信爆发",titleEn:"Optical",type:"main",prob:0.70,impact:4,thesis:"AI 集群规模化 → 光通信替代铜缆.",why:["NVDA NVLink + InfiniBand 全光通信","CPO (Co-Packaged Optics) 量产","数据中心内部网络 50T+","硅光成为下一代标准"],evidence:[{date:"2025-Q1",src:"COHR 数据中心收入 +60%"}],winners:["COHR","LITE","CIEN","CRDO"],losers:[],children:[]},
+  "app-coding":{title:"编程 AI 主流化",titleEn:"Coding AI",type:"main",prob:0.85,impact:5,thesis:"Cursor / Copilot / Devin 普及, 工程师角色重塑.",why:["Cursor ARR $400M, 9 个月","GitHub Copilot 2000 万用户","Devin agent 完成 SWE-bench 65%","CS 大学入学率 -8%"],evidence:[{date:"2025-04",src:"Cursor 估值 $9B"}],winners:["MSFT","Cursor","Anthropic"],losers:["传统外包"],children:["app-coding-cursor"]},
+  "app-vertical":{title:"垂直 SaaS",titleEn:"Vertical SaaS",type:"main",prob:0.60,impact:4,thesis:"Harvey (法律) / Perplexity (搜索) 各行业垄断者出现.",why:["LLM 通用 + 行业 know-how 结合","客户付费意愿 $30-100/月","数据飞轮","传统 SaaS 转型 AI native"],evidence:[{date:"2026",src:"Harvey ARR $300M, +400%"}],winners:["Harvey","Hippocratic","Perplexity"],losers:["传统垂直 SaaS"],children:["app-vertical-harvey","app-vertical-hippo"]},
+  "app-agent":{title:"Agent 经济",titleEn:"Agent",type:"contra",prob:0.30,impact:5,thesis:"AI Agent 自主完成任务. 但可靠性仍不够.",why:["MCP 协议成为标准 (Anthropic)","ChatGPT Operator / Computer Use","B2B 客服 Agent 已量产","C 端体验仍偏弱"],evidence:[{date:"2025-Q1",src:"Anthropic MCP 接入 100+ 服务"}],winners:["Anthropic","MSFT"],losers:["传统 BPO"],children:[]},
+  "storage-hbm":{title:"HBM4 周期",titleEn:"HBM4",type:"main",prob:0.72,impact:5,thesis:"HBM4 2026 量产, 单 GPU 12 颗 HBM, SK Hynix 继续领跑.",why:["HBM4 容量+速度+良率全提升","NVDA Rubin 平台依赖 HBM4","SK Hynix 2nm GAA 配套量产","三星/美光仍未通过验证"],evidence:[{date:"2025-Q1",src:"SK Hynix HBM4 sample 完成"}],winners:["000660.KS"],losers:[],children:["storage-hbm-skhynix"]},
+  "storage-dram":{title:"DRAM 周期顶",titleEn:"DRAM Peak",type:"shrink",prob:0.45,impact:-3,thesis:"DRAM 商品 (非 HBM) 周期顶, 2026 下行.",why:["DDR5 现货价格 2026-Q1 见顶","PC + 手机 + 服务器需求疲软","2027-2028 周期下行","HBM 占比高的厂受冲击小"],evidence:[{date:"2026-Q1",src:"DDR5 现货价首次回落"}],winners:["HBM 集中度高的 SK Hynix"],losers:["MU","005930.KS 部分"],children:[]},
+  "storage-china":{title:"中国存储自研",titleEn:"China Memory",type:"contra",prob:0.25,impact:4,thesis:"长鑫 CXMT / 长江存储 YMTC 国产替代.",why:["大基金三期 $50B 加码","美国制裁反推自研","2nm + HBM 路线图公开","中国市场内循环替代"],evidence:[{date:"2025-Q2",src:"长鑫 DDR5 量产"}],winners:["中国半导体板块"],losers:["美光 / 三星中国市场"],children:[]},
+
+  // ━━━ L4 深度节点 (具体落地) ━━━
+  "nuc-smr-oklo":{title:"Oklo 小堆量产",titleEn:"Oklo SMR",type:"main",prob:0.55,impact:5,thesis:"Oklo (Sam Altman 投) 2027 NRC 审批落地, 单堆 75MW 数据中心专供.",why:["Sam Altman + 能源部双背书","小堆设计 = 工厂化生产, 不是工程项目","Aurora 设计简化 + 无源安全","2025-Q1 客户已签 1GW+"],evidence:[{date:"2024-Q4",src:"Oklo IPO $850M 估值"}],winners:["OKLO","BWXT"],losers:[],children:[]},
+  "nuc-smr-nuscale":{title:"NuScale 商业化",titleEn:"NuScale",type:"main",prob:0.35,impact:4,thesis:"NuScale (NRC 唯一已认证小堆设计) 商业化迟缓, 但仍是行业标杆.",why:["NRC 已认证 (唯一)","主要客户 UAMPS 项目已取消, 寻找新客户","美国 + 罗马尼亚 + 波兰 在谈","下一代 VOYGR 模块 77MW"],evidence:[{date:"2024-11",src:"罗马尼亚签 SMR 长协"}],winners:["SMR (NuScale)"],losers:[],children:[]},
+  "fusion-helion":{title:"Helion 商业并网",titleEn:"Helion",type:"swan",prob:0.30,impact:5,thesis:"Helion 是激进派, 2028 商业并网目标. MSFT 已签购电协议.",why:["MSFT 2023 签 50MW 购电","脉冲方式 = 简化反应堆","直接电磁感应取电, 不烧水","Sam Altman + Peter Thiel 投"],evidence:[{date:"2023-05",src:"MSFT-Helion 购电协议"}],winners:["Helion (私募)"],losers:[],children:[]},
+  "asic-broadcom-openai":{title:"AVGO × OpenAI 自研",titleEn:"AVGO×OpenAI",type:"main",prob:0.70,impact:5,thesis:"OpenAI 与 AVGO 共同设计 AI ASIC, 2026 量产. NVDA 大客户内部化.",why:["OpenAI 月烧算力 $5B+","AVGO 拥有定制 SerDes IP","TSMC 3nm 代工锁产能","2026 起逐步替代 30% NVDA 出货"],evidence:[{date:"2024-12",src:"WSJ 报道 OpenAI-AVGO 协议"}],winners:["AVGO"],losers:["NVDA (毛利率)"],children:[]},
+  "app-coding-cursor":{title:"Cursor 估值起飞",titleEn:"Cursor",type:"main",prob:0.80,impact:4,thesis:"Cursor IPO 2026-2027 估值预测 $30-50B, 编程 AI 第一股.",why:["ARR $400M 9 个月达成 (史上最快)","付费转化率 35% (业内顶级)","Devin / Replit 落后 1 代","Anthropic Claude 独家深度集成"],evidence:[{date:"2025-04",src:"Anysphere 估值 $9B"}],winners:["Cursor","Anthropic"],losers:["GitHub Copilot 份额"],children:[]},
+  "storage-hbm-skhynix":{title:"SK Hynix 翻倍",titleEn:"SK Hynix Double",type:"main",prob:0.60,impact:5,thesis:"SK Hynix 2026 营收预测 $80B, 净利润 $25B, PE 7 → 12, 双击.",why:["HBM 收入占比 50%+, 毛利 50%","NVDA Rubin 平台独家供应","2nm GAA 配套 HBM4 量产","Hynix 韩股 KOSPI 旗手"],evidence:[{date:"2025-04-25",src:"Q1 营收 +290%"}],winners:["000660.KS"],losers:[],children:[]},
+
+  // ━━━ 新主题: 人形机器人 ━━━
+  "humanoid-origin":{title:"人形机器人量产",titleEn:"Humanoid Robotics",type:"origin",prob:1.0,impact:5,thesis:"Tesla Optimus + Figure + 1X NEO + Unitree 进入工厂试点, 2026-2030 BOM 从 $100K 跌到 $20K, 普及窗口打开.",why:["BMW / Mercedes / Amazon 仓库试点","NVDA GR00T 通用 VLA 大脑","Figure AI 估值 $40B (2026)","中国 Unitree / 宇树 出货量大爆"],evidence:[{date:"2025-Q1",src:"Figure 与 BMW 量产试点"},{date:"2025-04",src:"Tesla Optimus 2026 万台计划"}],winners:["TSLA","NVDA","ABB"],losers:[],children:["humanoid-actuator","humanoid-vision","humanoid-china","humanoid-power","humanoid-swan"]},
+  "humanoid-actuator":{title:"执行器 / 减速器",titleEn:"Actuator & Reducer",type:"main",prob:0.65,impact:5,thesis:"机器人最贵零件: 谐波减速器 + 行星齿轮 + 高扭矩电机. 日本 + 中国双寡头.",why:["每台机器人 40 个关节, 每关节 $300-500","Harmonic Drive 日本独家技术","中国绿的谐波 + 双环传动 紧追","机器人 BOM 30-40% 是执行器"],evidence:[{date:"2025-Q1",src:"Harmonic Drive 订单 +80%"}],winners:["6324.T (Harmonic)","NABTESCO","绿的谐波"],losers:[],children:["harmonic-japan","china-reducer"]},
+  "humanoid-vision":{title:"视觉 + AI 大脑",titleEn:"Vision & AI Brain",type:"main",prob:0.85,impact:5,thesis:"NVDA GR00T + Anthropic Computer Use 让机器人从'编程任务'变成'自然语言指令'.",why:["NVDA 2024 推 GR00T 平台","VLA (Vision-Language-Action) 模型成熟","开源模型 (RT-2 / OpenVLA) 加速","Mobileye / Luminar 自动驾驶套件复用"],evidence:[{date:"2025-Q1",src:"NVDA GR00T N1 量产合作"}],winners:["NVDA","Mobileye","LAZR"],losers:[],children:[]},
+  "humanoid-china":{title:"中国机器人产业链",titleEn:"China Robotics",type:"contra",prob:0.55,impact:5,thesis:"中国机器人成本 1/3, 出口爆发. Unitree / 宇树 / 智元 2026 量产破 5 万台.",why:["国务院 2027 万亿规划","30+ 中国厂商进入量产","Unitree H1 售价 $90K vs Tesla $30K (但 Optimus 未量产)","劳动力短缺 + 老龄化推动内需"],evidence:[{date:"2025-Q2",src:"Unitree G1 出货 1 万台"}],winners:["中国机器人板块"],losers:["欧美高端厂商"],children:["unitree-china","zhipu-figure"]},
+  "humanoid-power":{title:"机器人电池 / 电源",titleEn:"Robot Power",type:"main",prob:0.50,impact:4,thesis:"机器人续航 4-8 小时 → 24 小时 需要新电池形态 + 快充. 固态电池受益.",why:["现 Optimus 2.5kWh 续航 5 小时","固态电池能量密度 +50%","CATL / LG / 三星 SDI 投入","Rohm SiC 功率芯片关键"],evidence:[{date:"2025-Q1",src:"Tesla 4680 量产"}],winners:["CATL","SDI","6963.T"],losers:[],children:[]},
+  "humanoid-swan":{title:"⚡ 机器人伦理事故",titleEn:"Robot Ethics",type:"swan",prob:0.15,impact:-4,thesis:"一次工厂 / 家用机器人重大伤人事件触发监管暂停, 全行业延后 18 月.",why:["缺乏国际安全标准","美国 OSHA 监管真空","欧盟 AI Act + 机器人法案讨论中","保险体系未建立"],evidence:[{date:"2025-Q2",src:"加州 Figure 工厂事故 (无人伤)"}],winners:["保险公司","安全标准 SaaS"],losers:["机器人整机厂"],children:[]},
+
+  // ━━━ humanoid L3 深化 ━━━
+  "harmonic-japan":{title:"日本谐波减速器",titleEn:"Japan Harmonic",type:"main",prob:0.85,impact:5,thesis:"Harmonic Drive (6324.T) 全球独家. 每台机器人 40 个关节, 单关节 $300-500.",why:["谐波减速器技术门槛极高","Tesla / Figure / 1X 全用 Harmonic","日本 NABTESCO 协同寡头","2025 订单 +80%"],evidence:[{date:"2025-Q1",src:"Harmonic 订单 +80% YoY"}],winners:["6324.T","NABTESCO"],losers:[],children:[]},
+  "china-reducer":{title:"中国减速器追赶",titleEn:"China Reducer",type:"contra",prob:0.40,impact:4,thesis:"绿的谐波 / 双环传动 国产替代, 价格 1/3, 良率追赶中.",why:["绿的谐波 2024 营收 +60%","中国机器人产业链垂直整合","2026-2028 期望追上日本","成本优势显著"],evidence:[{date:"2025-Q1",src:"绿的谐波营收 +60%"}],winners:["绿的谐波","双环传动"],losers:[],children:[]},
+  "unitree-china":{title:"Unitree 出货爆发",titleEn:"Unitree Surge",type:"main",prob:0.70,impact:4,thesis:"Unitree G1 / H1 售价 $16-90K, 量产 1 万台. 中国机器人出口第一品牌.",why:["G1 售价 $16K (Tesla Optimus 估 $30K)","抖音 / 海外社媒病毒传播","技术成熟 + 量产领先","2024 营收 ~$200M"],evidence:[{date:"2025-Q1",src:"Unitree G1 出货 1 万台"}],winners:["Unitree (IPO 2026?)"],losers:[],children:[]},
+  "zhipu-figure":{title:"智元 vs Figure",titleEn:"Zhipu vs Figure",type:"main",prob:0.55,impact:5,thesis:"智元 (中国) vs Figure (美国) 工业 + 服务两端商业化决战.",why:["智元 A2 + Figure 02 同步量产","BMW / Mercedes 工厂试点","商业模式: 租赁 + 服务收费","2026 关键拐点"],evidence:[{date:"2025-Q2",src:"Figure 估值 $40B"}],winners:["Figure","智元"],losers:[],children:[]},
+
+  // ━━━ 新主题 2: 稳定币 / 加密美元化 ━━━
+  "stablecoin-origin":{title:"稳定币主流化",titleEn:"Stablecoin Mainstream",type:"origin",prob:1.0,impact:5,thesis:"GENIUS Act 2025 通过 + Circle 上市. USDC + USDT 流通量 $250B, 美债场外锚定, 美元霸权延寿.",why:["GENIUS Act 2025-06 通过 (历史性)","Circle 2025-06 IPO 估值 $7B","USDC + USDT 合计流通 $250B","Visa/Mastercard 接入稳定币结算"],evidence:[{date:"2025-06",src:"GENIUS Act 通过"},{date:"2025-06",src:"Circle IPO 首日 +170%"}],winners:["CRCL","COIN","RIOT","MSTR"],losers:[],children:["sc-circle","sc-tether","sc-payments","sc-cbdc","sc-swan"]},
+  "sc-circle":{title:"Circle 收入爆发",titleEn:"Circle Revenue",type:"main",prob:0.65,impact:5,thesis:"Circle (USDC) 持有美债生利息, 流通量 $50B 时年利息 $2B. PE 重估.",why:["USDC 流通 +120% YoY","美债利率高位 = Circle 利息收入暴涨","BlackRock / Coinbase 战略合作","机构客户加速接入"],evidence:[{date:"2025-Q2",src:"Circle Q2 营收 +85%"}],winners:["CRCL","COIN"],losers:[],children:[]},
+  "sc-tether":{title:"Tether 储备透明化",titleEn:"Tether Reserves",type:"main",prob:0.50,impact:4,thesis:"Tether $140B 流通, 储备主要为美债. 监管压力下透明化, 可能 IPO.",why:["Tether 2024 利润 $13B (硅谷顶级)","美国监管要求储备透明","可能 2027 IPO","新兴市场用户 80%+"],evidence:[{date:"2025-Q1",src:"Tether Q1 利润 $1B"}],winners:["Tether 私募"],losers:["传统跨境汇款"],children:[]},
+  "sc-payments":{title:"支付轨道颠覆",titleEn:"Payments Disruption",type:"main",prob:0.55,impact:5,thesis:"Visa / Mastercard 接入稳定币. 跨境结算 3 天 → 3 秒, 手续费 3% → 0.3%.",why:["Visa 2025 推稳定币结算 API","新兴市场已抢先采用 (阿根廷 / 土耳其)","SWIFT 业务被压缩","传统 fintech (Wise/Remitly) 受冲击"],evidence:[{date:"2025-Q1",src:"Visa-Circle 合作公告"}],winners:["V","MA","COIN"],losers:["WISE","WU"],children:[]},
+  "sc-cbdc":{title:"央行数字货币 (反向)",titleEn:"CBDC Response",type:"contra",prob:0.30,impact:3,thesis:"央行数字货币 (CBDC) 加速对抗稳定币. 中国 / 欧元区 推进, 但美国 Trump 反对.",why:["中国数字人民币试点扩大","欧元 CBDC 2026 试运行","Trump 行政令禁止美国 CBDC","新兴市场两面下注"],evidence:[{date:"2025-01",src:"Trump 禁 CBDC 行政令"}],winners:["IBM","央行供应商"],losers:[],children:[]},
+  "sc-swan":{title:"⚡ Tether 储备崩",titleEn:"Tether Bank Run",type:"swan",prob:0.10,impact:-5,thesis:"Tether 储备透明度问题再爆发, 类似 FTX 挤兑. 加密市场系统性危机.",why:["历史多次质疑储备真实性","CFTC 多次罚款","巴哈马监管薄弱","系统重要性已超 LUNA"],evidence:[{date:"2024",src:"CFTC 罚款 $41M"}],winners:["USDC (替代)"],losers:["全加密市场","新兴市场"],children:[]},
+
+  // ━━━ 新主题 3: 老龄化 ━━━
+  "aging-origin":{title:"老龄化全面冲击",titleEn:"Aging Wave",type:"origin",prob:1.0,impact:5,thesis:"日韩中欧 2025-2050 老龄化加速. 医疗 / 养老 / 慢病 / 长寿科技集体爆发.",why:["日本 65+ 占 30%, 韩国 25%, 中国 21%","LLY + NVO GLP-1 营收破 $50B","美国 Medicare 占 GDP 4%","2030 全球 GLP-1 市场 $200B"],evidence:[{date:"2025-Q1",src:"Lilly Mounjaro 营收 +124%"}],winners:["LLY","NVO","UNH"],losers:[],children:["aging-glp1","aging-longevity","aging-eldercare","aging-dementia","aging-swan"]},
+  "aging-glp1":{title:"GLP-1 第二浪",titleEn:"GLP-1 Wave 2",type:"main",prob:0.80,impact:5,thesis:"GLP-1 从减肥扩到糖尿病 / 心血管 / 阿尔茨海默 / 上瘾.",why:["FDA 批心血管适应症 (Wegovy)","阿尔茨海默 III 期临床","上瘾治疗 II 期突破","口服版本 2026 上市"],evidence:[{date:"2025-Q1",src:"Lilly Q1 营收 $13B"}],winners:["LLY","NVO","VRTX"],losers:["传统减肥药"],children:[]},
+  "aging-longevity":{title:"长寿科技",titleEn:"Longevity Tech",type:"contra",prob:0.35,impact:5,thesis:"Altos Labs / Calico / Retro Biosciences (Sam Altman 投) 细胞重编程突破.",why:["Altos Labs 私募 $3B (Bezos 投)","Retro Biosciences 加速","线粒体生物学突破","GLP-1 + 细胞疗法叠加"],evidence:[{date:"2024-Q4",src:"Altos Labs 人体试验申报"}],winners:["Altos (私募)","RGNX"],losers:[],children:[]},
+  "aging-eldercare":{title:"养老服务 + 机器人",titleEn:"Eldercare",type:"main",prob:0.65,impact:4,thesis:"日韩养老机器人率先, Cyberdyne / Toyota / 韩国政府主导部署.",why:["日本养老人员缺口 50 万","Toyota T-HR3 已商业化","韩国 2027 养老机器人补贴","保险开始覆盖"],evidence:[{date:"2025-Q1",src:"Cyberdyne 营收 +50%"}],winners:["CYBQY","TM"],losers:["传统护理"],children:[]},
+  "aging-dementia":{title:"阿尔茨海默药突破",titleEn:"Alzheimer",type:"main",prob:0.40,impact:5,thesis:"Lecanemab (Eisai/Biogen) 已批, Donanemab (Lilly) 跟上. Tau 蛋白下一代靶点.",why:["Eisai Leqembi 2024 营收 $400M","Lilly Donanemab 批准","Tau 蛋白靶点 III 期","Roche Trontinemab 突破"],evidence:[{date:"2025-Q1",src:"Donanemab FDA 批"}],winners:["LLY","BIIB","RHHBY"],losers:[],children:[]},
+  "aging-swan":{title:"⚡ 长寿突破",titleEn:"Reverse Aging",type:"swan",prob:0.08,impact:-4,thesis:"细胞重编程 + GLP-1 + AI 诊断 综合让寿命延长 10+ 年, 养老需求结构性下降.",why:["Altos Labs 关键论文突破","小鼠寿命 +50% 已实现","人体临床显著效果","但 10+ 年后才显现"],evidence:[{date:"2024",src:"Altos Labs Nature 论文"}],winners:["Altos","Retro"],losers:["传统养老 REIT","保险公司"],children:[]},
+
+  // ━━━ 新主题 4: 国防地缘 ━━━
+  "defense-origin":{title:"国防 + 地缘新周期",titleEn:"Defense Boom",type:"origin",prob:1.0,impact:5,thesis:"Trump 2.0 + 中俄博弈 + 中东冲突. 全球军费 +30%, 美国国防股 + 国防 AI 集体爆发.",why:["美国 2026 国防预算 $1T (历史首次)","欧洲 NATO 各国军费上调到 GDP 3%","Anduril / Palantir 国防 AI 估值飙","中东 / 台海 / 乌克兰 多线"],evidence:[{date:"2025-Q1",src:"美国国防预算 $1T 法案"},{date:"2025",src:"Anduril 估值 $30B"}],winners:["LMT","RTX","PLTR","ANDURIL"],losers:[],children:["def-traditional","def-ai-drone","def-space","def-reshoring","def-swan"]},
+  "def-traditional":{title:"传统军工",titleEn:"Traditional Defense",type:"main",prob:0.85,impact:4,thesis:"LMT / RTX / GD / NOC 订单 backlog 创历史. Patriot / F-35 / 标准导弹.",why:["北约军费 GDP 3% 拉动 $300B+","乌克兰 + 以色列 消耗弹药","台海备战采购","订单到 2030"],evidence:[{date:"2025-Q1",src:"LMT 订单 backlog $170B"}],winners:["LMT","RTX","GD","NOC"],losers:[],children:[]},
+  "def-ai-drone":{title:"AI 无人机 + 军用 AI",titleEn:"AI Drones",type:"main",prob:0.75,impact:5,thesis:"Anduril / Palantir / Shield AI 重塑战争. 无人机 + AI 决策快速主流化.",why:["Anduril 估值 $30B (2025)","乌克兰战场无人机消耗 100 万台/年","美国 Replicator 项目 $1B","Palantir 国防营收 +50%"],evidence:[{date:"2025-Q1",src:"Anduril E 轮 $40B"}],winners:["ANDURIL","PLTR","KTOS","AVAV"],losers:[],children:[]},
+  "def-space":{title:"商业航天军用",titleEn:"Space Defense",type:"main",prob:0.70,impact:5,thesis:"SpaceX Starshield / Starlink 军用. AST SpaceMobile / Rocket Lab 跟上.",why:["SpaceX Starshield 已签五角大楼","Starlink 在乌克兰决定战局","太空军成第六军种","卫星 ASAT 反制研究"],evidence:[{date:"2024",src:"SpaceX Starshield 公告"}],winners:["SpaceX (私募)","RKLB","ASTS"],losers:[],children:[]},
+  "def-reshoring":{title:"本土制造回流",titleEn:"Reshoring",type:"main",prob:0.80,impact:4,thesis:"Trump 关税 + IRA + CHIPS Act. 半导体 / 电池 / 药品 美国本土投产.",why:["TSM 亚利桑那厂 2025 量产","Intel 俄亥俄 + 亚利桑那","BlueBird / Sila 电池厂","FDA 推动药品回流"],evidence:[{date:"2025",src:"CHIPS Act 累计拨款 $50B"}],winners:["INTC","TSM","DE","CAT"],losers:["全球化股 (短期)"],children:[]},
+  "def-swan":{title:"⚡ 大国冲突",titleEn:"Major War",type:"swan",prob:0.10,impact:5,thesis:"台海 / 中东 / 朝鲜 突发大规模冲突. 全球供应链断裂, 军工 + 黄金 + 现金避险.",why:["台海 2025-2027 高风险窗口","以色列伊朗 第三次冲突可能","俄乌战争未结束","朝鲜 ICBM 持续测试"],evidence:[{date:"2024",src:"CIA 台海推演报告"}],winners:["军工股","黄金","现金"],losers:["全球科技股","半导体","新兴市场"],children:["war-taiwan","war-mideast","war-korea"]},
+  "war-taiwan":{title:"台海冲突",titleEn:"Taiwan Conflict",type:"swan",prob:0.15,impact:-5,thesis:"中国对台动武 / 封锁. TSMC 直接受冲击, 全球半导体断供 6-18 月.",why:["2024 习近平加强解放军","美国对台军售 +200%","中国海警船扰台常态化","美国 CIA 推演不乐观"],evidence:[{date:"2024",src:"美国 GAO 推演报告"}],winners:["LMT","RTX","美国本土半导体 (Intel)"],losers:["TSM","Apple","NVDA","全球科技"],children:[]},
+  "war-mideast":{title:"中东第三次冲突",titleEn:"Mideast War",type:"swan",prob:0.30,impact:-3,thesis:"以色列 vs 伊朗 直接对抗. 油价 $150+, 全球通胀反弹.",why:["以色列已多次空袭伊朗","美军第五舰队 + B-2 部署","胡塞武装继续袭击红海","伊朗核计划接近临界"],evidence:[{date:"2024-10",src:"以色列空袭伊朗"}],winners:["XOM","CVX","LMT","RTX"],losers:["航空","消费","科技"],children:[]},
+  "war-korea":{title:"朝鲜半岛",titleEn:"Korea Crisis",type:"swan",prob:0.05,impact:-4,thesis:"朝鲜 ICBM 测试失控 / 武力挑衅. 韩国市场系统性风险.",why:["金正恩 2024 撤销朝韩和平","朝鲜 ICBM 不断测试","俄朝军事合作深化","韩国保守政府对峙"],evidence:[{date:"2024",src:"朝鲜 ICBM 第三次测试"}],winners:["LMT","RTX","美国半导体"],losers:["KOSPI","三星","SK Hynix"],children:[]},
+
+  // ━━━ 新主题 5: 商业航天 ━━━
+  "space-origin":{title:"商业航天爆发",titleEn:"Space Economy",type:"origin",prob:1.0,impact:5,thesis:"SpaceX 估值 $350B + 卫星互联网 + 商业月球 + 太空采矿. 2030 全球商业航天 $1T.",why:["SpaceX 2024 估值 $350B (历史最高私募)","Starlink 用户突破 500 万","Rocket Lab + AST 商业模式跑通","NASA Artemis 月球计划"],evidence:[{date:"2024-Q4",src:"SpaceX 估值 $350B"},{date:"2025-Q1",src:"Starlink 收入 +60% YoY"}],winners:["SPACEX","RKLB","ASTS","LMT","BA"],losers:[],children:["space-starlink","space-rocketlab","space-asts","space-moon","space-swan"]},
+  "space-starlink":{title:"Starlink 主导卫星网",titleEn:"Starlink Dominance",type:"main",prob:0.85,impact:5,thesis:"SpaceX Starlink 7000+ 颗卫星, 月活 500 万. 一带一路新基建.",why:["Starlink 收入 2025 $10B+","Starshield 军用合同","乌克兰战场决定性作用","船舶 / 飞机 / 偏远地区刚需"],evidence:[{date:"2025-Q1",src:"Starlink 用户 500 万"}],winners:["SPACEX (私募)"],losers:["传统电信运营商 (偏远地区)"],children:[]},
+  "space-rocketlab":{title:"Rocket Lab 第二极",titleEn:"Rocket Lab",type:"main",prob:0.60,impact:4,thesis:"Rocket Lab Neutron 火箭 2026 首飞. SpaceX 之外的商业发射主力.",why:["Electron 已 50+ 次发射","Neutron 类比 Falcon 9","美国军用 backup 供应商","2024 营收 +75%"],evidence:[{date:"2025-Q1",src:"Rocket Lab 营收 $130M (Q1)"}],winners:["RKLB"],losers:[],children:[]},
+  "space-asts":{title:"AST SpaceMobile 太空蜂窝",titleEn:"AST SpaceMobile",type:"contra",prob:0.45,impact:5,thesis:"AST 大型卫星直连手机, 颠覆传统电信. AT&T + Verizon 合作.",why:["BlueWalker 3 已演示 5G","AT&T + Verizon + Vodafone 入股","Apple Globalstar 系合作 (1500 万用户)","Starlink direct-to-cell 竞争"],evidence:[{date:"2024",src:"AT&T-AST 商业合作"}],winners:["ASTS","T","VZ"],losers:["传统电信塔运营商"],children:[]},
+  "space-moon":{title:"商业月球 + 火星",titleEn:"Lunar Commercial",type:"main",prob:0.40,impact:4,thesis:"NASA Artemis + 商业月球着陆器. Intuitive Machines / Astrobotic 2025-2027 多次商业着陆.",why:["NASA CLPS 合同 $2.6B","Intuitive Machines 2024 已着陆","SpaceX Starship 2027 月球版","中国 / 印度 / 日本 月球计划"],evidence:[{date:"2024-02",src:"Intuitive Machines IM-1 着陆"}],winners:["LUNR","BA","SPACEX"],losers:[],children:[]},
+  "space-swan":{title:"⚡ 卫星 ASAT 冲突",titleEn:"Space Conflict",type:"swan",prob:0.12,impact:-4,thesis:"中俄美 ASAT (反卫星) 武器使用, 太空垃圾级联 (Kessler 综合征).",why:["俄罗斯 2021 ASAT 测试","中国 2007 ASAT 测试","美国 X-37B 太空军用","台海冲突可能波及"],evidence:[{date:"2021",src:"俄罗斯 ASAT 摧毁 Kosmos 1408"}],winners:["美国军工","LDOS (太空感知)"],losers:["所有商业卫星","Starlink"],children:[]},
+
+  // ━━━ 新主题 6: 量子计算 ━━━
+  "quantum-origin":{title:"量子计算商业拐点",titleEn:"Quantum Computing",type:"origin",prob:1.0,impact:5,thesis:"Google Willow + IBM Quantum + IonQ + PsiQuantum. 2027-2030 实用化拐点, 化学/药物/加密领域率先.",why:["Google Willow 2024-12 突破纠错","IBM 2025 路线图 4158 qubit","IonQ + Rigetti + D-Wave 商业云","加密学界开始 PQC 迁移"],evidence:[{date:"2024-12",src:"Google Willow 量子纠错突破"},{date:"2025-Q1",src:"IBM Quantum 营收 $100M+"}],winners:["GOOGL","IBM","IONQ","RGTI"],losers:[],children:["quantum-gate","quantum-annealing","quantum-pqc","quantum-applications","quantum-swan"]},
+  "quantum-gate":{title:"门控量子计算",titleEn:"Gate-Based Quantum",type:"main",prob:0.50,impact:5,thesis:"超导 / 离子阱 / 光量子 多路线竞速. Google / IBM / IonQ / PsiQuantum.",why:["Google Willow 105 qubit + 纠错","IBM Heron 156 qubit","IonQ 离子阱保真度顶级","PsiQuantum 光量子估值 $6B"],evidence:[{date:"2024-12",src:"Willow 纠错指数下降"}],winners:["GOOGL","IBM","IONQ","PsiQuantum"],losers:[],children:[]},
+  "quantum-annealing":{title:"退火量子 (实用先行)",titleEn:"Annealing",type:"contra",prob:0.40,impact:3,thesis:"D-Wave 退火机率先实用, 物流 / 调度 / 优化问题. 但不是真量子优势.",why:["D-Wave Advantage 2 系 7000 qubit","物流公司商用案例","门控派质疑 (不是真量子)","但市场需求真实"],evidence:[{date:"2025",src:"D-Wave 营收 +60%"}],winners:["QBTS"],losers:[],children:[]},
+  "quantum-pqc":{title:"后量子加密迁移",titleEn:"Post-Quantum Crypto",type:"main",prob:0.75,impact:4,thesis:"NIST PQC 标准 2024 落地, 全球加密体系 5-10 年迁移. 安全公司大单.",why:["NIST 已发布 4 个 PQC 标准","美国政府 2030 前必须迁移","金融 / 国防 / 医疗 强制","量子'收割现在解密'威胁"],evidence:[{date:"2024-08",src:"NIST 发布 PQC 标准"}],winners:["PANW","FTNT","ZS","CRWD"],losers:["传统 RSA / ECC 体系"],children:[]},
+  "quantum-applications":{title:"药物 / 材料 / 化学应用",titleEn:"Quantum Applications",type:"main",prob:0.45,impact:5,thesis:"量子化学模拟先于通用计算实用. 药物发现 / 电池材料 / 催化剂 受益.",why:["分子模拟是量子最自然应用","JPM + 高盛量化金融试点","Roche + Merck 药物发现合作","电池材料 (固态/锂硫) 优化"],evidence:[{date:"2024",src:"Roche-Cambridge Quantum 合作"}],winners:["GOOGL","IBM","IONQ","制药板块"],losers:[],children:[]},
+  "quantum-swan":{title:"⚡ Q-Day (量子破解 RSA)",titleEn:"Q-Day",type:"swan",prob:0.05,impact:-5,thesis:"量子计算机突然破解 RSA-2048, 全球互联网信任体系崩塌.",why:["保守估计 2030+, 激进 2027","Shor 算法理论已就绪","量子比特数 + 纠错同时达标","但工程难度极高"],evidence:[{date:"2024",src:"NIST 警告时间表"}],winners:["PQC 公司","硬件加密","离线系统"],losers:["全部 RSA / TLS","区块链 (BTC/ETH)","传统 PKI"],children:[]},
+
+  // ━━━ AI L4 深化: 应用层细分 ━━━
+  "app-vertical-harvey":{title:"Harvey 法律 AI 垄断",titleEn:"Harvey Legal",type:"main",prob:0.70,impact:5,thesis:"Harvey (Anthropic 系) 全球前 200 律所 130 家签约, 法律 AI 第一独角兽.",why:["ARR $300M (+400% YoY)","Big Law 70%+ 客户","Anthropic Claude 独家集成","ABA 监管认可"],evidence:[{date:"2025-Q1",src:"Harvey ARR $300M"}],winners:["Harvey (私募)","Anthropic"],losers:["传统法律 SaaS"],children:[]},
+  "app-vertical-hippo":{title:"Hippocratic 医疗 AI",titleEn:"Hippocratic AI",type:"main",prob:0.45,impact:5,thesis:"Hippocratic AI 护理 LLM, 估值 $1.6B. 美国医院随访 / 慢病管理.",why:["FDA 监管路径明确","美国护理短缺 30 万","UnitedHealth 等保险公司投资","可降低医院再入院率"],evidence:[{date:"2025-Q1",src:"Hippocratic 估值 $1.6B"}],winners:["Hippocratic (私募)","NVDA"],losers:["传统电话护理"],children:[]},
+
+  // ━━━ 新主题: 食物科技 ━━━
+  "food-origin":{title:"食物科技革命",titleEn:"Food Tech Revolution",type:"origin",prob:1.0,impact:4,thesis:"垂直农业 + 实验室肉 + GMO + 精准发酵 + 个性化营养. 2030 全球食物链重塑.",why:["全球 80 亿人口 + 老龄化挑战","气候变化威胁传统农业","Cultured meat FDA / 新加坡批准","垂直农业能耗下降 70%"],evidence:[{date:"2024",src:"美国 FDA 批 Upside Foods 实验室鸡肉"},{date:"2025-Q1",src:"垂直农业能耗 -70% vs 2020"}],winners:["DE","CRSP","BTI"],losers:[],children:["food-cultured","food-vertical","food-gmo","food-fermentation","food-swan"]},
+  "food-cultured":{title:"实验室肉商业化",titleEn:"Cultured Meat",type:"main",prob:0.35,impact:5,thesis:"Upside / Eat Just / Mosa Meat. 2030 价格逼近传统肉, 主流餐厅采纳.",why:["新加坡 + 美国 FDA 已批准","Tyson + Cargill 投资","成本曲线 $1000/kg → 2030 $10/kg","环保 + 动物福利 + 健康"],evidence:[{date:"2024-08",src:"Upside Foods 加州餐厅供应"}],winners:["TSN","BG","ADM"],losers:[],children:[]},
+  "food-vertical":{title:"垂直农业",titleEn:"Vertical Farming",type:"main",prob:0.45,impact:4,thesis:"AeroFarms + Bowery + Plenty. LED + AI 优化, 用水 -95%, 适合城市.",why:["LED 成本降 80%","AI 优化生长周期","水短缺 + 土地约束","Walmart / Costco 采购"],evidence:[{date:"2024",src:"Plenty 与 Walmart 长协"}],winners:["AeroFarms","Plenty"],losers:["传统蔬菜种植"],children:[]},
+  "food-gmo":{title:"基因编辑作物",titleEn:"Gene-Edited Crops",type:"main",prob:0.55,impact:4,thesis:"CRISPR 编辑作物 (非转基因), 抗旱 + 高产 + 营养强化. Pairwise / Inari 商业化.",why:["美国 FDA / EPA 简化审批","抗旱玉米 / 大豆 抗气候变化","Pairwise 紫色芥菜上市","印度 / 巴西 大规模采用"],evidence:[{date:"2024",src:"Pairwise CRISPR 紫芥菜上市"}],winners:["CRSP","CTVA","BAYRY"],losers:[],children:[]},
+  "food-fermentation":{title:"精准发酵蛋白",titleEn:"Precision Fermentation",type:"main",prob:0.40,impact:4,thesis:"微生物发酵生产乳清 / 鸡蛋蛋白 / 胶原蛋白. 比奶牛便宜 + 零碳排.",why:["Perfect Day 已商业化","成本 2025 逼近传统乳制品","Nestlé / Unilever 加大投入","无需养牛 / 极低碳排"],evidence:[{date:"2024",src:"Perfect Day 与 Nestlé 合作"}],winners:["Perfect Day","Motif FoodWorks"],losers:["传统乳业"],children:[]},
+  "food-swan":{title:"⚡ 粮食危机",titleEn:"Food Crisis",type:"swan",prob:0.20,impact:5,thesis:"气候极端 (大干旱 / 洪水) + 战争 (俄乌粮食) 让全球粮食价格暴涨 50%+.",why:["俄乌仍占全球小麦 30%","厄尔尼诺 + 拉尼娜 频繁","中国大豆储备紧张","印度 / 非洲 粮食出口禁令"],evidence:[{date:"2022",src:"乌克兰战争粮食危机"}],winners:["农化巨头","食物科技","美国农产品"],losers:["新兴市场","脆弱国家"],children:[]},
+
+  // ━━━ 新主题: 气候 + 碳市场 ━━━
+  "climate-origin":{title:"气候变化经济化",titleEn:"Climate Economy",type:"origin",prob:1.0,impact:5,thesis:"碳市场 + 适应性建筑 + 气候保险 + 极端天气复苏. 2030 全球气候经济 $3T.",why:["全球 1.5°C 阈值 2028-2030 突破","欧盟 CBAM 碳关税生效","美国 IRA $369B 气候投资","Munich Re 极端天气损失 +50%"],evidence:[{date:"2024",src:"欧盟 CBAM 正式实施"},{date:"2024",src:"全球气候损失 $300B"}],winners:["FSLR","NEE","ENPH","BEPC"],losers:[],children:["climate-carbon","climate-adapt","climate-insurance","climate-renewable","climate-swan"]},
+  "climate-carbon":{title:"碳市场规模化",titleEn:"Carbon Market",type:"main",prob:0.55,impact:4,thesis:"自愿碳市场 + 强制配额市场双轨. 全球碳价 $30 → $100/吨.",why:["欧盟 CBAM 碳关税 2026 全面","中国全国碳市场扩展","美国加州碳市场领跑","碳信用质量提升 (verra/Gold Standard)"],evidence:[{date:"2025",src:"欧盟 CBAM 制造业全覆盖"}],winners:["XOM (CCS)","碳信用项目商"],losers:["高碳排重工业"],children:[]},
+  "climate-adapt":{title:"适应性建筑 + 城市",titleEn:"Climate Adaptation",type:"main",prob:0.70,impact:4,thesis:"防洪 + 抗热 + 抗台 城市改造. 海堤 / 排水 / 空调 / 抗震.",why:["迈阿密 / 上海 / 雅加达 海堤工程","印度 / 中东 极端高温每年 +1°C","空调全球出货 +30% YoY","工程公司订单到 2030"],evidence:[{date:"2024",src:"迈阿密海堤 $6B 投资"}],winners:["URI","CAT","JCI","CARR"],losers:["沿海低洼地产"],children:[]},
+  "climate-insurance":{title:"气候保险重塑",titleEn:"Climate Insurance",type:"shrink",prob:0.65,impact:-3,thesis:"加州 + 佛州保险公司退出, 气候不可保. 政府兜底 + 自负风险增加.",why:["State Farm 退出加州","佛州飓风保险私营崩溃","Munich Re 损失 +50%","重保险率年涨 30%"],evidence:[{date:"2023-05",src:"State Farm 退出加州"}],winners:["再保险股 (RGA)","气候 SaaS"],losers:["传统保险","加州/佛州房产"],children:[]},
+  "climate-renewable":{title:"可再生 + 储能",titleEn:"Renewable + Storage",type:"main",prob:0.80,impact:4,thesis:"太阳能 + 风电 + 储能持续增长. AI 数据中心需求叠加.",why:["太阳能成本曲线持续下降","储能 LCOE 已具竞争力","IRA + 中国补贴双轮驱动","数据中心绿电需求"],evidence:[{date:"2024",src:"全球太阳能新装 600GW"}],winners:["FSLR","ENPH","NEE","BEPC"],losers:["煤炭","部分天然气"],children:[]},
+  "climate-swan":{title:"⚡ 临界点突破",titleEn:"Tipping Point",type:"swan",prob:0.20,impact:-5,thesis:"格陵兰 / 西伯利亚 / 亚马逊 任一临界点突破, 不可逆气候级联.",why:["格陵兰冰盖加速融化","西伯利亚冻土融化 + 甲烷释放","亚马逊雨林 17% 已损失","厄尔尼诺 + 拉尼娜 频率加快"],evidence:[{date:"2024",src:"AMOC 减弱信号"}],winners:["气候保险公司","防洪基建"],losers:["全球资产","沿海"],children:[]},
+
+  // ━━━ 新主题: 电动车后周期 ━━━
+  "ev-origin":{title:"电动车后周期",titleEn:"EV Post-Boom",type:"origin",prob:1.0,impact:4,thesis:"EV 渗透率 30%+ 后, 故事从'卖车'转到'生态'. 充电网络 / 自动驾驶 / 服务收入 / 二手车.",why:["全球 EV 渗透率 25% (中国 45%)","TSLA 服务收入开始走重","BYD + Tesla + 蔚来 + 小米 卡位","Robotaxi 商业化拐点"],evidence:[{date:"2025-Q1",src:"中国 EV 渗透率破 45%"}],winners:["TSLA","BYDDY","XPEV","CHPT"],losers:[],children:["ev-robotaxi","ev-charging","ev-battery-2","ev-china-rise","ev-swan"]},
+  "ev-robotaxi":{title:"Robotaxi 商业化",titleEn:"Robotaxi",type:"main",prob:0.55,impact:5,thesis:"Tesla Robotaxi 奥斯汀 2025-06 上线. Waymo + Cruise 多城市扩展. 出行模式重塑.",why:["Tesla 6 月奥斯汀首发","Waymo 已覆盖 5 大城市","Cruise GM 重启","Pony.ai / WeRide 中国布局"],evidence:[{date:"2025-06",src:"Tesla Robotaxi 奥斯汀首发"}],winners:["TSLA","GOOGL (Waymo)","GM"],losers:["Uber/Lyft (中期)","传统出租车"],children:[]},
+  "ev-charging":{title:"充电网络爆发",titleEn:"Charging Network",type:"main",prob:0.75,impact:4,thesis:"NACS 标准统一 + 政府补贴 + Tesla 开放. ChargePoint / EVgo / Tesla Supercharger 整合.",why:["NACS 成为美国标准","Tesla 开放 Supercharger","美国 NEVI 联邦 $7.5B","充电桩订单 2026-2028 排满"],evidence:[{date:"2024",src:"Ford/GM 切换 NACS"}],winners:["TSLA","CHPT","EVGO"],losers:[],children:[]},
+  "ev-battery-2":{title:"固态电池 + LFP 主导",titleEn:"Solid State / LFP",type:"main",prob:0.50,impact:5,thesis:"丰田 / Solid Power / QuantumScape 固态电池 2027-2028 量产. LFP 占新车 40%+.",why:["丰田 2027 固态电池路线图","QuantumScape 样品验证通过","BYD Blade 电池主导 LFP","三元锂面临挑战"],evidence:[{date:"2024",src:"QuantumScape 24 层电芯"}],winners:["TM","QS","BYDDY","CATL"],losers:["三元锂厂"],children:[]},
+  "ev-china-rise":{title:"中国 EV 全球出口",titleEn:"China EV Export",type:"contra",prob:0.60,impact:4,thesis:"BYD + 比亚迪 + 蔚来 + 小米 + 奇瑞 全球出口爆发. 欧盟 / 东南亚 / 拉美 主战场.",why:["BYD 2024 全球销量超 Tesla","欧盟反补贴关税应对","泰国 / 巴西 / 墨西哥 设厂","小米 SU7 现象级"],evidence:[{date:"2024",src:"BYD 销量 426 万台"}],winners:["BYDDY","XPEV","小米"],losers:["欧洲车企","TSLA 海外"],children:[]},
+  "ev-swan":{title:"⚡ EV 需求崩",titleEn:"EV Demand Crash",type:"swan",prob:0.15,impact:-4,thesis:"利率持续高位 + 补贴退坡 + 故障频出 → EV 需求增速从 +30% 转 -10%.",why:["利率影响汽车贷款","美国 IRA 部分退坡","固态电池跳票","Hertz 抛 Tesla 事件重演"],evidence:[{date:"2024",src:"Hertz 抛售 EV 队伍"}],winners:["传统汽车股","油车 / 混动"],losers:["TSLA","纯 EV 公司"],children:[]},
+
+  // ━━━ 新主题: 脑机接口 ━━━
+  "bci-origin":{title:"脑机接口主流化",titleEn:"Brain-Computer Interface",type:"origin",prob:1.0,impact:5,thesis:"Neuralink + Synchron + Precision 进入临床, 2027-2030 渐冻症 / 截瘫 / 抑郁等适应症落地.",why:["Neuralink 2024 首例人体植入","Synchron 已 10+ 例临床","FDA 批准多个 BCI 设备","Apple Vision Pro 接口标准化"],evidence:[{date:"2024-01",src:"Neuralink Noland 植入"},{date:"2025",src:"Synchron 第二批临床"}],winners:["Neuralink","Synchron","NUSI"],losers:[],children:["bci-medical","bci-consumer","bci-enhance","bci-data","bci-swan"]},
+  "bci-medical":{title:"医疗适应症 (渐冻 / 截瘫)",titleEn:"Medical BCI",type:"main",prob:0.65,impact:5,thesis:"FDA 批 ALS / 渐冻 / 截瘫 BCI 设备. 患者通过想法操作电脑 / 假肢.",why:["Synchron Stentrode 已批 ALS","Neuralink N1 第二例","BlackRock BCI 渐冻人方案","可与机器人假肢联动"],evidence:[{date:"2024",src:"Synchron 第二例 ALS 患者"}],winners:["Neuralink","Synchron","BMRA"],losers:[],children:[]},
+  "bci-consumer":{title:"消费 EEG 头环",titleEn:"Consumer EEG",type:"contra",prob:0.45,impact:3,thesis:"非侵入 EEG 头环 (Muse / Neurable / Emotiv). 注意力训练 / 冥想 / 睡眠.",why:["Apple 申请 EEG 耳机专利","Muse 月活 100 万","非侵入门槛低","消费级 $200-500"],evidence:[{date:"2024",src:"Apple AirPods EEG 专利"}],winners:["AAPL","Muse","Emotiv"],losers:[],children:[]},
+  "bci-enhance":{title:"认知增强 (军 → 民)",titleEn:"Cognitive Enhancement",type:"contra",prob:0.25,impact:5,thesis:"DARPA TNT 项目民用化. TMS + 神经反馈 + 药物 三件套增强认知.",why:["TMS 抑郁治疗主流化","DARPA TNT 民用申请","Modafinil / Adderall 普及","NeuroPace 已商用"],evidence:[{date:"2024",src:"FDA 批 TMS 治抑郁"}],winners:["NUSI","Neuralink"],losers:[],children:[]},
+  "bci-data":{title:"脑数据安全",titleEn:"Brain Data Security",type:"main",prob:0.50,impact:4,thesis:"BCI 普及后, 脑数据成为最敏感个人信息. 立法 + 加密 + 治理新行业.",why:["科罗拉多 2024 通过脑权利法","欧盟 GDPR 扩展到脑数据","BCI 公司商业模式 vs 隐私","加密 / 联邦学习需求"],evidence:[{date:"2024-04",src:"科罗拉多神经权利法案"}],winners:["合规 SaaS","加密公司"],losers:[],children:[]},
+  "bci-swan":{title:"⚡ BCI 黑客攻击",titleEn:"BCI Hack",type:"swan",prob:0.10,impact:-5,thesis:"BCI 设备被黑客攻击, 操控患者大脑或窃取脑数据. 全行业延后 18 月.",why:["设备无线连接攻击面广","早期设备安全性薄","FDA 网络安全要求加强","保险 / 责任未明"],evidence:[{date:"2024",src:"医疗器械网络安全事件 +30%"}],winners:["CRWD","PANW","医疗器械网络安全"],losers:["BCI 整机"],children:[]}
+};
+
+// ━━━ 扩展字段 (warnings / triggers / keyWatch / watch / scenarios) ━━━
+const EXTRAS = {
+  "origin":{
+    timeWindow:"2023-2026 已发生 + 持续",
+    triggers:["ChatGPT 12 月达 1 亿月活","NVDA H100 量产", "Hyperscaler capex 集体追赶"],
+    keyWatch:["NVDA 季度数据中心营收增速","Hyperscaler 4 家 capex guidance"],
+    watch:["AI 实验室估值变化 (OpenAI/Anthropic/xAI)","训练 + 推理成本曲线","电网容量 vs 数据中心需求"],
+    warnings:["Capex 占 GDP 突破 1.5% = 历史泡沫边界","训练成本增速超过营收增速 = 亏本扩张"],
+    scenarios:{ bull:0.45, base:0.40, bear:0.15 }
+  },
+  "energy":{
+    timeWindow:"2024 起, 主升 2026-2030",
+    triggers:["核电站新建 / 重启获 NRC 批准","数据中心 capex 已签订单 PPA 涨价"," Grid bottleneck 报告进入主流媒体"],
+    keyWatch:["CEG / VST 周线相对强度 vs SPX","美国月度新建数据中心电力签约"],
+    watch:["铀矿现货价 (U3O8)","Quanta + Eaton 订单 backlog","三里岛 1 号机组重启时间表"],
+    warnings:["聚变商业化提前 1-2 年 = 估值杀核电","加息周期重启 = 公用股估值压力","Trump 撤回 IRA 部分 = 储能板块直接 -30%"],
+    scenarios:{ bull:0.45, base:0.40, bear:0.15 }
+  },
+  "asic":{
+    timeWindow:"2025-2028 渐进式",
+    triggers:["AVGO AI 季度营收破 $5B","Google TPU / Meta MTIA 出货量超 NVDA 30%","OpenAI / xAI 第一颗自研芯片流片"],
+    keyWatch:["AVGO 季度 AI 营收增速","NVDA 数据中心客户集中度变化"],
+    watch:["MRVL 数据中心收入 / TSM 3nm 客户结构","CRDO / ALAB 光通信芯片出货"],
+    warnings:["NVDA 软件护城河 (CUDA) 比客户想象更深","客制 ASIC 设计 NRE $500M 起, 中小厂玩不起","客户 lock-in 周期 5-7 年, 切换成本高"],
+    scenarios:{ bull:0.35, base:0.45, bear:0.20 }
+  },
+  "app":{
+    timeWindow:"2025-2028 加速",
+    triggers:["Cursor IPO 估值 $30B+","Anthropic / OpenAI 收入增长 > 算力成本","Vertical SaaS 龙头 (Harvey/Hippocratic) 突破"],
+    keyWatch:["Cursor / Devin ARR 增速","Anthropic 月活增长"],
+    watch:["传统 SaaS 公司 (Salesforce/Adobe) 转型动作","推理价格曲线","开源模型逼平时间点"],
+    warnings:["AI 应用同质化, 护城河浅 (复制粘贴竞争)","客户 token 消耗成本高于订阅收入","平台抽成 (Apple/Google) 30% 是隐形吸血"],
+    scenarios:{ bull:0.30, base:0.45, bear:0.25 }
+  },
+  "storage":{
+    timeWindow:"2025-2027 HBM4 + 2028 HBM5",
+    triggers:["SK Hynix HBM4 大规模出货 (2026-Q1)","三星 HBM3E 通过 NVDA 验证","HBM 单价突破 $10/GB"],
+    keyWatch:["SK Hynix 季度 HBM 出货量 + ASP","三星 HBM4 良率公告"],
+    watch:["美光 HBM4 进度","NVDA Rubin 平台规格","中国长鑫 HBM 突破"],
+    warnings:["HBM4 良率全行业拉胯 = 短期定价被砸","DRAM 商品周期顶 → 拖累综合毛利","HBM5 出现颠覆性新架构 (CXL?)"],
+    scenarios:{ bull:0.35, base:0.40, bear:0.25 }
+  },
+  "swan-deepseek":{
+    timeWindow:"任何时间, 突发",
+    triggers:["新开源模型 benchmark 逼平闭源","训练成本再次缩 10x","推理芯片 (Cerebras/Groq) 性价比颠覆"],
+    keyWatch:["开源模型 benchmark vs OpenAI/Anthropic","训练成本曲线 ($/B param)"],
+    watch:["Mamba / 线性注意力 / 新架构论文","中国实验室进度","Inference 价格 token 单价"],
+    warnings:["真正出现时通常无预警 (DeepSeek-R1 模式)","美股算力链单日 -10% 可能性高","Stargate 类大项目可能取消"],
+    scenarios:{ bull:0.10, base:0.15, bear:0.75 }
+  },
+  "nuclear":{
+    timeWindow:"2025-2035",
+    triggers:["三里岛 1 号 2027 重启成功","Oklo / X-energy 首座商业 SMR 并网","美国铀产量恢复"],
+    keyWatch:["Constellation (CEG) 季度营收","美国 NRC 月度审批数量"],
+    watch:["铀矿现货价","SMR 厂商订单","Trump 核电立法进度"],
+    warnings:["核事故 (任何国家) → 全球反核情绪","建设成本超支 (历史常态)","聚变商业化超预期"],
+    scenarios:{ bull:0.50, base:0.35, bear:0.15 }
+  },
+  "humanoid-origin":{
+    timeWindow:"2026-2032 量产窗口",
+    triggers:["Tesla Optimus 2026 万台量产","BOM 跌破 $20K","NVDA GR00T 大规模商用"],
+    keyWatch:["Figure / Tesla 月度出货量","谐波减速器 + AI 大脑 + 电池三件成本曲线"],
+    watch:["中国 Unitree / 智元 出货","美国 Amazon / BMW 仓库部署","欧盟 AI Act 对机器人监管"],
+    warnings:["伦理事故触发监管暂停","劳动力工会反弹","BOM 跌不到 $20K → 普及延后"],
+    scenarios:{ bull:0.35, base:0.45, bear:0.20 }
+  },
+  "stablecoin-origin":{
+    timeWindow:"2025-2030 主升",
+    triggers:["GENIUS Act 通过 (2025-06)","Circle IPO 估值溢出","USDC 流通破 $1T"],
+    keyWatch:["USDC + USDT 月度流通量","美债利率 vs Circle 季度营收"],
+    watch:["Visa / Mastercard 稳定币结算量","新兴市场采用率","Trump 加密政策"],
+    warnings:["Tether 储备透明度问题再爆 = 系统性风险","央行 CBDC 立法对抗","美债利率快速下行 = Circle 利润压力"],
+    scenarios:{ bull:0.50, base:0.35, bear:0.15 }
+  },
+  "aging-origin":{
+    timeWindow:"2025-2050 长周期",
+    triggers:["LLY + NVO 营收 $50B+","FDA 批阿尔茨海默新药","养老机器人补贴落地"],
+    keyWatch:["LLY Mounjaro 季度增速","美国 Medicare 支出 GDP 占比"],
+    watch:["GLP-1 副作用长期数据","养老保险政策","长寿科技临床进度"],
+    warnings:["GLP-1 副作用集中爆发","政府医保削减","长寿科技突破颠覆需求"],
+    scenarios:{ bull:0.55, base:0.35, bear:0.10 }
+  },
+  "defense-origin":{
+    timeWindow:"2025-2030 高军费周期",
+    triggers:["美国国防预算 $1T (2026)","欧洲 NATO 3% GDP 达标","Trump 关税 + 制裁升级"],
+    keyWatch:["美国 / 欧洲 / 日本 月度军费指引","Anduril / Palantir 季度营收"],
+    watch:["乌克兰 / 中东 / 台海 局势","SpaceX Starshield 合同","半导体出口管制"],
+    warnings:["大国直接冲突 → 全球资产暴跌","Trump 突然和平协议","技术泄露 / 武器走私"],
+    scenarios:{ bull:0.45, base:0.45, bear:0.10 }
+  },
+  "space-origin":{
+    timeWindow:"2025-2035 商业化窗口",
+    triggers:["SpaceX 估值破 $400B","Starlink 营收破 $20B","商业月球着陆成功"],
+    keyWatch:["Starlink 月度用户增速","Rocket Lab Neutron 首飞"],
+    watch:["AST SpaceMobile 商业部署","NASA Artemis 月球进度","中俄美 ASAT 测试"],
+    warnings:["卫星 ASAT 冲突 (Kessler 综合征)","SpaceX 重大事故 / Starship 失败","商业月球技术挫折"],
+    scenarios:{ bull:0.45, base:0.40, bear:0.15 }
+  },
+  "quantum-origin":{
+    timeWindow:"2027-2035 实用化",
+    triggers:["量子优势化学应用商用 (Roche/Merck)","NIST PQC 全球部署达 30%","Q-Day 接近"],
+    keyWatch:["Google Willow / IBM Heron 路线图","IonQ / Rigetti 营收增速"],
+    watch:["NIST PQC 政府部署进度","药物 / 材料 量子模拟商业化","中国 / 中科大量子计算突破"],
+    warnings:["Q-Day 提前 (2028-2030)","量子工程难度被低估 (再延 5 年)","纠错路线挫折"],
+    scenarios:{ bull:0.35, base:0.45, bear:0.20 }
+  },
+  "food-origin":{
+    timeWindow:"2026-2040",
+    triggers:["FDA 批多个实验室肉产品","垂直农业成本与传统平价","CRISPR 抗旱作物大规模商业化"],
+    keyWatch:["Upside / Eat Just 商业化进度","垂直农业能耗 / 出货比"],
+    watch:["主流餐饮链采纳实验室肉","CRISPR 作物全球批准","Perfect Day 精准发酵成本"],
+    warnings:["消费者接受度低 → 商业化延后 5+ 年","FDA / 欧盟严格监管","传统农业反弹 + 立法保护"],
+    scenarios:{ bull:0.30, base:0.45, bear:0.25 }
+  },
+  "climate-origin":{
+    timeWindow:"2025-2050 长周期 + 临界点风险",
+    triggers:["1.5°C 阈值正式突破","欧盟 CBAM 全面生效","美国大型气候事件 (类 Helene 飓风)"],
+    keyWatch:["全球气候损失 (Munich Re 季报)","欧盟 / 中国碳价"],
+    watch:["格陵兰 / 南极冰盖融化速度","亚马逊雨林状态","ENSO / AMOC 信号"],
+    warnings:["临界点突破 = 不可逆","保险体系崩 → 房产暴跌","Trump 撤回美国气候承诺"],
+    scenarios:{ bull:0.20, base:0.55, bear:0.25 }
+  },
+  "ev-origin":{
+    timeWindow:"2025-2030 后周期",
+    triggers:["Tesla Robotaxi 商业化","固态电池量产","充电网络密度临界"],
+    keyWatch:["全球 EV 月度渗透率","Tesla Robotaxi 单车日营收"],
+    watch:["BYD 全球出口数据","中国 EV 价格战","欧盟 / 美国关税反应"],
+    warnings:["利率持续高位压制需求","固态电池跳票","政府补贴退坡"],
+    scenarios:{ bull:0.45, base:0.40, bear:0.15 }
+  },
+  "bci-origin":{
+    timeWindow:"2027-2040",
+    triggers:["FDA 批 Neuralink 商业产品","Synchron 多市场上市","BCI 与机器人假肢联动"],
+    keyWatch:["Neuralink / Synchron 临床人数","FDA 审批进度"],
+    watch:["消费 EEG 普及","脑数据立法","Apple / Meta BCI 入局"],
+    warnings:["黑客攻击 BCI 事件","伦理 / 神经隐私争议","设备失效 / 患者反应"],
+    scenarios:{ bull:0.30, base:0.50, bear:0.20 }
+  }
+};
+
+// ━━━ 主题集合 (多 origin 切换) ━━━
+const THEMES = [
+  { id:"origin", label:"AI 算力", emoji:"🧮" },
+  { id:"humanoid-origin", label:"人形机器人", emoji:"🤖" },
+  { id:"stablecoin-origin", label:"稳定币", emoji:"💵" },
+  { id:"aging-origin", label:"老龄化", emoji:"🧬" },
+  { id:"defense-origin", label:"国防地缘", emoji:"🛡" },
+  { id:"space-origin", label:"商业航天", emoji:"🚀" },
+  { id:"quantum-origin", label:"量子计算", emoji:"⚛" },
+  { id:"food-origin", label:"食物科技", emoji:"🌾" },
+  { id:"climate-origin", label:"气候变化", emoji:"🌍" },
+  { id:"ev-origin", label:"EV 后周期", emoji:"⚡" },
+  { id:"bci-origin", label:"脑机接口", emoji:"🧠" }
+];
+let currentTheme = "origin";
+
+const VB_W = 1600, VB_H = 900;
+const CX = VB_W/2;
+const visited = new Set(["origin"]);
+let pathStack = [];
+let layout = {};
+
+function isMobile(){ return window.innerWidth < 720; }
+
+function getOriginId(){ return currentTheme; }
+
+function layoutRender(){
+  layout = {};
+  const mobile = isMobile();
+  const ORIGIN = getOriginId();
+
+  if (pathStack.length === 0){
+    if (mobile){
+      layout[ORIGIN] = { x: CX, y: 220, level: 0 };
+      const l1 = NODES[ORIGIN].children;
+      const cols = 2;
+      const colW = 360, rowH = 180;
+      l1.forEach((id, i) => {
+        const r = Math.floor(i / cols);
+        const c = i % cols;
+        layout[id] = {
+          x: CX - (cols-1)*colW/2 + c*colW,
+          y: 430 + r*rowH,
+          level: 1
+        };
+      });
+    } else {
+      layout[ORIGIN] = { x: CX, y: 500, level: 0 };
+      const l1 = NODES[ORIGIN].children;
+      l1.forEach((id, i) => {
+        const ang = (-90 + (360 / l1.length) * i) * Math.PI / 180;
+        layout[id] = {
+          x: CX + Math.cos(ang) * 320,
+          y: 500 + Math.sin(ang) * 270,
+          level: 1
+        };
+      });
+    }
+    return;
+  }
+
+  const chain = [ORIGIN, ...pathStack];
+  const selected = chain[chain.length - 1];
+  const startY = mobile ? 200 : 200;
+  const stepY = mobile ? 150 : 200;
+  chain.forEach((id, i) => {
+    layout[id] = { x: CX, y: startY + i * stepY, level: i, current: i === chain.length - 1 };
+  });
+
+  const selNode = NODES[selected];
+  if (selNode && selNode.children.length){
+    const kids = selNode.children;
+    const childY = layout[selected].y + stepY;
+    if (mobile){
+      // 手机: 子节点 2 列网格
+      const cols = Math.min(2, kids.length);
+      const colW = 380, rowH = 150;
+      kids.forEach((id, i) => {
+        const r = Math.floor(i / cols);
+        const c = i % cols;
+        layout[id] = {
+          x: CX - (cols-1)*colW/2 + c*colW,
+          y: childY + r*rowH,
+          level: chain.length
+        };
+      });
+    } else {
+      // 桌面: 子节点横向 fan
+      kids.forEach((id, i) => {
+        const spread = (kids.length - 1) * 270;
+        layout[id] = { x: CX - spread/2 + i * 270, y: childY, level: chain.length };
+      });
+    }
+  }
+
+  // sibling: 桌面在右侧, 手机在 chain 旁边收缩展示
+  const parentInChain = chain[chain.length - 2];
+  const parentNode = NODES[parentInChain];
+  if (parentNode){
+    const siblings = parentNode.children.filter(id => id !== selected);
+    if (mobile){
+      // 手机: 隐藏 sibling (避免拥挤)
+      siblings.forEach(id => { /* skip */ });
+    } else {
+      siblings.forEach((id, i) => {
+        layout[id] = { x: VB_W - 180, y: 200 + i * 130, level: chain.length - 1, dim: true };
+      });
+    }
+  }
+}
+
+function pxFromVB(x, y){
+  const main = document.querySelector("main");
+  const w = main.clientWidth, h = main.clientHeight;
+  const scale = Math.min(w/VB_W, h/VB_H);
+  const xs = (w - VB_W*scale)/2;
+  const ys = (h - VB_H*scale)/2;
+  return { left: xs + x*scale, top: ys + y*scale, scale };
+}
+
+let prevChildrenIds = new Set();
+
+function render(animate = false){
+  layoutRender();
+  const edges = document.getElementById("edges");
+  const trail = document.getElementById("trail");
+  const arrows = document.getElementById("arrows");
+  const nodes = document.getElementById("nodes");
+  const stage = document.getElementById("stage");
+
+  // === Cube flip animation ===
+  if (animate){
+    stage.classList.add("flip");
+    setTimeout(() => stage.classList.remove("flip"), 320);
+  }
+
+  edges.innerHTML = "";
+  trail.innerHTML = "";
+  arrows.innerHTML = "";
+  nodes.innerHTML = "";
+
+  Object.keys(NODES).forEach(id => {
+    const node = NODES[id];
+    if (!layout[id]) return;
+    node.children.forEach(cid => {
+      if (!layout[cid]) return;
+      const x1 = layout[id].x, y1 = layout[id].y;
+      const x2 = layout[cid].x, y2 = layout[cid].y;
+      const isOnPath = pathStack.includes(cid) || (id === pathStack[pathStack.length-1]);
+      const swan = NODES[cid].type === "swan";
+      const cls = "edge" + (swan ? " swan" : "") + (isOnPath ? " active" : "");
+      const midX = (x1+x2)/2;
+      const midY = (y1+y2)/2 + (Math.abs(x2-x1) > 100 ? 20 : 0);
+      edges.insertAdjacentHTML("beforeend", `<path class="${cls}" d="M${x1},${y1} Q${midX},${midY} ${x2},${y2}"/>`);
+    });
+  });
+
+  if (pathStack.length >= 1){
+    const chain = [getOriginId(), ...pathStack];
+    for (let i = 0; i < chain.length - 1; i++){
+      const a = layout[chain[i]], b = layout[chain[i+1]];
+      if (!a || !b) continue;
+      trail.insertAdjacentHTML("beforeend", `<line x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}"/>`);
+    }
+  }
+
+  const selected = pathStack[pathStack.length-1] || getOriginId();
+  const selNode = NODES[selected];
+  if (selNode && selNode.children.length && layout[selected]){
+    const sx = layout[selected].x, sy = layout[selected].y;
+    const { left, top, scale } = pxFromVB(sx, sy + 80);
+    arrows.insertAdjacentHTML("beforeend", `
+      <svg class="down-arrow" style="left:${left}px;top:${top}px;transform:translate(-50%,0) scale(${scale})">
+        <path d="M17 4 L17 24 M9 17 L17 25 L25 17"/>
+      </svg>
+    `);
+  }
+
+  // Identify "new" children (entering animation)
+  const currentChildrenIds = new Set();
+  if (selNode && selNode.children.length){
+    selNode.children.forEach(id => currentChildrenIds.add(id));
+  }
+  const newlyEntering = animate
+    ? [...currentChildrenIds].filter(id => !prevChildrenIds.has(id))
+    : [];
+
+  Object.keys(layout).forEach(id => {
+    const node = NODES[id];
+    if (!node) return;
+    const pos = layout[id];
+    const { left, top } = pxFromVB(pos.x, pos.y);
+    const dim = pos.dim ? " dim" : "";
+    const cur = pos.current ? " current" : "";
+    const vis = visited.has(id) ? " visited" : "";
+    const lvl = pos.level === 0 ? "l0" : `l${Math.min(pos.level, 3)}`;
+    const entering = newlyEntering.includes(id) ? " entering" : "";
+    const cls = `node ${lvl} type-${node.type}${dim}${cur}${vis}${entering}`;
+    const tagText = { origin:"起点 · 100% 已发生", main:"主流", contra:"反共识", swan:"⚡ 黑天鹅", shrink:"收缩" }[node.type];
+    const impactSign = node.impact > 0 ? "+" : "";
+    const impactColor = node.impact > 0 ? "#3F6B3F" : "#8E4A3F";
+
+    nodes.insertAdjacentHTML("beforeend", `
+      <div class="${cls}" data-id="${id}" style="left:${left}px;top:${top}px">
+        <div class="bubble">
+          <div class="bubble-tag">${tagText}</div>
+          <div class="bubble-title">${node.title}</div>
+          <div class="bubble-meta">
+            <span>${(node.prob*100).toFixed(0)}%</span>
+            <span class="meter-bar"><span class="meter-fill" style="width:${node.prob*100}%"></span></span>
+            <span class="bubble-impact" style="color:${impactColor}">${impactSign}${node.impact}</span>
+          </div>
+        </div>
+      </div>
+    `);
+  });
+
+  // === Stagger animation: remove .entering with delay ===
+  if (newlyEntering.length){
+    newlyEntering.forEach((id, i) => {
+      setTimeout(() => {
+        const el = document.querySelector(`.node[data-id="${id}"]`);
+        if (el) el.classList.remove("entering");
+      }, 200 + i * 90);  // stagger 90ms each
+    });
+  }
+
+  prevChildrenIds = currentChildrenIds;
+
+  document.querySelectorAll(".node").forEach(g => {
+    g.addEventListener("click", (e) => {
+      e.stopPropagation();
+      onNodeClick(g.dataset.id);
+    });
+  });
+
+  updateBreadcrumbs();
+  updateDepth();
+}
+
+function updateBreadcrumbs(){
+  const el = document.getElementById("crumbs");
+  const chain = [getOriginId(), ...pathStack];
+  el.innerHTML = chain.map((id, i) => {
+    const isLast = i === chain.length - 1;
+    return `${i > 0 ? '<span class="arr">▸</span>' : ''}<span class="crumb ${isLast ? "now" : ""}" data-jump="${i}">${NODES[id].title}</span>`;
+  }).join("");
+  document.querySelectorAll(".breadcrumb .crumb").forEach(c => {
+    c.addEventListener("click", () => {
+      const idx = parseInt(c.dataset.jump, 10);
+      pathStack = pathStack.slice(0, idx);
+      render(true);
+    });
+  });
+  document.getElementById("backBtn").classList.toggle("show", pathStack.length > 0);
+  document.getElementById("hint").classList.toggle("hidden", pathStack.length > 0);
+}
+
+function updateDepth(){
+  document.getElementById("depth").innerHTML = `深度 <strong>${pathStack.length}</strong> / 3`;
+}
+
+function onNodeClick(id){
+  const node = NODES[id];
+  if (!node) return;
+  visited.add(id);
+  openPanel(id);
+
+  if (id === getOriginId()){
+    pathStack = [];
+    render(true);
+    return;
+  }
+  const idxInChain = pathStack.indexOf(id);
+  if (idxInChain !== -1){
+    pathStack = pathStack.slice(0, idxInChain + 1);
+    render(true);
+    return;
+  }
+  pathStack.push(id);
+  render(true);
+}
+
+function goBack(){
+  if (pathStack.length === 0) return;
+  pathStack.pop();
+  closePanel();
+  render(true);
+}
+
+function getNode(id){
+  const base = NODES[id];
+  if (!base) return null;
+  return { ...base, ...(EXTRAS[id] || {}) };
+}
+
+function openPanel(id){
+  const n = getNode(id);
+  if (!n) return;
+  const head = document.getElementById("panelHeader");
+  const body = document.getElementById("panelBody");
+  const typeLabel = { origin:"起点 · 已发生", main:"主流路径", contra:"反共识", swan:"⚡ 黑天鹅", shrink:"收缩" }[n.type];
+  const impactSign = n.impact > 0 ? "+" : "";
+  const impactColor = n.impact > 0 ? "#3F6B3F" : "#8E4A3F";
+
+  head.innerHTML = `
+    <div class="kicker">${typeLabel}</div>
+    <div class="title">${n.title}</div>
+    <div class="title-en">${n.titleEn}</div>
+    <div class="meters-inline">
+      <div class="meter">
+        <span class="meter-label">概率</span>
+        <span class="meter-track"><span class="meter-fill" style="width:${n.prob*100}%"></span></span>
+        <span class="meter-val">${(n.prob*100).toFixed(0)}%</span>
+      </div>
+      <div class="meter">
+        <span class="meter-label">影响</span>
+        <span class="meter-track"><span class="meter-fill" style="width:${Math.abs(n.impact)*20}%;background:${n.impact > 0 ? "linear-gradient(90deg,#8AB58A,#B89046)" : "linear-gradient(90deg,#D8AE92,#8E4A3F)"}"></span></span>
+        <span class="meter-val" style="color:${impactColor}">${impactSign}${n.impact}</span>
+      </div>
+    </div>
+  `;
+
+  const timeWindow = n.timeWindow ? `<div class="time-window">⏱ ${n.timeWindow}</div>` : "";
+  const scenarios = n.scenarios ? `
+    <h3 style="margin-top:20px">概率情境 · Scenarios</h3>
+    <div class="scenarios">
+      <div class="sc sc-bull"><span class="sc-label">乐观</span><span class="sc-bar"><span class="sc-fill" style="width:${(n.scenarios.bull*100).toFixed(0)}%"></span></span><span class="sc-val">${(n.scenarios.bull*100).toFixed(0)}%</span></div>
+      <div class="sc sc-base"><span class="sc-label">基准</span><span class="sc-bar"><span class="sc-fill" style="width:${(n.scenarios.base*100).toFixed(0)}%"></span></span><span class="sc-val">${(n.scenarios.base*100).toFixed(0)}%</span></div>
+      <div class="sc sc-bear"><span class="sc-label">悲观</span><span class="sc-bar"><span class="sc-fill" style="width:${(n.scenarios.bear*100).toFixed(0)}%"></span></span><span class="sc-val">${(n.scenarios.bear*100).toFixed(0)}%</span></div>
+    </div>` : "";
+
+  body.innerHTML = `
+    ${timeWindow}
+    <h3>论点 · Thesis</h3>
+    <div class="thesis">${n.thesis}</div>
+
+    ${n.triggers && n.triggers.length ? `
+      <h3 style="margin-top:20px">触发条件 · Triggers</h3>
+      <ul class="list list-trigger">${n.triggers.map(w => `<li>${w}</li>`).join("")}</ul>
+    ` : ""}
+
+    ${n.keyWatch && n.keyWatch.length ? `
+      <h3 style="margin-top:20px">🔭 重点观察 · Key Watch</h3>
+      <ul class="list list-key">${n.keyWatch.map(w => `<li>${w}</li>`).join("")}</ul>
+    ` : ""}
+
+    ${n.watch && n.watch.length ? `
+      <h3 style="margin-top:18px">👁 需要观察 · Watch</h3>
+      <ul class="list">${n.watch.map(w => `<li>${w}</li>`).join("")}</ul>
+    ` : ""}
+
+    ${n.warnings && n.warnings.length ? `
+      <h3 style="margin-top:18px">⚠ 警惕 · Warnings</h3>
+      <ul class="list list-warn">${n.warnings.map(w => `<li>${w}</li>`).join("")}</ul>
+    ` : ""}
+
+    <h3 style="margin-top:20px">为什么 · Why</h3>
+    <ul class="list">${n.why.map(w => `<li>${w}</li>`).join("")}</ul>
+
+    ${scenarios}
+
+    <h3 style="margin-top:20px">证据 · Evidence</h3>
+    ${n.evidence.map(e => `<div class="ev"><div class="ev-date">${e.date}</div>${e.src}</div>`).join("")}
+
+    ${n.winners.length ? `<h3 style="margin-top:20px">受益方</h3><div class="stocks">${n.winners.map(s => `<span class="stock">${s}</span>`).join("")}</div>` : ""}
+    ${n.losers.length ? `<h3 style="margin-top:14px">受损方</h3><div class="stocks">${n.losers.map(s => `<span class="stock loss">${s}</span>`).join("")}</div>` : ""}
+
+    ${n.children && n.children.length ? `<button class="next-btn" onclick="closePanel();onNodeClick('${id}')">展开下一层 →</button>` : `<div class="end-note">终端节点 · 此分支已到底</div>`}
+  `;
+
+  updatePager(id);
+  document.getElementById("panel").classList.add("open");
+  document.getElementById("panel").querySelector(".body").scrollTop = 0;
+}
+
+// 兄弟节点导航
+function getSiblings(id){
+  // 找到 id 所在的同级节点列表
+  for (const [pid, pnode] of Object.entries(NODES)){
+    if (pnode.children.includes(id)) return { siblings: pnode.children, parent: pid };
+  }
+  return { siblings: [id], parent: null };
+}
+let currentPanelId = null;
+function updatePager(id){
+  currentPanelId = id;
+  const { siblings } = getSiblings(id);
+  const idx = siblings.indexOf(id);
+  const total = siblings.length;
+  document.getElementById("prevBtn").disabled = idx <= 0;
+  document.getElementById("nextBtn").disabled = idx >= total - 1;
+  document.getElementById("pagerInfo").innerHTML = total > 1
+    ? `<strong>${idx+1}</strong> / ${total} · 同级`
+    : `单节点 · 无邻居`;
+}
+function navSibling(dir){
+  if (!currentPanelId) return;
+  const { siblings } = getSiblings(currentPanelId);
+  const idx = siblings.indexOf(currentPanelId);
+  const newIdx = idx + dir;
+  if (newIdx < 0 || newIdx >= siblings.length) return;
+  openPanel(siblings[newIdx]);
+}
+
+function closePanel(){
+  document.getElementById("panel").classList.remove("open");
+}
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape"){
+    if (document.getElementById("panel").classList.contains("open")){
+      closePanel();
+    } else {
+      goBack();
+    }
+  }
+  // 上下方向键 = 同级翻页
+  if (document.getElementById("panel").classList.contains("open")){
+    if (e.key === "ArrowDown" || e.key === "ArrowRight"){
+      e.preventDefault();
+      navSibling(1);
+    } else if (e.key === "ArrowUp" || e.key === "ArrowLeft"){
+      e.preventDefault();
+      navSibling(-1);
+    }
+  }
+});
+
+document.querySelector("main").addEventListener("click", () => {
+  closePanel();
+});
+
+// 主题切换
+function renderThemeBar(){
+  const bar = document.getElementById("themeBar");
+  bar.innerHTML = THEMES.map(t => `
+    <button class="theme-btn ${currentTheme === t.id ? "active" : ""}" data-theme="${t.id}">
+      <span class="emoji">${t.emoji}</span>${t.label}
+    </button>
+  `).join("");
+  bar.querySelectorAll(".theme-btn").forEach(b => {
+    b.addEventListener("click", () => {
+      const tid = b.dataset.theme;
+      if (tid === currentTheme) return;
+      currentTheme = tid;
+      pathStack = [];
+      visited.clear();
+      visited.add(tid);
+      closePanel();
+      renderThemeBar();
+      render(true);
+    });
+  });
+}
+
+window.addEventListener("resize", () => render(false));
+renderThemeBar();
+render(false);
+</script>
+</body>
+</html>
