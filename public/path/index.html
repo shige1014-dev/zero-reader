@@ -151,44 +151,42 @@
     transform:scale(1.06);
   }
 
-  /* tile - 一层一色 (暖色系) */
+  /* tile - 米色 + 密集 */
   .bubble{
     position:relative;
-    border-radius:12px;
-    box-shadow:0 6px 20px -8px rgba(0,0,0,.5);
-    padding:12px 14px;
-    width:170px;
-    min-height:108px;
+    border-radius:11px;
+    box-shadow:0 4px 14px -4px rgba(0,0,0,.4);
+    padding:10px 12px;
+    width:148px;
+    min-height:96px;
     display:flex;flex-direction:column;justify-content:space-between;
     transition:all .25s cubic-bezier(.34,1.3,.5,1);
-    color:#F5EFE3;
-    border:1px solid rgba(255,255,255,.05);
+    color:#3D2E22;
+    border:1px solid rgba(212,182,112,.25);
+    background:#EFE6D2;
   }
-  /* L0 主题 — 高光金 (亮) */
+  /* L0 — 重金米 */
   .node.l0 .bubble{
-    width:230px;min-height:142px;padding:18px 22px;
-    border-radius:16px;
-    background:linear-gradient(180deg,#6B5430,#48381F);
-    border:1px solid rgba(212,182,112,.45);
-    color:#FFEBC2;
-    box-shadow:0 8px 32px -10px rgba(212,182,112,.25), 0 4px 14px -6px rgba(0,0,0,.5);
+    width:220px;min-height:130px;padding:16px 20px;
+    border-radius:14px;
+    background:linear-gradient(180deg,#E8CC82,#D4B670);
+    border:1px solid rgba(184,144,70,.5);
+    color:#2F2010;
+    box-shadow:0 8px 28px -10px rgba(212,182,112,.45), 0 3px 12px -6px rgba(0,0,0,.35);
   }
-  /* L1 — 深咖 (暗) */
+  /* L1 — 米色 */
   .node.l1 .bubble{
-    background:#2A2018;
-    border-color:rgba(212,182,112,.16);
+    background:#EFE6D2;
   }
-  /* L2 — 暖砂 (亮) */
+  /* L2 — 沙米 */
   .node.l2 .bubble{
-    background:#4B3826;
-    width:158px;min-height:98px;padding:10px 13px;border-radius:11px;
-    border-color:rgba(212,182,112,.22);
+    background:#E5D8B8;
+    width:140px;min-height:90px;padding:9px 11px;border-radius:10px;
   }
-  /* L3 — 深棕 (暗) */
+  /* L3 — 浅米 */
   .node.l3 .bubble{
-    background:#251D14;
-    width:144px;min-height:88px;padding:9px 12px;border-radius:10px;
-    border-color:rgba(200,160,100,.14);
+    background:#F2EBD8;
+    width:132px;min-height:84px;padding:8px 10px;border-radius:10px;
   }
   .node.l2 .bubble{
     width:158px;
@@ -216,47 +214,46 @@
   }
 
   .bubble-tag{
-    font-size:9px;font-weight:600;letter-spacing:.16em;
+    font-size:9px;font-weight:600;letter-spacing:.14em;
     text-transform:uppercase;
-    color:#A89B82;
+    color:#8E7858;
     font-family:ui-monospace,monospace;
   }
-  .node.type-swan .bubble-tag{color:#B886C8}
-  .node.type-contra .bubble-tag{color:#A89B82}
-  .node.type-shrink .bubble-tag{color:#C8857D}
-  .node.type-origin .bubble-tag{color:#D4B670}
+  .node.type-swan .bubble-tag{color:#9F89B0}
+  .node.type-shrink .bubble-tag{color:#A85050}
+  .node.l0 .bubble-tag{color:#7A5A1A}
 
   .bubble-title{
-    font-size:14px;font-weight:600;
+    font-size:13.5px;font-weight:600;
     line-height:1.3;
-    color:#F5EFE3;
-    margin:6px 0;
+    color:#2F2418;
+    margin:5px 0;
     flex:1;
     display:flex;align-items:center;
   }
-  .node.l0 .bubble-title{font-size:16px;font-weight:700;color:#F5EFE3}
-  .node.l2 .bubble-title{font-size:13px}
-  .node.l3 .bubble-title{font-size:12.5px}
+  .node.l0 .bubble-title{font-size:15.5px;font-weight:700;color:#2F2010}
+  .node.l2 .bubble-title{font-size:12.5px}
+  .node.l3 .bubble-title{font-size:12px}
 
   .bubble-meta{
-    display:flex;align-items:center;gap:6px;
+    display:flex;align-items:center;gap:5px;
     font-size:10px;
     font-family:ui-monospace,monospace;
-    color:#A89B82;
+    color:#6B5638;
   }
   .meter-bar{
     flex:1;height:3px;
-    background:rgba(255,255,255,.06);
+    background:rgba(61,46,34,.1);
     border-radius:99px;overflow:hidden;
   }
-  .meter-fill{height:100%;background:#D4B670;border-radius:99px}
+  .meter-fill{height:100%;background:#B89046;border-radius:99px}
   .node.type-swan .meter-fill{background:#B886C8}
   .node.type-shrink .meter-fill{background:#C8857D}
   .bubble-impact{
     font-weight:700;
     padding:1px 6px;
-    background:rgba(212,182,112,.12);
-    color:#D4B670;
+    background:rgba(61,46,34,.08);
+    color:#3D2E22;
     border-radius:4px;
     font-size:10px;
   }
@@ -1175,21 +1172,21 @@ function layoutRender(){
   layout = {};
   const mobile = isMobile();
   const ORIGIN = getOriginId();
-  // 手机用屏幕实坐标, 桌面用 VB 坐标
   const CENTER = mobile ? screenCX() : CX;
 
-  // 像素值, 手机直接用, 桌面缩放后用
-  const L1_W = mobile ? 165 : 186;
-  const L1_H = mobile ? 130 : 142;
-  const L2_W = mobile ? 152 : 170;
-  const L2_H = mobile ? 116 : 130;
-  const ORIGIN_H = mobile ? 128 : 150;
+  // 密集间距 (tile + 8-10 gap)
+  const L1_W = mobile ? 152 : 162;   // 148+4 / 148+14
+  const L1_H = mobile ? 108 : 118;
+  const L2_W = mobile ? 144 : 152;
+  const L2_H = mobile ? 100 : 110;
+  const ORIGIN_H = mobile ? 130 : 130;
 
   if (pathStack.length === 0){
-    layout[ORIGIN] = { x: CENTER, y: mobile ? 220 : 220, level: 0 };
+    layout[ORIGIN] = { x: CENTER, y: mobile ? 210 : 215, level: 0 };
     const l1 = NODES[ORIGIN].children;
-    const cols = mobile ? 2 : Math.min(5, l1.length);
-    const rowYStart = layout[ORIGIN].y + ORIGIN_H/2 + (mobile ? 80 : 90);
+    // 3 排布局: cols = ceil(N / 3) 但限 2-3 cols
+    const cols = mobile ? Math.min(2, Math.ceil(l1.length / 3)) : Math.min(3, Math.ceil(l1.length / 2));
+    const rowYStart = layout[ORIGIN].y + ORIGIN_H/2 + (mobile ? 70 : 80);
     l1.forEach((id, i) => {
       const c = i % cols;
       const r = Math.floor(i / cols);
