@@ -27,8 +27,8 @@
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{
     height:100%;
-    background:radial-gradient(ellipse at top,#2c241e 0%,#1a1410 80%);
-    color:var(--text-cream);
+    background:#14110D;
+    color:#F5EFE3;
     font-family:"PingFang SC","Noto Sans SC",sans-serif;
     overflow:hidden;
   }
@@ -147,88 +147,98 @@
     transform:scale(1.06);
   }
 
-  /* 2048-style tile - 大小分层 */
+  /* tile - zerozero 配色 */
   .bubble{
     position:relative;
-    background:#EEE4DA;
-    border-radius:14px;
-    box-shadow:0 4px 0 rgba(0,0,0,.08), 0 8px 20px -8px rgba(0,0,0,.3);
+    background:#1A1612;
+    border:1px solid rgba(255,255,255,.06);
+    border-left:3px solid #D4B670;
+    border-radius:12px;
+    box-shadow:0 4px 16px -6px rgba(0,0,0,.4);
     padding:12px 14px;
     width:170px;
-    min-height:110px;
+    min-height:108px;
     display:flex;flex-direction:column;justify-content:space-between;
     transition:all .25s cubic-bezier(.34,1.3,.5,1);
+    color:#F5EFE3;
   }
-  /* 主题 (origin) 最大 */
+  /* 主题 (origin) 最大 + 强调 */
   .node.l0 .bubble{
-    width:236px;
-    min-height:150px;
+    width:230px;
+    min-height:142px;
     padding:18px 22px;
-    border-radius:18px;
+    border-radius:16px;
+    border-left-width:4px;
+    background:linear-gradient(180deg,#231C13,#1A1612);
   }
-  /* 选择 (L1+) 渐小 */
   .node.l2 .bubble{
-    width:154px;
-    min-height:100px;
+    width:158px;
+    min-height:98px;
     padding:10px 13px;
-    border-radius:12px;
-  }
-  .node.l3 .bubble{
-    width:140px;
-    min-height:90px;
-    padding:9px 12px;
     border-radius:11px;
   }
+  .node.l3 .bubble{
+    width:144px;
+    min-height:88px;
+    padding:9px 12px;
+    border-radius:10px;
+  }
 
-  /* 柔和配色 (低饱和暖色) */
-  .node.type-main .bubble{background:#E8DFD0;color:#5A4F40}
-  .node.type-contra .bubble{background:#D4A989;color:#4A3328}
-  .node.type-swan .bubble{background:#9F89B0;color:#FFFFFF}
-  .node.type-shrink .bubble{background:#C88A78;color:#FFFFFF}
+  /* 类型颜色 = 左边竖条颜色 */
+  .node.type-main .bubble{border-left-color:#D4B670}
+  .node.type-contra .bubble{border-left-color:#A89B82}
+  .node.type-swan .bubble{border-left-color:#B886C8}
+  .node.type-shrink .bubble{border-left-color:#C8857D}
   .node.type-origin .bubble{
-    background:#D4B870;color:#3D2E18;
-    box-shadow:0 4px 0 rgba(0,0,0,.12), 0 10px 28px -8px rgba(212,184,112,.35);
+    border-left-color:#D4B670;
+    box-shadow:0 6px 24px -8px rgba(212,182,112,.25), 0 4px 12px -6px rgba(0,0,0,.5);
   }
 
   .bubble-tag{
-    font-size:9px;font-weight:700;letter-spacing:.14em;
+    font-size:9px;font-weight:600;letter-spacing:.16em;
     text-transform:uppercase;
-    opacity:.7;
+    color:#A89B82;
     font-family:ui-monospace,monospace;
   }
+  .node.type-swan .bubble-tag{color:#B886C8}
+  .node.type-contra .bubble-tag{color:#A89B82}
+  .node.type-shrink .bubble-tag{color:#C8857D}
+  .node.type-origin .bubble-tag{color:#D4B670}
+
   .bubble-title{
-    font-size:15px;font-weight:700;
-    line-height:1.25;
-    letter-spacing:.01em;
+    font-size:14px;font-weight:600;
+    line-height:1.3;
+    color:#F5EFE3;
     margin:6px 0;
     flex:1;
     display:flex;align-items:center;
   }
-  .node.l0 .bubble-title{font-size:17px;font-weight:800}
-  .node.l2 .bubble-title{font-size:14px}
-  .node.l3 .bubble-title{font-size:13px}
+  .node.l0 .bubble-title{font-size:16px;font-weight:700;color:#F5EFE3}
+  .node.l2 .bubble-title{font-size:13px}
+  .node.l3 .bubble-title{font-size:12.5px}
 
   .bubble-meta{
     display:flex;align-items:center;gap:6px;
     font-size:10px;
     font-family:ui-monospace,monospace;
-    opacity:.85;
+    color:#A89B82;
   }
   .meter-bar{
     flex:1;height:3px;
-    background:rgba(255,255,255,.25);
+    background:rgba(255,255,255,.06);
     border-radius:99px;overflow:hidden;
   }
-  .node.type-main .meter-bar{background:rgba(0,0,0,.1)}
-  .meter-fill{height:100%;background:currentColor;opacity:.7;border-radius:99px}
+  .meter-fill{height:100%;background:#D4B670;border-radius:99px}
+  .node.type-swan .meter-fill{background:#B886C8}
+  .node.type-shrink .meter-fill{background:#C8857D}
   .bubble-impact{
-    font-weight:800;
-    padding:2px 6px;
-    background:rgba(255,255,255,.2);
+    font-weight:700;
+    padding:1px 6px;
+    background:rgba(212,182,112,.12);
+    color:#D4B670;
     border-radius:4px;
     font-size:10px;
   }
-  .node.type-main .bubble-impact{background:rgba(0,0,0,.06);color:#3F6B3F}
 
   .node:hover{z-index:10}
   .node:hover .bubble{transform:scale(1.05);box-shadow:var(--shadow-hover)}
