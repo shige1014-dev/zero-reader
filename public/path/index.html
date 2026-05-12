@@ -167,13 +167,27 @@
   }
   /* L0 — 重金米 */
   .node.l0 .bubble{
-    width:220px;min-height:130px;padding:16px 20px;
+    width:200px;min-height:128px;padding:14px 18px;
     border-radius:14px;
     background:linear-gradient(180deg,#E8CC82,#D4B670);
     border:1px solid rgba(184,144,70,.5);
     color:#2F2010;
     box-shadow:0 8px 28px -10px rgba(212,182,112,.45), 0 3px 12px -6px rgba(0,0,0,.35);
   }
+  /* 黑天鹅 mini 竖排 */
+  .node.type-swan.l1 .bubble{
+    width:95px;min-height:72px;padding:7px 9px;
+    border-radius:9px;
+    background:linear-gradient(180deg,#3A2638,#2A1A28);
+    color:#E8D8E0;
+    border:1px dashed rgba(212,182,112,.4);
+  }
+  .node.type-swan.l1 .bubble-tag{color:#C8A0D8;font-size:8px}
+  .node.type-swan.l1 .bubble-title{font-size:11px;color:#F0DCEC;line-height:1.2}
+  .node.type-swan.l1 .bubble-meta{font-size:9px}
+  .node.type-swan.l1 .meter-bar{background:rgba(255,255,255,.1)}
+  .node.type-swan.l1 .meter-fill{background:#B886C8}
+  .node.type-swan.l1 .bubble-impact{background:rgba(255,255,255,.15);color:#F0DCEC}
   /* L1 — 米色 */
   .node.l1 .bubble{
     background:#EFE6D2;
@@ -678,6 +692,16 @@ const NODES = {
   "storage-dram":{title:"DRAM 周期顶",titleEn:"DRAM Peak",type:"shrink",prob:0.45,impact:-3,thesis:"DRAM 商品 (非 HBM) 周期顶, 2026 下行.",why:["DDR5 现货价格 2026-Q1 见顶","PC + 手机 + 服务器需求疲软","2027-2028 周期下行","HBM 占比高的厂受冲击小"],evidence:[{date:"2026-Q1",src:"DDR5 现货价首次回落"}],winners:["HBM 集中度高的 SK Hynix"],losers:["MU","005930.KS 部分"],children:[]},
   "storage-china":{title:"中国存储自研",titleEn:"China Memory",type:"contra",prob:0.25,impact:4,thesis:"长鑫 CXMT / 长江存储 YMTC 国产替代.",why:["大基金三期 $50B 加码","美国制裁反推自研","2nm + HBM 路线图公开","中国市场内循环替代"],evidence:[{date:"2025-Q2",src:"长鑫 DDR5 量产"}],winners:["中国半导体板块"],losers:["美光 / 三星中国市场"],children:[]},
 
+  // ━━━ 主题: 韩国主线 (人在韩) ━━━
+  "korea-origin":{title:"韩国主线",titleEn:"Korea Mainline",type:"origin",prob:1.0,impact:5,thesis:"立足韩国: HBM 主导 + 国防出口 + 造船复兴 + 电力升级 + 老龄化 + 财阀重估. 不堆 AI, 重在落地韩股 KOSPI.",why:["SK Hynix 是全球 AI 算力关键卡点","韩 K-Defense 出口 2024 破 $20B","HD韩国造船连续 5 年订单满","韩政府 2025 Value-Up 财阀改革","65+ 占比 25%, 老龄化全球第三"],evidence:[{date:"2025-Q1",src:"SK Hynix Q1 HBM 收入 +290%"},{date:"2024",src:"K-Defense 出口 $20B+"},{date:"2025",src:"KOSPI Value-Up 法案"}],winners:["000660.KS","005930.KS","HD韩国造船","Hanwha"],losers:[],children:["kr-hbm","kr-defense","kr-shipbuilding","kr-power","kr-humanoid","kr-stablecoin","kr-swan"]},
+  "kr-hbm":{title:"💾 HBM 寡头 SK Hynix",titleEn:"Korea HBM",type:"main",prob:0.70,impact:5,thesis:"SK Hynix HBM 50%+ 全球份额, AI 算力链不可绕过. Samsung HBM4 紧追.",why:["HBM3E 良率 70%+, NVDA 独家供应","HBM 单价 5x DDR5, 利润率 50%+","2nm GAA 配套 HBM4 量产","三星 HBM3E 仍未过 NVDA 验证"],evidence:[{date:"2025-04",src:"SK Hynix Q1 HBM 收入 +290%"}],winners:["000660.KS","005930.KS"],losers:["美光中国市场"],children:[]},
+  "kr-defense":{title:"🛡 K-Defense 出口",titleEn:"Korea Defense Export",type:"main",prob:0.75,impact:5,thesis:"K2 坦克 / K9 自行炮 / FA-50 战机出口波兰/沙特/UAE/澳洲/印度. 全球第 4 大军售国.",why:["波兰订单 $14B (K2/K9/FA-50)","沙特 / UAE / 埃及 加速采购","2027 出口目标 $35B","美军技术兼容 (北约接口)"],evidence:[{date:"2024",src:"波兰 K2 第二批合同 $6B"}],winners:["Hanwha Aerospace (012450.KS)","KAI (047810.KS)","Hyundai Rotem"],losers:[],children:[]},
+  "kr-shipbuilding":{title:"🚢 造船业复兴",titleEn:"Shipbuilding Renaissance",type:"main",prob:0.80,impact:4,thesis:"HD韩国造船 + 三星重工 + 大宇 连续 5 年订单满. LNG 船 / 集装箱 / 双燃料船全球需求.",why:["全球航运需求恢复 + 老旧船替换","LNG / 双燃料船韩国主导","HD韩国造船 backlog $80B+","中国造船成本上行, 韩国回归"],evidence:[{date:"2024",src:"HD韩国造船订单 $34B"}],winners:["HD韩国造船 (329180.KS)","三星重工 (010140.KS)","大宇造船"],losers:[],children:[]},
+  "kr-power":{title:"⚡ 电力升级",titleEn:"Korea Power",type:"main",prob:0.65,impact:4,thesis:"韩国 AI 数据中心建设 + 半导体厂耗电 + 核电重启 + SMR.",why:["三星 平泽 + SK Hynix 龙仁 半导体厂年耗 50TWh","Yoon 政府 2030 核电占比 32%","新韩国电力 (KEPCO) 财务恢复","UAE 核电出口订单 $40B"],evidence:[{date:"2025-Q1",src:"KEPCO Q1 盈利"}],winners:["KEPCO (015760.KS)","Doosan Enerbility","Korea Hydro"],losers:[],children:[]},
+  "kr-humanoid":{title:"🤖 人形机器人",titleEn:"Korea Humanoid",type:"contra",prob:0.40,impact:4,thesis:"Hyundai 收购 Boston Dynamics + 韩国机器人产业链. 老龄化推动家政机器人需求.",why:["Boston Dynamics 由 Hyundai 控股","韩国 2030 万亿规划","老龄化 + 出生率 0.72 = 劳动力急需","Samsung NEO 家用机器人"],evidence:[{date:"2024",src:"Boston Dynamics Spot 商业化"}],winners:["Hyundai Motor (005380.KS)","LG Electronics (066570.KS)"],losers:[],children:[]},
+  "kr-stablecoin":{title:"💵 KRW 数字化",titleEn:"Korea Stablecoin",type:"main",prob:0.45,impact:4,thesis:"韩国 2025 Stablecoin Act 草案 + KRW 稳定币试点 + 韩国 Upbit / Bithumb 交易所.",why:["金融委员会 2025-05 推稳定币法案","Upbit + Bithumb 全球前 10 交易所","韩元 USDT 交易量全球第三","年轻人加密渗透率 30%+"],evidence:[{date:"2025-05",src:"韩国稳定币法草案"}],winners:["Upbit (Dunamu)","Kakao Pay"],losers:[],children:[]},
+  "kr-swan":{title:"⚡ 朝鲜半岛冲突",titleEn:"Korea Crisis",type:"swan",prob:0.10,impact:-5,thesis:"金正恩武力挑衅 / 局部冲突 / ICBM 失控. 韩股系统性 -30%+.",why:["金正恩 2024 撤销朝韩和平政策","ICBM 连续测试","俄朝军事深化合作","美韩演习升级"],evidence:[{date:"2024",src:"朝鲜 ICBM 第三次测试"}],winners:["美国军工","黄金","现金"],losers:["KOSPI 全部","三星","SK Hynix"],children:[]},
+
   // ━━━ 主题: Claude 的推断 (AI 个人观点) ━━━
   "claude-forecast":{title:"Claude 的推断",titleEn:"AI Top-5 Forecast",type:"origin",prob:1.0,impact:5,thesis:"我作为 LLM 综合 2024-2026 公开信息 + 历史模式. 5 大主线按个人贝叶斯置信度排序. 非投资建议, 仅供推演.",why:["综合 8 大主题交叉验证","历史类比 + 当前数据点交叉","贝叶斯主观概率分配","可证伪 + 时间窗明确"],evidence:[{date:"2026-05",src:"Claude Opus 4.7 当前知识库截断"}],winners:["跟随主线者"],losers:["反共识激进者"],children:["fcst-energy-twin","fcst-hbm-korea","fcst-stablecoin","fcst-asic-app","fcst-swan-algo"]},
   "fcst-energy-twin":{title:"#1 AI + 能源双轮共振",titleEn:"Forecast 1: AI×Energy",type:"main",prob:0.65,impact:5,thesis:"NVDA + CEG + VST + GEV 共振涨, 2026-2028 黄金窗口. 算力 + 电力两条腿走路.",why:["NVDA Hyperscaler capex 已签到 2028","美国电网年增长 1% → 5%, 5-10 年才能填补","三里岛 / Talen / CEG 已签长协, 电价锁定","Trump 推核电立法 + IRA 保留电力部分"],evidence:[{date:"2024-09",src:"MSFT-CEG 三里岛 20 年协议"},{date:"2025-Q1",src:"NVDA Q1 营收 $44B (+78% YoY)"},{date:"2025-Q1",src:"Eaton 订单 backlog $11B"}],winners:["NVDA","AVGO","CEG","VST","ETN","GEV","TLN"],losers:["传统煤炭","部分油气中游"],children:[],
@@ -1143,8 +1167,9 @@ const EXTRAS = {
 
 // ━━━ 主题集合 (多 origin 切换) ━━━
 const THEMES = [
-  { id:"claude-forecast", label:"Claude 推断", emoji:"🔮" },
-  { id:"origin", label:"AI 算力", emoji:"🧮" },
+  { id:"claude-forecast", label:"Claude 推断", emoji:"🔮", country:"global" },
+  { id:"korea-origin", label:"韩国主线", emoji:"🇰🇷", country:"kr" },
+  { id:"origin", label:"AI 算力", emoji:"🧮", country:"global" },
   { id:"humanoid-origin", label:"人形机器人", emoji:"🤖" },
   { id:"stablecoin-origin", label:"稳定币", emoji:"💵" },
   { id:"aging-origin", label:"老龄化", emoji:"🧬" },
@@ -1183,10 +1208,13 @@ function layoutRender(){
 
   if (pathStack.length === 0){
     layout[ORIGIN] = { x: CENTER, y: mobile ? 210 : 215, level: 0 };
-    const l1 = NODES[ORIGIN].children;
+    const l1All = NODES[ORIGIN].children;
+    // 分离 swan vs 其他
+    const swans = l1All.filter(id => NODES[id] && NODES[id].type === "swan");
+    const mainKids = l1All.filter(id => !(NODES[id] && NODES[id].type === "swan"));
     const rowYStart = layout[ORIGIN].y + ORIGIN_H/2 + (mobile ? 70 : 80);
-    // 强制 3 排. 平均分配: r1=ceil(N/3), r2=ceil((N-r1)/2), r3=剩余
-    const N = l1.length;
+    // 主节点 3 排
+    const N = mainKids.length;
     const r1 = Math.ceil(N / 3);
     const r2 = Math.ceil((N - r1) / 2);
     const r3 = N - r1 - r2;
@@ -1194,7 +1222,7 @@ function layoutRender(){
     let idx = 0;
     rowCounts.forEach((cnt, rowI) => {
       for (let c = 0; c < cnt; c++){
-        const id = l1[idx++];
+        const id = mainKids[idx++];
         if (!id) return;
         layout[id] = {
           x: CENTER - (cnt-1)*L1_W/2 + c*L1_W,
@@ -1202,6 +1230,16 @@ function layoutRender(){
           level: 1
         };
       }
+    });
+    // 黑天鹅 mini 竖排 - origin 右侧
+    const swanX = mobile ? Math.min(screenCX() + 145, window.innerWidth - 50) : CX + 175;
+    const swanYStart = layout[ORIGIN].y - 30;
+    swans.forEach((id, i) => {
+      layout[id] = {
+        x: swanX,
+        y: swanYStart + i * 78,
+        level: 1
+      };
     });
     return;
   }
@@ -1439,8 +1477,8 @@ function onNodeClick(id){
 }
 
 function goBack(){
-  if (pathStack.length === 0) return;
-  pathStack.pop();
+  // 返回 = 回到当前主题主页面
+  pathStack = [];
   closePanel();
   render(true);
 }
