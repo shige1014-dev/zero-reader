@@ -1052,6 +1052,28 @@ function goBack(){
   render(true);
 }
 
+// 展开下一层: 进入该节点 (推入 pathStack) + 打开第一个子节点 panel
+function expandToChild(id){
+  const node = NODES[id];
+  if (!node || !node.children || !node.children.length) return;
+
+  // 确保当前节点在 pathStack 末尾
+  if (id !== getOriginId()){
+    const idx = pathStack.indexOf(id);
+    if (idx === -1) pathStack.push(id);
+    else pathStack = pathStack.slice(0, idx + 1);
+  } else {
+    pathStack = [];
+  }
+  visited.add(id);
+  render(true);
+  // 滚到第一个 child 的 panel
+  setTimeout(() => {
+    openPanel(node.children[0]);
+    visited.add(node.children[0]);
+  }, 350);
+}
+
 function getNode(id){
   const base = NODES[id];
   if (!base) return null;
@@ -1130,7 +1152,7 @@ function openPanel(id){
     ${n.winners.length ? `<h3 style="margin-top:20px">受益方</h3><div class="stocks">${n.winners.map(s => `<span class="stock">${s}</span>`).join("")}</div>` : ""}
     ${n.losers.length ? `<h3 style="margin-top:14px">受损方</h3><div class="stocks">${n.losers.map(s => `<span class="stock loss">${s}</span>`).join("")}</div>` : ""}
 
-    ${n.children && n.children.length ? `<button class="next-btn" onclick="closePanel();onNodeClick('${id}')">展开下一层 →</button>` : `<div class="end-note">终端节点 · 此分支已到底</div>`}
+    ${n.children && n.children.length ? `<button class="next-btn" onclick="expandToChild('${id}')">展开下一层 (${n.children.length}) →</button>` : `<div class="end-note">终端节点 · 此分支已到底</div>`}
   `;
 
   updatePager(id);
