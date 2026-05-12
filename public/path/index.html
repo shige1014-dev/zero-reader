@@ -94,19 +94,22 @@
   main::-webkit-scrollbar{width:0}
   .stage{position:relative;width:100%;min-height:100%;height:auto}
 
-  svg.edges{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+  svg.edges{position:absolute;top:0;left:0;pointer-events:none;overflow:visible}
+  svg.trail{position:absolute;top:0;left:0;pointer-events:none;overflow:visible}
   @media (max-width:720px){
-    svg.edges,svg.trail,.down-arrow{display:none}
+    .down-arrow{display:none}
   }
   .edge{
     fill:none;
-    stroke:rgba(245,238,221,.15);
-    stroke-width:1;
-    stroke-dasharray:2 5;
-    transition:all .6s;
+    stroke:rgba(212,182,112,.4);
+    stroke-width:1.5;
+    stroke-linecap:round;
+    transition:all .4s;
   }
-  .edge.active{stroke:rgba(212,172,92,.6);stroke-width:1.5;stroke-dasharray:none}
-  .edge.swan{stroke:rgba(168,139,192,.3);stroke-dasharray:1 6}
+  .edge.active{stroke:rgba(212,182,112,.75);stroke-width:2.2}
+  .edge.swan{stroke:rgba(168,139,192,.55);stroke-dasharray:4 4}
+  .edge-arrow{fill:rgba(212,182,112,.5)}
+  .edge-arrow.swan{fill:rgba(168,139,192,.55)}
 
   /* path trail - flowing */
   svg.trail{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
@@ -1328,11 +1331,43 @@ function render(animate = false){
   arrows.innerHTML = "";
   nodes.innerHTML = "";
 
-  // stage 撑高让外层滚动
-  let maxY = 0;
-  Object.values(layout).forEach(p => { if (p && p.y > maxY) maxY = p.y; });
+  let maxY = 0, maxX = 0;
+  Object.values(layout).forEach(p => {
+    if (!p) return;
+    if (p.y > maxY) maxY = p.y;
+    if (p.x > maxX) maxX = p.x;
+  });
   const stageEl = document.getElementById("stage");
   if (stageEl) stageEl.style.minHeight = (maxY + 240) + "px";
+
+  // SVG 适配: 手机用真坐标 (移除 viewBox), 桌面用 VB
+  const mobile = isMobile();
+  const stageW = stageEl ? stageEl.clientWidth : window.innerWidth;
+  const stageH = (maxY + 240);
+  if (mobile){
+    edges.removeAttribute("viewBox");
+    edges.setAttribute("width", stageW);
+    edges.setAttribute("height", stageH);
+    trail.removeAttribute("viewBox");
+    trail.setAttribute("width", stageW);
+    trail.setAttribute("height", stageH);
+  } else {
+    edges.setAttribute("viewBox","0 0 1600 900");
+    edges.removeAttribute("width"); edges.removeAttribute("height");
+    trail.setAttribute("viewBox","0 0 1600 900");
+    trail.removeAttribute("width"); trail.removeAttribute("height");
+  }
+
+  // 箭头 marker (PPT 风)
+  edges.insertAdjacentHTML("afterbegin", `
+    <defs>
+      <marker id="arr-gold" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M0,0 L10,5 L0,10 Z" fill="rgba(212,182,112,.6)"/>
+      </marker>
+      <marker id="arr-swan" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M0,0 L10,5 L0,10 Z" fill="rgba(168,139,192,.6)"/>
+      </marker>
+    </defs>`);
 
   Object.keys(NODES).forEach(id => {
     const node = NODES[id];
@@ -1346,7 +1381,8 @@ function render(animate = false){
       const cls = "edge" + (swan ? " swan" : "") + (isOnPath ? " active" : "");
       const midX = (x1+x2)/2;
       const midY = (y1+y2)/2 + (Math.abs(x2-x1) > 100 ? 20 : 0);
-      edges.insertAdjacentHTML("beforeend", `<path class="${cls}" d="M${x1},${y1} Q${midX},${midY} ${x2},${y2}"/>`);
+      const markerId = swan ? "arr-swan" : "arr-gold";
+      edges.insertAdjacentHTML("beforeend", `<path class="${cls}" marker-end="url(#${markerId})" d="M${x1},${y1} Q${midX},${midY} ${x2},${y2}"/>`);
     });
   });
 
