@@ -356,6 +356,54 @@
   }
   .list-warn li::before{content:"⚠";color:#A85050;left:6px;top:5px}
 
+  .list-counter li{
+    padding:6px 8px 6px 22px;
+    background:rgba(95,140,180,.08);
+    border-left:2px solid #5F8CB4;
+    margin-bottom:4px;border-radius:0 6px 6px 0;
+    color:#2F4F7A;
+  }
+  .list-counter li::before{content:"🤔";left:5px;top:4px;font-size:10px}
+
+  .list-play li{
+    padding:6px 8px 6px 22px;
+    background:rgba(138,181,138,.08);
+    border-left:2px solid #6B9B6B;
+    margin-bottom:4px;border-radius:0 6px 6px 0;
+    color:#2F4F2F;
+  }
+  .list-play li::before{content:"🎯";left:5px;top:4px;font-size:10px}
+
+  .analog-block{
+    background:rgba(184,144,70,.06);
+    border:1px dashed rgba(184,144,70,.3);
+    padding:11px 13px;
+    border-radius:8px;
+    font-size:12px;line-height:1.6;
+  }
+  .analog-era{
+    font-family:ui-monospace,monospace;
+    font-size:11px;font-weight:700;
+    color:var(--gold);letter-spacing:.06em;
+    margin-bottom:4px;
+  }
+  .analog-what{color:var(--text-dark);margin-bottom:4px}
+  .analog-lesson{
+    color:var(--text-mid);font-style:italic;
+    padding-top:4px;border-top:1px dashed rgba(184,144,70,.2);
+  }
+
+  .people-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
+  .person{
+    font-size:11px;
+    padding:4px 9px;
+    background:rgba(184,144,70,.1);
+    border:1px solid rgba(184,144,70,.25);
+    border-radius:99px;
+    color:var(--text-dark);
+    font-weight:500;
+  }
+
   .scenarios{display:flex;flex-direction:column;gap:6px;margin-top:4px}
   .sc{display:flex;align-items:center;gap:8px;font-size:11px;font-family:ui-monospace,monospace}
   .sc-label{width:36px;color:var(--text-mid);font-size:10px}
@@ -688,19 +736,27 @@ const NODES = {
 const EXTRAS = {
   "origin":{
     timeWindow:"2023-2026 已发生 + 持续",
-    triggers:["ChatGPT 12 月达 1 亿月活","NVDA H100 量产", "Hyperscaler capex 集体追赶"],
+    triggers:["ChatGPT 12 月达 1 亿月活","NVDA H100 量产","Hyperscaler capex 集体追赶"],
     keyWatch:["NVDA 季度数据中心营收增速","Hyperscaler 4 家 capex guidance"],
     watch:["AI 实验室估值变化 (OpenAI/Anthropic/xAI)","训练 + 推理成本曲线","电网容量 vs 数据中心需求"],
     warnings:["Capex 占 GDP 突破 1.5% = 历史泡沫边界","训练成本增速超过营收增速 = 亏本扩张"],
-    scenarios:{ bull:0.45, base:0.40, bear:0.15 }
+    scenarios:{ bull:0.45, base:0.40, bear:0.15 },
+    analog:{ era:"1999-2000 互联网泡沫", what:"Cisco / 思科 / 北电 类比 NVDA / AVGO / TSM", lesson:"基础设施先涨 (思科 1999 +200%), 但应用层 (Google) 真正赚钱在 5-10 年后. AI 算力可能也走类似路径." },
+    keyPeople:["Sam Altman (OpenAI)","Jensen Huang (NVDA)","Dario Amodei (Anthropic)","Mark Zuckerberg (Meta)","Sundar Pichai (Google)"],
+    counter:["Sequoia Capital David Cahn: 'AI 收入差 $500B'","Gary Marcus: LLM 进入边际递减","Daron Acemoglu (MIT): AI 全要素生产率只能 +1.5%","Goldman Jim Covello: '太贵的解决方案找问题'"],
+    plays:["NVDA 长仓 + AVGO 配置","SOXX / SMH ETF 分散","下行: AI ETF 卖 PUT (Nov 2025 OTM)","对冲: VRT / CEG 配 NVDA 做多电力链"]
   },
   "energy":{
     timeWindow:"2024 起, 主升 2026-2030",
-    triggers:["核电站新建 / 重启获 NRC 批准","数据中心 capex 已签订单 PPA 涨价"," Grid bottleneck 报告进入主流媒体"],
+    triggers:["核电站新建 / 重启获 NRC 批准","数据中心 capex 已签订单 PPA 涨价","Grid bottleneck 报告进入主流媒体"],
     keyWatch:["CEG / VST 周线相对强度 vs SPX","美国月度新建数据中心电力签约"],
     watch:["铀矿现货价 (U3O8)","Quanta + Eaton 订单 backlog","三里岛 1 号机组重启时间表"],
     warnings:["聚变商业化提前 1-2 年 = 估值杀核电","加息周期重启 = 公用股估值压力","Trump 撤回 IRA 部分 = 储能板块直接 -30%"],
-    scenarios:{ bull:0.45, base:0.40, bear:0.15 }
+    scenarios:{ bull:0.45, base:0.40, bear:0.15 },
+    analog:{ era:"1970-80 油价冲击 + 电力危机", what:"1973-79 油价 + 阿拉伯石油禁运 → 公用股 / 油气 / 替代能源 大涨 5-10x", lesson:"能源短缺周期通常持续 7-10 年, 上半场公用股先涨, 下半场新能源 / 核电起飞" },
+    keyPeople:["Joe Dominguez (CEG CEO)","David Crane (前 NRG)","Chris Wright (Trump 能源部长)","Jennifer Granholm (前能源部长)","Bill Gates (TerraPower)"],
+    counter:["桥水: '能源故事被透支 50%'","Morgan Stanley: 'Capex 周期顶 2026'","聚变激进派: '核电 5 年内被颠覆'","老共和党: 'AI 需求假设过高'"],
+    plays:["CEG + VST + TLN 三足配置","铀矿 ETF (URA / URNM)","期权: ETN 春季 ATM call","对冲: SMR ETF 做小仓位看 SMR 落地"]
   },
   "asic":{
     timeWindow:"2025-2028 渐进式",
@@ -748,7 +804,11 @@ const EXTRAS = {
     keyWatch:["Figure / Tesla 月度出货量","谐波减速器 + AI 大脑 + 电池三件成本曲线"],
     watch:["中国 Unitree / 智元 出货","美国 Amazon / BMW 仓库部署","欧盟 AI Act 对机器人监管"],
     warnings:["伦理事故触发监管暂停","劳动力工会反弹","BOM 跌不到 $20K → 普及延后"],
-    scenarios:{ bull:0.35, base:0.45, bear:0.20 }
+    scenarios:{ bull:0.35, base:0.45, bear:0.20 },
+    analog:{ era:"2010-2020 工业机器人爆发", what:"FANUC / KUKA 当年从工业机器人 8x → 现在 Figure / Tesla Optimus 类似 0→10 曲线", lesson:"硬科技商业化需要 3 个拐点: 成本曲线 + 应用场景 + 客户教育. 早期 ARR < $100M 时估值波动大" },
+    keyPeople:["Elon Musk (Tesla)","Brett Adcock (Figure CEO)","王兴兴 (Unitree)","Jensen Huang (NVDA GR00T)","Bernd Liepert (KUKA)"],
+    counter:["Daron Acemoglu: 人形机器人 ROI 远低预期","Sergey Levine: 通用 VLA 5 年内做不出","传统工业机器人派: 双足必要性存疑","TS Lombard: 估值已透支 5 年增长"],
+    plays:["TSLA 长仓 (Optimus optionality)","NVDA + 6324.T (谐波) 配置","RBOT / BOTZ ETF","对冲: 工会 / 监管恶化时减仓"]
   },
   "stablecoin-origin":{
     timeWindow:"2025-2030 主升",
@@ -756,7 +816,11 @@ const EXTRAS = {
     keyWatch:["USDC + USDT 月度流通量","美债利率 vs Circle 季度营收"],
     watch:["Visa / Mastercard 稳定币结算量","新兴市场采用率","Trump 加密政策"],
     warnings:["Tether 储备透明度问题再爆 = 系统性风险","央行 CBDC 立法对抗","美债利率快速下行 = Circle 利润压力"],
-    scenarios:{ bull:0.50, base:0.35, bear:0.15 }
+    scenarios:{ bull:0.50, base:0.35, bear:0.15 },
+    analog:{ era:"1990s 信用卡普及", what:"Visa / Mastercard 1990s 取代支票, 形成全球支付网络", lesson:"支付基础设施变革慢, 一旦完成 10 年护城河. 但与现金 / 银行体系共存" },
+    keyPeople:["Jeremy Allaire (Circle CEO)","Paolo Ardoino (Tether CEO)","Brian Armstrong (Coinbase)","Larry Fink (BlackRock)","Cynthia Lummis (Crypto Senator)"],
+    counter:["Janet Yellen: 影子银行风险","欧盟 ECB: 货币主权威胁","Saule Omarova: '美元数字化让美国更脆弱'","Peter Thiel: '稳定币是过渡, BTC 才是终点'"],
+    plays:["CRCL 长仓 (Circle)","COIN 配置 (Coinbase 受益)","BTC / ETH 配置 (链上需求)","对冲: 美债利率反转 = Circle 利润压力, 减仓"]
   },
   "aging-origin":{
     timeWindow:"2025-2050 长周期",
@@ -764,7 +828,11 @@ const EXTRAS = {
     keyWatch:["LLY Mounjaro 季度增速","美国 Medicare 支出 GDP 占比"],
     watch:["GLP-1 副作用长期数据","养老保险政策","长寿科技临床进度"],
     warnings:["GLP-1 副作用集中爆发","政府医保削减","长寿科技突破颠覆需求"],
-    scenarios:{ bull:0.55, base:0.35, bear:0.10 }
+    scenarios:{ bull:0.55, base:0.35, bear:0.10 },
+    analog:{ era:"日本 1990s-2010 老龄化", what:"日本是世界第一老龄化国, 医疗 + 养老 + 自动化 行业先跑通", lesson:"老龄化是确定性最高的 megatrend (人口学), 但盈利路径不止医药 — 还有金融 / 房产 / 服务" },
+    keyPeople:["David Ricks (LLY CEO)","Lars Jørgensen (Novo Nordisk CEO)","Sam Altman (Retro Biosciences)","Hal Barron (Altos Labs)","Andrew Witty (UnitedHealth CEO)"],
+    counter:["Vinay Prasad: GLP-1 长期副作用未明","JAMA: 阿尔茨海默药物效果有限","保险派: Medicare 不可持续","技术派: 长寿科技 = 富人特权, 大规模化难"],
+    plays:["LLY + NVO 双仓","XLV (Health Care ETF)","养老 REIT (ARE / WELL)","对冲: GLP-1 失败 III 期 = 减仓"]
   },
   "defense-origin":{
     timeWindow:"2025-2030 高军费周期",
@@ -772,7 +840,11 @@ const EXTRAS = {
     keyWatch:["美国 / 欧洲 / 日本 月度军费指引","Anduril / Palantir 季度营收"],
     watch:["乌克兰 / 中东 / 台海 局势","SpaceX Starshield 合同","半导体出口管制"],
     warnings:["大国直接冲突 → 全球资产暴跌","Trump 突然和平协议","技术泄露 / 武器走私"],
-    scenarios:{ bull:0.45, base:0.45, bear:0.10 }
+    scenarios:{ bull:0.45, base:0.45, bear:0.10 },
+    analog:{ era:"1980 里根军备扩张", what:"里根 1981-89 军费翻倍, LMT / RTX 类前身 5-10x", lesson:"军备周期长 (10+ 年), 但关键节点在'初期承诺 + 项目落地'. AI 国防是这轮新变量" },
+    keyPeople:["Palmer Luckey (Anduril)","Alex Karp (Palantir)","Lloyd Austin (Sec Def)","Elon Musk (SpaceX Starshield)","习近平 / Putin (对手方)"],
+    counter:["Trump 撤军主张 (孤立主义)","欧洲分歧 = 军费不达标","技术派: Anduril 估值过高","传统军工反 AI 派"],
+    plays:["LMT + RTX + GD 老军工","PLTR (Palantir 高 beta)","XAR (Aerospace ETF)","对冲: VIX call (突发冲突)"]
   },
   "space-origin":{
     timeWindow:"2025-2035 商业化窗口",
@@ -780,7 +852,11 @@ const EXTRAS = {
     keyWatch:["Starlink 月度用户增速","Rocket Lab Neutron 首飞"],
     watch:["AST SpaceMobile 商业部署","NASA Artemis 月球进度","中俄美 ASAT 测试"],
     warnings:["卫星 ASAT 冲突 (Kessler 综合征)","SpaceX 重大事故 / Starship 失败","商业月球技术挫折"],
-    scenarios:{ bull:0.45, base:0.40, bear:0.15 }
+    scenarios:{ bull:0.45, base:0.40, bear:0.15 },
+    analog:{ era:"1960s 阿波罗 + 1990s 互联网", what:"国家投入 + 商业落地双轮", lesson:"航天前 20 年烧钱, 后 20 年爆发. SpaceX 已过烧钱期, 进入收入曲线" },
+    keyPeople:["Elon Musk (SpaceX)","Peter Beck (Rocket Lab)","Abel Avellan (AST)","Bill Nelson (NASA)","Wang Yaping (中国航天)"],
+    counter:["太空垃圾增加风险","Starship 仍未常规化","ASAT 武器使用风险","利率高位影响私募估值"],
+    plays:["RKLB + ASTS 公开股","UFO ETF (太空 ETF)","SpaceX 未上市 (二级市场份额)","对冲: VIX call 黑天鹅"]
   },
   "quantum-origin":{
     timeWindow:"2027-2035 实用化",
@@ -788,7 +864,11 @@ const EXTRAS = {
     keyWatch:["Google Willow / IBM Heron 路线图","IonQ / Rigetti 营收增速"],
     watch:["NIST PQC 政府部署进度","药物 / 材料 量子模拟商业化","中国 / 中科大量子计算突破"],
     warnings:["Q-Day 提前 (2028-2030)","量子工程难度被低估 (再延 5 年)","纠错路线挫折"],
-    scenarios:{ bull:0.35, base:0.45, bear:0.20 }
+    scenarios:{ bull:0.35, base:0.45, bear:0.20 },
+    analog:{ era:"1970-90s 半导体工艺", what:"摩尔定律早期, 每 18 月翻倍", lesson:"量子可能走类似指数曲线, 但工程难度更大. 2030 前后是关键拐点" },
+    keyPeople:["Sundar Pichai (Google)","Arvind Krishna (IBM)","Peter Chapman (IonQ)","Jay Gambetta (IBM Quantum)","Pan Jianwei (中科大)"],
+    counter:["Gil Kalai: 量子噪声极限不可破","Sabine Hossenfelder: 实用化被夸大","实业派: 50+ 年仍是科学问题","金融派: 估值远超商业进度"],
+    plays:["IBM + GOOGL 大厂 (附带 optionality)","IONQ + QBTS 高 beta","QTUM ETF (量子计算 ETF)","对冲: PANW / CRWD (PQC 间接)"]
   },
   "food-origin":{
     timeWindow:"2026-2040",
@@ -796,7 +876,11 @@ const EXTRAS = {
     keyWatch:["Upside / Eat Just 商业化进度","垂直农业能耗 / 出货比"],
     watch:["主流餐饮链采纳实验室肉","CRISPR 作物全球批准","Perfect Day 精准发酵成本"],
     warnings:["消费者接受度低 → 商业化延后 5+ 年","FDA / 欧盟严格监管","传统农业反弹 + 立法保护"],
-    scenarios:{ bull:0.30, base:0.45, bear:0.25 }
+    scenarios:{ bull:0.30, base:0.45, bear:0.25 },
+    analog:{ era:"1990s GMO 商业化", what:"GMO 早期被强烈反对, 但 20 年后全球 70% 玉米 / 大豆 GMO", lesson:"食物科技商业化慢但深, 消费者教育周期长. 1-2 个成功案例 (Impossible Foods) 后估值反弹" },
+    keyPeople:["Patrick Brown (Impossible)","Uma Valeti (Upside)","Josh Tetrick (Eat Just)","Bill Gates (CRISPR 投资)","Mark Post (Mosa Meat)"],
+    counter:["Beef Lobby: 实验室肉非'真肉'","欧盟保守监管 (意大利 ban 实验室肉)","传统农场主反弹","成本曲线远高于预测"],
+    plays:["DE (农业机械)","BG / ADM 全产业链","CRSP (基因编辑)","对冲: WEAT / CORN 反向"]
   },
   "climate-origin":{
     timeWindow:"2025-2050 长周期 + 临界点风险",
@@ -804,7 +888,11 @@ const EXTRAS = {
     keyWatch:["全球气候损失 (Munich Re 季报)","欧盟 / 中国碳价"],
     watch:["格陵兰 / 南极冰盖融化速度","亚马逊雨林状态","ENSO / AMOC 信号"],
     warnings:["临界点突破 = 不可逆","保险体系崩 → 房产暴跌","Trump 撤回美国气候承诺"],
-    scenarios:{ bull:0.20, base:0.55, bear:0.25 }
+    scenarios:{ bull:0.20, base:0.55, bear:0.25 },
+    analog:{ era:"1970s 环保运动", what:"DDT / 臭氧层 / 酸雨 都从警告 → 行动 经历 10-20 年", lesson:"气候行动滞后于科学共识 15-20 年, 但行动启动后行业级重塑" },
+    keyPeople:["Andrew Forrest (Fortescue 绿氢)","Larry Fink (BlackRock ESG)","Christiana Figueres (Paris)","Bill Gates (Breakthrough)","Greta Thunberg"],
+    counter:["Bjorn Lomborg: 气候成本被夸大","Trump: 气候是骗局","保守派经济学派: 适应 > 减排","Vivek Ramaswamy: ESG 是骗局"],
+    plays:["ICLN (清洁能源 ETF)","NEE (清洁能源 utility)","CCJ (核电 - 低碳)","对冲: 沿海 REIT 减仓"]
   },
   "ev-origin":{
     timeWindow:"2025-2030 后周期",
@@ -812,7 +900,11 @@ const EXTRAS = {
     keyWatch:["全球 EV 月度渗透率","Tesla Robotaxi 单车日营收"],
     watch:["BYD 全球出口数据","中国 EV 价格战","欧盟 / 美国关税反应"],
     warnings:["利率持续高位压制需求","固态电池跳票","政府补贴退坡"],
-    scenarios:{ bull:0.45, base:0.40, bear:0.15 }
+    scenarios:{ bull:0.45, base:0.40, bear:0.15 },
+    analog:{ era:"1900-1920 内燃机 vs 电动车", what:"100 年前电动车输给内燃机, 这次反过来", lesson:"行业拐点后, 龙头 (Ford 那时) 拿走 80% 利润. Tesla 是这轮的 Ford 候选" },
+    keyPeople:["Elon Musk (Tesla)","Wang Chuanfu (BYD)","Mary Barra (GM)","Jim Farley (Ford)","Lei Jun (小米)"],
+    counter:["Hertz 抛 EV 事件重演","利率影响汽车贷款","新车销量回归","充电基建慢"],
+    plays:["TSLA + BYDDY 双仓","DRIV (EV ETF)","CHPT (充电网络)","对冲: 利率高 → 减 EV 仓"]
   },
   "bci-origin":{
     timeWindow:"2027-2040",
@@ -820,7 +912,11 @@ const EXTRAS = {
     keyWatch:["Neuralink / Synchron 临床人数","FDA 审批进度"],
     watch:["消费 EEG 普及","脑数据立法","Apple / Meta BCI 入局"],
     warnings:["黑客攻击 BCI 事件","伦理 / 神经隐私争议","设备失效 / 患者反应"],
-    scenarios:{ bull:0.30, base:0.50, bear:0.20 }
+    scenarios:{ bull:0.30, base:0.50, bear:0.20 },
+    analog:{ era:"心脏起搏器 1960s", what:"侵入式医疗设备 60 年发展, 现千万级患者", lesson:"BCI 医疗适应症路径清晰, 但消费级遥远. 像 Pacemaker → AirPod 路径" },
+    keyPeople:["Elon Musk (Neuralink)","Tom Oxley (Synchron)","Matt Angle (Paradromics)","Krishna Shenoy (Neuralink + Synchron)","Mary Lou Jepsen (Openwater)"],
+    counter:["Eric Yablonka: BCI 临床进度被夸大","Marcus Wagner: 伦理问题大","Frances Haugen: 脑数据隐私无解","保守医学派: 侵入式风险太高"],
+    plays:["NUSI (新晋 BCI 公司 - 高 beta)","XLV / IBB (医疗保险)","Neuralink 私募份额","对冲: 黑客事件 = 减仓"]
   }
 };
 
@@ -1191,6 +1287,30 @@ function openPanel(id){
     ${n.warnings && n.warnings.length ? `
       <h3 style="margin-top:18px">⚠ 警惕 · Warnings</h3>
       <ul class="list list-warn">${n.warnings.map(w => `<li>${w}</li>`).join("")}</ul>
+    ` : ""}
+
+    ${n.counter && n.counter.length ? `
+      <h3 style="margin-top:18px">🤔 反方观点 · Counter</h3>
+      <ul class="list list-counter">${n.counter.map(c => `<li>${c}</li>`).join("")}</ul>
+    ` : ""}
+
+    ${n.analog ? `
+      <h3 style="margin-top:18px">🕰 历史类比 · Analog</h3>
+      <div class="analog-block">
+        <div class="analog-era">${n.analog.era}</div>
+        <div class="analog-what">${n.analog.what}</div>
+        <div class="analog-lesson">→ ${n.analog.lesson}</div>
+      </div>
+    ` : ""}
+
+    ${n.keyPeople && n.keyPeople.length ? `
+      <h3 style="margin-top:18px">👤 关键人物 · Key People</h3>
+      <div class="people-row">${n.keyPeople.map(p => `<span class="person">${p}</span>`).join("")}</div>
+    ` : ""}
+
+    ${n.plays && n.plays.length ? `
+      <h3 style="margin-top:18px">🎯 衍生玩法 · Plays</h3>
+      <ul class="list list-play">${n.plays.map(p => `<li>${p}</li>`).join("")}</ul>
     ` : ""}
 
     <h3 style="margin-top:20px">为什么 · Why</h3>
