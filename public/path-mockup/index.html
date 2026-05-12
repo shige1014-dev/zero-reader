@@ -223,7 +223,7 @@
   .pager{
     flex-shrink:0;
     display:flex;align-items:center;justify-content:space-between;
-    padding:14px 18px;
+    padding:14px 60px 14px 18px;
     background:rgba(212,172,92,.12);
     border-bottom:1px solid rgba(61,46,34,.08);
     font-size:11px;font-family:ui-monospace,monospace;
@@ -417,8 +417,8 @@
     aside .title{font-size:18px;margin-bottom:4px}
     aside .title-en{font-size:10px;margin-bottom:10px}
     aside .body{padding:14px 18px 28px}
-    .pager{padding:10px 14px}
-    .pager-btn{padding:7px 13px;font-size:11px}
+    .pager{padding:10px 54px 10px 14px}
+    .pager-btn{padding:7px 11px;font-size:10.5px}
     .pager-info{font-size:9.5px}
     aside h3{font-size:9.5px;margin:18px 0 8px}
     .thesis{font-size:12.5px;padding:10px 13px;line-height:1.7}
@@ -795,16 +795,16 @@ function layoutRender(){
 
   if (pathStack.length === 0){
     if (mobile){
-      layout[ORIGIN] = { x: CX, y: 220, level: 0 };
+      layout[ORIGIN] = { x: CX, y: 240, level: 0 };
       const l1 = NODES[ORIGIN].children;
       const cols = 2;
-      const colW = 360, rowH = 180;
+      const colW = 380, rowH = 230;
       l1.forEach((id, i) => {
         const r = Math.floor(i / cols);
         const c = i % cols;
         layout[id] = {
           x: CX - (cols-1)*colW/2 + c*colW,
-          y: 430 + r*rowH,
+          y: 470 + r*rowH,
           level: 1
         };
       });
@@ -825,8 +825,8 @@ function layoutRender(){
 
   const chain = [ORIGIN, ...pathStack];
   const selected = chain[chain.length - 1];
-  const startY = mobile ? 200 : 200;
-  const stepY = mobile ? 150 : 200;
+  const startY = mobile ? 220 : 200;
+  const stepY = mobile ? 200 : 200;
   chain.forEach((id, i) => {
     layout[id] = { x: CX, y: startY + i * stepY, level: i, current: i === chain.length - 1 };
   });
