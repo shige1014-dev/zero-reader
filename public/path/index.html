@@ -1184,17 +1184,24 @@ function layoutRender(){
   if (pathStack.length === 0){
     layout[ORIGIN] = { x: CENTER, y: mobile ? 210 : 215, level: 0 };
     const l1 = NODES[ORIGIN].children;
-    // 3 排布局: cols = ceil(N / 3) 但限 2-3 cols
-    const cols = mobile ? Math.min(2, Math.ceil(l1.length / 3)) : Math.min(3, Math.ceil(l1.length / 2));
     const rowYStart = layout[ORIGIN].y + ORIGIN_H/2 + (mobile ? 70 : 80);
-    l1.forEach((id, i) => {
-      const c = i % cols;
-      const r = Math.floor(i / cols);
-      layout[id] = {
-        x: CENTER - (cols-1)*L1_W/2 + c*L1_W,
-        y: rowYStart + r*L1_H,
-        level: 1
-      };
+    // 强制 3 排. 平均分配: r1=ceil(N/3), r2=ceil((N-r1)/2), r3=剩余
+    const N = l1.length;
+    const r1 = Math.ceil(N / 3);
+    const r2 = Math.ceil((N - r1) / 2);
+    const r3 = N - r1 - r2;
+    const rowCounts = [r1, r2, r3];
+    let idx = 0;
+    rowCounts.forEach((cnt, rowI) => {
+      for (let c = 0; c < cnt; c++){
+        const id = l1[idx++];
+        if (!id) return;
+        layout[id] = {
+          x: CENTER - (cnt-1)*L1_W/2 + c*L1_W,
+          y: rowYStart + rowI*L1_H,
+          level: 1
+        };
+      }
     });
     return;
   }
@@ -1212,15 +1219,23 @@ function layoutRender(){
   if (selNode && selNode.children.length){
     const kids = selNode.children;
     const childY = curY + 10;
-    const cols = mobile ? Math.min(2, kids.length) : Math.min(5, kids.length);
-    kids.forEach((id, i) => {
-      const c = i % cols;
-      const r = Math.floor(i / cols);
-      layout[id] = {
-        x: CENTER - (cols-1)*L2_W/2 + c*L2_W,
-        y: childY + r*L2_H,
-        level: chain.length
-      };
+    // 子节点也强制 3 排
+    const N = kids.length;
+    const r1 = Math.ceil(N / 3);
+    const r2 = Math.ceil((N - r1) / 2);
+    const r3 = N - r1 - r2;
+    const rowCounts = [r1, r2, r3];
+    let idx = 0;
+    rowCounts.forEach((cnt, rowI) => {
+      for (let c = 0; c < cnt; c++){
+        const id = kids[idx++];
+        if (!id) return;
+        layout[id] = {
+          x: CENTER - (cnt-1)*L2_W/2 + c*L2_W,
+          y: childY + rowI*L2_H,
+          level: chain.length
+        };
+      }
     });
   }
 
