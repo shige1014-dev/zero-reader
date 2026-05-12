@@ -27,10 +27,14 @@
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{
     height:100%;
-    background:#14110D;
+    background:#2A2218;
     color:#F5EFE3;
     font-family:"PingFang SC","Noto Sans SC",sans-serif;
     overflow:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:radial-gradient(ellipse 60% 40% at 50% 20%,rgba(212,182,112,.06),transparent 60%);
   }
 
   body::before,body::after{
@@ -147,14 +151,14 @@
     transform:scale(1.06);
   }
 
-  /* tile - zerozero 配色 */
+  /* tile - 明显浅于背景 */
   .bubble{
     position:relative;
-    background:#1A1612;
-    border:1px solid rgba(255,255,255,.06);
+    background:#3D3225;
+    border:1px solid rgba(212,182,112,.18);
     border-left:3px solid #D4B670;
     border-radius:12px;
-    box-shadow:0 4px 16px -6px rgba(0,0,0,.4);
+    box-shadow:0 6px 20px -8px rgba(0,0,0,.5);
     padding:12px 14px;
     width:170px;
     min-height:108px;
@@ -169,7 +173,8 @@
     padding:18px 22px;
     border-radius:16px;
     border-left-width:4px;
-    background:linear-gradient(180deg,#231C13,#1A1612);
+    background:linear-gradient(180deg,#4A3D2C,#3D3225);
+    border-color:rgba(212,182,112,.35);
   }
   .node.l2 .bubble{
     width:158px;
