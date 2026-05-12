@@ -141,27 +141,37 @@
     transform:scale(1.06);
   }
 
-  /* 2048-style tile */
+  /* 2048-style tile - 大小分层 */
   .bubble{
     position:relative;
     background:#EEE4DA;
     border-radius:14px;
-    box-shadow:0 4px 0 rgba(0,0,0,.06), 0 8px 20px -8px rgba(0,0,0,.3);
-    padding:14px 16px;
-    width:160px;
-    min-height:108px;
+    box-shadow:0 4px 0 rgba(0,0,0,.08), 0 8px 20px -8px rgba(0,0,0,.3);
+    padding:12px 14px;
+    width:170px;
+    min-height:110px;
     display:flex;flex-direction:column;justify-content:space-between;
     transition:all .25s cubic-bezier(.34,1.3,.5,1);
   }
+  /* 主题 (origin) 最大 */
   .node.l0 .bubble{
-    width:180px;
-    min-height:120px;
-    padding:16px 18px;
+    width:236px;
+    min-height:150px;
+    padding:18px 22px;
+    border-radius:18px;
+  }
+  /* 选择 (L1+) 渐小 */
+  .node.l2 .bubble{
+    width:154px;
+    min-height:100px;
+    padding:10px 13px;
+    border-radius:12px;
   }
   .node.l3 .bubble{
     width:140px;
-    min-height:96px;
-    padding:12px 14px;
+    min-height:90px;
+    padding:9px 12px;
+    border-radius:11px;
   }
 
   /* 2048 配色 (warm wood tones) */
@@ -434,15 +444,16 @@
 
     main{top:50px}
 
-    /* nodes 缩小 */
-    .bubble{width:140px;min-height:92px;padding:10px 12px;border-radius:12px}
-    .node.l0 .bubble{width:152px;min-height:100px;padding:12px 14px}
-    .node.l3 .bubble{width:124px;min-height:84px;padding:9px 11px}
+    /* nodes 缩小 + 大小分层 */
+    .bubble{width:146px;min-height:96px;padding:10px 12px;border-radius:12px}
+    .node.l0 .bubble{width:194px;min-height:128px;padding:14px 16px;border-radius:16px}
+    .node.l2 .bubble{width:132px;min-height:88px;padding:9px 11px;border-radius:11px}
+    .node.l3 .bubble{width:122px;min-height:80px;padding:8px 10px;border-radius:10px}
     .bubble-tag{font-size:8.5px;letter-spacing:.12em}
-    .bubble-title{font-size:13px;margin:5px 0;line-height:1.25}
-    .node.l0 .bubble-title{font-size:14.5px}
-    .node.l2 .bubble-title{font-size:12px}
-    .node.l3 .bubble-title{font-size:11.5px}
+    .bubble-title{font-size:12.5px;margin:4px 0;line-height:1.25}
+    .node.l0 .bubble-title{font-size:15px;font-weight:800}
+    .node.l2 .bubble-title{font-size:11.5px}
+    .node.l3 .bubble-title{font-size:11px}
     .bubble-meta{font-size:9px;gap:5px}
     .bubble-impact{font-size:9px;padding:1px 5px}
 
@@ -844,68 +855,58 @@ function layoutRender(){
   const mobile = isMobile();
   const ORIGIN = getOriginId();
 
+  // 大小分层 + gap 防重叠
+  // 桌面: origin 236×150 / L1 170×110 / L2 154×100 / L3 140×90
+  // 手机: origin 194×128 / L1 146×96 / L2 132×88 / L3 122×80
+  const L1_W = mobile ? 158 : 186;   // 146+12 / 170+16
+  const L1_H = mobile ? 124 : 142;
+  const L2_W = mobile ? 146 : 170;
+  const L2_H = mobile ? 110 : 130;
+  const ORIGIN_H = mobile ? 128 : 150;
+
   if (pathStack.length === 0){
-    if (mobile){
-      layout[ORIGIN] = { x: CX, y: 230, level: 0 };
-      const l1 = NODES[ORIGIN].children;
-      const cols = 2;
-      const colW = 320, rowH = 180;
-      l1.forEach((id, i) => {
-        const r = Math.floor(i / cols);
-        const c = i % cols;
-        layout[id] = {
-          x: CX - (cols-1)*colW/2 + c*colW,
-          y: 440 + r*rowH,
-          level: 1
-        };
-      });
-    } else {
-      layout[ORIGIN] = { x: CX, y: 500, level: 0 };
-      const l1 = NODES[ORIGIN].children;
-      l1.forEach((id, i) => {
-        const ang = (-90 + (360 / l1.length) * i) * Math.PI / 180;
-        layout[id] = {
-          x: CX + Math.cos(ang) * 320,
-          y: 500 + Math.sin(ang) * 270,
-          level: 1
-        };
-      });
-    }
+    // 初始: origin 大居中 + L1 网格在下
+    layout[ORIGIN] = { x: CX, y: mobile ? 180 : 220, level: 0 };
+    const l1 = NODES[ORIGIN].children;
+    const cols = mobile ? 2 : Math.min(5, l1.length);
+    const rowYStart = layout[ORIGIN].y + ORIGIN_H/2 + (mobile ? 75 : 90);
+    l1.forEach((id, i) => {
+      const c = i % cols;
+      const r = Math.floor(i / cols);
+      layout[id] = {
+        x: CX - (cols-1)*L1_W/2 + c*L1_W,
+        y: rowYStart + r*L1_H,
+        level: 1
+      };
+    });
     return;
   }
 
+  // 展开模式: chain 垂直 + selected 的 children 在底部网格
   const chain = [ORIGIN, ...pathStack];
   const selected = chain[chain.length - 1];
-  const startY = mobile ? 220 : 200;
-  const stepY = mobile ? 200 : 200;
+
+  // 链中每层 Y: origin 小 (88px space), L1+ 紧凑
+  let curY = mobile ? 140 : 160;
   chain.forEach((id, i) => {
-    layout[id] = { x: CX, y: startY + i * stepY, level: i, current: i === chain.length - 1 };
+    layout[id] = { x: CX, y: curY, level: i, current: i === chain.length - 1 };
+    curY += (i === 0 ? (mobile ? 120 : 140) : (mobile ? 122 : 130));
   });
 
   const selNode = NODES[selected];
   if (selNode && selNode.children.length){
     const kids = selNode.children;
-    const childY = layout[selected].y + stepY;
-    if (mobile){
-      // 手机: 子节点 2 列网格
-      const cols = Math.min(2, kids.length);
-      const colW = 380, rowH = 150;
-      kids.forEach((id, i) => {
-        const r = Math.floor(i / cols);
-        const c = i % cols;
-        layout[id] = {
-          x: CX - (cols-1)*colW/2 + c*colW,
-          y: childY + r*rowH,
-          level: chain.length
-        };
-      });
-    } else {
-      // 桌面: 子节点横向 fan
-      kids.forEach((id, i) => {
-        const spread = (kids.length - 1) * 270;
-        layout[id] = { x: CX - spread/2 + i * 270, y: childY, level: chain.length };
-      });
-    }
+    const childY = curY + (mobile ? 8 : 10);
+    const cols = mobile ? Math.min(2, kids.length) : Math.min(5, kids.length);
+    kids.forEach((id, i) => {
+      const c = i % cols;
+      const r = Math.floor(i / cols);
+      layout[id] = {
+        x: CX - (cols-1)*L2_W/2 + c*L2_W,
+        y: childY + r*L2_H,
+        level: chain.length
+      };
+    });
   }
 
   // sibling: 桌面在右侧, 手机在 chain 旁边收缩展示
