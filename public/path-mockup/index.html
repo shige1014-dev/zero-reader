@@ -950,27 +950,26 @@ function layoutRender(){
   layout = {};
   const mobile = isMobile();
   const ORIGIN = getOriginId();
+  // 手机用屏幕实坐标, 桌面用 VB 坐标
+  const CENTER = mobile ? screenCX() : CX;
 
-  // 大小分层 + gap 防重叠
-  // 桌面: origin 236×150 / L1 170×110 / L2 154×100 / L3 140×90
-  // 手机: origin 194×128 / L1 146×96 / L2 132×88 / L3 122×80
-  const L1_W = mobile ? 158 : 186;   // 146+12 / 170+16
-  const L1_H = mobile ? 124 : 142;
-  const L2_W = mobile ? 146 : 170;
-  const L2_H = mobile ? 110 : 130;
+  // 像素值, 手机直接用, 桌面缩放后用
+  const L1_W = mobile ? 165 : 186;
+  const L1_H = mobile ? 130 : 142;
+  const L2_W = mobile ? 152 : 170;
+  const L2_H = mobile ? 116 : 130;
   const ORIGIN_H = mobile ? 128 : 150;
 
   if (pathStack.length === 0){
-    // 初始: origin 大居中 + L1 网格在下
-    layout[ORIGIN] = { x: CX, y: mobile ? 180 : 220, level: 0 };
+    layout[ORIGIN] = { x: CENTER, y: mobile ? 220 : 220, level: 0 };
     const l1 = NODES[ORIGIN].children;
     const cols = mobile ? 2 : Math.min(5, l1.length);
-    const rowYStart = layout[ORIGIN].y + ORIGIN_H/2 + (mobile ? 75 : 90);
+    const rowYStart = layout[ORIGIN].y + ORIGIN_H/2 + (mobile ? 80 : 90);
     l1.forEach((id, i) => {
       const c = i % cols;
       const r = Math.floor(i / cols);
       layout[id] = {
-        x: CX - (cols-1)*L1_W/2 + c*L1_W,
+        x: CENTER - (cols-1)*L1_W/2 + c*L1_W,
         y: rowYStart + r*L1_H,
         level: 1
       };
@@ -978,27 +977,25 @@ function layoutRender(){
     return;
   }
 
-  // 展开模式: chain 垂直 + selected 的 children 在底部网格
   const chain = [ORIGIN, ...pathStack];
   const selected = chain[chain.length - 1];
 
-  // 链中每层 Y: origin 小 (88px space), L1+ 紧凑
-  let curY = mobile ? 140 : 160;
+  let curY = mobile ? 150 : 160;
   chain.forEach((id, i) => {
-    layout[id] = { x: CX, y: curY, level: i, current: i === chain.length - 1 };
-    curY += (i === 0 ? (mobile ? 120 : 140) : (mobile ? 122 : 130));
+    layout[id] = { x: CENTER, y: curY, level: i, current: i === chain.length - 1 };
+    curY += (i === 0 ? (mobile ? 130 : 140) : (mobile ? 128 : 130));
   });
 
   const selNode = NODES[selected];
   if (selNode && selNode.children.length){
     const kids = selNode.children;
-    const childY = curY + (mobile ? 8 : 10);
+    const childY = curY + 10;
     const cols = mobile ? Math.min(2, kids.length) : Math.min(5, kids.length);
     kids.forEach((id, i) => {
       const c = i % cols;
       const r = Math.floor(i / cols);
       layout[id] = {
-        x: CX - (cols-1)*L2_W/2 + c*L2_W,
+        x: CENTER - (cols-1)*L2_W/2 + c*L2_W,
         y: childY + r*L2_H,
         level: chain.length
       };
@@ -1022,6 +1019,9 @@ function layoutRender(){
 }
 
 function pxFromVB(x, y){
+  // 手机: 直接用屏幕坐标 (不缩放)
+  if (isMobile()) return { left: x, top: y, scale: 1 };
+  // 桌面: SVG viewBox 缩放
   const main = document.querySelector("main");
   const w = main.clientWidth, h = main.clientHeight;
   const scale = Math.min(w/VB_W, h/VB_H);
@@ -1029,6 +1029,8 @@ function pxFromVB(x, y){
   const ys = (h - VB_H*scale)/2;
   return { left: xs + x*scale, top: ys + y*scale, scale };
 }
+
+function screenCX(){ return window.innerWidth / 2; }
 
 let prevChildrenIds = new Set();
 
