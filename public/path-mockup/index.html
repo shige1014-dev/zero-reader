@@ -151,12 +151,9 @@
     transform:scale(1.06);
   }
 
-  /* tile - 明显浅于背景 */
+  /* tile - 一层一色 (暖色系) */
   .bubble{
     position:relative;
-    background:#3D3225;
-    border:1px solid rgba(212,182,112,.18);
-    border-left:3px solid #D4B670;
     border-radius:12px;
     box-shadow:0 6px 20px -8px rgba(0,0,0,.5);
     padding:12px 14px;
@@ -165,16 +162,32 @@
     display:flex;flex-direction:column;justify-content:space-between;
     transition:all .25s cubic-bezier(.34,1.3,.5,1);
     color:#F5EFE3;
+    border:1px solid rgba(255,255,255,.05);
   }
-  /* 主题 (origin) 最大 + 强调 */
+  /* L0 主题 — 暖金 */
   .node.l0 .bubble{
-    width:230px;
-    min-height:142px;
-    padding:18px 22px;
+    width:230px;min-height:142px;padding:18px 22px;
     border-radius:16px;
-    border-left-width:4px;
-    background:linear-gradient(180deg,#4A3D2C,#3D3225);
-    border-color:rgba(212,182,112,.35);
+    background:linear-gradient(180deg,#5A4628,#3F2E18);
+    border:1px solid rgba(212,182,112,.35);
+    color:#FFEBC2;
+  }
+  /* L1 — 暖咖 */
+  .node.l1 .bubble{
+    background:#3F3225;
+    border-color:rgba(212,182,112,.18);
+  }
+  /* L2 — 暖砂 */
+  .node.l2 .bubble{
+    background:#473526;
+    width:158px;min-height:98px;padding:10px 13px;border-radius:11px;
+    border-color:rgba(200,160,100,.16);
+  }
+  /* L3 — 浅暖 */
+  .node.l3 .bubble{
+    background:#523C26;
+    width:144px;min-height:88px;padding:9px 12px;border-radius:10px;
+    border-color:rgba(200,160,100,.14);
   }
   .node.l2 .bubble{
     width:158px;
@@ -189,14 +202,16 @@
     border-radius:10px;
   }
 
-  /* 类型颜色 = 左边竖条颜色 */
-  .node.type-main .bubble{border-left-color:#D4B670}
-  .node.type-contra .bubble{border-left-color:#A89B82}
-  .node.type-swan .bubble{border-left-color:#B886C8}
-  .node.type-shrink .bubble{border-left-color:#C8857D}
-  .node.type-origin .bubble{
-    border-left-color:#D4B670;
-    box-shadow:0 6px 24px -8px rgba(212,182,112,.25), 0 4px 12px -6px rgba(0,0,0,.5);
+  /* swan 单独标记 (虚线 + ⚡) — 不破坏暖色统一 */
+  .node.type-swan .bubble{
+    border-style:dashed;
+    border-color:rgba(212,182,112,.4);
+  }
+  .node.type-shrink .bubble{
+    border-color:rgba(184,144,70,.3);
+  }
+  .node.type-contra .bubble{
+    border-color:rgba(184,144,70,.22);
   }
 
   .bubble-tag{
@@ -1453,10 +1468,10 @@ function stockLink(s, loss){
   return `<a class="stock${loss ? " loss" : ""}" href="${url}" target="_blank" rel="noopener">${s}</a>`;
 }
 
-// 人物链接 → 百度百科 / 百度搜索
+// 人物链接 → 中文维基百科
 function personLink(name){
   const search = name.split(/[\s(（]/)[0];
-  const url = `https://www.baidu.com/s?wd=${encodeURIComponent(search)}`;
+  const url = `https://zh.wikipedia.org/w/index.php?search=${encodeURIComponent(search)}`;
   return `<a class="person" href="${url}" target="_blank" rel="noopener">${name}</a>`;
 }
 
