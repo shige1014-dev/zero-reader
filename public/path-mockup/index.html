@@ -336,13 +336,29 @@
   .meters-inline .meter-val{font-family:ui-monospace,monospace;font-size:11px;color:var(--text-dark);font-weight:700;min-width:42px;text-align:right}
 
   aside .body{
-    padding:20px 28px 32px;
+    padding:22px 28px 40px;
     overflow-y:auto;
     flex:1;
     scrollbar-width:thin;
+    font-size:14px;
+    line-height:1.7;
   }
   aside .body::-webkit-scrollbar{width:6px}
   aside .body::-webkit-scrollbar-thumb{background:rgba(184,144,70,.3);border-radius:99px}
+  aside .title{font-size:26px !important}
+  aside .body h3{font-size:11px !important;margin:24px 0 12px !important}
+  aside .thesis{font-size:15px !important;line-height:1.85 !important;padding:14px 18px !important}
+  aside ul.list{font-size:14px !important;line-height:1.8 !important}
+  aside ul.list li{margin-bottom:8px !important}
+  aside .ev{font-size:13px !important;padding:12px 16px !important;line-height:1.7 !important}
+  aside .ev .ev-date{font-size:10.5px !important;margin-bottom:5px !important}
+  aside .stocks{gap:8px !important}
+  aside .stock{font-size:12px !important;padding:5px 11px !important}
+  aside .person{font-size:12.5px !important;padding:5px 11px !important}
+  aside .analog-block{font-size:13px !important;padding:13px 16px !important;line-height:1.75 !important}
+  aside .analog-era{font-size:12px !important}
+  aside .meter-label{font-size:11px !important}
+  aside .meter-val{font-size:12px !important}
 
   /* === 扩展字段样式 === */
   .time-window{
@@ -411,14 +427,19 @@
 
   .people-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
   .person{
-    font-size:11px;
-    padding:4px 9px;
+    display:inline-block;
+    text-decoration:none;
+    cursor:pointer;
+    font-size:12px;
+    padding:5px 11px;
     background:rgba(184,144,70,.1);
-    border:1px solid rgba(184,144,70,.25);
+    border:1px solid rgba(184,144,70,.28);
     border-radius:99px;
     color:var(--text-dark);
     font-weight:500;
+    transition:all .15s;
   }
+  .person:hover{background:rgba(184,144,70,.22);transform:translateY(-1px)}
 
   .scenarios{display:flex;flex-direction:column;gap:6px;margin-top:4px}
   .sc{display:flex;align-items:center;gap:8px;font-size:11px;font-family:ui-monospace,monospace}
@@ -490,7 +511,8 @@
   .ev{font-size:11.5px;line-height:1.65;padding:10px 14px;margin-bottom:6px;background:rgba(61,46,34,.03);border:1px solid rgba(61,46,34,.06);border-radius:8px;color:var(--text-dark)}
   .ev .ev-date{font-family:ui-monospace,monospace;font-size:9.5px;color:var(--gold);letter-spacing:.06em;font-weight:700;margin-bottom:3px}
   .stocks{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
-  .stock{font-family:ui-monospace,monospace;font-size:10.5px;font-weight:700;padding:4px 9px;background:rgba(168,184,152,.22);border:1px solid rgba(168,184,152,.45);border-radius:5px;color:#3F5A3F;letter-spacing:.04em}
+  .stock{display:inline-block;text-decoration:none;cursor:pointer;font-family:ui-monospace,monospace;font-size:11px;font-weight:700;padding:5px 10px;background:rgba(168,184,152,.18);border:1px solid rgba(168,184,152,.4);border-radius:5px;color:#5F8F5F;letter-spacing:.04em;transition:all .15s}
+  .stock:hover{background:rgba(168,184,152,.34);transform:translateY(-1px)}
   .stock.loss{background:rgba(200,137,110,.22);border-color:rgba(200,137,110,.45);color:#8E4A2F}
   .next-btn{display:block;width:100%;margin-top:18px;padding:14px;background:linear-gradient(180deg,#F0DCA8,#D4AC5C);border:none;color:#3D2E22;font-size:13.5px;font-weight:700;letter-spacing:.06em;border-radius:14px;cursor:pointer;box-shadow:0 8px 20px -8px rgba(212,172,92,.6);transition:all .2s}
   .next-btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px -8px rgba(212,172,92,.8)}
@@ -1244,6 +1266,21 @@ function getNode(id){
   return { ...base, ...(EXTRAS[id] || {}) };
 }
 
+// 股票链接 → 雪球 (中文)
+function stockLink(s, loss){
+  // 提取 ticker (去掉括号注释)
+  const ticker = s.split(/[\s(（]/)[0];
+  const url = `https://xueqiu.com/k?q=${encodeURIComponent(ticker)}`;
+  return `<a class="stock${loss ? " loss" : ""}" href="${url}" target="_blank" rel="noopener">${s}</a>`;
+}
+
+// 人物链接 → 百度百科 / 百度搜索
+function personLink(name){
+  const search = name.split(/[\s(（]/)[0];
+  const url = `https://www.baidu.com/s?wd=${encodeURIComponent(search)}`;
+  return `<a class="person" href="${url}" target="_blank" rel="noopener">${name}</a>`;
+}
+
 function openPanel(id){
   const n = getNode(id);
   if (!n) return;
@@ -1321,7 +1358,7 @@ function openPanel(id){
 
     ${n.keyPeople && n.keyPeople.length ? `
       <h3 style="margin-top:18px">👤 关键人物 · Key People</h3>
-      <div class="people-row">${n.keyPeople.map(p => `<span class="person">${p}</span>`).join("")}</div>
+      <div class="people-row">${n.keyPeople.map(p => personLink(p)).join("")}</div>
     ` : ""}
 
     ${n.plays && n.plays.length ? `
@@ -1337,10 +1374,10 @@ function openPanel(id){
     <h3 style="margin-top:20px">证据 · Evidence</h3>
     ${n.evidence.map(e => `<div class="ev"><div class="ev-date">${e.date}</div>${e.src}</div>`).join("")}
 
-    ${n.winners.length ? `<h3 style="margin-top:20px">受益方</h3><div class="stocks">${n.winners.map(s => `<span class="stock">${s}</span>`).join("")}</div>` : ""}
-    ${n.losers.length ? `<h3 style="margin-top:14px">受损方</h3><div class="stocks">${n.losers.map(s => `<span class="stock loss">${s}</span>`).join("")}</div>` : ""}
+    ${n.winners.length ? `<h3 style="margin-top:20px">受益方</h3><div class="stocks">${n.winners.map(s => stockLink(s)).join("")}</div>` : ""}
+    ${n.losers.length ? `<h3 style="margin-top:14px">受损方</h3><div class="stocks">${n.losers.map(s => stockLink(s, true)).join("")}</div>` : ""}
 
-    ${n.children && n.children.length ? `<button class="next-btn" onclick="expandToChild('${id}')">展开下一层 (${n.children.length}) →</button>` : `<div class="end-note">终端节点 · 此分支已到底</div>`}
+    ${n.children && n.children.length ? "" : `<div class="end-note">终端节点 · 此分支已到底</div>`}
   `;
 
   updatePager(id);
