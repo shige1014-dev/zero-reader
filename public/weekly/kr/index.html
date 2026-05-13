@@ -284,7 +284,14 @@
   .article{
     padding:10px 0 14px;
     border-bottom:1px solid var(--line);
+    cursor:pointer;
+    transition:transform .15s, padding .15s;
   }
+  .article:hover{
+    transform:translateX(3px);
+    padding-left:6px;
+  }
+  .article:hover .article-title{color:var(--accent)}
   .article:last-child{border-bottom:none;padding-bottom:0}
   .article-title{
     font-family:"Iowan Old Style","Songti SC",serif;
@@ -773,6 +780,17 @@
   </div>
 
 </main>
+
+<script>
+// 整块 article 可点
+document.querySelectorAll('.article').forEach(el => {
+  el.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') return;
+    const link = el.querySelector('.article-title');
+    if (link && link.href) window.location.href = link.href;
+  });
+});
+</script>
 
 <!-- ━━━ Footer ━━━ -->
 <footer>
