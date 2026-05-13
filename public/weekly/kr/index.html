@@ -859,7 +859,7 @@
     </div>
 
     <div class="feat-grid">
-      <a class="feat" target="_blank" href="/weekly/kr/report.html#hbm">
+      <div class="feat" data-id="hbm">
         <div class="feat-img"><img src="/weekly/kr/images/hbm.jpg" alt="HBM"/></div>
         <div class="feat-body">
           <div class="feat-cat">▸ Semiconductors</div>
@@ -870,9 +870,9 @@
             <span class="feat-arr">→</span>
           </div>
         </div>
-      </a>
+      </div>
 
-      <a class="feat" target="_blank" href="/weekly/kr/report.html#defense">
+      <div class="feat" data-id="defense">
         <div class="feat-img"><img src="/weekly/kr/images/defense.jpg" alt="K-Defense"/></div>
         <div class="feat-body">
           <div class="feat-cat">▸ Defense</div>
@@ -883,9 +883,9 @@
             <span class="feat-arr">→</span>
           </div>
         </div>
-      </a>
+      </div>
 
-      <a class="feat" target="_blank" href="/weekly/kr/report.html#geopolitics">
+      <div class="feat" data-id="geopolitics">
         <div class="feat-img"><img src="/weekly/kr/images/geopolitics.jpg" alt="中美夹缝"/></div>
         <div class="feat-body">
           <div class="feat-cat">▸ Geopolitics</div>
@@ -896,7 +896,7 @@
             <span class="feat-arr">→</span>
           </div>
         </div>
-      </a>
+      </div>
     </div>
   </div>
 
@@ -1053,31 +1053,31 @@
     </div>
 
     <div class="topics-grid">
-      <a class="topic" target="_blank" href="/weekly/kr/report.html#hbm">
+      <div class="topic" data-id="hbm">
         <div class="topic-circle"><img src="/weekly/kr/images/hbm.jpg" alt="HBM"/></div>
         <div class="topic-label">HBM 寡头</div>
         <div class="topic-arr">↗</div>
-      </a>
-      <a class="topic" target="_blank" href="/weekly/kr/report.html#defense">
+      </div>
+      <div class="topic" data-id="defense">
         <div class="topic-circle"><img src="/weekly/kr/images/defense.jpg" alt="K-Defense"/></div>
         <div class="topic-label">K-Defense</div>
         <div class="topic-arr">↗</div>
-      </a>
-      <a class="topic" target="_blank" href="/weekly/kr/report.html#shipbuilding">
+      </div>
+      <div class="topic" data-id="shipbuilding">
         <div class="topic-circle"><img src="/weekly/kr/images/shipbuilding.jpg" alt="造船"/></div>
         <div class="topic-label">造船业</div>
         <div class="topic-arr">↗</div>
-      </a>
-      <a class="topic" target="_blank" href="/weekly/kr/report.html#geopolitics">
+      </div>
+      <div class="topic" data-id="geopolitics">
         <div class="topic-circle"><img src="/weekly/kr/images/geopolitics.jpg" alt="中美博弈"/></div>
         <div class="topic-label">中美博弈</div>
         <div class="topic-arr">↗</div>
-      </a>
-      <a class="topic" target="_blank" href="/weekly/kr/report.html#aging">
+      </div>
+      <div class="topic" data-id="aging">
         <div class="topic-circle"><img src="/weekly/kr/images/aging.jpg" alt="老龄化"/></div>
         <div class="topic-label">老龄化</div>
         <div class="topic-arr">↗</div>
-      </a>
+      </div>
     </div>
   </div>
 
@@ -1278,6 +1278,15 @@ document.querySelectorAll('.article').forEach(el => {
     const id = href.split('#')[1];
     if (id) openBrief(id);
     else if (href) window.location.href = href;
+  });
+});
+
+// feat + topic 也弹简报
+document.querySelectorAll('.feat, .topic').forEach(el => {
+  el.style.cursor = 'pointer';
+  el.addEventListener('click', () => {
+    const id = el.dataset.id;
+    if (id) openBrief(id);
   });
 });
 
