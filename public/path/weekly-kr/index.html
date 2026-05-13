@@ -6,516 +6,998 @@
 <title>韩国主线 · 推演周刊 W19 · 2026-05-13</title>
 <style>
   :root{
-    --canvas:#14110D;
-    --surface:#1A1612;
-    --surface-2:#241E18;
-    --accent:#D4B670;
-    --gold-bright:#E8C97A;
-    --text:#F5EFE3;
-    --text-muted:#A89B82;
-    --text-dim:#6E6450;
-    --border:rgba(245,239,227,.1);
-    --green:#7AA88A;
-    --red:#C88478;
-    --purple:#A88BC0;
+    --paper:#F5EBDC;
+    --paper-2:#FBF3E1;
+    --paper-3:#FFF7E8;
+    --ink:#2C2418;
+    --ink-soft:#4A3E2A;
+    --ink-mute:#7A6A50;
+    --ink-light:#A89A7E;
+    --gold:#B8842A;
+    --gold-soft:#D4A858;
+    --gold-glow:#FFE9A8;
+    --rose:#C4503B;
+    --rose-soft:#E9A892;
+    --green:#5A7A4A;
+    --green-soft:#A8C09A;
+    --plum:#7A5A8A;
+    --plum-soft:#C8B0D8;
+    --line:#E5D5BA;
+    --line-soft:#F0E2C8;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{
-    background:var(--canvas);
-    color:var(--text);
-    font-family:"PingFang SC","Noto Sans SC",-apple-system,sans-serif;
-    line-height:1.65;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Iowan Old Style","Source Han Serif SC","PingFang SC",-apple-system,serif;
+    line-height:1.78;
   }
   body{
-    max-width:840px;
+    max-width:880px;
     margin:0 auto;
-    padding:0 16px 60px;
+    padding:0 18px 70px;
+    background:
+      radial-gradient(ellipse 60% 30% at 50% 0%, var(--paper-3) 0%, transparent 60%),
+      var(--paper);
   }
 
-  /* page break */
-  .page{
-    min-height:calc(100vh - 40px);
-    padding:36px 0 48px;
-    border-bottom:1px dashed var(--border);
-    page-break-after:always;
-  }
-  .page:last-of-type{border-bottom:none}
+  /* ━━━ 通用 ━━━ */
+  ::selection{background:var(--gold-glow);color:var(--ink)}
+  a{color:var(--gold);text-decoration:none;border-bottom:1px dashed var(--gold-soft)}
+  strong{color:var(--gold);font-weight:600}
+  em{color:var(--rose);font-style:italic}
+  hr{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:32px 0}
 
-  /* cover */
+  /* ━━━ 封面 ━━━ */
   .cover{
     text-align:center;
-    padding:80px 20px 60px;
-    background:linear-gradient(180deg,rgba(212,182,112,.08),transparent);
-    border-radius:24px;
-    margin-top:20px;
-    border:1px solid rgba(212,182,112,.2);
+    padding:60px 24px 50px;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% 30%, rgba(184,132,42,.1), transparent 70%),
+      linear-gradient(180deg, var(--paper-2), var(--paper-3));
+    border:1px solid var(--line);
+    border-radius:28px;
+    margin-top:24px;
+    position:relative;
+    overflow:hidden;
+  }
+  .cover::before{
+    content:"";position:absolute;top:20px;left:50%;transform:translateX(-50%);
+    width:60px;height:2px;background:var(--gold);
   }
   .cover .issue{
     font-family:ui-monospace,monospace;
     font-size:11px;letter-spacing:.3em;
-    color:var(--accent);text-transform:uppercase;
-    margin-bottom:18px;
+    color:var(--gold);text-transform:uppercase;
+    margin-bottom:24px;
   }
   .cover h1{
-    font-size:42px;font-weight:700;letter-spacing:.04em;
-    background:linear-gradient(135deg,#E8C97A,#B89046);
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    margin-bottom:12px;
+    font-size:54px;font-weight:700;letter-spacing:.03em;
+    color:var(--ink);
+    margin-bottom:8px;
+    line-height:1.1;
   }
-  .cover .sub{
-    font-size:14px;color:var(--text-muted);letter-spacing:.06em;
-    margin-bottom:30px;
+  .cover h1::before,.cover h1::after{
+    content:"·";color:var(--gold);font-size:36px;
+    vertical-align:middle;margin:0 14px;
   }
-  .cover .kpi-row{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:8px;
-    margin:36px 0 20px;
-  }
-  .kpi{
-    background:rgba(212,182,112,.06);
-    border:1px solid rgba(212,182,112,.15);
-    border-radius:12px;
-    padding:14px 8px;
-  }
-  .kpi-val{
-    font-size:22px;font-weight:700;color:var(--gold-bright);
-    font-family:ui-monospace,monospace;
-  }
-  .kpi-label{
-    font-size:10px;color:var(--text-muted);
-    letter-spacing:.1em;text-transform:uppercase;
-    margin-top:4px;
-  }
-
-  /* page header */
-  .page-header{
-    display:flex;align-items:center;justify-content:space-between;
-    margin-bottom:24px;
-    padding-bottom:12px;
-    border-bottom:2px solid var(--accent);
-  }
-  .page-no{
-    font-family:ui-monospace,monospace;
-    font-size:11px;color:var(--text-muted);
-    letter-spacing:.16em;
-  }
-  .page-title{
-    font-size:22px;font-weight:700;
-    color:var(--text);
-    flex:1;text-align:right;
-  }
-  .page-title .em{color:var(--accent);font-weight:600;letter-spacing:.08em;font-size:13px;display:block;margin-bottom:4px;text-transform:uppercase;font-family:ui-monospace,monospace}
-
-  /* sections */
-  h2{
-    font-size:18px;font-weight:600;color:var(--gold-bright);
-    margin:30px 0 14px;
-    padding-left:12px;border-left:3px solid var(--accent);
-  }
-  h3{
-    font-size:14px;font-weight:600;color:var(--text);
-    margin:18px 0 8px;
-    letter-spacing:.04em;
-  }
-  p{
-    font-size:14.5px;color:var(--text);
-    margin-bottom:12px;
-    letter-spacing:.01em;
-  }
-  ul,ol{padding-left:22px;font-size:14px;color:var(--text)}
-  ul li,ol li{margin-bottom:7px}
-  strong{color:var(--gold-bright);font-weight:600}
-  em{color:var(--accent);font-style:italic}
-
-  /* callout */
-  .callout{
-    background:rgba(212,182,112,.06);
-    border-left:3px solid var(--accent);
-    padding:14px 18px;
-    margin:18px 0;
-    border-radius:0 8px 8px 0;
-    font-size:14px;
-  }
-  .callout-title{
-    font-family:ui-monospace,monospace;
-    font-size:11px;color:var(--accent);
-    letter-spacing:.16em;text-transform:uppercase;
+  .cover .tagline{
+    font-style:italic;
+    font-size:16px;color:var(--ink-soft);
     margin-bottom:6px;
   }
-  .callout.red{
-    background:rgba(200,132,120,.08);
-    border-left-color:var(--red);
-  }
-  .callout.red .callout-title{color:var(--red)}
-  .callout.green{
-    background:rgba(122,168,138,.06);
-    border-left-color:var(--green);
-  }
-  .callout.green .callout-title{color:var(--green)}
-
-  /* tables */
-  table{
-    width:100%;border-collapse:collapse;
-    margin:14px 0 22px;
-    font-size:13px;
-  }
-  th,td{
-    padding:9px 11px;text-align:left;
-    border-bottom:1px solid var(--border);
-  }
-  th{
-    background:rgba(212,182,112,.08);
+  .cover .sub{
+    font-size:13px;color:var(--ink-mute);
+    letter-spacing:.18em;text-transform:uppercase;
     font-family:ui-monospace,monospace;
-    font-size:11px;color:var(--accent);
-    letter-spacing:.08em;text-transform:uppercase;
-  }
-  td{color:var(--text)}
-  td.num{font-family:ui-monospace,monospace;color:var(--gold-bright)}
-  td.pos{color:var(--green);font-family:ui-monospace,monospace}
-  td.neg{color:var(--red);font-family:ui-monospace,monospace}
-
-  /* chart */
-  .chart{
-    background:rgba(245,239,227,.02);
-    border:1px solid var(--border);
-    border-radius:12px;
-    padding:20px;
-    margin:18px 0;
-  }
-  .chart-title{
-    font-family:ui-monospace,monospace;
-    font-size:11px;color:var(--text-muted);
-    letter-spacing:.14em;text-transform:uppercase;
-    margin-bottom:12px;
-  }
-  .chart-svg{width:100%;height:auto}
-
-  /* article */
-  .article-meta{
-    font-family:ui-monospace,monospace;
-    font-size:11px;color:var(--text-muted);
-    letter-spacing:.08em;
-    margin-bottom:8px;
+    margin-bottom:34px;
   }
 
-  /* TOC */
-  .toc{
-    background:rgba(245,239,227,.03);
-    border:1px solid var(--border);
+  /* KPI strip */
+  .kpi-strip{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    margin:30px 0 16px;
+  }
+  .kpi{
+    background:var(--paper-3);
+    border:1px solid var(--line);
     border-radius:14px;
-    padding:24px 28px;
-    margin:30px 0;
+    padding:14px 8px;
+    transition:transform .2s;
+  }
+  .kpi:hover{transform:translateY(-2px);border-color:var(--gold-soft)}
+  .kpi-val{
+    font-size:24px;font-weight:700;color:var(--gold);
+    font-family:ui-monospace,monospace;
+    line-height:1;
+  }
+  .kpi-label{
+    font-size:10px;color:var(--ink-mute);
+    letter-spacing:.12em;text-transform:uppercase;
+    margin-top:6px;
+  }
+
+  /* ━━━ 音乐 ━━━ */
+  .music{
+    margin:34px auto 0;
+    max-width:560px;
+    background:linear-gradient(135deg, var(--paper-3), var(--paper-2));
+    border:1px dashed var(--gold-soft);
+    border-radius:18px;
+    padding:18px 22px;
+    display:flex;align-items:center;gap:16px;
+    text-align:left;
+  }
+  .music-icon{
+    width:48px;height:48px;
+    background:linear-gradient(135deg, var(--gold), var(--rose));
+    border-radius:50%;
+    display:grid;place-items:center;
+    color:white;font-size:22px;flex-shrink:0;
+  }
+  .music-body{flex:1;min-width:0}
+  .music-label{
+    font-family:ui-monospace,monospace;
+    font-size:9.5px;color:var(--gold);
+    letter-spacing:.18em;text-transform:uppercase;
+    margin-bottom:4px;
+  }
+  .music-title{
+    font-size:14.5px;color:var(--ink);font-weight:600;
+    font-family:"Iowan Old Style",serif;
+  }
+  .music-sub{
+    font-size:11.5px;color:var(--ink-mute);
+    margin-top:2px;font-style:italic;
+  }
+  audio{width:100%;margin-top:10px;height:32px}
+
+  /* ━━━ 目录 ━━━ */
+  .toc{
+    background:var(--paper-2);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:28px 32px;
+    margin:32px 0;
+    position:relative;
+  }
+  .toc::before{
+    content:"";position:absolute;top:0;left:50%;transform:translate(-50%,-50%);
+    width:90px;height:24px;background:var(--paper);
+    display:flex;align-items:center;justify-content:center;
+    border-radius:99px;
   }
   .toc-title{
+    text-align:center;
     font-family:ui-monospace,monospace;
-    font-size:11px;color:var(--accent);
-    letter-spacing:.18em;text-transform:uppercase;
-    margin-bottom:12px;
+    font-size:11px;color:var(--gold);
+    letter-spacing:.24em;text-transform:uppercase;
+    margin-bottom:18px;
+    position:relative;z-index:1;
   }
-  .toc ol{list-style:none;padding:0;font-size:13.5px}
+  .toc ol{list-style:none;padding:0;font-size:14px;font-family:"Iowan Old Style",serif}
   .toc li{
-    padding:6px 0;border-bottom:1px dashed var(--border);
-    display:flex;align-items:center;
+    padding:9px 0;border-bottom:1px dashed var(--line);
+    display:flex;align-items:center;gap:12px;
+    transition:padding .15s;
   }
+  .toc li:hover{padding-left:6px}
   .toc li:last-child{border-bottom:none}
   .toc-num{
     font-family:ui-monospace,monospace;
-    color:var(--accent);width:40px;font-weight:700;
-  }
-  .toc-name{flex:1;color:var(--text)}
-  .toc-page{color:var(--text-muted);font-family:ui-monospace,monospace}
-
-  /* footer */
-  footer{
-    padding:40px 20px;
-    text-align:center;
-    color:var(--text-dim);
+    color:var(--gold);width:38px;font-weight:700;
     font-size:12px;
-    border-top:1px dashed var(--border);
-    margin-top:30px;
   }
-  footer a{color:var(--accent);text-decoration:none}
+  .toc-icon{font-size:16px;width:24px;text-align:center}
+  .toc-name{flex:1;color:var(--ink)}
+  .toc-page{color:var(--ink-mute);font-family:ui-monospace,monospace;font-size:11px}
 
-  /* utility */
-  .small{font-size:12px;color:var(--text-muted)}
-  .accent{color:var(--accent)}
-  .mono{font-family:ui-monospace,monospace}
+  /* ━━━ 页 ━━━ */
+  .page{
+    padding:50px 0 60px;
+    border-bottom:1px solid var(--line-soft);
+    page-break-after:always;
+  }
+  .page:last-of-type{border-bottom:none}
 
-  @media (max-width:640px){
-    body{padding:0 12px 40px}
-    .cover{padding:50px 16px 36px}
-    .cover h1{font-size:30px}
-    .cover .kpi-row{grid-template-columns:repeat(2,1fr)}
-    .page-title{font-size:18px}
-    h2{font-size:16px}
-    p,ul,ol{font-size:13.5px}
-    table{font-size:12px}
-    th,td{padding:7px 8px}
+  .page-header{
+    margin-bottom:30px;
+    padding-bottom:16px;
+    border-bottom:2px solid var(--gold);
+    position:relative;
+  }
+  .page-header::after{
+    content:"";position:absolute;bottom:-2px;left:0;
+    width:60px;height:2px;background:var(--rose);
+  }
+  .page-no{
+    font-family:ui-monospace,monospace;
+    font-size:10px;color:var(--ink-mute);
+    letter-spacing:.2em;text-transform:uppercase;
+    margin-bottom:6px;
+  }
+  .page-em{
+    font-family:ui-monospace,monospace;
+    font-size:11px;color:var(--gold);
+    letter-spacing:.16em;text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .page-title{
+    font-size:30px;font-weight:700;color:var(--ink);
+    line-height:1.15;
+  }
+
+  /* ━━━ TL;DR (每页顶部要点) ━━━ */
+  .tldr{
+    background:linear-gradient(135deg, var(--gold-glow), rgba(255,233,168,.4));
+    border-left:4px solid var(--gold);
+    border-radius:0 14px 14px 0;
+    padding:18px 22px;
+    margin-bottom:28px;
+  }
+  .tldr-label{
+    font-family:ui-monospace,monospace;
+    font-size:10px;color:var(--gold);font-weight:700;
+    letter-spacing:.2em;text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .tldr ul{list-style:none;padding:0}
+  .tldr li{
+    font-size:14px;color:var(--ink);
+    padding:5px 0 5px 26px;position:relative;
+    font-family:"Iowan Old Style",serif;
+  }
+  .tldr li::before{
+    content:counter(tldr-counter, decimal);
+    counter-increment:tldr-counter;
+    position:absolute;left:0;top:5px;
+    width:18px;height:18px;
+    background:var(--gold);color:white;
+    font-family:ui-monospace,monospace;font-size:10px;
+    border-radius:50%;display:grid;place-items:center;font-weight:700;
+  }
+  .tldr ul{counter-reset:tldr-counter}
+
+  /* ━━━ 段落 ━━━ */
+  p{
+    font-size:15.5px;color:var(--ink);
+    margin-bottom:16px;
+    letter-spacing:.01em;
+    font-family:"Iowan Old Style","Source Han Serif SC",serif;
+  }
+  p.lead{
+    font-size:17px;font-weight:500;color:var(--ink);
+    margin-bottom:20px;line-height:1.7;
+  }
+  p.lead::first-letter{
+    font-size:48px;font-weight:700;
+    color:var(--gold);float:left;
+    line-height:0.9;margin:6px 8px 0 0;
+    font-family:"Iowan Old Style",serif;
+  }
+
+  /* ━━━ h2 / h3 ━━━ */
+  h2{
+    font-size:22px;font-weight:700;color:var(--ink);
+    margin:36px 0 14px;
+    padding-left:14px;
+    border-left:4px solid var(--gold);
+    line-height:1.3;
+    font-family:"Iowan Old Style",serif;
+  }
+  h2 .h2-num{
+    font-family:ui-monospace,monospace;
+    color:var(--gold);font-size:13px;
+    margin-right:8px;
+  }
+  h3{
+    font-size:16px;font-weight:600;color:var(--ink);
+    margin:24px 0 10px;
+    font-family:"Iowan Old Style",serif;
+  }
+
+  /* ━━━ Pull Quote ━━━ */
+  .pull-quote{
+    margin:30px 0;padding:30px 30px 26px;
+    background:var(--paper-3);
+    border:1px solid var(--line);
+    border-radius:18px;
+    position:relative;
+    text-align:center;
+  }
+  .pull-quote::before{
+    content:"\201C";
+    position:absolute;top:-22px;left:50%;transform:translateX(-50%);
+    width:48px;height:48px;
+    background:var(--gold);color:white;
+    border-radius:50%;
+    font-size:56px;line-height:1.2;
+    font-family:"Iowan Old Style",serif;
+    display:grid;place-items:center;
+  }
+  .pull-quote .pq-text{
+    font-size:19px;font-style:italic;color:var(--ink);
+    line-height:1.5;font-weight:500;
+    font-family:"Iowan Old Style",serif;
+    margin-bottom:10px;
+  }
+  .pull-quote .pq-attr{
+    font-family:ui-monospace,monospace;
+    font-size:11px;color:var(--ink-mute);
+    letter-spacing:.14em;text-transform:uppercase;
+  }
+
+  /* ━━━ Callouts ━━━ */
+  .callout{
+    margin:22px 0;padding:18px 22px;
+    border-radius:0 14px 14px 0;
+    position:relative;
+  }
+  .callout-title{
+    font-family:ui-monospace,monospace;
+    font-size:11px;font-weight:700;
+    letter-spacing:.18em;text-transform:uppercase;
+    margin-bottom:8px;
+    display:flex;align-items:center;gap:6px;
+  }
+  .callout-title .ico{font-size:14px}
+  .callout p:last-child{margin-bottom:0}
+  .callout.gold{
+    background:linear-gradient(90deg, rgba(184,132,42,.08), transparent);
+    border-left:4px solid var(--gold);
+  }
+  .callout.gold .callout-title{color:var(--gold)}
+  .callout.rose{
+    background:linear-gradient(90deg, rgba(196,80,59,.08), transparent);
+    border-left:4px solid var(--rose);
+  }
+  .callout.rose .callout-title{color:var(--rose)}
+  .callout.green{
+    background:linear-gradient(90deg, rgba(90,122,74,.08), transparent);
+    border-left:4px solid var(--green);
+  }
+  .callout.green .callout-title{color:var(--green)}
+  .callout.plum{
+    background:linear-gradient(90deg, rgba(122,90,138,.08), transparent);
+    border-left:4px solid var(--plum);
+  }
+  .callout.plum .callout-title{color:var(--plum)}
+
+  /* ━━━ Stat cards ━━━ */
+  .stat-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin:20px 0 28px;
+  }
+  .stat-card{
+    background:linear-gradient(180deg, var(--paper-3), var(--paper-2));
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:18px 14px;
+    text-align:center;
+  }
+  .stat-card.gold{border-color:rgba(184,132,42,.4);background:linear-gradient(180deg, rgba(255,233,168,.4), var(--paper-2))}
+  .stat-card.rose{border-color:rgba(196,80,59,.3)}
+  .stat-num{
+    font-size:30px;font-weight:700;color:var(--gold);
+    font-family:ui-monospace,monospace;line-height:1;
+  }
+  .stat-card.rose .stat-num{color:var(--rose)}
+  .stat-card.green .stat-num{color:var(--green)}
+  .stat-label{
+    font-size:10.5px;color:var(--ink-mute);
+    letter-spacing:.1em;text-transform:uppercase;
+    margin-top:8px;
+    font-family:ui-monospace,monospace;
+  }
+  .stat-sub{
+    font-size:11px;color:var(--ink-soft);
+    margin-top:4px;
+    font-family:"Iowan Old Style",serif;
+  }
+
+  /* ━━━ tables ━━━ */
+  table{
+    width:100%;border-collapse:separate;border-spacing:0;
+    margin:16px 0 24px;
+    font-size:13.5px;
+    background:var(--paper-3);
+    border:1px solid var(--line);
+    border-radius:12px;
+    overflow:hidden;
+  }
+  th,td{
+    padding:10px 13px;text-align:left;
+    border-bottom:1px solid var(--line-soft);
+  }
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:var(--paper-2)}
+  th{
+    background:rgba(184,132,42,.1);
+    font-family:ui-monospace,monospace;
+    font-size:10.5px;color:var(--gold);font-weight:700;
+    letter-spacing:.1em;text-transform:uppercase;
+    border-bottom:2px solid var(--gold-soft);
+  }
+  td{color:var(--ink)}
+  td.num{font-family:ui-monospace,monospace;color:var(--ink-soft);font-weight:500}
+  td.pos{color:var(--green);font-family:ui-monospace,monospace;font-weight:700}
+  td.neg{color:var(--rose);font-family:ui-monospace,monospace;font-weight:700}
+  td.code{font-family:ui-monospace,monospace;color:var(--gold);font-size:12px;font-weight:600}
+
+  /* ━━━ 图表 ━━━ */
+  .chart{
+    background:linear-gradient(180deg, var(--paper-3), var(--paper-2));
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:22px;
+    margin:20px 0;
+    position:relative;
+  }
+  .chart-title{
+    font-family:ui-monospace,monospace;
+    font-size:11px;color:var(--gold);
+    letter-spacing:.16em;text-transform:uppercase;
+    font-weight:700;
+    margin-bottom:6px;
+  }
+  .chart-sub{
+    font-size:11px;color:var(--ink-mute);
+    margin-bottom:14px;
+    font-style:italic;
+  }
+  .chart-svg{width:100%;height:auto}
+
+  /* legend */
+  .legend{
+    display:flex;flex-wrap:wrap;gap:14px;
+    margin-top:14px;padding-top:14px;
+    border-top:1px dashed var(--line);
+    font-size:11px;color:var(--ink-mute);
+    font-family:ui-monospace,monospace;
+  }
+  .legend-item{display:flex;align-items:center;gap:6px}
+  .legend-sq{width:12px;height:12px;border-radius:3px}
+
+  /* ━━━ 路线图 ━━━ */
+  .roadmap{
+    background:linear-gradient(135deg, var(--paper-3), var(--paper-2));
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:24px;
+    margin:24px 0;
+  }
+  .roadmap-title{
+    font-family:ui-monospace,monospace;
+    font-size:11px;color:var(--gold);
+    letter-spacing:.18em;text-transform:uppercase;
+    font-weight:700;
+    margin-bottom:18px;
+    text-align:center;
+  }
+
+  /* ━━━ 标签 ━━━ */
+  .tag{
+    display:inline-block;
+    padding:3px 10px;
+    background:rgba(184,132,42,.1);
+    border:1px solid rgba(184,132,42,.3);
+    border-radius:99px;
+    font-family:ui-monospace,monospace;
+    font-size:10.5px;
+    color:var(--gold);
+    letter-spacing:.06em;
+    margin-right:5px;margin-bottom:5px;
+  }
+  .tag.rose{background:rgba(196,80,59,.1);border-color:rgba(196,80,59,.3);color:var(--rose)}
+  .tag.green{background:rgba(90,122,74,.1);border-color:rgba(90,122,74,.3);color:var(--green)}
+
+  /* ━━━ 注 ━━━ */
+  .article-meta{
+    display:flex;align-items:center;gap:14px;
+    font-family:ui-monospace,monospace;
+    font-size:10.5px;color:var(--ink-mute);
+    letter-spacing:.08em;
+    margin-bottom:16px;
+    padding:8px 0;
+    border-bottom:1px dashed var(--line);
+  }
+  .article-meta .dot{color:var(--gold);font-size:14px}
+
+  /* ━━━ 重点框 ━━━ */
+  .key-box{
+    margin:22px 0;
+    background:var(--paper-3);
+    border:2px solid var(--gold);
+    border-radius:14px;
+    padding:18px 22px;
+    position:relative;
+  }
+  .key-box::before{
+    content:"重点";position:absolute;top:-12px;left:18px;
+    background:var(--gold);color:white;
+    padding:3px 12px;border-radius:99px;
+    font-family:ui-monospace,monospace;font-size:10px;
+    letter-spacing:.18em;font-weight:700;
+  }
+  .key-box ul{padding-left:22px}
+  .key-box li{margin-bottom:7px;font-size:14.5px;color:var(--ink)}
+
+  /* ━━━ 步骤 ━━━ */
+  .steps{
+    counter-reset:step-counter;
+    margin:18px 0 24px;
+  }
+  .step{
+    counter-increment:step-counter;
+    padding:14px 16px 14px 56px;
+    background:var(--paper-3);
+    border:1px solid var(--line);
+    border-radius:12px;
+    margin-bottom:10px;
+    position:relative;
+  }
+  .step::before{
+    content:"0" counter(step-counter);
+    position:absolute;left:14px;top:14px;
+    width:32px;height:32px;
+    background:linear-gradient(135deg, var(--gold), var(--rose));
+    color:white;
+    border-radius:50%;
+    display:grid;place-items:center;
+    font-family:ui-monospace,monospace;
+    font-size:13px;font-weight:700;
+  }
+  .step h4{
+    font-size:14px;color:var(--ink);font-weight:600;
+    margin-bottom:4px;
+    font-family:"Iowan Old Style",serif;
+  }
+  .step p{font-size:13.5px;color:var(--ink-soft);margin:0}
+
+  /* ━━━ Footer ━━━ */
+  footer{
+    padding:48px 24px;
+    text-align:center;
+    background:linear-gradient(180deg, var(--paper), var(--paper-2));
+    border-top:1px dashed var(--line);
+    margin-top:40px;
+    border-radius:18px;
+  }
+  footer .seal{
+    display:inline-block;
+    padding:10px 24px;
+    background:var(--paper-3);
+    border:2px solid var(--gold);
+    border-radius:99px;
+    font-family:ui-monospace,monospace;
+    font-size:11px;
+    color:var(--gold);
+    letter-spacing:.18em;text-transform:uppercase;
+    margin-bottom:14px;
+  }
+  footer p{font-size:12px;color:var(--ink-mute);margin:4px 0}
+
+  /* mobile */
+  @media (max-width:680px){
+    body{padding:0 12px 50px}
+    .cover{padding:42px 20px 36px;border-radius:20px}
+    .cover h1{font-size:38px}
+    .cover h1::before,.cover h1::after{font-size:24px;margin:0 8px}
+    .cover .tagline{font-size:14px}
+    .kpi-strip{grid-template-columns:repeat(2,1fr)}
+    .toc{padding:24px 18px}
+    .page-title{font-size:24px}
+    h2{font-size:18px}
+    p,.tldr li{font-size:14px}
+    p.lead{font-size:15.5px}
+    .pull-quote .pq-text{font-size:16px}
+    .stat-grid{grid-template-columns:repeat(2,1fr)}
+    .stat-num{font-size:24px}
+    table{font-size:12.5px}
+    th,td{padding:8px 9px}
+    .music{flex-wrap:wrap;padding:14px 16px}
   }
 </style>
 </head>
 <body>
 
-<!-- ━━━ 封面 ━━━ -->
+<!-- ━━━━━━━━━━━━━━━━━ 封面 ━━━━━━━━━━━━━━━━━ -->
 <section class="cover">
-  <div class="issue">推演周刊 · Issue W19 / 2026-05-13</div>
+  <div class="issue">推演周刊 · ISSUE W19 / 2026-05-13</div>
   <h1>韩国主线</h1>
-  <div class="sub">KOREA MAINLINE · 韩股 KOSPI 长线推演</div>
+  <p class="tagline">"4 轮叙事同时点燃, 错过 = 错过 5 年"</p>
+  <div class="sub">Korea Mainline · 韩股 KOSPI 长线推演</div>
 
-  <div class="kpi-row">
-    <div class="kpi">
-      <div class="kpi-val">+25.4%</div>
-      <div class="kpi-label">KOSPI YTD</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-val">+290%</div>
-      <div class="kpi-label">SK Hynix HBM Q1</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-val">$80B</div>
-      <div class="kpi-label">HD造船 Backlog</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-val">$20B</div>
-      <div class="kpi-label">K-Defense 出口</div>
-    </div>
+  <div class="kpi-strip">
+    <div class="kpi"><div class="kpi-val">+25.4%</div><div class="kpi-label">KOSPI YTD</div></div>
+    <div class="kpi"><div class="kpi-val">+290%</div><div class="kpi-label">SK Hynix HBM Q1</div></div>
+    <div class="kpi"><div class="kpi-val">$80B</div><div class="kpi-label">HD造船 Backlog</div></div>
+    <div class="kpi"><div class="kpi-val">$20B</div><div class="kpi-label">K-Defense 出口</div></div>
   </div>
 
-  <div class="small" style="color:var(--text-dim);margin-top:14px;letter-spacing:.08em">
-    Claude Opus 4.7 综合分析 · 非投资建议 · 仅供推演
+  <!-- 歌曲 -->
+  <div class="music">
+    <div class="music-icon">♪</div>
+    <div class="music-body">
+      <div class="music-label">▸ 本期配乐</div>
+      <div class="music-title">[歌曲名 / Song Title]</div>
+      <div class="music-sub">— 编辑推荐 · 韩股主线氛围曲 —</div>
+      <audio controls preload="none">
+        <source src="" type="audio/mpeg">
+        浏览器不支持播放
+      </audio>
+    </div>
   </div>
 </section>
 
 <!-- ━━━ TOC ━━━ -->
 <div class="toc">
-  <div class="toc-title">▸ 本期目录</div>
+  <div class="toc-title">▸ 本期目录 · Contents</div>
   <ol>
-    <li><span class="toc-num">01</span><span class="toc-name">本周核心 — 韩国 4 轮叠加</span><span class="toc-page">P.02</span></li>
-    <li><span class="toc-num">02</span><span class="toc-name">HBM 寡头 — SK Hynix Q1 拆解</span><span class="toc-page">P.03</span></li>
-    <li><span class="toc-num">03</span><span class="toc-name">K-Defense — 全球第 4 大军售国地图</span><span class="toc-page">P.04</span></li>
-    <li><span class="toc-num">04</span><span class="toc-name">造船业 — 5 年订单满 + LNG 周期</span><span class="toc-page">P.05</span></li>
-    <li><span class="toc-num">05</span><span class="toc-name">Value-Up 改革 — 财阀重估正在发生</span><span class="toc-page">P.06</span></li>
-    <li><span class="toc-num">06</span><span class="toc-name">最强股票组合 — 7 股核心仓配置</span><span class="toc-page">P.07</span></li>
-    <li><span class="toc-num">07</span><span class="toc-name">⚡ 黑天鹅 — 朝鲜冲突情景推演</span><span class="toc-page">P.08</span></li>
-    <li><span class="toc-num">08</span><span class="toc-name">下周关键日历 + 监控指标</span><span class="toc-page">P.09</span></li>
+    <li><span class="toc-num">01</span><span class="toc-icon">🎯</span><span class="toc-name">本周核心 — 韩国 4 轮叙事叠加</span><span class="toc-page">P.02</span></li>
+    <li><span class="toc-num">02</span><span class="toc-icon">💾</span><span class="toc-name">HBM 寡头 — SK Hynix Q1 深度</span><span class="toc-page">P.03</span></li>
+    <li><span class="toc-num">03</span><span class="toc-icon">🛡</span><span class="toc-name">K-Defense — 全球第 4 大军售国</span><span class="toc-page">P.04</span></li>
+    <li><span class="toc-num">04</span><span class="toc-icon">🚢</span><span class="toc-name">造船业 — 5 年订单满 + LNG 周期</span><span class="toc-page">P.05</span></li>
+    <li><span class="toc-num">05</span><span class="toc-icon">🏛</span><span class="toc-name">Value-Up — 财阀重估正在发生</span><span class="toc-page">P.06</span></li>
+    <li><span class="toc-num">06</span><span class="toc-icon">🏆</span><span class="toc-name">最强组合 — 7 股仓位配置</span><span class="toc-page">P.07</span></li>
+    <li><span class="toc-num">07</span><span class="toc-icon">⚡</span><span class="toc-name">黑天鹅 — 朝鲜冲突情景推演</span><span class="toc-page">P.08</span></li>
+    <li><span class="toc-num">08</span><span class="toc-icon">📅</span><span class="toc-name">下周日历 + 监控仪表盘</span><span class="toc-page">P.09</span></li>
+    <li><span class="toc-num">09</span><span class="toc-icon">🗺</span><span class="toc-name">2025-2030 韩国主线路线图</span><span class="toc-page">P.10</span></li>
   </ol>
 </div>
 
-<!-- ━━━ P.02 本周核心 ━━━ -->
+<!-- ━━━━━━━━━━━━━━━━━ P.02 本周核心 ━━━━━━━━━━━━━━━━━ -->
 <section class="page">
   <div class="page-header">
     <div class="page-no">P.02 / W19</div>
-    <div class="page-title"><span class="em">Cover Story</span>韩国 4 轮叠加</div>
+    <div class="page-em">▸ Cover Story · 封面故事</div>
+    <h1 class="page-title">韩国 4 轮叙事叠加</h1>
   </div>
 
-  <p>2026 年中, 韩国 KOSPI 是全球少有的 <strong>4 个独立叙事同时爆发</strong> 的市场: HBM 寡头 + K-Defense 出口 + 造船复兴 + Value-Up 财阀改革. 任一单线就能撑 1-2 年, 4 线同时 = 系统性重估窗口.</p>
+  <div class="tldr">
+    <div class="tldr-label">▸ TL;DR · 三句话</div>
+    <ul>
+      <li>HBM 寡头 + K-Defense + 造船复兴 + Value-Up 财阀改革 = 罕见 4 轮叠加</li>
+      <li>2026-Q1 是确认窗口: HBM4 量产 + 沙特 K9 + Samsung HBM3E 通过</li>
+      <li>错过这轮 = 错过日本"安倍经济学"复制版</li>
+    </ul>
+  </div>
 
-  <h2>4 轮叠加的本质</h2>
-  <p>2024-2025 韩国一直在追赶, 但市场没认. 直到 2025-Q1 SK Hynix HBM 营收 <strong>+290%</strong> + 韩国 Value-Up 法案落地, 全球资金才发现: 韩国不只是"科技外贸国", 而是 AI 算力底层 + 全球军售第 4 + 造船 + 改革红利的复合体.</p>
+  <p class="lead">2026 年中, 韩国 KOSPI 正在发生全球罕见的现象 — 四个独立叙事同时点燃. 任一单线就能撑 1-2 年, 四线同时 = 系统性重估窗口.</p>
+
+  <div class="pull-quote">
+    <div class="pq-text">韩股不是单一周期股票市场, 是美元强 + AI 算力 + 军备 + 改革四个 macro 主题的结构性 beneficiary.</div>
+    <div class="pq-attr">— Claude Opus 4.7 · 综合推演</div>
+  </div>
+
+  <h2><span class="h2-num">01</span>4 轮叠加 全景</h2>
+
+  <div class="stat-grid">
+    <div class="stat-card gold">
+      <div class="stat-num">+290%</div>
+      <div class="stat-label">SK Hynix HBM</div>
+      <div class="stat-sub">Q1 YoY</div>
+    </div>
+    <div class="stat-card gold">
+      <div class="stat-num">+165%</div>
+      <div class="stat-label">Hanwha Aero</div>
+      <div class="stat-sub">YTD</div>
+    </div>
+    <div class="stat-card green">
+      <div class="stat-num">+25.4%</div>
+      <div class="stat-label">KOSPI</div>
+      <div class="stat-sub">YTD</div>
+    </div>
+  </div>
 
   <table>
-    <thead><tr><th>叙事</th><th>核心标的</th><th>2025-W19 表现</th><th>剩余空间</th></tr></thead>
+    <thead><tr><th>叙事</th><th>核心标的</th><th>YTD 表现</th><th>剩余空间</th></tr></thead>
     <tbody>
-      <tr><td>HBM 寡头</td><td>000660.KS SK Hynix</td><td class="pos">+78% YTD</td><td>HBM4 + Rubin 2026</td></tr>
-      <tr><td>K-Defense</td><td>012450.KS Hanwha Aero</td><td class="pos">+165% YTD</td><td>2027 出口 $35B 目标</td></tr>
-      <tr><td>造船复兴</td><td>329180.KS HD造船</td><td class="pos">+62% YTD</td><td>LNG + 双燃料 5 年订单</td></tr>
-      <tr><td>Value-Up</td><td>KOSPI ETF (EWY)</td><td class="pos">+25.4% YTD</td><td>财阀折扣修复 30%+</td></tr>
+      <tr><td>💾 HBM 寡头</td><td class="code">000660.KS</td><td class="pos">+78%</td><td>HBM4 + Rubin 2026</td></tr>
+      <tr><td>🛡 K-Defense</td><td class="code">012450.KS</td><td class="pos">+165%</td><td>2027 出口 $35B</td></tr>
+      <tr><td>🚢 造船复兴</td><td class="code">329180.KS</td><td class="pos">+62%</td><td>LNG 双燃料 5 年订单</td></tr>
+      <tr><td>🏛 Value-Up</td><td class="code">EWY</td><td class="pos">+25.4%</td><td>财阀折扣修复 30%+</td></tr>
     </tbody>
   </table>
 
-  <div class="callout">
-    <div class="callout-title">▸ 一句话推演</div>
-    <p style="margin:0">"韩股不是单一周期股票市场, 是<strong>美元强 + AI 算力 + 军备 + 改革</strong> 四个 macro 主题的结构性 beneficiary. 错过 2025 = 错过 5 年."</p>
+  <div class="key-box">
+    <ul>
+      <li><strong>核心论点</strong>: 2024-2025 韩国一直在追赶, 但市场没认. 直到 2025-Q1 SK Hynix HBM 营收 +290% + Value-Up 法案落地, 全球资金才发现.</li>
+      <li><strong>关键转折</strong>: 韩国不只是"科技外贸国", 而是 AI 算力底层 + 全球军售第 4 + 造船 + 改革红利的复合体.</li>
+      <li><strong>历史类比</strong>: 类似 2014 日本"安倍经济学" 推动 Topix 5 年涨 100%. 韩国 2025-2028 复制路径概率 60%.</li>
+    </ul>
   </div>
 
-  <h2>本周观察 3 件事</h2>
-  <ol>
-    <li><strong>SK Hynix HBM4 量产时间表</strong> — 公司 2025-05-09 confirmed HBM4 Q1 2026 量产, NVDA Rubin 平台首批客户.</li>
-    <li><strong>Hanwha Aerospace 沙特新订单</strong> — 沙特 K9 自行炮谈判进入最终阶段, 预计 $6-8B 合同.</li>
-    <li><strong>韩国央行加息预期降温</strong> — 通胀回到 2% 目标, KOSPI 流动性回流.</li>
-  </ol>
+  <h2><span class="h2-num">02</span>本周观察 3 件事</h2>
+  <div class="steps">
+    <div class="step">
+      <h4>SK Hynix HBM4 量产时间表 confirmed</h4>
+      <p>公司 2025-05-09 confirmed HBM4 Q1 2026 量产, NVDA Rubin 平台首批客户. 估值再涨 30% 空间打开.</p>
+    </div>
+    <div class="step">
+      <h4>Hanwha Aerospace 沙特新订单</h4>
+      <p>沙特 K9 自行炮谈判进入最终阶段, 预计 $6-8B 合同. 2025-05-28 股东会公告.</p>
+    </div>
+    <div class="step">
+      <h4>韩国央行加息预期降温</h4>
+      <p>通胀回到 2% 目标, KOSPI 流动性回流. 外资连续 5 周净买入.</p>
+    </div>
+  </div>
 </section>
 
-<!-- ━━━ P.03 HBM 拆解 ━━━ -->
+<!-- ━━━━━━━━━━━━━━━━━ P.03 HBM ━━━━━━━━━━━━━━━━━ -->
 <section class="page">
   <div class="page-header">
     <div class="page-no">P.03 / W19</div>
-    <div class="page-title"><span class="em">深度分析</span>SK Hynix HBM Q1 拆解</div>
+    <div class="page-em">▸ Deep Dive · 深度分析</div>
+    <h1 class="page-title">SK Hynix HBM Q1 拆解</h1>
   </div>
 
-  <div class="article-meta">2025-04-25 财报 · 作者 Claude · 5 分钟阅读</div>
+  <div class="article-meta">
+    <span class="dot">●</span>
+    <span>2025-04-25 财报</span>
+    <span>·</span>
+    <span>作者: Claude</span>
+    <span>·</span>
+    <span>5 分钟阅读</span>
+  </div>
 
-  <p>SK Hynix 2025-Q1 营业利润 <strong>7.4 万亿韩元</strong> (+158% YoY), 首次单季利润超过三星电子半导体部门. HBM 占总收入 <strong>45%</strong> (Q1 2024 时仅 15%).</p>
+  <div class="tldr">
+    <div class="tldr-label">▸ 重点 4 条</div>
+    <ul>
+      <li>Q1 营业利润 ₩7.4 万亿 (+158% YoY) — 首次超过三星半导体</li>
+      <li>HBM 占总收入 45% (Q1 2024 时仅 15%)</li>
+      <li>毛利率 53% — 半导体史上最高</li>
+      <li>NVDA 客户集中度 70% — 双刃剑</li>
+    </ul>
+  </div>
+
+  <p class="lead">SK Hynix 2025-Q1 营业利润 ₩7.4 万亿韩元, 同比 +158%, 首次单季利润超过三星电子半导体部门. HBM 占总收入 45% (一年前仅 15%). 这不是涨幅, 是结构性重塑.</p>
 
   <div class="chart">
-    <div class="chart-title">▸ SK Hynix HBM 季度营收 (单位: 万亿韩元)</div>
-    <svg class="chart-svg" viewBox="0 0 600 240" preserveAspectRatio="xMidYMid meet">
-      <line x1="40" y1="200" x2="580" y2="200" stroke="rgba(245,239,227,.2)" stroke-width="1"/>
-      <line x1="40" y1="20" x2="40" y2="200" stroke="rgba(245,239,227,.2)" stroke-width="1"/>
-      <!-- bars -->
-      <rect x="70" y="180" width="50" height="20" fill="#6E6450"/>
-      <text x="95" y="218" fill="#A89B82" font-size="10" text-anchor="middle" font-family="monospace">Q1·24</text>
-      <text x="95" y="172" fill="#D4B670" font-size="11" text-anchor="middle" font-family="monospace">1.3</text>
-      <rect x="140" y="166" width="50" height="34" fill="#8E7858"/>
-      <text x="165" y="218" fill="#A89B82" font-size="10" text-anchor="middle" font-family="monospace">Q2·24</text>
-      <text x="165" y="158" fill="#D4B670" font-size="11" text-anchor="middle" font-family="monospace">2.4</text>
-      <rect x="210" y="140" width="50" height="60" fill="#B89046"/>
-      <text x="235" y="218" fill="#A89B82" font-size="10" text-anchor="middle" font-family="monospace">Q3·24</text>
-      <text x="235" y="132" fill="#D4B670" font-size="11" text-anchor="middle" font-family="monospace">4.1</text>
-      <rect x="280" y="106" width="50" height="94" fill="#C9A050"/>
-      <text x="305" y="218" fill="#A89B82" font-size="10" text-anchor="middle" font-family="monospace">Q4·24</text>
-      <text x="305" y="98" fill="#D4B670" font-size="11" text-anchor="middle" font-family="monospace">6.5</text>
-      <rect x="350" y="60" width="50" height="140" fill="#E8C97A"/>
-      <text x="375" y="218" fill="#A89B82" font-size="10" text-anchor="middle" font-family="monospace">Q1·25</text>
-      <text x="375" y="52" fill="#FFD86B" font-size="12" text-anchor="middle" font-family="monospace" font-weight="700">9.8</text>
-      <rect x="420" y="35" width="50" height="165" fill="rgba(232,201,122,.4)" stroke="#E8C97A" stroke-dasharray="3 3"/>
-      <text x="445" y="218" fill="#A89B82" font-size="10" text-anchor="middle" font-family="monospace">Q2·25e</text>
-      <text x="445" y="27" fill="#D4B670" font-size="11" text-anchor="middle" font-family="monospace">11.5</text>
-      <rect x="490" y="20" width="50" height="180" fill="rgba(232,201,122,.3)" stroke="#E8C97A" stroke-dasharray="3 3"/>
-      <text x="515" y="218" fill="#A89B82" font-size="10" text-anchor="middle" font-family="monospace">Q3·25e</text>
-      <text x="515" y="12" fill="#D4B670" font-size="11" text-anchor="middle" font-family="monospace">13+</text>
-      <!-- legend -->
-      <text x="40" y="14" fill="#A89B82" font-size="9" font-family="monospace">实绩 = 实色 · 预测 = 虚线</text>
+    <div class="chart-title">▸ SK Hynix HBM 季度营收</div>
+    <div class="chart-sub">单位: 万亿韩元 · 实色 = 实绩 / 虚线 = 预测</div>
+    <svg class="chart-svg" viewBox="0 0 600 260" preserveAspectRatio="xMidYMid meet">
+      <line x1="40" y1="220" x2="580" y2="220" stroke="#E5D5BA" stroke-width="1"/>
+      <line x1="40" y1="20" x2="40" y2="220" stroke="#E5D5BA" stroke-width="1"/>
+      <!-- gridlines -->
+      <line x1="40" y1="180" x2="580" y2="180" stroke="#F0E2C8" stroke-dasharray="2 4"/>
+      <line x1="40" y1="120" x2="580" y2="120" stroke="#F0E2C8" stroke-dasharray="2 4"/>
+      <line x1="40" y1="60" x2="580" y2="60" stroke="#F0E2C8" stroke-dasharray="2 4"/>
+      <!-- Y labels -->
+      <text x="34" y="224" fill="#7A6A50" font-size="9" text-anchor="end" font-family="monospace">0</text>
+      <text x="34" y="184" fill="#7A6A50" font-size="9" text-anchor="end" font-family="monospace">5</text>
+      <text x="34" y="124" fill="#7A6A50" font-size="9" text-anchor="end" font-family="monospace">10</text>
+      <text x="34" y="64" fill="#7A6A50" font-size="9" text-anchor="end" font-family="monospace">15</text>
+
+      <rect x="70" y="200" width="50" height="20" fill="#D4A858" rx="3"/>
+      <text x="95" y="238" fill="#7A6A50" font-size="10" text-anchor="middle" font-family="monospace">Q1·24</text>
+      <text x="95" y="192" fill="#B8842A" font-size="11" text-anchor="middle" font-family="monospace" font-weight="700">1.3</text>
+
+      <rect x="140" y="183" width="50" height="37" fill="#C99B45" rx="3"/>
+      <text x="165" y="238" fill="#7A6A50" font-size="10" text-anchor="middle" font-family="monospace">Q2·24</text>
+      <text x="165" y="175" fill="#B8842A" font-size="11" text-anchor="middle" font-family="monospace" font-weight="700">2.4</text>
+
+      <rect x="210" y="156" width="50" height="64" fill="#BE9032" rx="3"/>
+      <text x="235" y="238" fill="#7A6A50" font-size="10" text-anchor="middle" font-family="monospace">Q3·24</text>
+      <text x="235" y="148" fill="#B8842A" font-size="11" text-anchor="middle" font-family="monospace" font-weight="700">4.1</text>
+
+      <rect x="280" y="120" width="50" height="100" fill="#B8842A" rx="3"/>
+      <text x="305" y="238" fill="#7A6A50" font-size="10" text-anchor="middle" font-family="monospace">Q4·24</text>
+      <text x="305" y="112" fill="#B8842A" font-size="11" text-anchor="middle" font-family="monospace" font-weight="700">6.5</text>
+
+      <rect x="350" y="68" width="50" height="152" fill="#C4503B" rx="3"/>
+      <text x="375" y="238" fill="#7A6A50" font-size="10" text-anchor="middle" font-family="monospace">Q1·25</text>
+      <text x="375" y="60" fill="#C4503B" font-size="12" text-anchor="middle" font-family="monospace" font-weight="700">9.8 ▲</text>
+
+      <rect x="420" y="40" width="50" height="180" fill="none" stroke="#C4503B" stroke-width="2" stroke-dasharray="4 3" rx="3"/>
+      <text x="445" y="238" fill="#7A6A50" font-size="10" text-anchor="middle" font-family="monospace">Q2·25e</text>
+      <text x="445" y="32" fill="#A03A28" font-size="11" text-anchor="middle" font-family="monospace" font-weight="700">11.5</text>
+
+      <rect x="490" y="20" width="50" height="200" fill="none" stroke="#C4503B" stroke-width="2" stroke-dasharray="4 3" rx="3"/>
+      <text x="515" y="238" fill="#7A6A50" font-size="10" text-anchor="middle" font-family="monospace">Q3·25e</text>
+      <text x="515" y="12" fill="#A03A28" font-size="11" text-anchor="middle" font-family="monospace" font-weight="700">13+</text>
     </svg>
+    <div class="legend">
+      <div class="legend-item"><span class="legend-sq" style="background:#B8842A"></span>实绩 营收</div>
+      <div class="legend-item"><span class="legend-sq" style="background:#C4503B"></span>当季新高</div>
+      <div class="legend-item"><span class="legend-sq" style="background:transparent;border:2px dashed #C4503B"></span>预测</div>
+    </div>
   </div>
 
-  <h2>三个数字看本质</h2>
-  <ul>
-    <li><strong>HBM 单价 $1.6 / GB</strong> vs DDR5 $0.3 / GB — 5x 溢价不会持续, 但 HBM4 周期能维持 12-18 月.</li>
-    <li><strong>毛利率 53%</strong> (Q1 2025) — 半导体行业历史最高水平, 比 NVDA GPU 还高.</li>
-    <li><strong>NVDA 集中度 70%</strong> — 客户高度集中是双刃剑. 一旦 NVDA 出货放缓, SK Hynix 估值瞬间打折.</li>
-  </ul>
+  <h2><span class="h2-num">01</span>三个数字看本质</h2>
+
+  <div class="key-box">
+    <ul>
+      <li><strong>HBM 单价 $1.6/GB</strong> vs DDR5 $0.3/GB — 5x 溢价不会持续, 但 HBM4 周期能维持 12-18 月</li>
+      <li><strong>毛利率 53%</strong> (Q1 2025) — 半导体行业历史最高水平, 比 NVDA GPU 还高</li>
+      <li><strong>NVDA 集中度 70%</strong> — 客户高度集中是双刃剑. 一旦 NVDA 出货放缓, SK Hynix 估值瞬间打折</li>
+    </ul>
+  </div>
+
+  <h2><span class="h2-num">02</span>两种情境</h2>
 
   <div class="callout green">
-    <div class="callout-title">▸ Bull Case (45%)</div>
-    <p style="margin:0">HBM4 2026-Q1 量产 + Rubin 平台 60% 份额 + 客户多元化 (Anthropic / xAI 加入). 2026 营收 $90B+, PE 12 重估 = 股价再涨 80%.</p>
+    <div class="callout-title"><span class="ico">📈</span>Bull Case · 45%</div>
+    <p>HBM4 2026-Q1 量产 + Rubin 平台 60% 份额 + 客户多元化 (Anthropic / xAI 加入). 2026 营收 $90B+, PE 12 重估 = 股价再涨 <strong>80%</strong>.</p>
   </div>
 
-  <div class="callout red">
-    <div class="callout-title">▸ Bear Case (15%)</div>
-    <p style="margin:0">三星 HBM3E 2025-Q3 通过 NVDA 验证 = SK 议价权立刻下降. 美光 HBM4 良率突破 = 三足鼎立. 估值修正 -30%.</p>
+  <div class="callout rose">
+    <div class="callout-title"><span class="ico">📉</span>Bear Case · 15%</div>
+    <p>三星 HBM3E 2025-Q3 通过 NVDA 验证 = SK 议价权立刻下降. 美光 HBM4 良率突破 = 三足鼎立. 估值修正 <strong>-30%</strong>.</p>
   </div>
 </section>
 
-<!-- ━━━ P.04 K-Defense ━━━ -->
+<!-- ━━━━━━━━━━━━━━━━━ P.04 K-Defense ━━━━━━━━━━━━━━━━━ -->
 <section class="page">
   <div class="page-header">
     <div class="page-no">P.04 / W19</div>
-    <div class="page-title"><span class="em">全球图谱</span>K-Defense 出口地图</div>
+    <div class="page-em">▸ Global Map · 全球图谱</div>
+    <h1 class="page-title">K-Defense 出口地图</h1>
   </div>
 
-  <p>韩国 2024 年武器出口突破 <strong>$200 亿</strong>, 跃居全球第 4 (仅次于美/法/俄). 其中 80% 来自 4 大装备: K2 坦克 / K9 自行炮 / FA-50 战机 / 天弓-II 防空.</p>
+  <div class="tldr">
+    <div class="tldr-label">▸ 重点</div>
+    <ul>
+      <li>2024 武器出口 $200 亿 — 全球第 4 大军售国</li>
+      <li>4 大装备: K2 坦克 / K9 自行炮 / FA-50 战机 / 天弓-II</li>
+      <li>3 大龙头: Hanwha / Hyundai Rotem / KAI</li>
+      <li>下个催化: 沙特 K9 第三批 $3-4B</li>
+    </ul>
+  </div>
+
+  <p class="lead">韩国 2024 年武器出口突破 $200 亿, 跃居全球第 4 (仅次于美/法/俄). 其中 80% 来自 4 大装备. 这一波是 Trump 2.0 推动欧洲自我武装 + 中东去美元化的双红利.</p>
 
   <div class="chart">
-    <div class="chart-title">▸ K-Defense 出口订单分布 ($B)</div>
-    <svg class="chart-svg" viewBox="0 0 600 280" preserveAspectRatio="xMidYMid meet">
-      <!-- segments -->
+    <div class="chart-title">▸ K-Defense 出口订单分布</div>
+    <div class="chart-sub">2024 年累计已签合同 · 单位 $B</div>
+    <svg class="chart-svg" viewBox="0 0 600 300" preserveAspectRatio="xMidYMid meet">
       <g transform="translate(30,30)">
-        <text x="0" y="0" fill="#D4B670" font-size="12" font-family="monospace" font-weight="700">🇵🇱 波兰</text>
-        <rect x="120" y="-12" width="380" height="22" fill="rgba(232,201,122,.18)" rx="3"/>
-        <rect x="120" y="-12" width="350" height="22" fill="#E8C97A" rx="3"/>
-        <text x="475" y="3" fill="#F5EFE3" font-size="11" font-family="monospace">$14.0B</text>
+        <text x="0" y="0" fill="#B8842A" font-size="13" font-family="monospace" font-weight="700">🇵🇱 波兰</text>
+        <rect x="120" y="-14" width="420" height="26" fill="rgba(184,132,42,.12)" rx="4"/>
+        <rect x="120" y="-14" width="378" height="26" fill="url(#g1)" rx="4"/>
+        <text x="510" y="3" fill="#2C2418" font-size="12" font-family="monospace" font-weight="700">$14.0B</text>
       </g>
-      <g transform="translate(30,70)">
-        <text x="0" y="0" fill="#D4B670" font-size="12" font-family="monospace" font-weight="700">🇸🇦 沙特</text>
-        <rect x="120" y="-12" width="380" height="22" fill="rgba(232,201,122,.18)" rx="3"/>
-        <rect x="120" y="-12" width="100" height="22" fill="#C9A050" rx="3"/>
-        <text x="225" y="3" fill="#F5EFE3" font-size="11" font-family="monospace">$4.0B</text>
+      <g transform="translate(30,75)">
+        <text x="0" y="0" fill="#B8842A" font-size="13" font-family="monospace" font-weight="700">🇸🇦 沙特</text>
+        <rect x="120" y="-14" width="420" height="26" fill="rgba(184,132,42,.12)" rx="4"/>
+        <rect x="120" y="-14" width="108" height="26" fill="url(#g1)" rx="4"/>
+        <text x="240" y="3" fill="#2C2418" font-size="12" font-family="monospace" font-weight="700">$4.0B</text>
       </g>
-      <g transform="translate(30,110)">
-        <text x="0" y="0" fill="#D4B670" font-size="12" font-family="monospace" font-weight="700">🇦🇪 UAE</text>
-        <rect x="120" y="-12" width="380" height="22" fill="rgba(232,201,122,.18)" rx="3"/>
-        <rect x="120" y="-12" width="90" height="22" fill="#C9A050" rx="3"/>
-        <text x="215" y="3" fill="#F5EFE3" font-size="11" font-family="monospace">$3.5B</text>
+      <g transform="translate(30,120)">
+        <text x="0" y="0" fill="#B8842A" font-size="13" font-family="monospace" font-weight="700">🇦🇪 UAE</text>
+        <rect x="120" y="-14" width="420" height="26" fill="rgba(184,132,42,.12)" rx="4"/>
+        <rect x="120" y="-14" width="95" height="26" fill="url(#g1)" rx="4"/>
+        <text x="227" y="3" fill="#2C2418" font-size="12" font-family="monospace" font-weight="700">$3.5B</text>
       </g>
-      <g transform="translate(30,150)">
-        <text x="0" y="0" fill="#D4B670" font-size="12" font-family="monospace" font-weight="700">🇦🇺 澳洲</text>
-        <rect x="120" y="-12" width="380" height="22" fill="rgba(232,201,122,.18)" rx="3"/>
-        <rect x="120" y="-12" width="75" height="22" fill="#B89046" rx="3"/>
-        <text x="200" y="3" fill="#F5EFE3" font-size="11" font-family="monospace">$3.0B</text>
+      <g transform="translate(30,165)">
+        <text x="0" y="0" fill="#B8842A" font-size="13" font-family="monospace" font-weight="700">🇦🇺 澳洲</text>
+        <rect x="120" y="-14" width="420" height="26" fill="rgba(184,132,42,.12)" rx="4"/>
+        <rect x="120" y="-14" width="80" height="26" fill="url(#g1)" rx="4"/>
+        <text x="212" y="3" fill="#2C2418" font-size="12" font-family="monospace" font-weight="700">$3.0B</text>
       </g>
-      <g transform="translate(30,190)">
-        <text x="0" y="0" fill="#D4B670" font-size="12" font-family="monospace" font-weight="700">🇲🇾 马来</text>
-        <rect x="120" y="-12" width="380" height="22" fill="rgba(232,201,122,.18)" rx="3"/>
-        <rect x="120" y="-12" width="20" height="22" fill="#8E7858" rx="3"/>
-        <text x="145" y="3" fill="#F5EFE3" font-size="11" font-family="monospace">$0.9B</text>
+      <g transform="translate(30,210)">
+        <text x="0" y="0" fill="#B8842A" font-size="13" font-family="monospace" font-weight="700">🇲🇾 马来</text>
+        <rect x="120" y="-14" width="420" height="26" fill="rgba(184,132,42,.12)" rx="4"/>
+        <rect x="120" y="-14" width="24" height="26" fill="url(#g1)" rx="4"/>
+        <text x="156" y="3" fill="#2C2418" font-size="11" font-family="monospace" font-weight="700">$0.9B</text>
       </g>
-      <g transform="translate(30,230)">
-        <text x="0" y="0" fill="#D4B670" font-size="12" font-family="monospace" font-weight="700">其他</text>
-        <rect x="120" y="-12" width="380" height="22" fill="rgba(232,201,122,.18)" rx="3"/>
-        <rect x="120" y="-12" width="50" height="22" fill="#6E6450" rx="3"/>
-        <text x="175" y="3" fill="#F5EFE3" font-size="11" font-family="monospace">$2.0B</text>
+      <g transform="translate(30,255)">
+        <text x="0" y="0" fill="#B8842A" font-size="13" font-family="monospace" font-weight="700">其他</text>
+        <rect x="120" y="-14" width="420" height="26" fill="rgba(184,132,42,.12)" rx="4"/>
+        <rect x="120" y="-14" width="54" height="26" fill="url(#g1)" rx="4"/>
+        <text x="187" y="3" fill="#2C2418" font-size="11" font-family="monospace" font-weight="700">$2.0B</text>
       </g>
+      <defs>
+        <linearGradient id="g1" x1="0%" x2="100%">
+          <stop offset="0%" stop-color="#D4A858"/>
+          <stop offset="100%" stop-color="#B8842A"/>
+        </linearGradient>
+      </defs>
     </svg>
   </div>
 
-  <h2>三大龙头 + 客户</h2>
+  <h2><span class="h2-num">01</span>三大龙头 + 客户</h2>
   <table>
     <thead><tr><th>公司</th><th>代码</th><th>核心产品</th><th>主要客户</th></tr></thead>
     <tbody>
-      <tr><td>Hanwha Aerospace</td><td class="mono">012450.KS</td><td>K9 自行炮 / Chunmoo / 太空发射</td><td>波兰/沙特/UAE/澳洲</td></tr>
-      <tr><td>Hyundai Rotem</td><td class="mono">064350.KS</td><td>K2 主战坦克</td><td>波兰/罗马尼亚/沙特</td></tr>
-      <tr><td>KAI</td><td class="mono">047810.KS</td><td>FA-50 战机 / KF-21</td><td>波兰/马来/菲律宾/伊拉克</td></tr>
+      <tr><td>Hanwha Aerospace</td><td class="code">012450.KS</td><td>K9 自行炮 / Chunmoo / 太空发射</td><td>波兰/沙特/UAE/澳洲</td></tr>
+      <tr><td>Hyundai Rotem</td><td class="code">064350.KS</td><td>K2 主战坦克</td><td>波兰/罗马尼亚/沙特</td></tr>
+      <tr><td>KAI</td><td class="code">047810.KS</td><td>FA-50 战机 / KF-21</td><td>波兰/马来/菲律宾/伊拉克</td></tr>
     </tbody>
   </table>
 
-  <div class="callout">
-    <div class="callout-title">▸ 为什么是韩国?</div>
-    <p style="margin:0">3 大优势同时具备: <strong>(1) 价格</strong> 美国 50-70% / <strong>(2) 交付</strong> 美国 2-3x 速度 / <strong>(3) 技术兼容</strong> 北约标准. Trump 2.0 推欧洲自我武装, 韩国是欧洲 + 中东双边 backup.</p>
+  <div class="pull-quote">
+    <div class="pq-text">价格 美国 50-70% / 交付 美国 2-3x 速度 / 北约标准技术兼容. 韩国是欧洲 + 中东双边 backup.</div>
+    <div class="pq-attr">— 三大竞争优势</div>
   </div>
 
-  <h2>下个催化</h2>
-  <ul>
-    <li><strong>2025-06</strong> 沙特 K9 第三批正式签约预期 ($3-4B)</li>
-    <li><strong>2025-08</strong> 印度 K9 印度子型谈判</li>
-    <li><strong>2025-Q4</strong> 韩国新军费预算 +7% 通过</li>
-    <li><strong>2026-Q1</strong> KF-21 量产 + FA-50 改进型出货</li>
-  </ul>
+  <h2><span class="h2-num">02</span>下个 4 催化</h2>
+  <div class="steps">
+    <div class="step">
+      <h4>2025-06 沙特 K9 第三批正式签约</h4>
+      <p>预期 $3-4B 合同, Hanwha 单季营收瞬间 +30%</p>
+    </div>
+    <div class="step">
+      <h4>2025-08 印度 K9 印度子型谈判</h4>
+      <p>印度本土制造合作模式 (Make in India), 长期供应链</p>
+    </div>
+    <div class="step">
+      <h4>2025-Q4 韩国新军费 +7% 通过</h4>
+      <p>国防预算 ₩61 万亿, 国内订单同步拉动</p>
+    </div>
+    <div class="step">
+      <h4>2026-Q1 KF-21 量产 + FA-50 改进型</h4>
+      <p>KF-21 替代 F-16, 全生命周期 100 架, 单价 $90M+</p>
+    </div>
+  </div>
 </section>
 
-<!-- ━━━ P.05 造船 ━━━ -->
+<!-- ━━━━━━━━━━━━━━━━━ P.05 造船 ━━━━━━━━━━━━━━━━━ -->
 <section class="page">
   <div class="page-header">
     <div class="page-no">P.05 / W19</div>
-    <div class="page-title"><span class="em">行业拆解</span>造船 5 年订单满</div>
+    <div class="page-em">▸ Industry · 行业拆解</div>
+    <h1 class="page-title">造船 5 年订单满</h1>
   </div>
 
-  <p>HD韩国造船 + 三星重工 + 大宇造船 三巨头订单 <strong>backlog 合计 $230 亿</strong>, 排到 <strong>2029-2030</strong>. 全球 LNG 船 70% 份额 + 双燃料船独家.</p>
+  <div class="tldr">
+    <div class="tldr-label">▸ 重点</div>
+    <ul>
+      <li>3 厂 backlog $230 亿 — 排到 2029-2030</li>
+      <li>LNG 船 韩国 72% 全球份额</li>
+      <li>双燃料船 韩国 80% 份额, 单价 $260M</li>
+      <li>警惕: 周期顶 2026-Q3 监控点</li>
+    </ul>
+  </div>
+
+  <p class="lead">HD韩国造船 + 三星重工 + 大宇造船 三巨头订单 backlog 合计 $230 亿, 排到 2029-2030. 全球 LNG 船 70% 份额 + 双燃料船独家.</p>
 
   <div class="chart">
-    <div class="chart-title">▸ 韩国 3 大造船厂订单 backlog ($B)</div>
-    <svg class="chart-svg" viewBox="0 0 600 220" preserveAspectRatio="xMidYMid meet">
-      <line x1="50" y1="180" x2="580" y2="180" stroke="rgba(245,239,227,.2)"/>
-      <line x1="50" y1="20" x2="50" y2="180" stroke="rgba(245,239,227,.2)"/>
+    <div class="chart-title">▸ 韩国 3 大造船厂订单 Backlog</div>
+    <div class="chart-sub">单位 $B · 2025 vs 2026 预测</div>
+    <svg class="chart-svg" viewBox="0 0 600 240" preserveAspectRatio="xMidYMid meet">
+      <line x1="50" y1="200" x2="580" y2="200" stroke="#E5D5BA"/>
+      <line x1="50" y1="20" x2="50" y2="200" stroke="#E5D5BA"/>
 
       <g>
-        <rect x="100" y="40" width="80" height="140" fill="#E8C97A" rx="4"/>
-        <text x="140" y="200" fill="#A89B82" font-size="11" text-anchor="middle" font-family="monospace">HD韩国</text>
-        <text x="140" y="32" fill="#D4B670" font-size="13" text-anchor="middle" font-family="monospace" font-weight="700">$80B</text>
+        <rect x="100" y="40" width="80" height="160" fill="url(#g2)" rx="6"/>
+        <text x="140" y="220" fill="#7A6A50" font-size="11" text-anchor="middle" font-family="monospace">HD韩国</text>
+        <text x="140" y="32" fill="#B8842A" font-size="14" text-anchor="middle" font-family="monospace" font-weight="700">$80B</text>
       </g>
 
       <g>
-        <rect x="220" y="80" width="80" height="100" fill="#C9A050" rx="4"/>
-        <text x="260" y="200" fill="#A89B82" font-size="11" text-anchor="middle" font-family="monospace">三星重工</text>
-        <text x="260" y="72" fill="#D4B670" font-size="13" text-anchor="middle" font-family="monospace" font-weight="700">$45B</text>
+        <rect x="220" y="80" width="80" height="120" fill="url(#g2)" rx="6"/>
+        <text x="260" y="220" fill="#7A6A50" font-size="11" text-anchor="middle" font-family="monospace">三星重工</text>
+        <text x="260" y="72" fill="#B8842A" font-size="14" text-anchor="middle" font-family="monospace" font-weight="700">$45B</text>
       </g>
 
       <g>
-        <rect x="340" y="110" width="80" height="70" fill="#B89046" rx="4"/>
-        <text x="380" y="200" fill="#A89B82" font-size="11" text-anchor="middle" font-family="monospace">大宇造船</text>
-        <text x="380" y="102" fill="#D4B670" font-size="13" text-anchor="middle" font-family="monospace" font-weight="700">$28B</text>
+        <rect x="340" y="110" width="80" height="90" fill="url(#g2)" rx="6"/>
+        <text x="380" y="220" fill="#7A6A50" font-size="11" text-anchor="middle" font-family="monospace">大宇造船</text>
+        <text x="380" y="102" fill="#B8842A" font-size="14" text-anchor="middle" font-family="monospace" font-weight="700">$28B</text>
       </g>
 
       <g>
-        <rect x="460" y="60" width="80" height="120" fill="rgba(232,201,122,.45)" rx="4" stroke="#E8C97A"/>
-        <text x="500" y="200" fill="#A89B82" font-size="11" text-anchor="middle" font-family="monospace">2026e</text>
-        <text x="500" y="52" fill="#D4B670" font-size="13" text-anchor="middle" font-family="monospace" font-weight="700">$190B+</text>
+        <rect x="460" y="50" width="80" height="150" fill="none" stroke="#C4503B" stroke-width="2.5" stroke-dasharray="5 3" rx="6"/>
+        <text x="500" y="220" fill="#7A6A50" font-size="11" text-anchor="middle" font-family="monospace">2026e</text>
+        <text x="500" y="42" fill="#C4503B" font-size="14" text-anchor="middle" font-family="monospace" font-weight="700">$190B</text>
       </g>
+
+      <defs>
+        <linearGradient id="g2" x1="0%" x2="0%" y1="0%" y2="100%">
+          <stop offset="0%" stop-color="#D4A858"/>
+          <stop offset="100%" stop-color="#B8842A"/>
+        </linearGradient>
+      </defs>
     </svg>
   </div>
 
-  <h2>双燃料船 - 利润放大器</h2>
+  <h2><span class="h2-num">01</span>双燃料船 — 利润放大器</h2>
   <p>2026 是国际海事组织 (IMO) <strong>CII 评级第二年</strong>, 老旧船面临停航. 全球船东加速订双燃料船. LNG 双燃料船单价 <strong>$260M</strong> (传统 $170M), 韩国占全球 70%.</p>
 
   <table>
@@ -528,57 +1010,85 @@
     </tbody>
   </table>
 
-  <div class="callout red">
-    <div class="callout-title">▸ 警惕周期顶</div>
-    <p style="margin:0">造船 5 年订单 = 看似无忧, 实则周期股不能长持. 历史经验: 订单峰值后 18-24 月股价见顶. 当前订单峰值已临近, <strong>2026-Q3 是关键监控点</strong>.</p>
+  <div class="callout rose">
+    <div class="callout-title"><span class="ico">⚠</span>警惕周期顶</div>
+    <p>造船 5 年订单 = 看似无忧, 实则周期股不能长持. 历史经验: 订单峰值后 18-24 月股价见顶. 当前订单峰值已临近, <strong>2026-Q3 是关键监控点</strong>.</p>
   </div>
 </section>
 
-<!-- ━━━ P.06 Value-Up ━━━ -->
+<!-- ━━━━━━━━━━━━━━━━━ P.06 Value-Up ━━━━━━━━━━━━━━━━━ -->
 <section class="page">
   <div class="page-header">
     <div class="page-no">P.06 / W19</div>
-    <div class="page-title"><span class="em">改革红利</span>Value-Up 财阀重估</div>
+    <div class="page-em">▸ Reform Dividend · 改革红利</div>
+    <h1 class="page-title">Value-Up 财阀重估</h1>
   </div>
 
-  <p>韩国财阀股长期被市场 "韩国折扣" (Korea Discount) 压制, KOSPI 平均 PE 仅 10-11 (vs S&P500 22). Yoon 政府 + 在野党 罕见共识推 <strong>Corporate Value-Up Program</strong> — 财阀分红 + 回购 + 拆分透明化.</p>
+  <div class="tldr">
+    <div class="tldr-label">▸ 重点</div>
+    <ul>
+      <li>KOSPI 平均 PE 仅 11 vs S&P500 22 — 一半折扣</li>
+      <li>Yoon 政府 + 在野党罕见共识: 强制分红 + 回购</li>
+      <li>类比 2014 安倍经济学 — 5 年 Topix +100%</li>
+    </ul>
+  </div>
+
+  <p class="lead">韩国财阀股长期被市场 "韩国折扣" 压制, KOSPI 平均 PE 仅 10-11 (vs S&P500 22). Yoon 政府 + 在野党 罕见共识推 Corporate Value-Up Program — 财阀分红 + 回购 + 拆分透明化.</p>
 
   <div class="chart">
-    <div class="chart-title">▸ KOSPI PE vs S&P500 PE (历史 10 年)</div>
-    <svg class="chart-svg" viewBox="0 0 600 220" preserveAspectRatio="xMidYMid meet">
-      <line x1="40" y1="180" x2="580" y2="180" stroke="rgba(245,239,227,.2)"/>
-      <line x1="40" y1="20" x2="40" y2="180" stroke="rgba(245,239,227,.2)"/>
-      <!-- Y axis labels -->
-      <text x="32" y="184" fill="#A89B82" font-size="9" text-anchor="end" font-family="monospace">0</text>
-      <text x="32" y="140" fill="#A89B82" font-size="9" text-anchor="end" font-family="monospace">10</text>
-      <text x="32" y="96" fill="#A89B82" font-size="9" text-anchor="end" font-family="monospace">20</text>
-      <text x="32" y="52" fill="#A89B82" font-size="9" text-anchor="end" font-family="monospace">30</text>
-      <!-- KOSPI -->
-      <polyline points="60,130 120,135 180,138 240,142 300,140 360,130 420,120 480,105 540,90"
-        fill="none" stroke="#E8C97A" stroke-width="2"/>
-      <text x="540" y="86" fill="#E8C97A" font-size="11" font-family="monospace">KOSPI 13</text>
-      <!-- S&P500 -->
-      <polyline points="60,90 120,80 180,75 240,72 300,68 360,60 420,52 480,48 540,40"
-        fill="none" stroke="#C88478" stroke-width="2"/>
-      <text x="540" y="36" fill="#C88478" font-size="11" font-family="monospace">S&P 22</text>
-      <!-- X axis -->
-      <text x="60" y="200" fill="#A89B82" font-size="9" text-anchor="middle" font-family="monospace">2016</text>
-      <text x="300" y="200" fill="#A89B82" font-size="9" text-anchor="middle" font-family="monospace">2021</text>
-      <text x="540" y="200" fill="#A89B82" font-size="9" text-anchor="middle" font-family="monospace">2026</text>
-      <!-- Gap annotation -->
-      <line x1="540" y1="40" x2="540" y2="90" stroke="#A88BC0" stroke-dasharray="2 3"/>
-      <text x="555" y="68" fill="#A88BC0" font-size="9" font-family="monospace">折扣</text>
+    <div class="chart-title">▸ KOSPI vs S&P500 PE 估值差</div>
+    <div class="chart-sub">10 年数据 · 紫色虚线 = "Korea 折扣"</div>
+    <svg class="chart-svg" viewBox="0 0 600 240" preserveAspectRatio="xMidYMid meet">
+      <line x1="40" y1="200" x2="580" y2="200" stroke="#E5D5BA"/>
+      <line x1="40" y1="20" x2="40" y2="200" stroke="#E5D5BA"/>
+      <line x1="40" y1="160" x2="580" y2="160" stroke="#F0E2C8" stroke-dasharray="2 4"/>
+      <line x1="40" y1="120" x2="580" y2="120" stroke="#F0E2C8" stroke-dasharray="2 4"/>
+      <line x1="40" y1="80" x2="580" y2="80" stroke="#F0E2C8" stroke-dasharray="2 4"/>
+      <line x1="40" y1="40" x2="580" y2="40" stroke="#F0E2C8" stroke-dasharray="2 4"/>
+
+      <text x="34" y="204" fill="#7A6A50" font-size="9" text-anchor="end" font-family="monospace">0</text>
+      <text x="34" y="164" fill="#7A6A50" font-size="9" text-anchor="end" font-family="monospace">10</text>
+      <text x="34" y="124" fill="#7A6A50" font-size="9" text-anchor="end" font-family="monospace">20</text>
+      <text x="34" y="84" fill="#7A6A50" font-size="9" text-anchor="end" font-family="monospace">30</text>
+
+      <polyline points="60,150 120,155 180,158 240,162 300,160 360,150 420,140 480,125 540,110"
+        fill="none" stroke="#B8842A" stroke-width="2.5"/>
+      <text x="546" y="106" fill="#B8842A" font-size="12" font-family="monospace" font-weight="700">KOSPI 13</text>
+
+      <polyline points="60,110 120,100 180,95 240,92 300,88 360,80 420,72 480,68 540,60"
+        fill="none" stroke="#C4503B" stroke-width="2.5"/>
+      <text x="546" y="56" fill="#C4503B" font-size="12" font-family="monospace" font-weight="700">S&P 22</text>
+
+      <text x="60" y="220" fill="#7A6A50" font-size="10" text-anchor="middle" font-family="monospace">2016</text>
+      <text x="300" y="220" fill="#7A6A50" font-size="10" text-anchor="middle" font-family="monospace">2021</text>
+      <text x="540" y="220" fill="#7A6A50" font-size="10" text-anchor="middle" font-family="monospace">2026</text>
+
+      <line x1="540" y1="60" x2="540" y2="110" stroke="#7A5A8A" stroke-dasharray="2 3" stroke-width="2"/>
+      <text x="555" y="88" fill="#7A5A8A" font-size="11" font-family="monospace" font-weight="700">折扣</text>
     </svg>
   </div>
 
-  <h2>Value-Up 4 大杠杆</h2>
-  <ol>
-    <li><strong>强制分红率提升</strong>: 韩国财阀历史分红率 25% (vs 全球 40%). 目标 2027 达 35%</li>
-    <li><strong>回购 / 注销股票</strong>: 韩国回购率 0.4% (vs 美 2.8%). 强制公告 + 注销</li>
-    <li><strong>资本回报率 ROE 上调</strong>: 大企业 ROE 必须 > WACC, 否则 board 改组</li>
-    <li><strong>子公司透明化</strong>: 财阀循环持股拆解 + tax 优惠激励合并</li>
-  </ol>
+  <h2><span class="h2-num">01</span>Value-Up 4 大杠杆</h2>
+  <div class="steps">
+    <div class="step">
+      <h4>强制分红率提升</h4>
+      <p>韩国财阀历史分红率 25% (vs 全球 40%). 目标 2027 达 35%</p>
+    </div>
+    <div class="step">
+      <h4>回购 / 注销股票</h4>
+      <p>韩国回购率 0.4% (vs 美 2.8%). 强制公告 + 注销</p>
+    </div>
+    <div class="step">
+      <h4>资本回报率 ROE 上调</h4>
+      <p>大企业 ROE 必须 > WACC, 否则 board 改组</p>
+    </div>
+    <div class="step">
+      <h4>子公司透明化</h4>
+      <p>财阀循环持股拆解 + tax 优惠激励合并</p>
+    </div>
+  </div>
 
+  <h2><span class="h2-num">02</span>重估清单</h2>
   <table>
     <thead><tr><th>财阀股</th><th>当前 PB</th><th>历史 PB</th><th>重估空间</th></tr></thead>
     <tbody>
@@ -591,163 +1101,290 @@
   </table>
 
   <div class="callout green">
-    <div class="callout-title">▸ 我的判断</div>
-    <p style="margin:0">Value-Up 不会一夜兑现, 但 <strong>叙事一旦点燃</strong> 全球资金会涌入韩股 ETF (EWY). 类似 2014 日本"安倍经济学" 推动 Topix 5 年涨 100%. 韩国 2025-2028 复制路径概率 <strong>60%</strong>.</p>
+    <div class="callout-title"><span class="ico">💡</span>我的判断</div>
+    <p>Value-Up 不会一夜兑现, 但 <strong>叙事一旦点燃</strong> 全球资金会涌入韩股 ETF (EWY). 类似 2014 日本"安倍经济学" 推动 Topix 5 年涨 100%. 韩国 2025-2028 复制路径概率 <strong>60%</strong>.</p>
   </div>
 </section>
 
-<!-- ━━━ P.07 最强组合 ━━━ -->
+<!-- ━━━━━━━━━━━━━━━━━ P.07 最强组合 ━━━━━━━━━━━━━━━━━ -->
 <section class="page">
   <div class="page-header">
     <div class="page-no">P.07 / W19</div>
-    <div class="page-title"><span class="em">仓位指南</span>最强股票组合</div>
+    <div class="page-em">▸ Portfolio Guide · 仓位指南</div>
+    <h1 class="page-title">最强股票组合</h1>
   </div>
 
-  <p>不追单股, 押组合. 以下是综合 HBM / Defense / 造船 / 电力 / 老龄化 4-5 主题的 <strong>7 股韩国核心仓配置</strong>. 长期持仓视角 (3-5 年).</p>
+  <div class="tldr">
+    <div class="tldr-label">▸ 重点</div>
+    <ul>
+      <li>7 股核心仓 — 兼顾 HBM/Defense/造船/电力/老龄化</li>
+      <li>回测 2024-01 至 2025-04: +87% (KOSPI +25%)</li>
+      <li>Sharpe 1.9 / 最大回撤 -18%</li>
+    </ul>
+  </div>
+
+  <p class="lead">不追单股, 押组合. 以下是综合 HBM / Defense / 造船 / 电力 / 老龄化 4-5 主题的 7 股韩国核心仓配置. 长期持仓视角 (3-5 年).</p>
 
   <table>
-    <thead><tr><th>票</th><th>名称</th><th>权重</th><th>叙事</th><th>当前 PE</th><th>目标</th></tr></thead>
+    <thead><tr><th>票</th><th>名称</th><th>权重</th><th>叙事</th><th>PE</th><th>目标</th></tr></thead>
     <tbody>
-      <tr><td class="mono">000660.KS</td><td>SK Hynix</td><td class="num">25%</td><td>HBM 核心</td><td class="num">12</td><td class="pos">+50%</td></tr>
-      <tr><td class="mono">005930.KS</td><td>Samsung</td><td class="num">15%</td><td>HBM 反转 + Foundry</td><td class="num">14</td><td class="pos">+40%</td></tr>
-      <tr><td class="mono">012450.KS</td><td>Hanwha Aero</td><td class="num">15%</td><td>K-Defense 出口</td><td class="num">16</td><td class="pos">+35%</td></tr>
-      <tr><td class="mono">329180.KS</td><td>HD韩国造船</td><td class="num">15%</td><td>LNG 双燃料船</td><td class="num">11</td><td class="pos">+30%</td></tr>
-      <tr><td class="mono">015760.KS</td><td>KEPCO</td><td class="num">10%</td><td>电力 + 核电出口</td><td class="num">9</td><td class="pos">+40%</td></tr>
-      <tr><td class="mono">005380.KS</td><td>Hyundai Motor</td><td class="num">10%</td><td>EV + Boston Dynamics</td><td class="num">5</td><td class="pos">+60%</td></tr>
-      <tr><td class="mono">035420.KS</td><td>Naver</td><td class="num">10%</td><td>Value-Up + AI 平台</td><td class="num">19</td><td class="pos">+35%</td></tr>
+      <tr><td class="code">000660.KS</td><td>SK Hynix</td><td class="num">25%</td><td>HBM 核心</td><td class="num">12</td><td class="pos">+50%</td></tr>
+      <tr><td class="code">005930.KS</td><td>Samsung</td><td class="num">15%</td><td>HBM 反转 + Foundry</td><td class="num">14</td><td class="pos">+40%</td></tr>
+      <tr><td class="code">012450.KS</td><td>Hanwha Aero</td><td class="num">15%</td><td>K-Defense 出口</td><td class="num">16</td><td class="pos">+35%</td></tr>
+      <tr><td class="code">329180.KS</td><td>HD韩国造船</td><td class="num">15%</td><td>LNG 双燃料船</td><td class="num">11</td><td class="pos">+30%</td></tr>
+      <tr><td class="code">015760.KS</td><td>KEPCO</td><td class="num">10%</td><td>电力 + 核电出口</td><td class="num">9</td><td class="pos">+40%</td></tr>
+      <tr><td class="code">005380.KS</td><td>Hyundai</td><td class="num">10%</td><td>EV + Boston Dynamics</td><td class="num">5</td><td class="pos">+60%</td></tr>
+      <tr><td class="code">035420.KS</td><td>Naver</td><td class="num">10%</td><td>Value-Up + AI 平台</td><td class="num">19</td><td class="pos">+35%</td></tr>
     </tbody>
   </table>
 
-  <h2>风险管理</h2>
-  <ul>
-    <li><strong>分散</strong>: 7 票 ≠ 1 票. 单股最大权重 25%, 防 HBM 单点故障</li>
-    <li><strong>对冲</strong>: 总仓位 5-10% 美国军工股 (LMT/RTX) 对冲朝鲜冲突</li>
-    <li><strong>季度 rebalance</strong>: 偏离目标权重 > 5pp 时调整</li>
-    <li><strong>季报回看</strong>: 任一票 thesis 失效 (e.g. HBM4 跳票) → 立即减半</li>
-  </ul>
-
-  <div class="callout">
-    <div class="callout-title">▸ 模拟回测 (2024-01 至 2025-04)</div>
-    <p style="margin:0">7 股等权组合 +<strong>87%</strong> · KOSPI 同期 +<strong>25%</strong> · S&P500 同期 +<strong>22%</strong>. Sharpe 1.9. 最大回撤 -<strong>18%</strong> (2024-Q3 朝鲜挑衅期).</p>
+  <div class="stat-grid">
+    <div class="stat-card green">
+      <div class="stat-num">+87%</div>
+      <div class="stat-label">回测收益</div>
+      <div class="stat-sub">2024.01 - 2025.04</div>
+    </div>
+    <div class="stat-card gold">
+      <div class="stat-num">1.9</div>
+      <div class="stat-label">Sharpe</div>
+      <div class="stat-sub">年化风险调整</div>
+    </div>
+    <div class="stat-card rose">
+      <div class="stat-num">-18%</div>
+      <div class="stat-label">最大回撤</div>
+      <div class="stat-sub">2024.Q3 朝鲜挑衅</div>
+    </div>
   </div>
 
-  <h2>叙事组合 (替代方案)</h2>
-  <p>不想精选个股? 4 个叙事 ETF:</p>
-  <ol>
-    <li><strong>EWY</strong> iShares MSCI Korea (KOSPI 整体) — 50%</li>
-    <li><strong>FLKR</strong> Franklin FTSE Korea — 20%</li>
-    <li><strong>SOXX</strong> 全球半导体 (含 HBM 间接) — 20%</li>
-    <li><strong>ITA</strong> 美国国防 (对冲 + K-Defense correlation) — 10%</li>
-  </ol>
+  <h2><span class="h2-num">01</span>风险管理 4 件事</h2>
+  <div class="key-box">
+    <ul>
+      <li><strong>分散</strong>: 7 票 ≠ 1 票. 单股最大权重 25%, 防 HBM 单点故障</li>
+      <li><strong>对冲</strong>: 总仓位 5-10% 美国军工股 (LMT/RTX) 对冲朝鲜冲突</li>
+      <li><strong>季度 rebalance</strong>: 偏离目标权重 > 5pp 时调整</li>
+      <li><strong>季报回看</strong>: 任一票 thesis 失效 (e.g. HBM4 跳票) → 立即减半</li>
+    </ul>
+  </div>
+
+  <h2><span class="h2-num">02</span>替代: 4 大叙事 ETF</h2>
+  <p>不想精选个股? 用 ETF 表达:</p>
+  <div>
+    <span class="tag">EWY 50%</span>
+    <span class="tag">FLKR 20%</span>
+    <span class="tag">SOXX 20%</span>
+    <span class="tag">ITA 10%</span>
+  </div>
 </section>
 
-<!-- ━━━ P.08 黑天鹅 ━━━ -->
+<!-- ━━━━━━━━━━━━━━━━━ P.08 黑天鹅 ━━━━━━━━━━━━━━━━━ -->
 <section class="page">
   <div class="page-header">
     <div class="page-no">P.08 / W19</div>
-    <div class="page-title"><span class="em">⚡ Black Swan</span>朝鲜冲突情景</div>
+    <div class="page-em">▸ ⚡ Black Swan · 黑天鹅</div>
+    <h1 class="page-title">朝鲜冲突情景</h1>
   </div>
 
-  <p>韩国主线最大单一风险 = <strong>朝鲜半岛冲突升级</strong>. 概率 10%, 但 impact -5 (KOSPI 系统性 -30%+). 必须 plan B.</p>
-
-  <h2>3 阶 escalation 情景</h2>
-
-  <h3>阶段 1: 局部挑衅 (概率 30%)</h3>
-  <ul>
-    <li>朝鲜进行 ICBM 测试 / 朝韩边境炮击 / 间谍卫星</li>
-    <li>KOSPI 短期 -5 ~ -10%, 1-2 周内恢复</li>
-    <li>历史类比: 2010 延坪岛炮击 / 2017 ICBM 频繁测试</li>
-    <li><strong>应对</strong>: 不动仓位, 加 5% 现金缓冲</li>
-  </ul>
-
-  <h3>阶段 2: 战争边缘 (概率 8%)</h3>
-  <ul>
-    <li>朝韩边境军事对峙 / 核武检验 / 美军部署增加</li>
-    <li>KOSPI -15 ~ -25%, 持续 2-4 周</li>
-    <li>历史类比: 1994 朝鲜核危机, 2017 火与怒</li>
-    <li><strong>应对</strong>: 减仓 30% → 美元 / 黄金 / 美国军工</li>
-  </ul>
-
-  <h3>阶段 3: 全面冲突 (概率 2%)</h3>
-  <ul>
-    <li>朝韩开战 / 核武使用 / 美国直接介入</li>
-    <li>KOSPI -40 ~ -60%, 韩元贬值 30%+</li>
-    <li>历史类比: 1950 朝鲜战争 (但当时韩国未现代化)</li>
-    <li><strong>应对</strong>: 全部清仓韩股 + 美元现金 + 黄金 + 美国军工 LMT/RTX</li>
-  </ul>
-
-  <div class="callout red">
-    <div class="callout-title">▸ 黑天鹅对冲组合</div>
-    <p style="margin:0">长仓韩股 80% + 美元现金 10% + 黄金 GLD 5% + LMT/RTX 5%. 一旦阶段 1 触发, 立即把现金升到 20%; 阶段 2 触发, 减半韩股. <em>不要等阶段 3 才反应</em>.</p>
+  <div class="tldr">
+    <div class="tldr-label">▸ 重点</div>
+    <ul>
+      <li>韩国主线最大单一风险 = 朝鲜半岛冲突升级</li>
+      <li>3 阶情景: 局部 / 边缘 / 全面 概率 30%/8%/2%</li>
+      <li>当前预警指标全部"正常", 但金正恩政策已转鹰派</li>
+    </ul>
   </div>
 
-  <h2>当前预警指标 (本周)</h2>
+  <p class="lead">韩国主线最大单一风险 = 朝鲜半岛冲突升级. 概率 10% 总, 但 impact -5 (KOSPI 系统性 -30%+). 必须有 plan B.</p>
+
+  <h2><span class="h2-num">01</span>3 阶 escalation 情景</h2>
+
+  <div class="callout gold">
+    <div class="callout-title"><span class="ico">①</span>阶段 1 · 局部挑衅 (概率 30%)</div>
+    <p><strong>事件</strong>: 朝鲜进行 ICBM 测试 / 朝韩边境炮击 / 间谍卫星</p>
+    <p><strong>市场</strong>: KOSPI 短期 -5 ~ -10%, 1-2 周内恢复</p>
+    <p><strong>类比</strong>: 2010 延坪岛炮击 / 2017 ICBM 频繁测试</p>
+    <p><strong>应对</strong>: 不动仓位, 加 5% 现金缓冲</p>
+  </div>
+
+  <div class="callout rose">
+    <div class="callout-title"><span class="ico">②</span>阶段 2 · 战争边缘 (概率 8%)</div>
+    <p><strong>事件</strong>: 朝韩边境军事对峙 / 核武检验 / 美军部署增加</p>
+    <p><strong>市场</strong>: KOSPI -15 ~ -25%, 持续 2-4 周</p>
+    <p><strong>类比</strong>: 1994 朝鲜核危机 / 2017 火与怒</p>
+    <p><strong>应对</strong>: 减仓 30% → 美元 / 黄金 / 美国军工</p>
+  </div>
+
+  <div class="callout plum">
+    <div class="callout-title"><span class="ico">③</span>阶段 3 · 全面冲突 (概率 2%)</div>
+    <p><strong>事件</strong>: 朝韩开战 / 核武使用 / 美国直接介入</p>
+    <p><strong>市场</strong>: KOSPI -40 ~ -60%, 韩元贬值 30%+</p>
+    <p><strong>类比</strong>: 1950 朝鲜战争 (但当时韩国未现代化)</p>
+    <p><strong>应对</strong>: 全部清仓韩股 + 美元现金 + 黄金 + 美国军工 LMT/RTX</p>
+  </div>
+
+  <h2><span class="h2-num">02</span>预警仪表盘</h2>
   <table>
-    <thead><tr><th>指标</th><th>当前</th><th>预警阈值</th></tr></thead>
+    <thead><tr><th>指标</th><th>当前</th><th>预警阈值</th><th>状态</th></tr></thead>
     <tbody>
-      <tr><td>朝鲜每月 ICBM 测试次数</td><td class="num">0</td><td class="num">≥ 2</td></tr>
-      <tr><td>美韩联合军演频率</td><td class="num">月 1 次</td><td class="num">月 ≥ 3 次</td></tr>
-      <tr><td>韩美韩日峰会</td><td class="num">已开</td><td class="num">紧急召集</td></tr>
-      <tr><td>韩元兑美元 KRW/USD</td><td class="num">1390</td><td class="num">&gt; 1450</td></tr>
-      <tr><td>KOSPI VIX (韩波)</td><td class="num">17</td><td class="num">&gt; 30</td></tr>
+      <tr><td>朝鲜每月 ICBM 测试次数</td><td class="num">0</td><td class="num">≥ 2</td><td class="pos">✓ 安全</td></tr>
+      <tr><td>美韩联合军演频率</td><td class="num">月 1 次</td><td class="num">月 ≥ 3 次</td><td class="pos">✓ 安全</td></tr>
+      <tr><td>韩美韩日紧急峰会</td><td class="num">已开</td><td class="num">紧急召集</td><td class="pos">✓ 安全</td></tr>
+      <tr><td>韩元兑美元 KRW/USD</td><td class="num">1390</td><td class="num">&gt; 1450</td><td class="pos">✓ 安全</td></tr>
+      <tr><td>KOSPI VIX (韩波)</td><td class="num">17</td><td class="num">&gt; 30</td><td class="pos">✓ 安全</td></tr>
     </tbody>
   </table>
-
-  <p class="small" style="margin-top:14px">→ 当前指标全部"正常". 但<strong>金正恩政策已转鹰派</strong> (2024-01 宣告)<strong>, 未来 24 月窗口风险加大</strong>.</p>
 </section>
 
-<!-- ━━━ P.09 日历 ━━━ -->
+<!-- ━━━━━━━━━━━━━━━━━ P.09 日历 ━━━━━━━━━━━━━━━━━ -->
 <section class="page">
   <div class="page-header">
     <div class="page-no">P.09 / W19</div>
-    <div class="page-title"><span class="em">下周日历</span>关键事件 + 监控</div>
+    <div class="page-em">▸ Calendar · 关键日历</div>
+    <h1 class="page-title">下周日历 + 仪表盘</h1>
   </div>
 
-  <h2>本月剩余 (2026-05)</h2>
+  <h2><span class="h2-num">01</span>本月剩余 (2026-05)</h2>
   <table>
-    <thead><tr><th>日期</th><th>事件</th><th>关联</th><th>预期影响</th></tr></thead>
+    <thead><tr><th>日期</th><th>事件</th><th>关联</th><th>预期</th></tr></thead>
     <tbody>
-      <tr><td class="mono">05-15</td><td>SK Hynix 投资者日</td><td>000660.KS</td><td class="pos">HBM4 路线图</td></tr>
-      <tr><td class="mono">05-20</td><td>韩国央行利率决议</td><td>KOSPI</td><td>预期持平 3.25%</td></tr>
-      <tr><td class="mono">05-22</td><td>Samsung HBM3E 季度更新</td><td>005930.KS</td><td>NVDA 验证状态</td></tr>
-      <tr><td class="mono">05-28</td><td>Hanwha Aerospace 股东会</td><td>012450.KS</td><td class="pos">沙特订单进展</td></tr>
-      <tr><td class="mono">05-30</td><td>KOSPI MSCI 升级讨论</td><td>EWY</td><td class="pos">指数权重 +5%</td></tr>
+      <tr><td class="code">05-15</td><td>SK Hynix 投资者日</td><td class="code">000660.KS</td><td class="pos">HBM4 路线图</td></tr>
+      <tr><td class="code">05-20</td><td>韩国央行利率决议</td><td>KOSPI</td><td>预期持平 3.25%</td></tr>
+      <tr><td class="code">05-22</td><td>Samsung HBM3E 季度更新</td><td class="code">005930.KS</td><td>NVDA 验证</td></tr>
+      <tr><td class="code">05-28</td><td>Hanwha 股东会</td><td class="code">012450.KS</td><td class="pos">沙特订单</td></tr>
+      <tr><td class="code">05-30</td><td>KOSPI MSCI 升级讨论</td><td>EWY</td><td class="pos">权重 +5%</td></tr>
     </tbody>
   </table>
 
-  <h2>下月关键 (2026-06)</h2>
-  <ul>
-    <li><strong>06-12</strong> Trump-习见面 (G20) — 中美贸易 + 对韩政策</li>
-    <li><strong>06-15</strong> 美国 FOMC 利率决议 — 影响 KRW 汇率</li>
-    <li><strong>06-25</strong> 朝鲜战争 76 周年 — 历史敏感日, 朝鲜常挑衅</li>
-    <li><strong>06-28</strong> SK Hynix Q2 财报预披露</li>
-  </ul>
+  <h2><span class="h2-num">02</span>下月关键 (2026-06)</h2>
+  <table>
+    <thead><tr><th>日期</th><th>事件</th><th>影响</th></tr></thead>
+    <tbody>
+      <tr><td class="code">06-12</td><td>Trump-习见面 (G20)</td><td>中美贸易 + 对韩政策</td></tr>
+      <tr><td class="code">06-15</td><td>美国 FOMC 利率决议</td><td>KRW 汇率</td></tr>
+      <tr><td class="code">06-25</td><td>朝鲜战争 76 周年</td><td>历史敏感, 警惕挑衅</td></tr>
+      <tr><td class="code">06-28</td><td>SK Hynix Q2 预披露</td><td class="pos">关键 catalyst</td></tr>
+    </tbody>
+  </table>
 
-  <h2>每周监控仪表盘</h2>
+  <h2><span class="h2-num">03</span>每周仪表盘</h2>
   <table>
     <thead><tr><th>指标</th><th>本周</th><th>上周</th><th>变化</th></tr></thead>
     <tbody>
       <tr><td>KOSPI 指数</td><td class="num">2735</td><td class="num">2710</td><td class="pos">+0.9%</td></tr>
       <tr><td>KRW/USD</td><td class="num">1390</td><td class="num">1395</td><td class="pos">-0.4%</td></tr>
-      <tr><td>SK Hynix (000660)</td><td class="num">¥232,500</td><td class="num">¥226,000</td><td class="pos">+2.9%</td></tr>
-      <tr><td>Hanwha Aero (012450)</td><td class="num">¥385,000</td><td class="num">¥378,500</td><td class="pos">+1.7%</td></tr>
-      <tr><td>HD韩国造船 (329180)</td><td class="num">¥285,000</td><td class="num">¥291,000</td><td class="neg">-2.1%</td></tr>
+      <tr><td>SK Hynix</td><td class="num">¥232,500</td><td class="num">¥226,000</td><td class="pos">+2.9%</td></tr>
+      <tr><td>Hanwha Aero</td><td class="num">¥385,000</td><td class="num">¥378,500</td><td class="pos">+1.7%</td></tr>
+      <tr><td>HD韩国造船</td><td class="num">¥285,000</td><td class="num">¥291,000</td><td class="neg">-2.1%</td></tr>
       <tr><td>韩波 (VKOSPI)</td><td class="num">17.4</td><td class="num">17.1</td><td>+1.8%</td></tr>
       <tr><td>外资净买入 (周)</td><td class="num">+$420M</td><td class="num">+$280M</td><td class="pos">+50%</td></tr>
     </tbody>
   </table>
 
   <div class="callout green">
-    <div class="callout-title">▸ 本周一句话总结</div>
-    <p style="margin:0">"4 轮叠加未变, HBM + Defense 主线持续受外资买入, KRW 升值是 macro 顺风. Samsung HBM3E 是单一最大 binary event, <strong>05-22 关键</strong>."</p>
+    <div class="callout-title"><span class="ico">📌</span>本周一句话</div>
+    <p>"4 轮叠加未变, HBM + Defense 主线持续受外资买入, KRW 升值是 macro 顺风. <strong>Samsung HBM3E 是单一最大 binary event, 05-22 关键</strong>."</p>
   </div>
 </section>
 
-<!-- ━━━ 封底 ━━━ -->
+<!-- ━━━━━━━━━━━━━━━━━ P.10 路线图 ━━━━━━━━━━━━━━━━━ -->
+<section class="page">
+  <div class="page-header">
+    <div class="page-no">P.10 / W19</div>
+    <div class="page-em">▸ Roadmap · 路线图</div>
+    <h1 class="page-title">2025-2030 韩国主线</h1>
+  </div>
+
+  <div class="tldr">
+    <div class="tldr-label">▸ 关键节点</div>
+    <ul>
+      <li>2025 = HBM 爆发 + Value-Up 启动</li>
+      <li>2026-2027 = K-Defense 出口 + HBM4 + 造船周期顶</li>
+      <li>2028-2030 = 财阀重估完成, 估值切换</li>
+    </ul>
+  </div>
+
+  <div class="roadmap">
+    <div class="roadmap-title">▸ 韩国主线 5 年路径</div>
+    <svg viewBox="0 0 700 580" preserveAspectRatio="xMidYMid meet">
+      <!-- 时间轴主线 -->
+      <line x1="80" y1="60" x2="80" y2="540" stroke="#B8842A" stroke-width="3"/>
+
+      <!-- 2025 -->
+      <g>
+        <circle cx="80" cy="100" r="14" fill="#D4A858" stroke="#B8842A" stroke-width="3"/>
+        <text x="80" y="105" fill="white" font-size="11" text-anchor="middle" font-family="monospace" font-weight="700">25</text>
+        <text x="110" y="92" fill="#B8842A" font-size="14" font-family="monospace" font-weight="700">2025 · 爆发起点</text>
+        <text x="110" y="112" fill="#2C2418" font-size="12">▸ SK Hynix HBM 营收 +290% Q1</text>
+        <text x="110" y="130" fill="#2C2418" font-size="12">▸ Value-Up 法案通过</text>
+        <text x="110" y="148" fill="#2C2418" font-size="12">▸ K-Defense 出口 $20B 突破</text>
+      </g>
+
+      <!-- 2026 -->
+      <g>
+        <circle cx="80" cy="200" r="14" fill="#D4A858" stroke="#B8842A" stroke-width="3"/>
+        <text x="80" y="205" fill="white" font-size="11" text-anchor="middle" font-family="monospace" font-weight="700">26</text>
+        <text x="110" y="192" fill="#B8842A" font-size="14" font-family="monospace" font-weight="700">2026 · HBM4 + 沙特</text>
+        <text x="110" y="212" fill="#2C2418" font-size="12">▸ HBM4 量产 + Rubin 平台</text>
+        <text x="110" y="230" fill="#2C2418" font-size="12">▸ 沙特 K9 第三批 $4B</text>
+        <text x="110" y="248" fill="#2C2418" font-size="12">▸ 三星 HBM3E 通过 NVDA</text>
+      </g>
+
+      <!-- 2027 -->
+      <g>
+        <circle cx="80" cy="300" r="14" fill="#C4503B" stroke="#A03A28" stroke-width="3"/>
+        <text x="80" y="305" fill="white" font-size="11" text-anchor="middle" font-family="monospace" font-weight="700">27</text>
+        <text x="110" y="292" fill="#C4503B" font-size="14" font-family="monospace" font-weight="700">2027 · 造船周期顶?</text>
+        <text x="110" y="312" fill="#2C2418" font-size="12">▸ K-Defense 出口目标 $35B</text>
+        <text x="110" y="330" fill="#2C2418" font-size="12">▸ 造船 backlog 见顶, 警惕</text>
+        <text x="110" y="348" fill="#2C2418" font-size="12">▸ KF-21 量产</text>
+      </g>
+
+      <!-- 2028 -->
+      <g>
+        <circle cx="80" cy="400" r="14" fill="#5A7A4A" stroke="#3F5A35" stroke-width="3"/>
+        <text x="80" y="405" fill="white" font-size="11" text-anchor="middle" font-family="monospace" font-weight="700">28</text>
+        <text x="110" y="392" fill="#5A7A4A" font-size="14" font-family="monospace" font-weight="700">2028 · 财阀重估</text>
+        <text x="110" y="412" fill="#2C2418" font-size="12">▸ KOSPI PE 修复至 16</text>
+        <text x="110" y="430" fill="#2C2418" font-size="12">▸ 财阀分红率 33%+</text>
+        <text x="110" y="448" fill="#2C2418" font-size="12">▸ 韩股 ETF 全球流入 $50B</text>
+      </g>
+
+      <!-- 2030 -->
+      <g>
+        <circle cx="80" cy="500" r="14" fill="#7A5A8A" stroke="#5A3F6A" stroke-width="3"/>
+        <text x="80" y="505" fill="white" font-size="11" text-anchor="middle" font-family="monospace" font-weight="700">30</text>
+        <text x="110" y="492" fill="#7A5A8A" font-size="14" font-family="monospace" font-weight="700">2030 · 终局</text>
+        <text x="110" y="512" fill="#2C2418" font-size="12">▸ KOSPI 4000+ (vs 当前 2735)</text>
+        <text x="110" y="530" fill="#2C2418" font-size="12">▸ HBM 周期或转 HBM5</text>
+        <text x="110" y="548" fill="#2C2418" font-size="12">▸ 老龄化 → 养老 + 长寿主题</text>
+      </g>
+    </svg>
+  </div>
+
+  <h2><span class="h2-num">01</span>关键里程碑表</h2>
+  <table>
+    <thead><tr><th>年份</th><th>主题</th><th>催化事件</th><th>关注股</th></tr></thead>
+    <tbody>
+      <tr><td class="code">2025</td><td>HBM 爆发</td><td>Q1 营收 +290%</td><td class="code">000660</td></tr>
+      <tr><td class="code">2026</td><td>HBM4 + Defense</td><td>HBM4 量产 / 沙特 K9</td><td class="code">000660 / 012450</td></tr>
+      <tr><td class="code">2027</td><td>周期顶判断</td><td>造船见顶警惕</td><td class="code">329180</td></tr>
+      <tr><td class="code">2028</td><td>Value-Up 兑现</td><td>财阀分红率 33%+</td><td>EWY</td></tr>
+      <tr><td class="code">2030</td><td>新主题接力</td><td>HBM5 / 长寿 / 机器人</td><td>TBD</td></tr>
+    </tbody>
+  </table>
+
+  <div class="pull-quote">
+    <div class="pq-text">韩国 5 年路径不是直线, 是 4 个独立浪潮的接力. 每一波都需要重新评估.</div>
+    <div class="pq-attr">— 路线图核心理念</div>
+  </div>
+</section>
+
+<!-- ━━━━━━━━━━━━━━━━━ 封底 ━━━━━━━━━━━━━━━━━ -->
 <footer>
-  <p>推演周刊 · ZERO 2076 推演路径 · Claude Opus 4.7</p>
-  <p style="margin-top:8px">数据来源公开 · 非投资建议 · 仅供推演</p>
-  <p style="margin-top:14px"><a href="/path/">← 返回推演路径主页</a></p>
+  <div class="seal">推演周刊 · Issue W19</div>
+  <p><strong style="color:var(--gold)">ZERO 2076</strong> · 推演路径 · 韩国主线</p>
+  <p>Claude Opus 4.7 综合推演 · 2026-05-13</p>
+  <p style="margin-top:14px;font-style:italic">数据来源公开 · 非投资建议 · 仅供研读</p>
+  <p style="margin-top:18px"><a href="/path/">← 返回推演路径主页</a></p>
 </footer>
 
 </body>
