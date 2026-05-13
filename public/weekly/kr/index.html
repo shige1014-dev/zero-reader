@@ -3,304 +3,386 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>《ZERO 周刊》总第 W19 期 · 韩国战略报告 · 2026-05-13</title>
+<title>《ZERO 周刊》总第 W19 期 · 韩国战略报告</title>
 <style>
   :root{
+    --frame:#22180F;
+    --frame-2:#2C2218;
     --paper:#FAF6EB;
-    --paper-2:#F3EDDD;
-    --paper-3:#FCF9F1;
-    --cream:#FFF7E6;
+    --paper-2:#F2EBD7;
+    --paper-3:#FFF7E8;
+    --cream:#FFF1D6;
     --ink:#1A1410;
     --ink-2:#3A2F25;
     --ink-mute:#7A6B55;
     --ink-light:#A89A82;
     --accent:#A8200E;
     --accent-2:#8A1A0C;
-    --accent-3:#6B130A;
     --gold:#B68235;
     --gold-bright:#D4A858;
     --line:#DDD3BC;
     --line-strong:#C9BFA5;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{background:var(--paper)}
-  body{
+  html,body{
     background:
-      radial-gradient(ellipse 50% 30% at 10% 5%, rgba(168,32,14,.06), transparent 60%),
-      radial-gradient(ellipse 40% 25% at 90% 12%, rgba(182,130,53,.05), transparent 60%),
-      radial-gradient(ellipse 60% 25% at 50% 100%, rgba(168,32,14,.04), transparent 60%),
-      linear-gradient(180deg, #FDFAF0, var(--paper) 320px),
-      var(--paper);
-    color:var(--ink);
+      radial-gradient(ellipse 50% 30% at 30% 15%, rgba(212,168,88,.08), transparent 60%),
+      radial-gradient(ellipse 40% 25% at 80% 85%, rgba(168,32,14,.08), transparent 60%),
+      linear-gradient(180deg, var(--frame), var(--frame-2));
+    color:var(--paper);
     font-family:"Iowan Old Style","Source Han Serif SC","Songti SC",serif;
-    font-size:14.5px;
-    line-height:1.7;
+    min-height:100vh;
+  }
+  body{padding:24px}
+  a{color:inherit;text-decoration:none}
+
+  /* ━━━ 外层框中框 ━━━ */
+  .frame{
+    max-width:1280px;margin:0 auto;
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:28px;
+    overflow:hidden;
+    box-shadow:
+      0 30px 80px -20px rgba(0,0,0,.5),
+      0 12px 28px -16px rgba(0,0,0,.4);
     position:relative;
   }
-  body::before{
-    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
-    background-image:
-      radial-gradient(circle at 20% 30%, rgba(168,32,14,.015) 1px, transparent 1px),
-      radial-gradient(circle at 70% 60%, rgba(28,22,17,.012) 1px, transparent 1px);
-    background-size:60px 60px, 80px 80px;
-    opacity:.6;
-  }
-  body::after{
-    content:"";position:fixed;top:0;bottom:0;left:0;width:5px;
-    background:linear-gradient(180deg, var(--accent) 0%, var(--accent) 11%, var(--gold) 11%, var(--gold) 13%, transparent 13%);
-    z-index:1;
-  }
-  a{color:inherit;text-decoration:none}
-  a:hover{color:var(--accent)}
-  main, .brand-bar, footer{position:relative;z-index:2}
 
-  /* ━━━ Top brand bar (独立 logo only) ━━━ */
-  .brand-bar{
-    background:white;
-    border-bottom:3px solid var(--ink);
-  }
-  .brand-inner{
-    max-width:1080px;margin:0 auto;
-    padding:18px 30px;
+  /* ━━━ Top Bar ━━━ */
+  .topbar{
     display:flex;align-items:center;justify-content:space-between;
+    padding:18px 28px;
+    border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg, white, var(--paper-3));
+  }
+  .brand{
+    display:flex;align-items:baseline;gap:14px;
   }
   .brand-logo{
     font-family:"Iowan Old Style",serif;
-    display:flex;align-items:baseline;gap:14px;
+    font-size:24px;font-weight:900;color:var(--accent);
+    letter-spacing:-.01em;
   }
-  .brand-logo-mark{
-    font-size:28px;font-weight:900;color:var(--accent);
-    letter-spacing:-.02em;
-    line-height:1;
-  }
-  .brand-logo-mark::before{
-    content:"《"; color:var(--ink);font-weight:400;
-  }
-  .brand-logo-mark::after{
-    content:"》"; color:var(--ink);font-weight:400;
-  }
-  .brand-logo-sub{
+  .brand-logo::before{content:"《";color:var(--ink);font-weight:400}
+  .brand-logo::after{content:"》";color:var(--ink);font-weight:400}
+  .brand-sub{
     font-family:ui-monospace,monospace;
-    font-size:11px;color:var(--ink-mute);
-    letter-spacing:.16em;
+    font-size:10.5px;color:var(--ink-mute);
+    letter-spacing:.18em;text-transform:uppercase;
   }
-  .brand-issue{
+  .topbar-right{
+    display:flex;align-items:center;gap:14px;
+  }
+  .top-issue{
     font-family:ui-monospace,monospace;
     font-size:11px;color:var(--accent);
-    letter-spacing:.14em;font-weight:700;
-    padding:5px 12px;
+    letter-spacing:.16em;font-weight:700;
+    padding:6px 14px;
     border:1.5px solid var(--accent);
+    border-radius:99px;
+  }
+  .top-date{
+    font-family:ui-monospace,monospace;
+    font-size:10.5px;color:var(--ink-mute);
+    letter-spacing:.14em;
   }
 
-  /* ━━━ Main ━━━ */
-  main{
-    max-width:1080px;margin:0 auto;
-    padding:30px 30px 60px;
-  }
-
-  /* ━━━ COVER ━━━ */
-  .cover{
-    margin-bottom:50px;
+  /* ━━━ HERO ━━━ */
+  .hero{
+    position:relative;
+    padding:30px 28px;
     display:grid;
     grid-template-columns:1.4fr 1fr;
-    gap:0;
-    border:1px solid var(--line-strong);
-    background:white;
-    box-shadow:0 16px 40px -20px rgba(28,22,17,.15);
+    gap:24px;
+    background:linear-gradient(180deg, var(--paper-3), var(--paper));
+  }
+  /* 左侧大图 */
+  .hero-img{
     position:relative;
+    aspect-ratio:4/5;
+    border-radius:20px;
+    overflow:hidden;
+    background:linear-gradient(135deg, var(--paper-2), var(--cream));
   }
-  .cover::before{
-    content:"";position:absolute;top:-1px;left:-1px;right:-1px;height:6px;
-    background:linear-gradient(90deg, var(--accent) 0%, var(--accent) 33%, var(--ink) 33%, var(--ink) 66%, var(--gold) 66%);
+  .hero-img img{
+    width:100%;height:100%;object-fit:cover;display:block;
   }
-  .cover-text{
-    padding:50px 40px 40px;
-    position:relative;
-    background:linear-gradient(180deg, white, #FBF7EC);
+  /* 旋转章 */
+  .stamp{
+    position:absolute;left:50%;bottom:24px;transform:translateX(-50%);
+    width:120px;height:120px;
+    z-index:5;
+    pointer-events:none;
   }
-  .cover-mark{
-    display:flex;align-items:center;gap:10px;
-    margin-bottom:24px;
+  .stamp svg{
+    width:100%;height:100%;
+    animation:spin 22s linear infinite;
+  }
+  .stamp::after{
+    content:"→";
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:42px;height:42px;
+    background:var(--accent);color:white;
+    border-radius:50%;
+    display:grid;place-items:center;
+    font-size:22px;font-family:ui-monospace,monospace;
+    box-shadow:0 8px 20px -6px rgba(168,32,14,.5);
+  }
+  @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+  .stamp-text{
+    fill:none;stroke:none;
+    font-family:ui-monospace,monospace;
+    font-size:11px;letter-spacing:.34em;
+    text-transform:uppercase;
+    fill:var(--ink);
+    font-weight:700;
+  }
+
+  /* 右侧 hero 内容 */
+  .hero-right{
+    display:flex;flex-direction:column;justify-content:space-between;
+    padding:8px 6px;
+  }
+  .hero-eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    margin-bottom:14px;
     font-family:ui-monospace,monospace;
     font-size:10.5px;color:var(--accent);
     letter-spacing:.28em;text-transform:uppercase;
     font-weight:700;
   }
-  .cover-mark::before{
-    content:"";width:32px;height:1px;background:var(--accent);
-  }
-  .cover-eyebrow{
+  .hero-eyebrow::before{content:"";width:30px;height:1px;background:var(--accent)}
+  .hero-title{
     font-family:"Iowan Old Style","Songti SC",serif;
-    font-size:14px;color:var(--ink);font-weight:700;
-    letter-spacing:.32em;
-    margin-bottom:10px;
-  }
-  .cover-eyebrow small{
-    font-family:ui-monospace,monospace;
-    font-size:10.5px;color:var(--ink-mute);
-    letter-spacing:.14em;font-weight:400;
-    margin-left:10px;
-  }
-  .cover-title{
-    font-family:"Iowan Old Style","Songti SC",serif;
-    font-size:62px;font-weight:900;color:var(--ink);
-    line-height:0.98;letter-spacing:-.02em;
+    font-size:clamp(48px, 7vw, 92px);
+    font-weight:900;color:var(--ink);
+    line-height:0.96;letter-spacing:-.02em;
     margin-bottom:18px;
   }
-  .cover-title em{
+  .hero-title em{
     font-style:italic;color:var(--accent);
     position:relative;
   }
-  .cover-title em::after{
+  .hero-title em::after{
     content:"";position:absolute;left:0;right:0;bottom:8px;
-    height:6px;background:rgba(212,168,88,.3);
+    height:7px;background:rgba(212,168,88,.35);
     z-index:-1;
   }
-  .cover-dek{
-    font-size:16px;color:var(--ink-2);
-    line-height:1.7;
-    margin-bottom:24px;
-    max-width:480px;
+  .hero-dek{
+    font-size:14.5px;color:var(--ink-2);
+    line-height:1.75;
+    margin-bottom:22px;
   }
-  .cover-meta{
-    display:flex;align-items:center;gap:18px;
-    margin-top:auto;padding-top:18px;
+  .hero-meta{
+    display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    padding:14px 0 0;
     border-top:2px solid var(--ink);
-    font-family:ui-monospace,monospace;
-    font-size:11px;color:var(--ink-2);letter-spacing:.14em;
+    margin-top:auto;
   }
-  .cover-meta .seal{
-    background:var(--accent);color:white;
-    padding:6px 12px;font-weight:700;
-    letter-spacing:.2em;
+  .hero-stat{
+    font-family:"Iowan Old Style",serif;
+    font-size:24px;font-weight:900;color:var(--accent);
+    line-height:1;
+  }
+  .hero-stat-label{
+    font-family:ui-monospace,monospace;
+    font-size:10px;color:var(--ink-mute);
+    letter-spacing:.12em;text-transform:uppercase;
+    margin-top:2px;
+  }
+  .hero-cta-row{
+    display:flex;gap:10px;margin-top:18px;
+  }
+  .hero-cta{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:13px 22px;
+    background:var(--ink);color:var(--paper);
+    border-radius:99px;
+    font-family:"Iowan Old Style",serif;
+    font-size:14px;font-weight:600;
+    letter-spacing:.04em;
+    transition:all .2s;
+  }
+  .hero-cta:hover{background:var(--accent);transform:translateY(-2px)}
+  .hero-cta .arr{font-size:16px}
+  .hero-cta-2{
+    background:transparent;color:var(--ink);
+    border:1.5px solid var(--ink);
+  }
+  .hero-cta-2:hover{background:var(--ink);color:var(--paper)}
+
+  /* 浮出溢出 卡 (绝对定位 hero 右上角溢出) */
+  .float-cards{
+    position:absolute;right:-20px;top:30px;
+    display:flex;flex-direction:column;gap:12px;
+    z-index:6;
+  }
+  .float-card{
+    width:160px;
+    background:white;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 14px 28px -10px rgba(0,0,0,.25), 0 4px 10px -6px rgba(0,0,0,.15);
+    border:1px solid var(--line);
+    transition:transform .2s;
+  }
+  .float-card:hover{transform:translateX(-4px)}
+  .float-card img{
+    width:100%;aspect-ratio:1;object-fit:cover;display:block;
+  }
+  .float-card-cap{
+    padding:8px 11px;
+    font-family:ui-monospace,monospace;
+    font-size:10px;color:var(--accent);
+    letter-spacing:.12em;font-weight:700;
+    text-align:center;
   }
 
-  /* Cover image */
-  .cover-img-wrap{
-    position:relative;
-    background:linear-gradient(135deg, var(--paper-2), var(--cream));
-    border-left:1px solid var(--line-strong);
-    overflow:hidden;
+  /* ━━━ Main content (3 列) ━━━ */
+  .main-section{
+    padding:50px 28px 36px;
   }
-  .cover-real{
-    width:100%;height:100%;
-    object-fit:cover;
-    display:block;
-    filter:saturate(1.1) contrast(1.05);
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;
+    margin-bottom:24px;
+    padding-bottom:12px;
+    border-bottom:2px solid var(--ink);
   }
-  .cover-img-placeholder{
-    position:absolute;inset:0;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    padding:40px 30px;text-align:center;
-  }
-  .cover-img-frame{
-    width:100%;aspect-ratio:3/4;
-    border:2px dashed var(--accent);
-    background:rgba(168,32,14,.03);
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    padding:24px;text-align:center;position:relative;
-  }
-  .cover-img-frame::before{
-    content:"";position:absolute;top:8px;left:8px;right:8px;bottom:8px;
-    border:1px solid var(--line);pointer-events:none;
-  }
-  .cover-img-tag{
+  .section-head-num{
     font-family:ui-monospace,monospace;
-    font-size:11px;color:var(--accent);font-weight:700;
-    letter-spacing:.24em;text-transform:uppercase;
-    margin-bottom:12px;
-    position:relative;z-index:1;
+    font-size:12px;color:var(--accent);
+    letter-spacing:.22em;font-weight:700;
   }
-  .cover-img-title{
+  .section-head-title{
     font-family:"Iowan Old Style","Songti SC",serif;
-    font-size:22px;color:var(--ink);font-weight:700;
-    margin-bottom:14px;
-    position:relative;z-index:1;
+    font-size:28px;font-weight:800;color:var(--ink);
+    flex:1;
   }
-  .cover-img-prompt{
-    font-family:"PingFang SC",sans-serif;
-    font-size:11.5px;color:var(--ink-2);
-    line-height:1.65;
-    padding:14px;
+  .section-head-tag{
+    font-family:ui-monospace,monospace;
+    font-size:10.5px;color:var(--ink-mute);
+    letter-spacing:.16em;text-transform:uppercase;
+  }
+
+  /* Featured 3 卡 */
+  .feat-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+  }
+  .feat{
     background:white;
     border:1px solid var(--line);
-    border-radius:4px;
-    max-width:280px;
-    position:relative;z-index:1;
+    border-radius:18px;
+    overflow:hidden;
+    transition:all .25s;
+    display:flex;flex-direction:column;
   }
-  .cover-img-prompt code{
+  .feat:hover{
+    transform:translateY(-4px);
+    border-color:var(--accent);
+    box-shadow:0 16px 32px -16px rgba(0,0,0,.25);
+  }
+  .feat-img{
+    aspect-ratio:16/10;
+    overflow:hidden;
+  }
+  .feat-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
+  .feat:hover .feat-img img{transform:scale(1.05)}
+  .feat-body{
+    padding:18px 20px 20px;
+    flex:1;display:flex;flex-direction:column;
+  }
+  .feat-cat{
     font-family:ui-monospace,monospace;
-    font-size:9.5px;
-    color:var(--accent);
-    letter-spacing:.1em;
-    text-transform:uppercase;
-    font-weight:700;
+    font-size:10px;color:var(--accent);
+    letter-spacing:.2em;text-transform:uppercase;
+    font-weight:700;margin-bottom:8px;
   }
+  .feat-title{
+    font-family:"Iowan Old Style","Songti SC",serif;
+    font-size:18px;color:var(--ink);font-weight:700;
+    line-height:1.3;margin-bottom:8px;
+  }
+  .feat-dek{
+    font-size:12.5px;color:var(--ink-mute);
+    line-height:1.65;
+    flex:1;
+  }
+  .feat-foot{
+    margin-top:14px;padding-top:12px;
+    border-top:1px dashed var(--line);
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .feat-page{
+    font-family:ui-monospace,monospace;
+    font-size:10px;color:var(--ink-mute);
+    letter-spacing:.12em;
+  }
+  .feat-arr{
+    width:28px;height:28px;
+    background:var(--paper-2);
+    border-radius:50%;
+    display:grid;place-items:center;
+    color:var(--accent);font-size:14px;
+    transition:all .2s;
+  }
+  .feat:hover .feat-arr{background:var(--accent);color:white;transform:rotate(-45deg)}
 
-  /* ━━━ Section block ━━━ */
-  .section-row{
+  /* ━━━ TOC 多板块 ━━━ */
+  .toc-section{
+    padding:30px 28px;
+  }
+  .toc-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:30px;
-    margin-bottom:32px;
   }
-  .section-block{
-    padding:20px 22px;
-    background:rgba(255,255,255,.6);
-    border-radius:4px;
-    border-left:4px solid var(--line);
-    transition:border-left-color .15s;
+  .toc-block{
+    padding:22px 24px;
+    background:white;
+    border:1px solid var(--line);
+    border-radius:16px;
+    transition:border-color .15s;
   }
-  .section-block:hover{border-left-color:var(--accent)}
-  .section-block.featured{
-    background:linear-gradient(135deg, white, var(--cream));
-    border-left-color:var(--accent);
-  }
-
-  .section-label{
-    display:inline-flex;align-items:center;gap:10px;
+  .toc-block:hover{border-color:var(--accent)}
+  .toc-label{
+    display:flex;align-items:center;gap:10px;
     margin-bottom:14px;
-    padding-bottom:6px;
+    padding-bottom:8px;
     border-bottom:2px solid var(--ink);
-    width:100%;
   }
-  .section-label-cn{
+  .toc-label-cn{
     font-family:"Iowan Old Style","Songti SC",serif;
-    font-size:16px;font-weight:700;color:var(--accent);
-    letter-spacing:.04em;
+    font-size:16px;font-weight:800;color:var(--accent);
   }
-  .section-label-en{
+  .toc-label-en{
     font-family:ui-monospace,monospace;
     font-size:10.5px;color:var(--ink-mute);
     letter-spacing:.18em;text-transform:uppercase;
   }
-  .section-label-num{
+  .toc-label-num{
     margin-left:auto;
     font-family:ui-monospace,monospace;
     font-size:11px;color:var(--ink-light);font-weight:600;
   }
-
-  /* Article */
   .article{
-    padding:10px 0 14px;
+    padding:11px 0 12px;
     border-bottom:1px solid var(--line);
     cursor:pointer;
-    transition:transform .15s, padding .15s;
+    transition:padding .15s, transform .15s;
   }
-  .article:hover{
-    transform:translateX(3px);
-    padding-left:6px;
-  }
-  .article:hover .article-title{color:var(--accent)}
+  .article:hover{padding-left:6px;transform:translateX(2px)}
   .article:last-child{border-bottom:none;padding-bottom:0}
   .article-title{
     font-family:"Iowan Old Style","Songti SC",serif;
-    font-size:17px;font-weight:600;color:var(--ink);
+    font-size:16px;font-weight:700;color:var(--ink);
     line-height:1.32;
     margin-bottom:5px;
     display:block;
   }
-  .article-title:hover{color:var(--accent)}
+  .article:hover .article-title{color:var(--accent)}
   .article-byline{
     font-family:ui-monospace,monospace;
     font-size:10px;color:var(--ink-light);
@@ -314,491 +396,549 @@
   .article-tag{
     display:inline-block;
     font-family:ui-monospace,monospace;
-    font-size:9.5px;
-    color:white;
+    font-size:9.5px;color:white;
     background:var(--accent);
     padding:1px 6px;
     margin-right:5px;
     letter-spacing:.08em;
     vertical-align:middle;
+    border-radius:2px;
   }
   .article-tag.gold{background:var(--gold)}
   .article-tag.ink{background:var(--ink)}
 
-  /* ━━━ Image prompts block ━━━ */
-  .prompts-section{
-    margin-top:40px;
-    padding:34px 30px;
+  /* ━━━ Music + CTA Band ━━━ */
+  .cta-band{
+    margin:30px 28px;
+    padding:40px;
     background:
-      linear-gradient(135deg, white 0%, var(--paper-3) 100%);
-    border:1px solid var(--line-strong);
-    border-top:4px solid var(--gold);
-    border-radius:4px;
-    position:relative;
-  }
-  .prompts-section::before{
-    content:"GPT 图片提示词清单";
-    position:absolute;top:-12px;left:20px;
-    background:var(--gold);
-    color:white;
-    padding:3px 14px;
-    font-family:"Iowan Old Style",serif;
-    font-size:11px;font-weight:700;
-    letter-spacing:.16em;
-    text-transform:uppercase;
-  }
-  .prompts-section h3{
-    font-family:"Iowan Old Style","Songti SC",serif;
-    font-size:22px;color:var(--ink);font-weight:700;
-    margin-bottom:8px;
-  }
-  .prompts-section .intro{
-    font-size:13px;color:var(--ink-2);
-    margin-bottom:24px;
-    padding-bottom:18px;
-    border-bottom:1px dashed var(--line);
-  }
-  .gallery-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:14px;
-  }
-  .gallery-card{
-    position:relative;
-    aspect-ratio:16/10;
-    border-radius:6px;overflow:hidden;
-    border:1px solid var(--line);
-    transition:all .25s;
-    display:block;
-  }
-  .gallery-card img{
-    width:100%;height:100%;object-fit:cover;
-    display:block;
-    transition:transform .35s;
-  }
-  .gallery-card:hover{
-    border-color:var(--accent);
-    transform:translateY(-3px);
-    box-shadow:0 14px 32px -12px rgba(28,22,17,.25);
-  }
-  .gallery-card:hover img{transform:scale(1.04)}
-  .gallery-cap{
-    position:absolute;bottom:0;left:0;right:0;
-    background:linear-gradient(180deg, transparent, rgba(0,0,0,.85));
-    padding:24px 14px 12px;
-    color:white;
-    display:flex;flex-direction:column;gap:3px;
-  }
-  .gallery-tag{
-    font-family:ui-monospace,monospace;
-    font-size:9.5px;color:var(--gold-bright);font-weight:700;
-    letter-spacing:.18em;
-  }
-  .gallery-title{
-    font-family:"Iowan Old Style","Songti SC",serif;
-    font-size:14px;color:white;font-weight:600;
-  }
-  @media (max-width:760px){
-    .gallery-grid{grid-template-columns:1fr 1fr}
-  }
-
-  /* ━━━ Bottom band ━━━ */
-  .bottom-band{
-    margin-top:50px;
-    padding:36px;
-    background:linear-gradient(135deg, var(--ink) 0%, #2A1F18 100%);
+      linear-gradient(135deg, var(--ink) 0%, #2A1F18 100%);
     color:var(--paper);
-    border-radius:4px;
+    border-radius:22px;
     display:grid;
     grid-template-columns:1.4fr 1fr;
-    gap:36px;
-    align-items:center;
+    gap:36px;align-items:center;
     position:relative;overflow:hidden;
   }
-  .bottom-band::before{
+  .cta-band::before{
     content:"";position:absolute;top:0;left:0;right:0;height:5px;
     background:linear-gradient(90deg, var(--accent), var(--gold), var(--accent));
   }
-  .bottom-band::after{
-    content:"";position:absolute;top:-50%;right:-10%;width:300px;height:300px;
-    background:radial-gradient(circle, rgba(182,130,53,.1), transparent 70%);
-    border-radius:50%;pointer-events:none;
+  .cta-band::after{
+    content:"";position:absolute;top:-30%;right:-10%;width:340px;height:340px;
+    background:radial-gradient(circle, rgba(182,130,53,.12), transparent 70%);
+    border-radius:50%;
   }
   .band-left{position:relative;z-index:1}
-  .band-left h3{
-    font-family:"Iowan Old Style",serif;
-    font-size:12px;color:var(--gold-bright);
-    letter-spacing:.28em;text-transform:uppercase;
-    margin-bottom:12px;font-weight:700;
+  .band-left .label{
+    font-family:ui-monospace,monospace;
+    font-size:11px;color:var(--gold-bright);
+    letter-spacing:.24em;text-transform:uppercase;
+    font-weight:700;margin-bottom:10px;
   }
   .band-left h2{
     font-family:"Iowan Old Style","Songti SC",serif;
-    font-size:32px;font-weight:700;color:var(--paper);
-    line-height:1.2;margin-bottom:14px;
+    font-size:34px;font-weight:800;
+    line-height:1.15;margin-bottom:14px;
   }
   .band-left p{
     font-size:14px;color:rgba(250,246,235,.75);
     line-height:1.7;margin-bottom:22px;
   }
   .band-cta{
-    display:inline-flex;align-items:center;gap:12px;
-    background:var(--accent);color:white;
+    display:inline-flex;align-items:center;gap:14px;
     padding:14px 28px;
+    background:var(--accent);color:white;
+    border-radius:99px;
     font-family:"Iowan Old Style","Songti SC",serif;
     font-size:15px;font-weight:600;
-    letter-spacing:.06em;
-    border-radius:3px;
+    letter-spacing:.04em;
     transition:all .2s;
   }
-  .band-cta:hover{background:var(--accent-2);color:white;transform:translateY(-2px)}
+  .band-cta:hover{background:var(--accent-2);transform:translateY(-2px)}
 
   .band-music{
     background:rgba(250,246,235,.06);
-    padding:22px 24px;
+    padding:24px;
     border:1px solid rgba(182,130,53,.3);
-    border-radius:6px;
+    border-radius:14px;
     backdrop-filter:blur(8px);
     position:relative;z-index:1;
   }
-  .band-music-label{
+  .band-music .label{
     font-family:ui-monospace,monospace;
     font-size:10px;color:var(--gold-bright);
     letter-spacing:.24em;text-transform:uppercase;
     font-weight:700;margin-bottom:8px;
   }
-  .band-music-track{
+  .band-music .track{
     font-family:"Iowan Old Style",serif;
-    font-size:17px;color:var(--paper);font-weight:600;
+    font-size:18px;color:var(--paper);font-weight:700;
     margin-bottom:4px;
   }
-  .band-music-artist{
+  .band-music .artist{
     font-size:12px;color:rgba(250,246,235,.55);
     font-style:italic;margin-bottom:14px;
   }
   .band-music audio{width:100%;height:34px;filter:invert(.92) hue-rotate(180deg)}
 
+  /* ━━━ 底部主题 row (COSMOS bottom thumbnails) ━━━ */
+  .topics-row{
+    padding:30px 28px 40px;
+    background:linear-gradient(180deg, transparent, var(--paper-2));
+  }
+  .topics-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:18px;
+  }
+  .topic{
+    text-align:center;
+    cursor:pointer;
+    transition:transform .2s;
+  }
+  .topic:hover{transform:translateY(-4px)}
+  .topic-circle{
+    width:96px;height:96px;
+    margin:0 auto 12px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 10px 24px -8px rgba(0,0,0,.25);
+    position:relative;
+  }
+  .topic-circle img{
+    width:100%;height:100%;object-fit:cover;display:block;
+  }
+  .topic-label{
+    font-family:"Iowan Old Style","Songti SC",serif;
+    font-size:14px;font-weight:700;color:var(--ink);
+    margin-bottom:8px;
+  }
+  .topic-arr{
+    width:32px;height:32px;
+    margin:0 auto;
+    background:var(--ink);color:var(--paper);
+    border-radius:50%;
+    display:grid;place-items:center;
+    font-size:14px;
+    transition:all .2s;
+  }
+  .topic:hover .topic-arr{
+    background:var(--accent);
+    transform:rotate(-45deg);
+  }
+
   /* ━━━ Footer ━━━ */
   footer{
-    padding:50px 30px 36px;
+    padding:36px 28px 40px;
     text-align:center;
-    border-top:3px double var(--accent);
-    margin-top:50px;
+    border-top:1px solid var(--line);
+    background:linear-gradient(180deg, var(--paper-2), white);
   }
   .footer-mark{
     font-family:"Iowan Old Style",serif;
-    font-size:34px;color:var(--accent);
-    font-weight:900;letter-spacing:-.02em;
-    margin-bottom:14px;
+    font-size:28px;color:var(--accent);
+    font-weight:900;letter-spacing:-.01em;
+    margin-bottom:10px;
   }
   .footer-mark::before{content:"《";color:var(--ink);font-weight:400}
   .footer-mark::after{content:"》";color:var(--ink);font-weight:400}
   footer p{
     font-size:11px;color:var(--ink-mute);
-    letter-spacing:.14em;
-    margin:4px 0;
+    letter-spacing:.16em;
     font-family:ui-monospace,monospace;
-    text-transform:uppercase;
+    text-transform:uppercase;margin:3px 0;
   }
-  footer .signature{
+  footer .sign{
     font-family:"Iowan Old Style",serif;
-    font-size:13px;color:var(--accent);
+    font-size:12px;color:var(--accent);
     font-style:italic;letter-spacing:.04em;
-    margin-top:16px;
-    text-transform:none;
+    margin-top:12px;text-transform:none;
   }
 
-  /* mobile */
-  @media (max-width:760px){
-    body::after{width:3px}
-    body{font-size:14px}
-    .brand-inner{padding:14px 18px;flex-direction:column;gap:10px;align-items:flex-start}
-    .brand-logo-mark{font-size:22px}
-    .brand-issue{font-size:10px;padding:4px 9px}
+  /* ━━━ Mobile ━━━ */
+  @media (max-width:880px){
+    body{padding:10px}
+    .frame{border-radius:18px}
 
-    main{padding:20px 18px 40px}
+    .topbar{padding:14px 18px;flex-wrap:wrap;gap:10px}
+    .brand-logo{font-size:20px}
+    .brand-sub{display:none}
+    .top-issue{font-size:10px;padding:5px 11px}
+    .top-date{font-size:10px}
 
-    .cover{grid-template-columns:1fr}
-    .cover-text{padding:36px 24px 28px}
-    .cover-title{font-size:40px}
-    .cover-dek{font-size:14px}
-    .cover-img-wrap{border-left:none;border-top:1px solid var(--line-strong)}
+    .hero{
+      grid-template-columns:1fr;
+      padding:24px 18px;gap:24px;
+    }
+    .hero-img{aspect-ratio:4/3;border-radius:14px}
+    .float-cards{
+      position:relative;right:auto;top:auto;
+      flex-direction:row;
+      margin-top:-30px;padding:0 18px;
+      z-index:6;
+      justify-content:center;
+    }
+    .float-card{width:120px}
+    .stamp{width:90px;height:90px;bottom:14px}
+    .stamp::after{width:34px;height:34px;font-size:18px}
+    .hero-title{font-size:46px}
+    .hero-dek{font-size:13.5px}
 
-    .section-row{grid-template-columns:1fr;gap:20px;margin-bottom:24px}
-    .section-block{padding:16px 18px}
-    .article-title{font-size:15.5px}
-    .article-dek{font-size:12.5px}
+    .main-section{padding:32px 18px 24px}
+    .section-head-title{font-size:21px}
+    .feat-grid{grid-template-columns:1fr;gap:14px}
 
-    .prompts-section{padding:30px 22px}
-    .prompts-grid{grid-template-columns:1fr}
+    .toc-section{padding:24px 18px}
+    .toc-grid{grid-template-columns:1fr;gap:20px}
+    .toc-block{padding:18px 18px}
 
-    .bottom-band{grid-template-columns:1fr;gap:22px;padding:24px}
+    .cta-band{
+      margin:24px 18px;padding:28px 22px;
+      grid-template-columns:1fr;gap:22px;border-radius:16px;
+    }
     .band-left h2{font-size:24px}
+
+    .topics-row{padding:24px 18px 32px}
+    .topics-grid{grid-template-columns:repeat(3,1fr);gap:14px}
+    .topic-circle{width:78px;height:78px}
+    .topic:nth-child(4),.topic:nth-child(5){grid-row:2}
+
+    footer{padding:30px 18px 32px}
   }
 </style>
 </head>
 <body>
 
-<!-- ━━━ Brand Bar (独立) ━━━ -->
-<div class="brand-bar">
-  <div class="brand-inner">
-    <div class="brand-logo">
-      <span class="brand-logo-mark">ZERO 周刊</span>
-      <span class="brand-logo-sub">STRATEGIC WEEKLY</span>
+<div class="frame">
+
+  <!-- ━━━ Top Bar ━━━ -->
+  <div class="topbar">
+    <div class="brand">
+      <span class="brand-logo">ZERO 周刊</span>
+      <span class="brand-sub">STRATEGIC WEEKLY</span>
     </div>
-    <div class="brand-issue">总第 W19 期 · 2026 / 05 / 13</div>
-  </div>
-</div>
-
-<main>
-
-  <!-- ━━━ COVER ━━━ -->
-  <div class="cover">
-    <div class="cover-text">
-      <div class="cover-mark">▸ COVER STORY · 封面报道</div>
-
-      <div class="cover-eyebrow">韩国战略报告 <small>KOREA STRATEGIC REPORT</small></div>
-
-      <h1 class="cover-title">
-        转折<br/><em>之年</em>
-      </h1>
-
-      <p class="cover-dek">
-        2025-2030 五年窗口期, 韩国正在完成从代工出口国向高端制造 + 国防出口 + AI 复合体的国家级转型. HBM 寡头 + K-Defense + 造船复兴 + Value-Up 财阀改革, 4 轮叙事同时点燃. 这是一份完整推演.
-      </p>
-
-      <div class="cover-meta">
-        <span class="seal">ISSUE W19</span>
-        <span>2026 / 05 / 13</span>
-        <span>21 PAGES · 60 MIN READ</span>
-      </div>
-    </div>
-
-    <!-- Cover Image -->
-    <div class="cover-img-wrap">
-      <img class="cover-real" src="/weekly/kr/images/cover.jpg" alt="韩国转折 Seoul Advantage" />
+    <div class="topbar-right">
+      <span class="top-issue">总第 W19 期</span>
+      <span class="top-date">2026 / 05 / 13</span>
     </div>
   </div>
 
-  <!-- ━━━ Section: ZERO 观察 ━━━ -->
-  <div class="section-row">
-    <div class="section-block featured">
-      <div class="section-label">
-        <span class="section-label-cn">ZERO 观察</span>
-        <span class="section-label-en">Opinion</span>
-        <span class="section-label-num">01</span>
+  <!-- ━━━ HERO ━━━ -->
+  <div class="hero">
+    <!-- 大图 + 旋转章 -->
+    <div class="hero-img">
+      <img src="/weekly/kr/images/cover.jpg" alt="韩国转折" />
+
+      <!-- 浮出溢出卡 -->
+      <div class="float-cards">
+        <a class="float-card" href="/weekly/kr/report.html#hbm">
+          <img src="/weekly/kr/images/hbm.jpg" alt="HBM"/>
+          <div class="float-card-cap">▸ HBM 寡头</div>
+        </a>
+        <a class="float-card" href="/weekly/kr/report.html#defense">
+          <img src="/weekly/kr/images/defense.jpg" alt="K-Defense"/>
+          <div class="float-card-cap">▸ K-DEFENSE</div>
+        </a>
       </div>
-      <div class="article">
-        <a class="article-title" href="/weekly/kr/report.html#tldr"><span class="article-tag gold">总纲</span>从总纲到细分 · 一页看完整份报告</a>
-        <div class="article-byline">文 | Claude Opus 4.7</div>
-        <div class="article-dek">韩国不是单一周期股票市场, 而是 AI 算力 + 军备 + 改革四个 macro 主题的结构性 beneficiary. 这一期我们拆解为什么.</div>
-      </div>
-      <div class="article">
-        <a class="article-title" href="/weekly/kr/report.html#strategy"><span class="article-tag">战略</span>韩国的 6 大战略意图</a>
-        <div class="article-byline">文 | 战略研究组</div>
-        <div class="article-dek">摆脱中等强国陷阱, 进入 G8. 路径: 高端制造 + 文化软实力 + 国防出口 + 老龄化对冲 + KOSPI 全球化 + AI 国家战略.</div>
+
+      <!-- 旋转章 -->
+      <div class="stamp">
+        <svg viewBox="0 0 100 100">
+          <defs>
+            <path id="circle" d="M 50,50 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" />
+          </defs>
+          <text class="stamp-text">
+            <textPath href="#circle">ENTER REPORT · 进入报告 · ENTER REPORT · 进入报告 ·</textPath>
+          </text>
+        </svg>
       </div>
     </div>
 
-    <div class="section-block">
-      <div class="section-label">
-        <span class="section-label-cn">周刊导播</span>
-        <span class="section-label-en">Editor's Picks</span>
-        <span class="section-label-num">02</span>
+    <!-- Hero 右侧 -->
+    <div class="hero-right">
+      <div>
+        <div class="hero-eyebrow">▸ COVER STORY · 封面报道</div>
+        <h1 class="hero-title">
+          韩国<br/><em>转折之年</em>
+        </h1>
+        <p class="hero-dek">
+          2025-2030 五年窗口期, 韩国从代工出口国向高端制造 + 国防出口 + AI 复合体的国家级转型. HBM 寡头 + K-Defense + 造船复兴 + Value-Up 财阀改革, 4 轮叙事同时点燃.
+        </p>
       </div>
-      <div class="article">
-        <a class="article-title" href="/weekly/kr/report.html#watchlist">下 90 天 5 件必看大事</a>
-        <div class="article-byline">文 | 编辑部</div>
-        <div class="article-dek">Samsung HBM3E 05-22 binary · Hanwha 沙特订单 05-28 · FOMC 06-15 · SK Hynix Q2 06-28 · Value-Up 法案三读 07.</div>
-      </div>
-      <div class="article">
-        <a class="article-title" href="/weekly/kr/report.html#10year"><span class="article-tag ink">长期</span>2025-2035 10 年路径</a>
-        <div class="article-byline">文 | 长期推演组</div>
-        <div class="article-dek">3 阶段: 叠加爆发期 (25-27) → 重估完成期 (28-30) → 新主题接力期 (31-35). KOSPI 终局 5500.</div>
-      </div>
-    </div>
-  </div>
 
-  <!-- ━━━ Section: 时事 + 金融 ━━━ -->
-  <div class="section-row">
-    <div class="section-block">
-      <div class="section-label">
-        <span class="section-label-cn">时事</span>
-        <span class="section-label-en">Current Affairs</span>
-        <span class="section-label-num">03</span>
-      </div>
-      <div class="article">
-        <a class="article-title" href="/weekly/kr/report.html#geopolitics"><span class="article-tag">地缘</span>中美夹缝 · 韩国的三选一</a>
-        <div class="article-byline">文 | 战略推演组</div>
-        <div class="article-dek">安全靠美, 经济靠中. Trump 2.0 + 中美脱钩, 韩国必须选边. 已选 A: CHIPS Act + IRA + Aukus 第二支柱.</div>
-      </div>
-      <div class="article">
-        <a class="article-title" href="/weekly/kr/report.html#north-korea"><span class="article-tag">⚡黑天鹅</span>朝鲜冲突 · 3 阶推演</a>
-        <div class="article-byline">文 | 风险研究组</div>
-        <div class="article-dek">局部挑衅 (30%) / 战争边缘 (8%) / 全面冲突 (2%). 当前预警指标全部"正常", 但金正恩政策已转鹰派.</div>
-      </div>
-      <div class="article">
-        <a class="article-title" href="/weekly/kr/report.html#news">本月 12 大新闻方向</a>
-        <div class="article-byline">文 | 新闻聚焦组</div>
-        <div class="article-dek">半导体 5 件 + 国防 3 件 + 地缘 4 件. HBM 三方对决 / K-Defense 加速 / Value-Up 兑现 三大主线.</div>
-      </div>
-    </div>
+      <div>
+        <div class="hero-meta">
+          <div>
+            <div class="hero-stat">+25.4%</div>
+            <div class="hero-stat-label">KOSPI YTD</div>
+          </div>
+          <div>
+            <div class="hero-stat">+290%</div>
+            <div class="hero-stat-label">HBM Q1</div>
+          </div>
+          <div>
+            <div class="hero-stat">$20B</div>
+            <div class="hero-stat-label">K-Defense</div>
+          </div>
+        </div>
 
-    <div class="section-block">
-      <div class="section-label">
-        <span class="section-label-cn">金融</span>
-        <span class="section-label-en">Finance</span>
-        <span class="section-label-num">04</span>
-      </div>
-      <div class="article">
-        <a class="article-title" href="/weekly/kr/report.html#hbm"><span class="article-tag gold">深度</span>HBM 寡头 · SK Hynix Q1 拆解</a>
-        <div class="article-byline">文 | 半导体研究组</div>
-        <div class="article-dek">Q1 营业利润 ₩7.4 万亿 (+158% YoY). HBM 占总收入 45%, 毛利率 53%. 客户集中度 70% 是双刃剑.</div>
-      </div>
-      <div class="article">
-        <a class="article-title" href="/weekly/kr/report.html#value-up">Value-Up · 韩国版安倍经济学?</a>
-        <div class="article-byline">文 | 公司治理组</div>
-        <div class="article-dek">韩国 PE 仅 11, 一半 S&P 折扣. 强制分红 + 回购 + 透明化, 全球资金涌入 KOSPI ETF.</div>
-      </div>
-      <div class="article">
-        <a class="article-title" href="/weekly/kr/report.html#portfolio"><span class="article-tag gold">组合</span>7 股核心仓 · 回测 +87%</a>
-        <div class="article-byline">文 | 投资组合组</div>
-        <div class="article-dek">SK Hynix 25% + Samsung 15% + Hanwha 15% + HD 造船 15% + KEPCO 10% + Hyundai 10% + Naver 10%.</div>
+        <div class="hero-cta-row">
+          <a class="hero-cta" href="/weekly/kr/report.html">
+            阅读全文 <span class="arr">→</span>
+          </a>
+          <a class="hero-cta hero-cta-2" href="/weekly/kr/report.html#tldr">
+            10 分钟速读
+          </a>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- ━━━ Section: 商业 + 产业 ━━━ -->
-  <div class="section-row">
-    <div class="section-block">
-      <div class="section-label">
-        <span class="section-label-cn">商业</span>
-        <span class="section-label-en">Business</span>
-        <span class="section-label-num">05</span>
-      </div>
-      <div class="article">
-        <a class="article-title" href="/weekly/kr/report.html#defense"><span class="article-tag">深度</span>K-Defense · 全球军售第 4</a>
-        <div class="article-byline">文 | 国防工业组</div>
-        <div class="article-dek">2024 出口 $20B. 4 大装备: K2 / K9 / FA-50 / 天弓-II. 价格 50% / 交付 2x. 沙特 K9 $4B 即将签.</div>
-      </div>
-      <div class="article">
-        <a class="article-title" href="/weekly/kr/report.html#shipbuilding">造船 · 5 年订单满</a>
-        <div class="article-byline">文 | 制造业研究组</div>
-        <div class="article-dek">HD韩国造船 + 三星重工 + 大宇 三巨头 backlog $230B. LNG 船全球 72%, 双燃料船 80%.</div>
-      </div>
-      <div class="article">
-        <a class="article-title" href="/weekly/kr/report.html#culture"><span class="article-tag">软实力</span>K-Pop / K-Drama · $130 亿</a>
-        <div class="article-byline">文 | 文化产业组</div>
-        <div class="article-dek">HYBE (BTS) + SM + JYP + CJ ENM 四大龙头. 文化输出 GDP 贡献 0.4%, 带动效应 2-3 倍.</div>
-      </div>
+  <!-- ━━━ Featured 3 卡 ━━━ -->
+  <div class="main-section">
+    <div class="section-head">
+      <span class="section-head-num">▸ 01</span>
+      <span class="section-head-title">焦点 · 三大主线</span>
+      <span class="section-head-tag">FEATURED</span>
     </div>
 
-    <div class="section-block">
-      <div class="section-label">
-        <span class="section-label-cn">经济 / 社会</span>
-        <span class="section-label-en">Economy & Society</span>
-        <span class="section-label-num">06</span>
-      </div>
-      <div class="article">
-        <a class="article-title" href="/weekly/kr/report.html#aging"><span class="article-tag">危机</span>老龄化 · 出生率 0.72</a>
-        <div class="article-byline">文 | 人口研究组</div>
-        <div class="article-dek">全球最低出生率 + 第三老龄化国. 2050 人口缩水 27%. 三大对应: GLP-1 / 机器人 / 移民.</div>
-      </div>
-      <div class="article">
-        <a class="article-title" href="/weekly/kr/report.html#adjustments">9 件已 confirmed 大事</a>
-        <div class="article-byline">文 | 战略推演组</div>
-        <div class="article-dek">CHIPS Act 配套 / 军费 GDP 3% / 移民开放 / Value-Up 法定 / KRW 稳定币 / AI 国家战略 / Aukus 第二支柱.</div>
-      </div>
-      <div class="article">
-        <a class="article-title" href="/weekly/kr/report.html#overview">韩国全景 · 一页看懂</a>
-        <div class="article-byline">文 | 编辑部</div>
-        <div class="article-dek">5,200 万人, GDP $1.7T, 人均 $33K. 半导体 / 汽车 / 造船 / 文化 / 国防 五大支柱.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ━━━ 本期图片 Gallery ━━━ -->
-  <div class="prompts-section">
-    <h3>本期视觉 · Visual Gallery</h3>
-    <p class="intro">本期收录 5 张定制图片. 风格统一: 暖金 + 朱砂 + 墨色, 编辑摄影 + 杂志感.</p>
-
-    <div class="gallery-grid">
-      <a class="gallery-card" href="/weekly/kr/report.html#hbm">
-        <img src="/weekly/kr/images/hbm.jpg" alt="HBM 寡头"/>
-        <div class="gallery-cap">
-          <span class="gallery-tag">▸ 02 · HBM</span>
-          <span class="gallery-title">HBM 寡头</span>
+    <div class="feat-grid">
+      <a class="feat" href="/weekly/kr/report.html#hbm">
+        <div class="feat-img"><img src="/weekly/kr/images/hbm.jpg" alt="HBM"/></div>
+        <div class="feat-body">
+          <div class="feat-cat">▸ Semiconductors</div>
+          <h3 class="feat-title">HBM 寡头 · SK Hynix 单季 +290%</h3>
+          <p class="feat-dek">Q1 营业利润 ₩7.4 万亿. 毛利率 53%. NVDA Rubin 平台 2026 量产, HBM4 独家供应.</p>
+          <div class="feat-foot">
+            <span class="feat-page">P.03 · 半导体</span>
+            <span class="feat-arr">→</span>
+          </div>
         </div>
       </a>
-      <a class="gallery-card" href="/weekly/kr/report.html#defense">
-        <img src="/weekly/kr/images/defense.jpg" alt="K-Defense"/>
-        <div class="gallery-cap">
-          <span class="gallery-tag">▸ 03 · K-DEFENSE</span>
-          <span class="gallery-title">国防出口 · 全球第 4</span>
+
+      <a class="feat" href="/weekly/kr/report.html#defense">
+        <div class="feat-img"><img src="/weekly/kr/images/defense.jpg" alt="K-Defense"/></div>
+        <div class="feat-body">
+          <div class="feat-cat">▸ Defense</div>
+          <h3 class="feat-title">K-Defense · 全球军售第 4</h3>
+          <p class="feat-dek">波兰 $14B + 沙特 $4B + UAE $3.5B. 价格 50% / 交付 2x. 韩国成欧洲 + 中东 backup.</p>
+          <div class="feat-foot">
+            <span class="feat-page">P.04 · 国防</span>
+            <span class="feat-arr">→</span>
+          </div>
         </div>
       </a>
-      <a class="gallery-card" href="/weekly/kr/report.html#geopolitics">
-        <img src="/weekly/kr/images/geopolitics.jpg" alt="中美夹缝"/>
-        <div class="gallery-cap">
-          <span class="gallery-tag">▸ 04 · GEOPOLITICS</span>
-          <span class="gallery-title">中美夹缝</span>
-        </div>
-      </a>
-      <a class="gallery-card" href="/weekly/kr/report.html#shipbuilding">
-        <img src="/weekly/kr/images/shipbuilding.jpg" alt="造船业"/>
-        <div class="gallery-cap">
-          <span class="gallery-tag">▸ 05 · SHIPBUILDING</span>
-          <span class="gallery-title">LNG 船坞</span>
-        </div>
-      </a>
-      <a class="gallery-card" href="/weekly/kr/report.html#aging">
-        <img src="/weekly/kr/images/aging.jpg" alt="老龄化"/>
-        <div class="gallery-cap">
-          <span class="gallery-tag">▸ 06 · DEMOGRAPHIC</span>
-          <span class="gallery-title">人口拐点</span>
+
+      <a class="feat" href="/weekly/kr/report.html#geopolitics">
+        <div class="feat-img"><img src="/weekly/kr/images/geopolitics.jpg" alt="中美夹缝"/></div>
+        <div class="feat-body">
+          <div class="feat-cat">▸ Geopolitics</div>
+          <h3 class="feat-title">中美夹缝 · 韩国的三选一</h3>
+          <p class="feat-dek">安全靠美, 经济靠中. Trump 2.0 + 脱钩, 韩国选 A: CHIPS Act + IRA + Aukus.</p>
+          <div class="feat-foot">
+            <span class="feat-page">P.14 · 地缘</span>
+            <span class="feat-arr">→</span>
+          </div>
         </div>
       </a>
     </div>
   </div>
 
-  <!-- ━━━ Bottom Band ━━━ -->
-  <div class="bottom-band">
+  <!-- ━━━ TOC 板块网格 ━━━ -->
+  <div class="toc-section">
+    <div class="section-head">
+      <span class="section-head-num">▸ 02</span>
+      <span class="section-head-title">本期目录</span>
+      <span class="section-head-tag">CONTENTS</span>
+    </div>
+
+    <div class="toc-grid">
+      <div class="toc-block">
+        <div class="toc-label">
+          <span class="toc-label-cn">ZERO 观察</span>
+          <span class="toc-label-en">Opinion</span>
+          <span class="toc-label-num">01</span>
+        </div>
+        <div class="article" data-href="/weekly/kr/report.html#tldr">
+          <a class="article-title"><span class="article-tag gold">总纲</span>从总纲到细分</a>
+          <div class="article-byline">文 | Claude Opus 4.7</div>
+          <div class="article-dek">韩国不是单一周期股票市场, 是 AI 算力 + 军备 + 改革四个 macro 主题的结构性 beneficiary.</div>
+        </div>
+        <div class="article" data-href="/weekly/kr/report.html#strategy">
+          <a class="article-title"><span class="article-tag">战略</span>韩国的 6 大战略意图</a>
+          <div class="article-byline">文 | 战略研究组</div>
+          <div class="article-dek">摆脱中等强国陷阱, 进入 G8. 高端制造 + 文化软实力 + 国防出口 + 老龄化对冲.</div>
+        </div>
+      </div>
+
+      <div class="toc-block">
+        <div class="toc-label">
+          <span class="toc-label-cn">周刊导播</span>
+          <span class="toc-label-en">Editor's Picks</span>
+          <span class="toc-label-num">02</span>
+        </div>
+        <div class="article" data-href="/weekly/kr/report.html#watchlist">
+          <a class="article-title">下 90 天 5 件必看大事</a>
+          <div class="article-byline">文 | 编辑部</div>
+          <div class="article-dek">Samsung HBM3E 05-22 binary · Hanwha 沙特订单 05-28 · FOMC 06-15 · Value-Up 三读 07.</div>
+        </div>
+        <div class="article" data-href="/weekly/kr/report.html#10year">
+          <a class="article-title"><span class="article-tag ink">长期</span>2025-2035 10 年路径</a>
+          <div class="article-byline">文 | 长期推演组</div>
+          <div class="article-dek">3 阶段: 叠加爆发期 (25-27) → 重估完成期 (28-30) → 新主题接力期 (31-35).</div>
+        </div>
+      </div>
+
+      <div class="toc-block">
+        <div class="toc-label">
+          <span class="toc-label-cn">时事</span>
+          <span class="toc-label-en">Current Affairs</span>
+          <span class="toc-label-num">03</span>
+        </div>
+        <div class="article" data-href="/weekly/kr/report.html#north-korea">
+          <a class="article-title"><span class="article-tag">⚡黑天鹅</span>朝鲜冲突 · 3 阶推演</a>
+          <div class="article-byline">文 | 风险研究组</div>
+          <div class="article-dek">局部挑衅 (30%) / 战争边缘 (8%) / 全面冲突 (2%). 金正恩 2024 政策转鹰派.</div>
+        </div>
+        <div class="article" data-href="/weekly/kr/report.html#news">
+          <a class="article-title">本月 12 大新闻方向</a>
+          <div class="article-byline">文 | 新闻聚焦组</div>
+          <div class="article-dek">半导体 5 件 + 国防 3 件 + 地缘 4 件. HBM 三方对决 / K-Defense 加速 / Value-Up 兑现.</div>
+        </div>
+      </div>
+
+      <div class="toc-block">
+        <div class="toc-label">
+          <span class="toc-label-cn">金融</span>
+          <span class="toc-label-en">Finance</span>
+          <span class="toc-label-num">04</span>
+        </div>
+        <div class="article" data-href="/weekly/kr/report.html#value-up">
+          <a class="article-title">Value-Up · 韩国版安倍经济学?</a>
+          <div class="article-byline">文 | 公司治理组</div>
+          <div class="article-dek">韩国 PE 仅 11, 一半 S&P 折扣. 强制分红 + 回购 + 透明化, 全球资金涌入.</div>
+        </div>
+        <div class="article" data-href="/weekly/kr/report.html#portfolio">
+          <a class="article-title"><span class="article-tag gold">组合</span>7 股核心仓 · 回测 +87%</a>
+          <div class="article-byline">文 | 投资组合组</div>
+          <div class="article-dek">SK Hynix 25% + Samsung 15% + Hanwha 15% + HD 造船 15% + KEPCO 10% + Hyundai 10% + Naver 10%.</div>
+        </div>
+      </div>
+
+      <div class="toc-block">
+        <div class="toc-label">
+          <span class="toc-label-cn">商业</span>
+          <span class="toc-label-en">Business</span>
+          <span class="toc-label-num">05</span>
+        </div>
+        <div class="article" data-href="/weekly/kr/report.html#shipbuilding">
+          <a class="article-title">造船 · 5 年订单满</a>
+          <div class="article-byline">文 | 制造业研究组</div>
+          <div class="article-dek">HD韩国造船 + 三星重工 + 大宇 三巨头 backlog $230B. LNG 船 72% 份额, 双燃料 80%.</div>
+        </div>
+        <div class="article" data-href="/weekly/kr/report.html#culture">
+          <a class="article-title"><span class="article-tag">软实力</span>K-Pop / K-Drama · $130 亿</a>
+          <div class="article-byline">文 | 文化产业组</div>
+          <div class="article-dek">HYBE + SM + JYP + CJ ENM 四大龙头. 文化输出 GDP 贡献 0.4%, 带动效应 2-3 倍.</div>
+        </div>
+      </div>
+
+      <div class="toc-block">
+        <div class="toc-label">
+          <span class="toc-label-cn">社会 / 行动</span>
+          <span class="toc-label-en">Society & Actions</span>
+          <span class="toc-label-num">06</span>
+        </div>
+        <div class="article" data-href="/weekly/kr/report.html#aging">
+          <a class="article-title"><span class="article-tag">危机</span>老龄化 · 出生率 0.72</a>
+          <div class="article-byline">文 | 人口研究组</div>
+          <div class="article-dek">全球最低出生率 + 第三老龄化国. 2050 人口缩水 27%. 三大对应: GLP-1 / 机器人 / 移民.</div>
+        </div>
+        <div class="article" data-href="/weekly/kr/report.html#adjustments">
+          <a class="article-title">9 件已 confirmed 大事</a>
+          <div class="article-byline">文 | 战略推演组</div>
+          <div class="article-dek">CHIPS Act / 军费 GDP 3% / 移民开放 / Value-Up 法定 / AI 国家战略 / Aukus 第二支柱.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ━━━ CTA + Music Band ━━━ -->
+  <div class="cta-band">
     <div class="band-left">
-      <h3>▸ 阅读 · READ NOW</h3>
+      <div class="label">▸ Read Full Report</div>
       <h2>完整 21 页战略报告</h2>
-      <p>从战略意图 → 全球博弈 → 产业拆解 → 具体调整 → 10 年方向, 完整推演链路. 含 SVG 数据图表 + 路线图 + 重点关注清单 + 术语注解.</p>
+      <p>从战略意图 → 全球博弈 → 产业拆解 → 具体调整 → 10 年方向. 含数据图表 + 路线图 + 重点关注清单 + 术语注解.</p>
       <a class="band-cta" href="/weekly/kr/report.html">进入完整报告 →</a>
     </div>
-
     <div class="band-music">
-      <div class="band-music-label">▸ 本期配乐</div>
-      <div class="band-music-track">月边钟声</div>
-      <div class="band-music-artist">— 编辑推荐 · 韩国转折之年氛围曲 —</div>
+      <div class="label">▸ 本期配乐</div>
+      <div class="track">月边钟声</div>
+      <div class="artist">— 韩国转折之年氛围曲 —</div>
       <audio controls preload="metadata">
         <source src="/weekly/kr/music/moon-bell.mp3" type="audio/mpeg">
       </audio>
     </div>
   </div>
 
-</main>
+  <!-- ━━━ 底部主题 row (COSMOS 底部缩略) ━━━ -->
+  <div class="topics-row">
+    <div class="section-head">
+      <span class="section-head-num">▸ 03</span>
+      <span class="section-head-title">5 大产业</span>
+      <span class="section-head-tag">INDUSTRIES</span>
+    </div>
+
+    <div class="topics-grid">
+      <a class="topic" href="/weekly/kr/report.html#hbm">
+        <div class="topic-circle"><img src="/weekly/kr/images/hbm.jpg" alt="HBM"/></div>
+        <div class="topic-label">HBM 寡头</div>
+        <div class="topic-arr">↗</div>
+      </a>
+      <a class="topic" href="/weekly/kr/report.html#defense">
+        <div class="topic-circle"><img src="/weekly/kr/images/defense.jpg" alt="K-Defense"/></div>
+        <div class="topic-label">K-Defense</div>
+        <div class="topic-arr">↗</div>
+      </a>
+      <a class="topic" href="/weekly/kr/report.html#shipbuilding">
+        <div class="topic-circle"><img src="/weekly/kr/images/shipbuilding.jpg" alt="造船"/></div>
+        <div class="topic-label">造船业</div>
+        <div class="topic-arr">↗</div>
+      </a>
+      <a class="topic" href="/weekly/kr/report.html#geopolitics">
+        <div class="topic-circle"><img src="/weekly/kr/images/geopolitics.jpg" alt="中美博弈"/></div>
+        <div class="topic-label">中美博弈</div>
+        <div class="topic-arr">↗</div>
+      </a>
+      <a class="topic" href="/weekly/kr/report.html#aging">
+        <div class="topic-circle"><img src="/weekly/kr/images/aging.jpg" alt="老龄化"/></div>
+        <div class="topic-label">老龄化</div>
+        <div class="topic-arr">↗</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ━━━ Footer ━━━ -->
+  <footer>
+    <div class="footer-mark">ZERO 周刊</div>
+    <p>STRATEGIC WEEKLY · ISSUE W19 · 2026 / 05 / 13</p>
+    <p>本期主题 · 韩国战略发展报告</p>
+    <p class="sign">本期由 Claude Opus 4.7 综合推演 · 非投资建议 · 仅供研读</p>
+  </footer>
+
+</div>
 
 <script>
 // 整块 article 可点
 document.querySelectorAll('.article').forEach(el => {
-  el.addEventListener('click', (e) => {
-    if (e.target.tagName === 'A') return;
-    const link = el.querySelector('.article-title');
-    if (link && link.href) window.location.href = link.href;
+  el.addEventListener('click', () => {
+    const href = el.dataset.href;
+    if (href) window.location.href = href;
   });
 });
 </script>
-
-<!-- ━━━ Footer ━━━ -->
-<footer>
-  <div class="footer-mark">ZERO 周刊</div>
-  <p>STRATEGIC WEEKLY · ISSUE W19 · 2026 / 05 / 13</p>
-  <p>本期主题 · 韩国战略发展报告</p>
-  <p class="signature">本期由 Claude Opus 4.7 综合推演 · 非投资建议 · 仅供研读</p>
-</footer>
 
 </body>
 </html>
