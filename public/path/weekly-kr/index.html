@@ -180,6 +180,13 @@
     position:relative;
     background:linear-gradient(135deg, var(--paper-2), var(--cream));
     border-left:1px solid var(--line-strong);
+    overflow:hidden;
+  }
+  .cover-real{
+    width:100%;height:100%;
+    object-fit:cover;
+    display:block;
+    filter:saturate(1.1) contrast(1.05);
   }
   .cover-img-placeholder{
     position:absolute;inset:0;
@@ -344,42 +351,48 @@
     padding-bottom:18px;
     border-bottom:1px dashed var(--line);
   }
-  .prompts-grid{
+  .gallery-grid{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:16px;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
   }
-  .prompt-card{
-    padding:16px 18px;
-    background:var(--paper-3);
+  .gallery-card{
+    position:relative;
+    aspect-ratio:16/10;
+    border-radius:6px;overflow:hidden;
     border:1px solid var(--line);
-    border-radius:4px;
-    border-left:3px solid var(--accent);
+    transition:all .25s;
+    display:block;
   }
-  .prompt-card-tag{
+  .gallery-card img{
+    width:100%;height:100%;object-fit:cover;
+    display:block;
+    transition:transform .35s;
+  }
+  .gallery-card:hover{
+    border-color:var(--accent);
+    transform:translateY(-3px);
+    box-shadow:0 14px 32px -12px rgba(28,22,17,.25);
+  }
+  .gallery-card:hover img{transform:scale(1.04)}
+  .gallery-cap{
+    position:absolute;bottom:0;left:0;right:0;
+    background:linear-gradient(180deg, transparent, rgba(0,0,0,.85));
+    padding:24px 14px 12px;
+    color:white;
+    display:flex;flex-direction:column;gap:3px;
+  }
+  .gallery-tag{
     font-family:ui-monospace,monospace;
-    font-size:9.5px;color:var(--accent);font-weight:700;
-    letter-spacing:.18em;text-transform:uppercase;
-    margin-bottom:6px;
+    font-size:9.5px;color:var(--gold-bright);font-weight:700;
+    letter-spacing:.18em;
   }
-  .prompt-card-title{
+  .gallery-title{
     font-family:"Iowan Old Style","Songti SC",serif;
-    font-size:14.5px;color:var(--ink);font-weight:700;
-    margin-bottom:8px;
+    font-size:14px;color:white;font-weight:600;
   }
-  .prompt-card-prompt{
-    font-family:ui-monospace,monospace;
-    font-size:11px;color:var(--ink-2);
-    line-height:1.55;
-    background:white;padding:10px 12px;
-    border:1px dashed var(--line);
-    border-radius:3px;
-  }
-  .prompt-card-meta{
-    margin-top:8px;
-    font-family:ui-monospace,monospace;
-    font-size:9.5px;color:var(--ink-light);
-    letter-spacing:.1em;
+  @media (max-width:760px){
+    .gallery-grid{grid-template-columns:1fr 1fr}
   }
 
   /* ━━━ Bottom band ━━━ */
@@ -555,16 +568,7 @@
 
     <!-- Cover Image -->
     <div class="cover-img-wrap">
-      <div class="cover-img-placeholder">
-        <div class="cover-img-frame">
-          <div class="cover-img-tag">▸ COVER ART · 封面图</div>
-          <div class="cover-img-title">韩国转折</div>
-          <div class="cover-img-prompt">
-            <code>PROMPT</code><br/>
-            Editorial magazine cover · Seoul skyline silhouette at golden hour · Semiconductor wafer overlay · K-Defense jet contrails in upper sky · Warm amber + crimson gradient · Minimal text · Vertical 3:4 · Premium print magazine style · Slight grain texture
-          </div>
-        </div>
-      </div>
+      <img class="cover-real" src="images/hbm.png" alt="韩国转折 HBM 算力底层" />
     </div>
   </div>
 
@@ -705,53 +709,47 @@
     </div>
   </div>
 
-  <!-- ━━━ GPT 图片提示词清单 ━━━ -->
+  <!-- ━━━ 本期图片 Gallery ━━━ -->
   <div class="prompts-section">
-    <h3>需要绘制的图片 · 提示词清单</h3>
-    <p class="intro">本期需要 6 张图. 复制以下 prompt 到 GPT-4o / DALL-E / Midjourney 生成. 风格统一: 暖金 + 朱砂 + 墨色, 编辑感 + 杂志感.</p>
+    <h3>本期视觉 · Visual Gallery</h3>
+    <p class="intro">本期收录 5 张定制图片. 风格统一: 暖金 + 朱砂 + 墨色, 编辑摄影 + 杂志感.</p>
 
-    <div class="prompts-grid">
-      <div class="prompt-card">
-        <div class="prompt-card-tag">▸ 01 · 封面图</div>
-        <div class="prompt-card-title">韩国转折 · Cover Art</div>
-        <div class="prompt-card-prompt">Editorial magazine cover. Seoul skyline at golden hour, semiconductor wafer overlay, K-Defense jet contrails. Warm amber + crimson tones, minimal text, slight grain. Vertical 3:4.</div>
-        <div class="prompt-card-meta">用途: 主封面 · 尺寸 3:4</div>
-      </div>
-
-      <div class="prompt-card">
-        <div class="prompt-card-tag">▸ 02 · HBM 半导体</div>
-        <div class="prompt-card-title">HBM 寡头</div>
-        <div class="prompt-card-prompt">Industrial macro photography. Gold HBM memory chip stack on dark wafer, dramatic lighting, depth of field, gold dust particles. Editorial business magazine style. 16:10.</div>
-        <div class="prompt-card-meta">用途: HBM 文章头图</div>
-      </div>
-
-      <div class="prompt-card">
-        <div class="prompt-card-tag">▸ 03 · K-Defense</div>
-        <div class="prompt-card-title">国防出口</div>
-        <div class="prompt-card-prompt">K9 self-propelled howitzer silhouette at desert sunset, Korean flag implied via color, military photography aesthetic, warm tones, editorial. 16:10.</div>
-        <div class="prompt-card-meta">用途: K-Defense 文章头图</div>
-      </div>
-
-      <div class="prompt-card">
-        <div class="prompt-card-tag">▸ 04 · 中美夹缝</div>
-        <div class="prompt-card-title">地缘博弈</div>
-        <div class="prompt-card-prompt">Abstract geopolitical illustration. Korea peninsula caught between red and blue light from opposite sides, neon edges, vector + photographic mix, dramatic chiaroscuro. 16:10.</div>
-        <div class="prompt-card-meta">用途: 地缘文章头图</div>
-      </div>
-
-      <div class="prompt-card">
-        <div class="prompt-card-tag">▸ 05 · 造船</div>
-        <div class="prompt-card-title">LNG 船坞</div>
-        <div class="prompt-card-prompt">Massive LNG carrier in Korean shipyard, dawn light, scale emphasized, photorealistic industrial photography, golden hour reflection. 16:10.</div>
-        <div class="prompt-card-meta">用途: 造船文章头图</div>
-      </div>
-
-      <div class="prompt-card">
-        <div class="prompt-card-tag">▸ 06 · 老龄化</div>
-        <div class="prompt-card-title">人口拐点</div>
-        <div class="prompt-card-prompt">Elderly Korean couple looking at empty Seoul subway platform, soft melancholic light, editorial documentary photography, conveys demographic transition. 16:10.</div>
-        <div class="prompt-card-meta">用途: 老龄化文章头图</div>
-      </div>
+    <div class="gallery-grid">
+      <a class="gallery-card" href="report.html#hbm">
+        <img src="images/hbm.png" alt="HBM 寡头"/>
+        <div class="gallery-cap">
+          <span class="gallery-tag">▸ 02 · HBM</span>
+          <span class="gallery-title">HBM 寡头</span>
+        </div>
+      </a>
+      <a class="gallery-card" href="report.html#defense">
+        <img src="images/defense.png" alt="K-Defense"/>
+        <div class="gallery-cap">
+          <span class="gallery-tag">▸ 03 · K-DEFENSE</span>
+          <span class="gallery-title">国防出口 · 全球第 4</span>
+        </div>
+      </a>
+      <a class="gallery-card" href="report.html#geopolitics">
+        <img src="images/geopolitics.png" alt="中美夹缝"/>
+        <div class="gallery-cap">
+          <span class="gallery-tag">▸ 04 · GEOPOLITICS</span>
+          <span class="gallery-title">中美夹缝</span>
+        </div>
+      </a>
+      <a class="gallery-card" href="report.html#shipbuilding">
+        <img src="images/shipbuilding.png" alt="造船业"/>
+        <div class="gallery-cap">
+          <span class="gallery-tag">▸ 05 · SHIPBUILDING</span>
+          <span class="gallery-title">LNG 船坞</span>
+        </div>
+      </a>
+      <a class="gallery-card" href="report.html#aging">
+        <img src="images/aging.png" alt="老龄化"/>
+        <div class="gallery-cap">
+          <span class="gallery-tag">▸ 06 · DEMOGRAPHIC</span>
+          <span class="gallery-title">人口拐点</span>
+        </div>
+      </a>
     </div>
   </div>
 

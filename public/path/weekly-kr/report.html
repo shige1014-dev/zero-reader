@@ -287,6 +287,32 @@
   .callout.plum{background:linear-gradient(90deg,rgba(122,90,138,.08),transparent);border-left:4px solid var(--plum)}
   .callout.plum .callout-label{color:var(--plum)}
 
+  /* Real image */
+  .img-real{
+    margin:24px -10px;
+    background:white;
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    box-shadow:0 14px 36px -16px rgba(28,22,17,.2);
+  }
+  .img-real img{
+    display:block;width:100%;height:auto;
+  }
+  .img-real figcaption{
+    padding:10px 16px;
+    font-family:ui-monospace,monospace;
+    font-size:11.5px;color:var(--ink-mute);
+    letter-spacing:.04em;
+    border-top:1px solid var(--line);
+    background:var(--paper-3);
+    line-height:1.55;
+  }
+  @media (max-width:760px){
+    .img-real{margin:18px -4px}
+    .img-real figcaption{font-size:10.5px;padding:8px 12px}
+  }
+
   /* Image placeholder */
   .img-box{
     margin:24px 0;
@@ -598,11 +624,10 @@
     <h2>中美夹缝 · 安全靠美 经济靠中</h2>
     <div class="sec-byline">文 | 战略推演组</div>
 
-    <div class="img-box">
-      <div class="img-box-tag">▸ 04 · 地缘博弈</div>
-      <div class="img-box-title">中美夹缝</div>
-      <div class="img-box-prompt">Abstract geopolitical illustration · Korea peninsula caught between red and blue light · Neon edges · Dramatic chiaroscuro · 16:10</div>
-    </div>
+    <figure class="img-real">
+      <img src="images/geopolitics.png" alt="中美夹缝 韩国半岛" />
+      <figcaption>图 · 韩国半岛, 左红右蓝 — 中美博弈下的地缘选择</figcaption>
+    </figure>
 
     <div class="intro-box">
       <div class="intro-label">▸ 简介</div>
@@ -671,11 +696,10 @@
     <h2>HBM 寡头 · SK Hynix Q1 拆解</h2>
     <div class="sec-byline">文 | 半导体研究组 · 2025-04-25 财报深度</div>
 
-    <div class="img-box">
-      <div class="img-box-tag">▸ 02 · HBM</div>
-      <div class="img-box-title">HBM 寡头</div>
-      <div class="img-box-prompt">Industrial macro photography · Gold HBM memory chip stack · Dramatic lighting · Editorial business magazine style · 16:10</div>
-    </div>
+    <figure class="img-real">
+      <img src="images/hbm.png" alt="HBM 半导体寡头" />
+      <figcaption>图 · HBM 是 AI 算力链的真正瓶颈, SK Hynix 占全球 50% 份额</figcaption>
+    </figure>
 
     <div class="tldr">
       <div class="tldr-label">▸ 重点 4 条</div>
@@ -712,11 +736,10 @@
     <h2>K-Defense · 全球军售第 4</h2>
     <div class="sec-byline">文 | 国防工业组</div>
 
-    <div class="img-box">
-      <div class="img-box-tag">▸ 03 · K-Defense</div>
-      <div class="img-box-title">国防出口</div>
-      <div class="img-box-prompt">K9 self-propelled howitzer silhouette at desert sunset · Military photography · Editorial · 16:10</div>
-    </div>
+    <figure class="img-real">
+      <img src="images/defense.png" alt="K-Defense 出口 全球第 4" />
+      <figcaption>图 · K9 自行炮在沙漠落日中, 韩国 2024 武器出口 $200 亿全球第 4</figcaption>
+    </figure>
 
     <p class="lead">韩国 2024 年武器出口突破 $200 亿, 跃居全球第 4 (仅次美/法/俄). 80% 来自 4 大装备: K2 坦克 / K9 自行炮 / FA-50 战机 / 天弓-II 防空. Trump 2.0 推欧洲自我武装, 韩国是双边 backup.</p>
 
@@ -753,11 +776,10 @@
     <h2>造船 · 5 年订单满</h2>
     <div class="sec-byline">文 | 制造业研究组</div>
 
-    <div class="img-box">
-      <div class="img-box-tag">▸ 05 · 造船</div>
-      <div class="img-box-title">LNG 船坞</div>
-      <div class="img-box-prompt">Massive LNG carrier in Korean shipyard · Dawn light · Photorealistic industrial photography · 16:10</div>
-    </div>
+    <figure class="img-real">
+      <img src="images/shipbuilding.png" alt="韩国造船 LNG 船坞" />
+      <figcaption>图 · LNG 船坞晨光, 韩国 LNG 船全球 72% 份额, 双燃料船独家</figcaption>
+    </figure>
 
     <p class="lead">HD韩国造船 + 三星重工 + 大宇造船 三巨头 backlog 合计 $230 亿, 排到 2029-2030. 全球 LNG 船 70% 份额 + 双燃料船独家.</p>
 
@@ -846,11 +868,10 @@
     <h2>老龄化危机 · 出生率 0.72</h2>
     <div class="sec-byline">文 | 人口研究组</div>
 
-    <div class="img-box">
-      <div class="img-box-tag">▸ 06 · 老龄化</div>
-      <div class="img-box-title">人口拐点</div>
-      <div class="img-box-prompt">Elderly Korean couple at empty Seoul subway platform · Soft melancholic light · Editorial documentary photography · 16:10</div>
-    </div>
+    <figure class="img-real">
+      <img src="images/aging.png" alt="韩国老龄化 出生率 0.72" />
+      <figcaption>图 · 老年夫妇等待空荡地铁, 韩国 2024 出生率 0.72 全球最低</figcaption>
+    </figure>
 
     <div class="intro-box">
       <div class="intro-label">▸ 简介</div>
