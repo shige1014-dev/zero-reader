@@ -588,6 +588,144 @@
     margin-top:12px;text-transform:none;
   }
 
+  /* ━━━ 简报 Panel ━━━ */
+  .brief-overlay{
+    position:fixed;inset:0;
+    background:rgba(28,20,18,.5);
+    backdrop-filter:blur(6px);
+    opacity:0;pointer-events:none;
+    transition:opacity .3s;
+    z-index:90;
+  }
+  .brief-overlay.open{opacity:1;pointer-events:auto}
+  .brief-panel{
+    position:fixed;top:0;right:-500px;bottom:0;
+    width:480px;
+    background:var(--paper);
+    box-shadow:-30px 0 80px -20px rgba(0,0,0,.5);
+    transition:right .4s cubic-bezier(.34,1.25,.5,1);
+    z-index:100;
+    display:flex;flex-direction:column;
+    overflow:hidden;
+  }
+  .brief-panel.open{right:0}
+  .brief-close{
+    position:absolute;top:14px;right:14px;
+    width:36px;height:36px;
+    background:rgba(28,20,16,.08);
+    border:none;color:var(--ink);
+    border-radius:50%;
+    font-size:18px;cursor:pointer;
+    display:grid;place-items:center;
+    z-index:5;
+    transition:all .15s;
+  }
+  .brief-close:hover{background:var(--accent);color:white}
+
+  .brief-header{
+    padding:24px 28px 18px;
+    background:linear-gradient(180deg, white, var(--paper-3));
+    border-bottom:1px solid var(--line);
+    flex-shrink:0;
+  }
+  .brief-eyebrow{
+    font-family:ui-monospace,monospace;
+    font-size:10px;color:var(--accent);
+    letter-spacing:.22em;text-transform:uppercase;
+    font-weight:700;margin-bottom:6px;
+  }
+  .brief-title{
+    font-family:"Iowan Old Style","Songti SC",serif;
+    font-size:28px;color:var(--ink);font-weight:800;
+    line-height:1.2;margin-bottom:10px;
+  }
+  .brief-byline{
+    font-family:ui-monospace,monospace;
+    font-size:10.5px;color:var(--ink-mute);
+    letter-spacing:.06em;
+  }
+
+  .brief-img-wrap{
+    aspect-ratio:16/10;
+    background:var(--paper-2);
+    overflow:hidden;
+    flex-shrink:0;
+  }
+  .brief-img-wrap img{
+    width:100%;height:100%;object-fit:cover;display:block;
+  }
+
+  .brief-body{
+    padding:22px 28px 24px;
+    overflow-y:auto;
+    flex:1;
+  }
+  .brief-summary{
+    font-size:14.5px;color:var(--ink);
+    line-height:1.85;
+    margin-bottom:20px;
+    font-family:"Iowan Old Style","Songti SC",serif;
+  }
+  .brief-h{
+    font-family:ui-monospace,monospace;
+    font-size:10.5px;color:var(--accent);
+    letter-spacing:.18em;text-transform:uppercase;
+    font-weight:700;
+    margin:18px 0 10px;
+    padding-bottom:6px;
+    border-bottom:1px solid var(--line);
+  }
+  .brief-points{list-style:none;padding:0}
+  .brief-points li{
+    padding:6px 0 6px 22px;position:relative;
+    font-size:13.5px;color:var(--ink-2);
+    line-height:1.7;
+  }
+  .brief-points li::before{
+    content:"▸";
+    position:absolute;left:0;top:6px;
+    color:var(--accent);font-weight:700;
+  }
+  .brief-stocks{
+    display:flex;flex-wrap:wrap;gap:5px;margin-top:4px;
+  }
+  .brief-stocks span{
+    font-family:ui-monospace,monospace;
+    font-size:11px;font-weight:600;
+    padding:3px 10px;
+    background:rgba(168,32,14,.08);
+    border:1px solid rgba(168,32,14,.2);
+    border-radius:99px;color:var(--accent);
+    letter-spacing:.04em;
+  }
+
+  .brief-footer{
+    padding:18px 28px;
+    border-top:1px solid var(--line);
+    background:white;
+    flex-shrink:0;
+  }
+  .brief-cta{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 22px;
+    background:var(--ink);color:white;
+    border-radius:99px;
+    font-family:"Iowan Old Style","Songti SC",serif;
+    font-size:14px;font-weight:600;
+    letter-spacing:.04em;
+    transition:all .2s;
+    text-decoration:none;
+  }
+  .brief-cta:hover{background:var(--accent);color:white}
+  .brief-cta .arr{font-size:18px}
+
+  @media (max-width:760px){
+    .brief-panel{width:100%;right:-100%}
+    .brief-header{padding:20px 20px 14px}
+    .brief-title{font-size:22px}
+    .brief-body{padding:18px 20px 24px}
+  }
+
   /* ━━━ Mobile ━━━ */
   @media (max-width:880px){
     body{padding:10px}
@@ -953,12 +1091,193 @@
 
 </div>
 
+<!-- ━━━ 简报弹出 panel ━━━ -->
+<div class="brief-overlay" id="briefOverlay"></div>
+<aside class="brief-panel" id="briefPanel">
+  <button class="brief-close" id="briefClose">×</button>
+  <div class="brief-img-wrap" id="briefImg"></div>
+  <div class="brief-header">
+    <div class="brief-eyebrow" id="briefEyebrow"></div>
+    <h2 class="brief-title" id="briefTitle"></h2>
+    <div class="brief-byline" id="briefByline"></div>
+  </div>
+  <div class="brief-body" id="briefBody"></div>
+  <div class="brief-footer">
+    <a class="brief-cta" id="briefCta" href="">
+      <span>阅读完整文章</span>
+      <span class="arr">→</span>
+    </a>
+  </div>
+</aside>
+
 <script>
+// ━━━ 简报数据 ━━━
+const BRIEFS = {
+  "tldr": {
+    eyebrow:"▸ 总纲 · ZERO 观察",
+    title:"从总纲到细分 · 一页看完整份报告",
+    byline:"文 | Claude Opus 4.7 · 综合推演 · 60 分钟阅读",
+    img:"/weekly/kr/images/cover.jpg",
+    summary:"2025-2030 是韩国转折的 5 年窗口期. 这个 5,200 万人口的小国正在完成从代工出口国到全球品牌 + 国防大国 + 文化超级出口国 + AI 算力底层的复合体转型. KOSPI 重估只是表象, 国家叙事重新定价才是本质.",
+    points:["战略意图: 摆脱中等强国陷阱, 进入 G8","当前机会: HBM + K-Defense + 造船 + Value-Up 四轮叠加","地缘选择: 安全靠美, 经济多元化","10 年模式: 复刻日本 1985-2000 路径","核心风险: 朝鲜冲突 + HBM 周期顶"],
+    page:"P.01 / W19"
+  },
+  "strategy": {
+    eyebrow:"▸ 战略 · Strategic Intent",
+    title:"韩国的 6 大战略意图",
+    byline:"文 | 战略研究组",
+    summary:"韩国未来 20 年, 不再被定义为'出口加工国', 而是高端制造 + 软实力 + 国防 + 文化 + AI 复合体. 类似 1980s 日本野心, 但更激进开放. 总和 6 大意图同时推进, 形成立体战略.",
+    points:["① 摆脱'中等强国陷阱', 进入 G8","② 高端制造 + 品牌升级 (HBM/造船/EV)","③ 文化输出 = 长期 GDP 引擎","④ 国防自立 + 出口大国 ($35B 目标)","⑤ 老龄化对冲 (移民 + 自动化)","⑥ KOSPI 全球化 + KRW 数字化"]
+  },
+  "watchlist": {
+    eyebrow:"▸ 编辑部 · Editor's Picks",
+    title:"下 90 天 5 件必看大事",
+    byline:"文 | 编辑部",
+    summary:"下个季度 5 件 binary event 集中爆发. 任一兑现 / 失败都会显著影响 KOSPI 估值. 必须重点盯防.",
+    points:["2025-05-22 Samsung HBM3E NVDA 验证","2025-05-28 Hanwha 股东会 · 沙特 K9 披露","2025-06-15 美国 FOMC 利率决议","2025-06-28 SK Hynix Q2 财报预披露","2025-07 Value-Up 法案国会三读"]
+  },
+  "10year": {
+    eyebrow:"▸ 长期推演 · 10-Year Model",
+    title:"2025-2035 韩国 10 年路径",
+    byline:"文 | 长期推演组",
+    summary:"10 年视角分 3 阶段. 现在处于第 1 阶段中部, 累积 5 年政策红利正在集中释放. KOSPI 从 2735 (当前) → 终局 5500 (2035), 翻倍 + 路径明确.",
+    points:["2025-2027 叠加爆发期 · KOSPI → 3500","2028-2030 重估完成期 · KOSPI → 4500","2031-2035 新主题接力期 · KOSPI → 5500","类比: 日本安倍经济学 5 年 Topix +100%","关键变量: HBM 周期 + 财阀改革兑现"]
+  },
+  "north-korea": {
+    eyebrow:"▸ ⚡ 黑天鹅 · Black Swan",
+    title:"朝鲜冲突 · 3 阶推演",
+    byline:"文 | 风险研究组",
+    img:"/weekly/kr/images/geopolitics.jpg",
+    summary:"韩国主线最大单一风险 = 朝鲜半岛冲突升级. 总概率 10% 但 impact -5 (KOSPI 系统性 -30%+). 当前预警指标全部'正常', 但金正恩 2024-01 演讲已转鹰派. 必须 plan B.",
+    points:["阶段 1 局部挑衅 30% · KOSPI -5~-10%","阶段 2 战争边缘 8% · KOSPI -15~-25%","阶段 3 全面冲突 2% · KOSPI -40~-60%","对冲: 5-10% 仓位美军工股 (LMT/RTX)","预警线: KRW/USD > 1450 / 月度 ICBM ≥ 2 次"]
+  },
+  "news": {
+    eyebrow:"▸ 新闻聚焦",
+    title:"本月 12 大新闻方向",
+    byline:"文 | 新闻聚焦组 · 04-15 → 05-13",
+    summary:"过去 30 天韩国 12 件大事按 3 类分组. 半导体 / 国防 / 地缘 + 政策. HBM 三方对决 / K-Defense 出口加速 / Value-Up 兑现是 3 大主线.",
+    points:["半导体 5 件: SK HBM4 / 三星 / 美光 / NVDA Rubin","国防 3 件: 沙特 K9 / 波兰 FA-50 / 印度合作","地缘 4 件: Value-Up 审议 / Trump 豁免 / 通胀达标"]
+  },
+  "value-up": {
+    eyebrow:"▸ 财阀改革 · Reform",
+    title:"Value-Up · 韩国版安倍经济学?",
+    byline:"文 | 公司治理组",
+    summary:"韩国 PE 仅 11 (vs S&P500 22) 长期被 'Korea 折扣' 压制. 2024 政府 + 在野党罕见共识推 Corporate Value-Up Program — 强制分红 + 回购 + 透明化. 类似 2014 日本安倍经济学.",
+    points:["分红率 25% → 35% (2027 目标)","回购率 0.4% → 美 2.8% 水平","ROE 必须 > WACC 否则董事会改组","NPS 持股 10%+, 用投票权施压","重估空间: 三星 +28%, POSCO +80%"],
+    stocks:["005930","000660","005380","066570","005490"]
+  },
+  "portfolio": {
+    eyebrow:"▸ 投资组合 · Portfolio",
+    title:"7 股核心仓 · 回测 +87%",
+    byline:"文 | 投资组合组 · 长期视角 3-5 年",
+    summary:"不追单股, 押组合. 7 股核心仓兼顾 HBM / Defense / 造船 / 电力 / 老龄化 4-5 主题. 回测 2024-01 至 2025-04 收益 +87% (KOSPI +25%), Sharpe 1.9, 最大回撤 -18%.",
+    points:["SK Hynix 25% — HBM 核心无替代","Samsung 15% — HBM 反转 option","Hanwha Aero 15% — K-Defense 出口","HD 造船 15% — LNG 双燃料","KEPCO 10% — 电力 + 核电出口","Hyundai 10% — EV + Boston Dynamics","Naver 10% — AI + Value-Up"],
+    stocks:["000660","005930","012450","329180","015760","005380","035420"]
+  },
+  "shipbuilding": {
+    eyebrow:"▸ 造船业 · Shipbuilding",
+    title:"造船 · 5 年订单满",
+    byline:"文 | 制造业研究组",
+    img:"/weekly/kr/images/shipbuilding.jpg",
+    summary:"HD韩国造船 + 三星重工 + 大宇造船 三巨头 backlog 合计 $230 亿, 排到 2029-2030. 全球 LNG 船 70% 份额 + 双燃料船独家 80%. 这是韩国造船业 15 年来第一次'卖方市场'.",
+    points:["LNG 船单价 $260M (+30% vs 2020)","HD 造船 backlog $80B (5 年排满)","双燃料船单价 $260M, 韩国 80% 份额","IMO CII 评级 2024 起强制 = 老船停航","警惕: 2026-Q3 周期顶监控点"],
+    stocks:["329180","010140"]
+  },
+  "culture": {
+    eyebrow:"▸ 软实力 · Soft Power",
+    title:"K-Pop / K-Drama · $130 亿全球账",
+    byline:"文 | 文化产业组",
+    summary:"韩流 (Hallyu) 2024 全球收入 $130 亿. K-Pop $9B + K-Drama $2.5B + K-Beauty $1.5B. 但带动效应 (旅游/食品/电子/医美) 是直接收入的 3-5 倍. 1997 IMF 危机后, 韩国国家战略推出文化产业, 25 年成型.",
+    points:["HYBE (BTS 母公司) 估值 ₩6T+","SM 被 Kakao 控股 / JYP 寻新增长","Netflix 非英语剧 30% 是韩剧","K-Beauty 出口 $90 亿 (Amorepacific)","K-Food 出口 $135 亿 (+12% YoY)"],
+    stocks:["352820","041510","035900","035760"]
+  },
+  "aging": {
+    eyebrow:"▸ 老龄化危机 · Demographic",
+    title:"出生率 0.72 · 老龄化第三",
+    byline:"文 | 人口研究组",
+    img:"/weekly/kr/images/aging.jpg",
+    summary:"韩国 2024 总和生育率 0.72 — 全球最低, 远低于替代率 2.1. 1970 出生 100 万, 2024 仅 23 万 — 54 年缩水 77%. 65+ 人口占比 19%, 2030 破 25%, 2050 达 40%. 全球最快老龄化曲线.",
+    points:["2050 人口缩水 -27%","房价收入比 25 (东京 18, 纽约 14)","女性生育后职业中断率 49%","对应主题: GLP-1 + 机器人 + 移民","机器人是确定性最高子主题"],
+    stocks:["005380","066570"]
+  },
+  "adjustments": {
+    eyebrow:"▸ 具体调整 · Adjustments",
+    title:"9 件已 confirmed 大事",
+    byline:"文 | 战略推演组",
+    summary:"战略意图是方向, 行动表是已经在路上的具体行动. 不是预测, 是政府公告 + 国会立法 + 财阀宣布的实际动作. 9 件按 3 类分: 外交 / 经济结构 / 社会改革.",
+    points:["CHIPS Act 配套 · 2025-2027","军费 GDP 3%+ · 2026","移民政策大开放 · 2026-Q3","Value-Up 法定化 · 2025-Q4","KRW 稳定币 + Upbit IPO · 2026","AI 国家战略 · 2026-Q1","Aukus 第二支柱 · 2026","韩印度战略协议 · 2025-Q4","对朝政策转鸽 · 2025下半年"]
+  },
+  "hbm": {
+    eyebrow:"▸ 半导体 · Semiconductors",
+    title:"HBM 寡头 · SK Hynix Q1 拆解",
+    byline:"文 | 半导体研究组",
+    img:"/weekly/kr/images/hbm.jpg",
+    summary:"SK Hynix 2025-Q1 营业利润 ₩7.4 万亿 (+158% YoY), 首次超过三星半导体. HBM 占总收入 45% (一年前仅 15%), 毛利率 53% — 半导体史上最高. 但 NVDA 集中度 70% 是双刃剑.",
+    points:["Q1 营利 ₩7.4 万亿 (+158% YoY)","HBM 单价 $1.6/GB (DDR5 $0.3)","HBM4 2026-Q1 量产, Rubin 平台独家","三星 HBM3E 仍未通过 NVDA 验证","美光 HBM4 良率 < 60% 落后"],
+    stocks:["000660","005930"]
+  },
+  "defense": {
+    eyebrow:"▸ 国防 · Defense",
+    title:"K-Defense · 全球军售第 4",
+    byline:"文 | 国防工业组",
+    img:"/weekly/kr/images/defense.jpg",
+    summary:"韩国 2024 年武器出口突破 $200 亿, 跃居全球第 4 (仅次美/法/俄). 80% 来自 4 大装备: K2 坦克 / K9 自行炮 / FA-50 战机 / 天弓-II 防空. Trump 2.0 推欧洲自我武装, 韩国是双边 backup.",
+    points:["波兰 $14B · 沙特 $4B · UAE $3.5B · 澳洲 $3B","2027 出口目标 $35B","价格美国 50-70% / 交付 2-3x 速度","Hanwha Aero / KAI / Hyundai Rotem 三大龙头","沙特 K9 第三批 $4B 即将签"],
+    stocks:["012450","047810","064350"]
+  },
+  "geopolitics": {
+    eyebrow:"▸ 地缘 · Geopolitics",
+    title:"中美夹缝 · 韩国的三选一",
+    byline:"文 | 战略推演组",
+    img:"/weekly/kr/images/geopolitics.jpg",
+    summary:"韩国是冷战后唯一同时高度依赖美国 (安全) 和中国 (经济) 的大经济体. 韩对中出口占 20%, 对美 18%. Trump 2.0 + 中美脱钩, 这个平衡正在被强行打破. 韩国大概率选 A: 全面美国阵营, 代价是中国市场永久流失 20-30%.",
+    points:["美军驻韩 28,500 人 · 安全锚","CHIPS Act 强制韩企在美建厂","Trump 普遍关税威胁 (10-20%)","Aukus 第二支柱韩国加入","对中策略: 战略模糊 → 明确站队"]
+  }
+};
+
+// 整块 article 可点 → 弹出简报
+const overlay = document.getElementById('briefOverlay');
+const panel = document.getElementById('briefPanel');
+
+function openBrief(id){
+  const d = BRIEFS[id];
+  if (!d){ window.location.href = '/weekly/kr/report.html#' + id; return; }
+  document.getElementById('briefEyebrow').textContent = d.eyebrow || '';
+  document.getElementById('briefTitle').textContent = d.title || '';
+  document.getElementById('briefByline').textContent = d.byline || '';
+  const imgWrap = document.getElementById('briefImg');
+  if (d.img){ imgWrap.innerHTML = `<img src="${d.img}" alt=""/>`; imgWrap.style.display=''; }
+  else { imgWrap.style.display='none'; }
+  let body = `<div class="brief-summary">${d.summary || ''}</div>`;
+  if (d.points && d.points.length){
+    body += `<div class="brief-h">▸ 要点</div><ul class="brief-points">${d.points.map(p=>`<li>${p}</li>`).join('')}</ul>`;
+  }
+  if (d.stocks && d.stocks.length){
+    body += `<div class="brief-h">▸ 关联韩股</div><div class="brief-stocks">${d.stocks.map(s=>`<span>${s}</span>`).join('')}</div>`;
+  }
+  document.getElementById('briefBody').innerHTML = body;
+  document.getElementById('briefCta').href = '/weekly/kr/report.html#' + id;
+  overlay.classList.add('open');
+  panel.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeBrief(){
+  overlay.classList.remove('open');
+  panel.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+overlay.addEventListener('click', closeBrief);
+document.getElementById('briefClose').addEventListener('click', closeBrief);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeBrief(); });
+
 // 整块 article 可点
 document.querySelectorAll('.article').forEach(el => {
   el.addEventListener('click', () => {
-    const href = el.dataset.href;
-    if (href) window.location.href = href;
+    const href = el.dataset.href || '';
+    const id = href.split('#')[1];
+    if (id) openBrief(id);
+    else if (href) window.location.href = href;
   });
 });
 
