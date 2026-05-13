@@ -480,7 +480,38 @@
     font-size:12px;color:rgba(250,246,235,.55);
     font-style:italic;margin-bottom:14px;
   }
-  .band-music audio{width:100%;height:34px;filter:invert(.92) hue-rotate(180deg)}
+  .band-music audio{display:none}
+  .player{
+    display:flex;align-items:center;gap:14px;
+    margin-top:8px;
+  }
+  .play-btn{
+    width:48px;height:48px;
+    border-radius:50%;
+    border:1.5px solid var(--gold-bright);
+    background:rgba(212,168,88,.15);
+    color:var(--gold-bright);
+    font-size:18px;
+    cursor:pointer;
+    display:grid;place-items:center;
+    transition:all .2s;
+    flex-shrink:0;
+    font-family:inherit;
+  }
+  .play-btn:hover{background:var(--gold-bright);color:var(--ink);transform:scale(1.05)}
+  .play-btn.playing{background:var(--gold-bright);color:var(--ink)}
+  .play-info{flex:1;min-width:0}
+  .play-state{
+    font-family:"Iowan Old Style",serif;
+    font-size:13px;color:var(--gold-bright);
+    font-weight:600;letter-spacing:.06em;
+  }
+  .play-time{
+    font-family:ui-monospace,monospace;
+    font-size:10.5px;color:rgba(250,246,235,.55);
+    margin-top:3px;
+    letter-spacing:.06em;
+  }
 
   /* ━━━ 底部主题 row (COSMOS bottom thumbnails) ━━━ */
   .topics-row{
@@ -862,7 +893,14 @@
       <div class="label">▸ 本期配乐</div>
       <div class="track">月边钟声</div>
       <div class="artist">— 韩国转折之年氛围曲 —</div>
-      <audio id="bgMusic" controls preload="none">
+      <div class="player">
+        <button id="playBtn" class="play-btn" aria-label="播放">▶</button>
+        <div class="play-info">
+          <div id="playState" class="play-state">暂停</div>
+          <div id="playTime" class="play-time">0:00 / —</div>
+        </div>
+      </div>
+      <audio id="bgMusic" preload="none">
         <source src="/weekly/kr/music/moon-bell.mp3" type="audio/mpeg">
       </audio>
     </div>
@@ -923,6 +961,43 @@ document.querySelectorAll('.article').forEach(el => {
     if (href) window.location.href = href;
   });
 });
+
+// 音乐手动播放 / 暂停
+(function(){
+  const audio = document.getElementById('bgMusic');
+  const btn = document.getElementById('playBtn');
+  const state = document.getElementById('playState');
+  const time = document.getElementById('playTime');
+  if (!audio || !btn) return;
+
+  function fmt(s){ if (!isFinite(s)) return '—'; const m=Math.floor(s/60), x=Math.floor(s%60); return m+':'+String(x).padStart(2,'0'); }
+  function update(){
+    time.textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration);
+  }
+
+  btn.addEventListener('click', () => {
+    if (audio.paused){ audio.play(); } else { audio.pause(); }
+  });
+  audio.addEventListener('play', () => {
+    btn.textContent = '⏸';
+    btn.classList.add('playing');
+    btn.setAttribute('aria-label','暂停');
+    state.textContent = '播放中';
+  });
+  audio.addEventListener('pause', () => {
+    btn.textContent = '▶';
+    btn.classList.remove('playing');
+    btn.setAttribute('aria-label','播放');
+    state.textContent = '暂停';
+  });
+  audio.addEventListener('timeupdate', update);
+  audio.addEventListener('loadedmetadata', update);
+  audio.addEventListener('ended', () => {
+    btn.textContent = '▶';
+    btn.classList.remove('playing');
+    state.textContent = '播完';
+  });
+})();
 </script>
 
 </body>
