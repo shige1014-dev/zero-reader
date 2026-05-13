@@ -479,6 +479,76 @@
     text-align:center;
   }
 
+  /* ━━━ 简介 / 核心 / 注解 ━━━ */
+  .intro-box{
+    background:linear-gradient(135deg, var(--paper-3), rgba(255,233,168,.2));
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:18px 22px;
+    margin:18px 0 22px;
+    position:relative;
+  }
+  .intro-label{
+    font-family:ui-monospace,monospace;
+    font-size:10px;color:var(--gold);
+    letter-spacing:.2em;text-transform:uppercase;
+    font-weight:700;
+    margin-bottom:8px;
+    display:flex;align-items:center;gap:6px;
+  }
+  .intro-label .ico{font-size:13px}
+  .intro-box p{
+    margin-bottom:0;font-size:14.5px;line-height:1.75;
+    color:var(--ink-soft);
+    font-family:"Iowan Old Style",serif;
+  }
+  .core-box{
+    background:linear-gradient(135deg, rgba(196,80,59,.06), var(--paper-2));
+    border-left:4px solid var(--rose);
+    border-radius:0 14px 14px 0;
+    padding:16px 22px;
+    margin:18px 0 22px;
+  }
+  .core-label{
+    font-family:ui-monospace,monospace;
+    font-size:10px;color:var(--rose);
+    letter-spacing:.2em;text-transform:uppercase;
+    font-weight:700;margin-bottom:6px;
+  }
+  .core-box p{
+    margin-bottom:0;font-size:15px;font-weight:500;
+    line-height:1.7;color:var(--ink);
+    font-family:"Iowan Old Style",serif;
+  }
+
+  .gloss{
+    background:rgba(122,90,138,.06);
+    border:1px dashed var(--plum);
+    border-radius:10px;
+    padding:11px 16px;
+    margin:14px 0;
+    font-size:12.5px;
+    color:var(--ink-soft);
+  }
+  .gloss-label{
+    font-family:ui-monospace,monospace;
+    font-size:10px;color:var(--plum);
+    font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    margin-bottom:6px;
+  }
+  .gloss dl{font-size:12.5px}
+  .gloss dt{
+    font-weight:700;color:var(--plum);
+    margin-top:6px;
+    font-family:ui-monospace,monospace;font-size:12px;
+  }
+  .gloss dt:first-child{margin-top:0}
+  .gloss dd{
+    margin-left:0;margin-top:2px;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+
   /* ━━━ 标签 ━━━ */
   .tag{
     display:inline-block;
@@ -1375,6 +1445,339 @@
   <div class="pull-quote">
     <div class="pq-text">韩国 5 年路径不是直线, 是 4 个独立浪潮的接力. 每一波都需要重新评估.</div>
     <div class="pq-attr">— 路线图核心理念</div>
+  </div>
+</section>
+
+<!-- ━━━━━━━━━━━━━━━━━ P.11 韩国全景 ━━━━━━━━━━━━━━━━━ -->
+<section class="page">
+  <div class="page-header">
+    <div class="page-no">P.11 / W19</div>
+    <div class="page-em">▸ Overview · 全景</div>
+    <h1 class="page-title">韩国全景 · 一页看懂</h1>
+  </div>
+
+  <div class="intro-box">
+    <div class="intro-label"><span class="ico">📖</span>简介 · INTRO</div>
+    <p>韩国 5,200 万人, 国土面积 10 万 km² (比江苏小一半). 2024 GDP $1.7 兆 — 全球第 11. 但人均 GDP $33,000 (亚洲仅次日新台), 在制造业 / 半导体 / 文化输出 / 国防工业四大领域全球前 5. 一个被夹在中美日朝间的"小国大经济".</p>
+  </div>
+
+  <div class="core-box">
+    <div class="core-label">▸ 核心 · CORE</div>
+    <p>韩国不是单一国家叙事, 是 <strong>AI 算力供应链 + 制造业 / 国防出口 + 文化软实力 + 老龄化危机</strong> 四个独立故事的同时载体. 投韩股 = 押注这 4 条线的复合效应.</p>
+  </div>
+
+  <h2><span class="h2-num">01</span>5 大数字</h2>
+  <div class="stat-grid">
+    <div class="stat-card gold"><div class="stat-num">$1.7T</div><div class="stat-label">GDP</div><div class="stat-sub">全球第 11</div></div>
+    <div class="stat-card gold"><div class="stat-num">$33K</div><div class="stat-label">人均 GDP</div><div class="stat-sub">亚洲第 4</div></div>
+    <div class="stat-card rose"><div class="stat-num">0.72</div><div class="stat-label">出生率</div><div class="stat-sub">全球最低</div></div>
+    <div class="stat-card"><div class="stat-num">19%</div><div class="stat-label">65+ 占比</div><div class="stat-sub">全球第 3</div></div>
+    <div class="stat-card gold"><div class="stat-num">38%</div><div class="stat-label">GDP 出口占比</div><div class="stat-sub">高于日本 (15%)</div></div>
+    <div class="stat-card"><div class="stat-num">$650B</div><div class="stat-label">KOSPI 市值</div><div class="stat-sub">全球第 11 大</div></div>
+  </div>
+
+  <h2><span class="h2-num">02</span>产业 4 大支柱</h2>
+  <table>
+    <thead><tr><th>产业</th><th>占 GDP</th><th>全球地位</th><th>代表公司</th></tr></thead>
+    <tbody>
+      <tr><td>半导体</td><td class="num">10%</td><td>全球第 2 (Memory 第 1)</td><td class="code">三星 / SK Hynix</td></tr>
+      <tr><td>汽车</td><td class="num">7%</td><td>全球第 5</td><td class="code">Hyundai / Kia</td></tr>
+      <tr><td>造船</td><td class="num">3%</td><td>全球第 1 (LNG)</td><td class="code">HD韩国 / 三星重工</td></tr>
+      <tr><td>文化 (K-Pop/Drama)</td><td class="num">2%</td><td>全球第 1 (流媒体)</td><td class="code">HYBE / CJ ENM</td></tr>
+      <tr><td>国防</td><td class="num">2%</td><td>全球第 4 (军售)</td><td class="code">Hanwha / KAI</td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="h2-num">03</span>政治 + 地缘</h2>
+  <p>政体: 总统制共和国 / 5 年一任 / 不连任. 当前总统 (2025): <strong>李在明</strong> (民主党, 鸽派对朝, 经济中性) — 2025-06 上任接替 Yoon (尹锡悦 弹劾下台).</p>
+  <p>外交: 美韩同盟 + 韩日改善 + 韩中务实 + 朝鲜对峙. <em>夹在中美之间</em>, 但安全靠美.</p>
+
+  <div class="gloss">
+    <div class="gloss-label">📖 术语注解</div>
+    <dl>
+      <dt>KOSPI</dt><dd>韩国综合股价指数, 类似上证 / 日经 / 美 S&P500. 涵盖 KOSPI 主板 800+ 家上市公司.</dd>
+      <dt>财阀 (재벌, Chaebol)</dt><dd>韩国大型家族企业集团. 三星 / SK / Hyundai / LG / Lotte 五大财阀占 GDP 40%+. 历史上家族世袭 + 循环持股, 是 Value-Up 改革目标.</dd>
+      <dt>出口依赖</dt><dd>韩国 GDP 中出口占比 38% (vs 日本 15%, 美国 11%). 这让韩国对全球周期高度敏感.</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- ━━━━━━━━━━━━━━━━━ P.12 老龄化 ━━━━━━━━━━━━━━━━━ -->
+<section class="page">
+  <div class="page-header">
+    <div class="page-no">P.12 / W19</div>
+    <div class="page-em">▸ Demographic Crisis · 人口危机</div>
+    <h1 class="page-title">出生率 0.72 · 老龄化第三</h1>
+  </div>
+
+  <div class="intro-box">
+    <div class="intro-label"><span class="ico">📖</span>简介</div>
+    <p>韩国 2024 年总和生育率 <strong>0.72</strong> — 全球最低, 远低于人口替代率 2.1. 同时, 65 岁以上人口占比已达 19%, 2030 年破 25%, 2050 年 <strong>40%</strong>. 这是日本 1990 年代以来全球最快的老龄化曲线.</p>
+  </div>
+
+  <div class="core-box">
+    <div class="core-label">▸ 核心</div>
+    <p>未来 25 年韩国必须从 <strong>移民 / 自动化 / 生育激励</strong> 三选一. 任何单一方案都不够. 这是韩国 GLP-1 / 机器人 / 养老科技 三大长期主题的根本驱动力.</p>
+  </div>
+
+  <h2><span class="h2-num">01</span>出生率断崖</h2>
+  <div class="chart">
+    <div class="chart-title">▸ 韩国年度出生人数</div>
+    <div class="chart-sub">单位: 万人 · 1970-2024</div>
+    <svg class="chart-svg" viewBox="0 0 600 240" preserveAspectRatio="xMidYMid meet">
+      <line x1="40" y1="200" x2="580" y2="200" stroke="#E5D5BA"/>
+      <line x1="40" y1="20" x2="40" y2="200" stroke="#E5D5BA"/>
+      <line x1="40" y1="160" x2="580" y2="160" stroke="#F0E2C8" stroke-dasharray="2 4"/>
+      <line x1="40" y1="100" x2="580" y2="100" stroke="#F0E2C8" stroke-dasharray="2 4"/>
+      <line x1="40" y1="40" x2="580" y2="40" stroke="#F0E2C8" stroke-dasharray="2 4"/>
+      <text x="34" y="204" fill="#7A6A50" font-size="9" text-anchor="end" font-family="monospace">0</text>
+      <text x="34" y="164" fill="#7A6A50" font-size="9" text-anchor="end" font-family="monospace">30万</text>
+      <text x="34" y="104" fill="#7A6A50" font-size="9" text-anchor="end" font-family="monospace">60万</text>
+      <text x="34" y="44" fill="#7A6A50" font-size="9" text-anchor="end" font-family="monospace">100万</text>
+
+      <polyline points="60,40 130,55 200,80 270,110 340,140 410,160 480,175 540,182"
+        fill="none" stroke="#C4503B" stroke-width="3"/>
+      <circle cx="60" cy="40" r="5" fill="#C4503B"/>
+      <text x="60" y="32" fill="#C4503B" font-size="10" text-anchor="middle" font-family="monospace" font-weight="700">100万</text>
+      <circle cx="540" cy="182" r="5" fill="#C4503B"/>
+      <text x="540" y="174" fill="#C4503B" font-size="11" text-anchor="middle" font-family="monospace" font-weight="700">23万</text>
+
+      <text x="60" y="222" fill="#7A6A50" font-size="10" text-anchor="middle" font-family="monospace">1970</text>
+      <text x="270" y="222" fill="#7A6A50" font-size="10" text-anchor="middle" font-family="monospace">2000</text>
+      <text x="540" y="222" fill="#7A6A50" font-size="10" text-anchor="middle" font-family="monospace">2024</text>
+    </svg>
+  </div>
+
+  <div class="key-box">
+    <ul>
+      <li><strong>2024 出生 23 万</strong> = 1970 年 (100 万) 的 1/4</li>
+      <li><strong>0.72</strong> = 全球唯一低于 1.0 的国家</li>
+      <li><strong>2050 人口预测 3,800 万</strong> (vs 当前 5,200 万) — 缩水 27%</li>
+      <li><strong>劳动年龄人口 (15-64)</strong> 2070 年仅占 46%</li>
+    </ul>
+  </div>
+
+  <h2><span class="h2-num">02</span>三大对应主题 (投资视角)</h2>
+
+  <div class="callout gold">
+    <div class="callout-title"><span class="ico">💊</span>GLP-1 + 长寿药</div>
+    <p>韩国老年慢病市场 2030 $80 亿. LG Chem / Celltrion / Samsung Bioepis 受益. <em>但主要靠美欧药企 LLY/NVO 在韩销售</em>.</p>
+  </div>
+
+  <div class="callout gold">
+    <div class="callout-title"><span class="ico">🤖</span>机器人 + 自动化</div>
+    <p>劳动力短缺 → Hyundai (Boston Dynamics) / LG NEO / Doosan Robotics. 韩政府 2030 年万亿规划. <strong>这是确定性最高的子主题</strong>.</p>
+  </div>
+
+  <div class="callout gold">
+    <div class="callout-title"><span class="ico">🏥</span>养老服务 + REIT</div>
+    <p>韩国养老护理市场 2030 $500 亿. Cyberdyne 系统部署. 政府 2027 长护险升级.</p>
+  </div>
+
+  <div class="gloss">
+    <div class="gloss-label">📖 术语注解</div>
+    <dl>
+      <dt>TFR (Total Fertility Rate)</dt><dd>总和生育率, 每个育龄妇女平均生育子女数. 2.1 = 人口替代率. 韩国 0.72 是全球最低.</dd>
+      <dt>GLP-1</dt><dd>胰高血糖素样肽-1 受体激动剂. 代表药物: Mounjaro (Lilly) / Wegovy (Novo Nordisk). 用于减肥 / 糖尿病, 已扩到心血管 / 阿尔茨海默.</dd>
+      <dt>老龄化拐点</dt><dd>65 岁以上人口占比超过 14% 即"老龄社会". 超过 20% = "超老龄". 韩国 2025 跨入超老龄.</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- ━━━━━━━━━━━━━━━━━ P.13 文化软实力 ━━━━━━━━━━━━━━━━━ -->
+<section class="page">
+  <div class="page-header">
+    <div class="page-no">P.13 / W19</div>
+    <div class="page-em">▸ Soft Power · 文化软实力</div>
+    <h1 class="page-title">K-Pop / K-Drama 全球账</h1>
+  </div>
+
+  <div class="intro-box">
+    <div class="intro-label"><span class="ico">📖</span>简介</div>
+    <p>韩国文化输出 (Hallyu, 韩流) 2024 年全球收入约 <strong>$130 亿</strong>. 其中 K-Pop $90 亿 / K-Drama $25 亿 / K-Beauty $15 亿. Netflix 非英语剧 60% 是韩剧 / 西语剧, 韩剧占 30%. BTS / Squid Game / Parasite 让韩国成为继日漫之后的第二个 "文化超级出口国".</p>
+  </div>
+
+  <div class="core-box">
+    <div class="core-label">▸ 核心</div>
+    <p>文化软实力不只是 entertainment 收入 — 它是 <strong>国家品牌 + 旅游 + 化妆品 + 食品出口</strong> 的乘数放大器. 韩流 GDP 贡献 0.4% (约 $80 亿), 但带动效应 2-3 倍.</p>
+  </div>
+
+  <h2><span class="h2-num">01</span>4 大代表公司</h2>
+  <table>
+    <thead><tr><th>公司</th><th>代码</th><th>核心</th><th>2024 营收</th></tr></thead>
+    <tbody>
+      <tr><td>HYBE (BTS 母公司)</td><td class="code">352820.KS</td><td>K-Pop 经纪</td><td class="num">₩2.2T</td></tr>
+      <tr><td>SM Entertainment</td><td class="code">041510.KS</td><td>NCT / aespa</td><td class="num">₩940B</td></tr>
+      <tr><td>JYP Entertainment</td><td class="code">035900.KS</td><td>TWICE / Stray Kids</td><td class="num">₩560B</td></tr>
+      <tr><td>CJ ENM</td><td class="code">035760.KS</td><td>K-Drama / 电影</td><td class="num">₩4.5T</td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="h2-num">02</span>3 大溢出效应</h2>
+  <div class="steps">
+    <div class="step">
+      <h4>K-Beauty 化妆品</h4>
+      <p>Amorepacific + LG生健 (LG H&H) 全球第 5. 2024 出口 $90 亿. 中国 / 美国 / 东南亚为主.</p>
+    </div>
+    <div class="step">
+      <h4>K-Food 出口</h4>
+      <p>方便面 (Samyang/农心) + 泡菜 + 烧酒. 2024 食品出口 $135 亿, +12% YoY. 美国 / 日本市场最大.</p>
+    </div>
+    <div class="step">
+      <h4>旅游 + 整形</h4>
+      <p>2024 入境游客 1700 万 (历史最高). 韩国整形手术游客 70 万人次, 中国 / 东南亚为主.</p>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    <div class="pq-text">韩国是当代唯一靠"软实力"突破国家规模的国家. 经济规模十分之一的影响力放到三倍.</div>
+    <div class="pq-attr">— Joseph Nye (软实力 概念创始)</div>
+  </div>
+
+  <div class="gloss">
+    <div class="gloss-label">📖 术语注解</div>
+    <dl>
+      <dt>Hallyu (한류, 韩流)</dt><dd>韩国文化在亚洲及全球的扩散现象, 1997 IMF 危机后政府推动文化产业战略的结果. 包含 K-Pop / K-Drama / K-Beauty / K-Food.</dd>
+      <dt>HYBE</dt><dd>BTS 经纪公司, 全球最大 K-Pop 经纪. 2024 营收 ₩2.2T, 估值 ₩6T+. 已扩到 4 大经纪所合并模式.</dd>
+      <dt>Squid Game 效应</dt><dd>2021 Netflix 韩剧《鱿鱼游戏》全球 1.4 亿户观看, 让 Netflix 加大韩国内容投资 $25 亿 / 4 年.</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- ━━━━━━━━━━━━━━━━━ P.14 地缘 ━━━━━━━━━━━━━━━━━ -->
+<section class="page">
+  <div class="page-header">
+    <div class="page-no">P.14 / W19</div>
+    <div class="page-em">▸ Geopolitics · 中美夹缝</div>
+    <h1 class="page-title">韩国 · 安全靠美 经济靠中</h1>
+  </div>
+
+  <div class="intro-box">
+    <div class="intro-label"><span class="ico">📖</span>简介</div>
+    <p>韩国是冷战后唯一同时高度依赖 <strong>美国 (安全 + 美军 + 半导体技术)</strong> 和 <strong>中国 (出口 + 供应链)</strong> 的大经济体. 韩对中出口占总出口 20% (vs 美 18%, 日 7%, 越 9%). Trump 2.0 + 中美脱钩, 这个平衡正在被强行打破.</p>
+  </div>
+
+  <div class="core-box">
+    <div class="core-label">▸ 核心</div>
+    <p>韩国未来 5 年面临 <strong>三选一</strong>: (A) 全面美国阵营 (CHIPS Act + IRA + Aukus) / (B) 中间走平衡 / (C) 中国阵营 (经济换市场). <em>大概率走 A + B</em>, 但代价是中国市场永久流失 20-30%.</p>
+  </div>
+
+  <h2><span class="h2-num">01</span>韩国的"中美账单"</h2>
+  <table>
+    <thead><tr><th>维度</th><th>美国</th><th>中国</th></tr></thead>
+    <tbody>
+      <tr><td>军事</td><td class="pos">驻军 28,500 人</td><td class="neg">无</td></tr>
+      <tr><td>对该国出口占比</td><td class="num">18%</td><td class="num">20%</td></tr>
+      <tr><td>科技联盟</td><td class="pos">Chip4 / Aukus</td><td class="neg">无</td></tr>
+      <tr><td>半导体客户</td><td class="pos">高端 (NVDA/AMD)</td><td class="num">中低端 (现代/比亚迪)</td></tr>
+      <tr><td>韩元持有 (US$)</td><td class="num">$60B</td><td class="num">$130B (在美储备)</td></tr>
+      <tr><td>留学生人数</td><td class="num">42,000</td><td class="num">36,000</td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="h2-num">02</span>3 大冲击 (Trump 2.0)</h2>
+
+  <div class="callout rose">
+    <div class="callout-title"><span class="ico">①</span>CHIPS Act 配套要求</div>
+    <p>美国要求 TSMC + Samsung + SK Hynix 在美建厂. 三星已投 $500 亿建得州工厂, SK Hynix 在印第安纳州 HBM 厂. <em>对中国市场影响</em>: 美国限制对中销售先进芯片, 三星 / SK 中国市场被压缩.</p>
+  </div>
+
+  <div class="callout rose">
+    <div class="callout-title"><span class="ico">②</span>IRA + EV 关税</div>
+    <p>韩国 EV / 电池厂在美投资 +$500 亿 (LG新能源 / SK On / 三星 SDI). 但 IRA 2025 起部分修订, 中国成分电池被排除. <em>影响</em>: 韩国电池公司必须重组供应链.</p>
+  </div>
+
+  <div class="callout rose">
+    <div class="callout-title"><span class="ico">③</span>普遍关税威胁</div>
+    <p>Trump 2.0 提 10-20% 普遍关税 + 60% 对中国. 韩国对美顺差 $44B (2024), 高敏感商品: 汽车 / 半导体 / 电池. <em>预期</em>: 韩美 FTA 重谈, 部分产品关税豁免.</p>
+  </div>
+
+  <h2><span class="h2-num">03</span>韩国的对冲</h2>
+  <ol>
+    <li><strong>东南亚 + 印度 +欧洲扩张</strong>: 不再依赖单一中国市场</li>
+    <li><strong>国防自立 + 出口</strong>: K-Defense 是经济 + 安全双重答案</li>
+    <li><strong>核电 + 能源自主</strong>: 减少对中国稀土 / 太阳能依赖</li>
+    <li><strong>文化 + 旅游</strong>: 软实力作为非对抗性外交工具</li>
+  </ol>
+
+  <div class="gloss">
+    <div class="gloss-label">📖 术语注解</div>
+    <dl>
+      <dt>THAAD (萨德)</dt><dd>美国部署在韩国的反导系统, 2016 部署后中国对韩经济制裁 (限韩令) 持续 5+ 年. 至今旅游 / 文化 / 化妆品对中出口未完全恢复.</dd>
+      <dt>CHIPS Act</dt><dd>美国 2022 通过, 对半导体在美建厂提供 $520 亿补贴. 韩国 Samsung / SK Hynix 是主要受益者之一.</dd>
+      <dt>Aukus</dt><dd>美英澳三国安全联盟 (2021), 含核潜艇 + 国防 AI. 韩国可能加入"Aukus 第二支柱" (技术合作部分).</dd>
+      <dt>Chip4</dt><dd>美/韩/日/台 半导体联盟, 旨在排除中国. 韩国处于关键平衡位.</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- ━━━━━━━━━━━━━━━━━ P.15 术语 ━━━━━━━━━━━━━━━━━ -->
+<section class="page">
+  <div class="page-header">
+    <div class="page-no">P.15 / W19</div>
+    <div class="page-em">▸ Glossary · 术语注解</div>
+    <h1 class="page-title">看懂这一刊的关键词</h1>
+  </div>
+
+  <div class="intro-box">
+    <div class="intro-label"><span class="ico">📖</span>本刊术语</div>
+    <p>本期周刊出现的所有专业术语 + 韩国本土词汇 + 投资行话, 一站式查阅. 按主题归类.</p>
+  </div>
+
+  <h2><span class="h2-num">01</span>半导体 + AI</h2>
+  <div class="gloss">
+    <dl>
+      <dt>HBM (High Bandwidth Memory)</dt><dd>高带宽内存, NVDA H100/B200 GPU 必备. 韩国 SK Hynix 主导, 三星 + 美光跟随.</dd>
+      <dt>HBM3E / HBM4</dt><dd>HBM 代际, 数字越大越新. HBM3E 是 2024-2025 主流 (8 层 / 12 层), HBM4 是 2026 量产新一代 (16 层).</dd>
+      <dt>2nm GAA</dt><dd>2 纳米 Gate-All-Around 工艺, 半导体最先进制程. 三星 / TSMC 2026 量产.</dd>
+      <dt>NVDA Rubin</dt><dd>NVIDIA 下一代 GPU 平台 (Blackwell 之后), 2026 量产. HBM4 是核心配套.</dd>
+      <dt>Foundry</dt><dd>代工厂. 三星 / TSMC 是主要 foundry, 为 NVDA / AMD / Apple / Qualcomm 代工.</dd>
+    </dl>
+  </div>
+
+  <h2><span class="h2-num">02</span>金融 + 估值</h2>
+  <div class="gloss">
+    <dl>
+      <dt>PE (Price/Earnings)</dt><dd>市盈率 = 股价 / 每股收益. 简单估值指标. KOSPI 平均 PE 11, S&P500 PE 22.</dd>
+      <dt>PB (Price/Book)</dt><dd>市净率 = 股价 / 每股净资产. 重资产行业 (银行 / 制造) 常用.</dd>
+      <dt>ROE / ROIC</dt><dd>ROE = 净利润 / 净资产. ROIC = 营业利润 / 投资资本. Value-Up 要求 ROE > WACC.</dd>
+      <dt>Backlog</dt><dd>未交付订单. 造船 / 国防业关键, 反映未来 3-5 年收入.</dd>
+      <dt>SOTP (Sum of the Parts)</dt><dd>分类估值法. 财阀股因业务多元, 常用 SOTP 而非单一 PE.</dd>
+    </dl>
+  </div>
+
+  <h2><span class="h2-num">03</span>韩国本土</h2>
+  <div class="gloss">
+    <dl>
+      <dt>财阀 (재벌, Chaebol)</dt><dd>韩国大型家族企业集团. 三星 / SK / Hyundai / LG / Lotte 五大占 GDP 40%+.</dd>
+      <dt>Value-Up Program</dt><dd>韩国政府 2024-2025 推出的财阀重估改革, 强制分红 + 回购 + 透明化. 目标 KOSPI PE 从 11 → 18.</dd>
+      <dt>Korea Discount</dt><dd>韩股长期被市场低估的现象, PE 仅美股一半. 财阀治理 + 朝韩风险是主因.</dd>
+      <dt>Hallyu (한류, 韩流)</dt><dd>韩国文化输出现象, 含 K-Pop / K-Drama / K-Beauty / K-Food.</dd>
+      <dt>KOSPI</dt><dd>韩国综合股价指数. 类似上证 / 日经.</dd>
+      <dt>KOSDAQ</dt><dd>韩国创业板, 类似纳斯达克. 中小成长股集中.</dd>
+    </dl>
+  </div>
+
+  <h2><span class="h2-num">04</span>国防 + 地缘</h2>
+  <div class="gloss">
+    <dl>
+      <dt>K-Defense</dt><dd>韩国国防工业出口品牌. K2 坦克 / K9 自行炮 / FA-50 战机 / 天弓-II 防空.</dd>
+      <dt>CHIPS Act</dt><dd>美国 2022 通过, 给在美建半导体厂的公司 $520 亿补贴.</dd>
+      <dt>IRA (Inflation Reduction Act)</dt><dd>美国 2022 通过, 对 EV / 电池 / 可再生能源补贴. 韩国电池公司受益.</dd>
+      <dt>THAAD (萨德)</dt><dd>美国在韩部署的反导系统. 2016 部署引发中国限韩令.</dd>
+      <dt>Aukus / Chip4</dt><dd>美国主导的两个对中科技 / 安全联盟, 韩国是关键参与者.</dd>
+    </dl>
+  </div>
+
+  <h2><span class="h2-num">05</span>事件 + 周期</h2>
+  <div class="gloss">
+    <dl>
+      <dt>CII 评级</dt><dd>国际海事组织 (IMO) 船舶碳强度评级, 2024 起强制. 老船面临停航, 拉动双燃料船需求.</dd>
+      <dt>FOMC</dt><dd>美国联邦公开市场委员会, 每年 8 次决定利率. 影响 KRW 汇率 + KOSPI 流动性.</dd>
+      <dt>Sharpe Ratio</dt><dd>风险调整收益 = (回报 - 无风险利率) / 标准差. > 1 优秀, > 2 卓越.</dd>
+      <dt>最大回撤 (Max Drawdown)</dt><dd>从峰值到谷底的最大跌幅. 评估策略下行风险.</dd>
+      <dt>Black Swan</dt><dd>低概率高影响事件. 韩国主线最大单一 Black Swan = 朝鲜冲突.</dd>
+    </dl>
   </div>
 </section>
 
